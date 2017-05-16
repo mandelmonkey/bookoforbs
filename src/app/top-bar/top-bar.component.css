@@ -1,0 +1,108 @@
+
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.backbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:60px;
+}
+.leftbracket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:10px;
+  height:55px;
+}
+.rightbracket {
+  position: absolute;
+  top: 0;
+  right: 0;
+   width:10px;
+  height:55px;
+}
+
+.smallarrow {
+  position: absolute;
+  top: 19px;
+  left: 25px;
+   width:16px;
+  height:10px;
+}
+ 
+
+.environmentButton span {
+    
+     pointer-events: none;
+    position: absolute;
+    left: 60px;
+    top: 13px;
+    color: #ffffd5;
+    font-family:   merriweather;
+}
+
+.envbutton {
+    position: absolute;
+  top: 3px;
+  left: 10px;
+  width:250px;
+  height:42px;
+}
+
+
+ .environmentButton {
+     cursor: pointer;
+    position: absolute;
+    top: 3px;
+  left: 10px;
+  width:250px;
+  height:42px;
+}
+
+/* Dropdown button on hover & focus */
+.environmentButton:hover, .environmentButton:focus {
+   
+}
+
+ 
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #442117;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+ 
+.envtitle {
+  display: table-cell;
+  vertical-align: middle;
+      cursor: pointer;
+    color: #ffffd5;
+    font-family:   merriweather;
+    left: 10px;
+}
+li
+{
+  
+    background-color: #442117;
+    display: table;
+    min-width: 200px;
+    list-style-type:none;
+    padding-left:15px;
+    margin:0px;
+    height:50px;
+}
+/* Change color of dropdown links on hover */
+li:hover {background-color: #654137}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}

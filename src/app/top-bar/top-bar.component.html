@@ -1,0 +1,16 @@
+<div class="parent">
+  <img class="backbar" src="../assets/images/tool_bar_background.png" />
+  <img class="leftbracket" src="../assets/images/leftBracket.png" />
+  <img class="rightbracket" src="../assets/images/rightBracket.png" />
+  <div class="environmentButton">
+    <img class="envbutton" src="../assets/images/selectGameButtonBackground.png" (click)="openEnvironmentList()" />
+    <span>{{currentEnvTitle}}</span>
+    <img id="smallarrow" class="smallarrow" src="../assets/images/littleArrow.png" />
+  </div>
+   <div id="myDropdown" class="dropdown-content">
+   <li *ngFor="let environmentKey of environmentKeys;  let i = index">
+    <span class="envtitle" (click)="setEnvironment(environmentKeys[i])">{{environments[environmentKey].Definition.Title}}</span>
+   
+   </li>
+  </div>
+</div>

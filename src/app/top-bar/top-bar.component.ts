@@ -1,0 +1,85 @@
+
+
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data.service';
+@Component({
+  selector: 'app-top-bar',
+  templateUrl: './top-bar.component.html',
+  styleUrls: ['./top-bar.component.css'],
+  host: {
+    '(document:click)': 'onClick($event)',
+  },
+})
+export class TopBarComponent implements OnInit {
+
+public currentEnv:any;
+public currentEnvKey:string;
+currentEnvTitle = "loading...";
+public orbsData: Array<any>;
+environmentKeys: Array<any>;
+environments: Array<any>;
+rotated = false;
+
+  constructor(public dataService:DataService) {
+        document.addEventListener('click', this.offClickHandler.bind(this)); // bind on doc
+    }
+
+    offClickHandler(event:any) {
+       if (!event.target.matches('.envbutton')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+  
+    }
+
+  ngOnInit() {
+      this.dataService.topbar = this;
+  }
+
+
+setEnvironments(environmentData:Array<any> ){
+
+  this.environments = environmentData;
+ this.environmentKeys = Object.keys(this.environments);
+
+if(this.environmentKeys.length > 0){
+ this.setEnvironment(this.environmentKeys[0]);
+}
+
+}
+openEnvironmentList() {
+ if(this.environmentKeys.length > 0){
+    document.getElementById("myDropdown").classList.toggle("show");
+
+    var div =   document.getElementById("smallarrow");
+
+
+     var deg = this.rotated ? 0 : -90;
+
+    div.style.webkitTransform = 'rotate('+deg+'deg)';  
+    div.style.transform       = 'rotate('+deg+'deg)'; 
+    div.style.webkitTransition=" all 0.1s ease-in-out"; 
+     div.style.transition=" all 0.1s ease-in-out";
+    this.rotated = !this.rotated;
+ }
+}
+
+setEnvironment(key:string){
+  this.currentEnvKey = key;
+ this.currentEnv = this.environments[this.currentEnvKey];
+ this.currentEnvTitle = this.currentEnv.Definition.Title;
+
+this.dataService.collection.setCurrentOrbs();
+
+}
+
+
+ 
+}

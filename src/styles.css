@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+ @font-face {
+    font-family: sling;
+    src:  url("/assets/fonts/Sling.ttf");
+   
+
+}
+@font-face {
+  font-family: merriweather;
+    src: url("/assets/fonts/Merriweather-Bold.ttf");
+
+}
+@font-face {
+     font-family: slingBold;
+    src: url("/assets/fonts/SlingBold.ttf");
+}
+html { 
+        background: url('/assets/images/stoneBack.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
