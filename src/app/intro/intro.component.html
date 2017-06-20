@@ -1,0 +1,74 @@
+ 	 <img class="background" src="/assets/images/bookBack2.jpg">
+
+
+ <div class="introButtons">
+
+    <div  *ngIf="showIntroButtons">
+   <div class="newWalletButton">
+    <img class="newWalletBtn" src="../assets/images/frontButton.png" (click)="createNewAccount()" />
+    <span>Create new wallet</span>
+  </div>
+
+   <div class="newWalletButton">
+    <img class="newWalletBtn" src="../assets/images/frontButton.png" (click)="enterPassphrase()" />
+    <span>Enter passphrase</span>
+    
+  </div>
+   </div>
+    <div  *ngIf="showPassphraseField">
+ <input   type="text" [(ngModel)]="passphrase" name="passphrase"> 
+
+  
+ <div class="navButtons">
+    <span class="button">back</span>
+    <span class="button" (click)="checkPassphrase()">next</span>  
+</div>
+    
+    <br><span class="shorturl">{{passphraseStatus}}</span><br>
+  
+   </div>
+
+
+ <div  *ngIf="showPasswordField">
+    <span class="shorturl">Type a password and use the generated url to login to without typing your passphrase</span><br>
+ <input   type="text" name="password"  [(ngModel)]="password"   (ngModelChange)="updateShortUrl()"> 
+
+  
+ <div class="navButtons">
+    <span class="button">back</span>
+    <span class="button"  (click)="continueLogin()">next</span>  
+      <span class="button" (click)="copyShortUrl()">copy</span>  
+</div>
+   <br><span class="shorturl">{{shorturl}}</span><br>
+   
+   </div>
+
+
+ <div  *ngIf="showPasswordDecryptField">
+     <span class="shorturl">enter your password</span><br>
+ <input   type="text" name="password"  [(ngModel)]="password"> 
+
+  
+ <div class="navButtons"> 
+    <span class="button" (click)="decryptPassphrase()">next</span>     
+</div>
+  <br><span class="shorturl">{{decryptStatus}}</span><br>
+   
+   </div>
+
+
+   <div  *ngIf="showNewPassphrase">
+     <span class="shorturl">Please write down this passphrase</span><br>
+  <span class="shorturl">{{passphrase}}</span><br>
+  
+  
+ <div class="navButtons"> 
+     <span class="button">back</span>
+    <span class="button" (click)="continueLogin()">next</span>     
+</div> 
+   
+   </div>
+
+
+   </div>
+   

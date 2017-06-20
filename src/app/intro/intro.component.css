@@ -1,0 +1,66 @@
+ 
+.background{
+    min-height:100%;
+    min-width:100%;
+    height:auto;
+    width:auto;
+    position:absolute;
+    top:-100%; bottom:-100%;
+    left:-100%; right:-100%;
+    margin:auto;
+}
+
+.newWalletBtn {
+    position: absolute;
+  top: 3px;
+  left: 10px;
+  width:250px;
+  height:60px;
+}
+
+
+ .newWalletButton {
+     cursor: pointer;
+    position: relative;
+    top: 3px;
+  left: 10px;
+  width:250px;
+  height:60px;
+}
+
+.newWalletButton span {
+    
+     pointer-events: none;
+    position: absolute;
+    left: 80px;
+    top: 23px;
+    color: #ffffd5;
+    font-family:   merriweather;
+}
+
+.shorturl {
+    
+    
+    color: #ffffd5;
+    font-family:   merriweather;
+}
+
+
+ .introButtons { 
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-100px;/* half width*/
+    margin-top:-300px;/* half height*/
+}
+
+ .button {
+        appearance: button;
+        -moz-appearance: button;
+        -webkit-appearance: button;
+        text-decoration: none; 
+        font: menu; 
+        color: ButtonText;
+        display: inline-block; 
+        padding: 2px 8px;
+    }

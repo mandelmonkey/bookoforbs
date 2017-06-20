@@ -11,8 +11,12 @@ export class MainControllerComponent implements OnInit {
 
   constructor(public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef){}
 public loading = true;
+public showTopBar = false;
+public showCollection = false;
+public showIntro = true;
 public orbData :any;
 public userBalance :Array<any>;
+public currentAddress = "";
   loadEnvironments(){
   
     
@@ -22,7 +26,7 @@ this.httpService.getEnvironments().subscribe(
       this.orbData = data;
       console.log( this.orbData);
       
-      this.httpService.getBalance("1Nh4tPtQjHZSoYdToTF7T3xbaKrTNKM3wP").subscribe(
+      this.httpService.getBalance(this.currentAddress).subscribe(
      data => { 
       this.userBalance = data;
       console.log(  this.userBalance);
@@ -53,7 +57,7 @@ console.log("error gamecenter");
 
   ngOnInit() {
     this.dataService.maincontroller = this;
-    this.loadEnvironments();
+   
   }
 
 

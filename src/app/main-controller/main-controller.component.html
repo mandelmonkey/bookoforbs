@@ -1,6 +1,7 @@
    
- <app-top-bar></app-top-bar>
+   
+ <app-top-bar *ngIf="showTopBar" ></app-top-bar>
   
-   <app-collection></app-collection>
+   <app-collection *ngIf="showCollection" ></app-collection>
 
- 
+  <app-intro  *ngIf="showIntro"></app-intro>
