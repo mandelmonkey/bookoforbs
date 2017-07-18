@@ -14,7 +14,8 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-cli": "1.0.1",
+    "angular2": "2.0.0-beta.15",
+    "angular-cli": "1.0.1",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
