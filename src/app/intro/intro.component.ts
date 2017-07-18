@@ -107,7 +107,7 @@ this.dataService.maincontroller.showBottomBar = true;
       }
 
 
-      this.password = "W@x0nw@x0ff";
+      //this.password = "W@x0nw@x0ff";
      this.decryptPassphrase();
 
 
