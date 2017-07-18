@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "preinstall": "npm install -g angular-cli",
     "postinstall": "ng build --aot -prod",
-    "start": "node Server.js",
+    "start": "node Server.js"
   },
   "private": true,
   "dependencies": {
