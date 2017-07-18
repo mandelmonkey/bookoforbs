@@ -33,11 +33,15 @@ export class HTTPService{
 
     getEnvironment(env:string){
          var header = new Headers();
+/*
  header.append('Access-Control-Allow-Origin', '*');
       return this._http.get(this.baseOrbUrl+ "&action=getEnvironment&env=" + env + "&responseType=JSON"+this.devExt, {
         headers:header
       })
+      .map(res=>res.json());*/
+return this._http.get(" http://sarutobigob1309.herokuapp.com/returnUrl?envv="+env)
       .map(res=>res.json());
+      
 
 
     };
