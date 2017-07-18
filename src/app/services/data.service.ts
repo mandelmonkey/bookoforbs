@@ -9,9 +9,9 @@ export class DataService {
   topbar:TopBarComponent;
   collection:CollectionComponent;
   maincontroller: MainControllerComponent;
-
+  currentTab:number;
    constructor(){
-    
+    this.currentTab = 1;
 
   }
   

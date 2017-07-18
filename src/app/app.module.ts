@@ -8,8 +8,9 @@ import { CollectionComponent } from './collection/collection.component';
 import { MainControllerComponent } from './main-controller/main-controller.component';
 import { DataService } from './services/data.service';
 import { IntroComponent } from './intro/intro.component';
-
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { RouterModule, Routes }  from '@angular/router';
+import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -20,12 +21,14 @@ const appRoutes: Routes = [
     TopBarComponent,
     CollectionComponent,
     MainControllerComponent,
-    IntroComponent
+    IntroComponent,
+    BottomBarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    LazyLoadImageModule,
    RouterModule.forRoot(appRoutes) 
   ],
   exports: [

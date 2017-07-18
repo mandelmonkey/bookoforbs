@@ -1,0 +1,87 @@
+.largeORB {
+   position: absolute;
+   top:0;
+   width:100%;
+   height:100%;
+   background-color: rgba(0,0,0,0.7);
+}
+
+.container {
+	  width:80%;
+	   height:80%;
+   margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	 position: absolute; 
+	 text-align: center;
+}
+.largeORBImage {
+	background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
+  
+ 
+     background-repeat: no-repeat; 
+     background-size: cover;
+}
+
+.largeButtons {
+	 
+   width:100%; 
+   margin: auto;
+    top: 0;
+    left: 0;
+    text-align: center; 
+   
+}
+#largeButtonSend {
+	 background: url('/assets/images/sendButtonCollection.png');
+   
+     background-repeat: no-repeat; 
+     background-size: cover;
+
+     cursor: pointer;  
+  width:49%;
+  height:60px;
+  overflow: hidden; 
+    text-align: center;
+    display: inline-block;
+   
+}
+#largeButtonMarket {
+	 background: url('/assets/images/marketButtonCollection.png');
+   
+     background-repeat: no-repeat; 
+     background-size: cover;
+
+     cursor: pointer;  
+  width:49%;
+  height:60px;
+  overflow: hidden; 
+    text-align: center;
+    display: inline-block;
+   
+}
+
+.titleLabel {      
+   left: 0;  
+   width: 100%; 
+   display: inline-block; 
+    height: 30px;
+    color: #ffffd5;
+    font-family:   merriweather;
+}
+.buttonLabel {      
+   left: 0;  
+   width: 100%; 
+   display: inline-block;
+   padding-top: 25px;
+    height: 60px;
+    color: #ffffd5;
+    font-family:   merriweather;
+}
+.largeButtonImage {
+	 
+   width:100%;
+   
+}

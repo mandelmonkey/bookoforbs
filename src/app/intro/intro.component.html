@@ -1,74 +1,88 @@
- 	 <img class="background" src="/assets/images/bookBack2.jpg">
-
-
+ <div class="introPage">
+<br> 
+   <br>
+  <img class="topImage" src="../assets/images/bookLiningFront.png" />
  <div class="introButtons">
 
-    <div  *ngIf="showIntroButtons">
-   <div class="newWalletButton">
-    <img class="newWalletBtn" src="../assets/images/frontButton.png" (click)="createNewAccount()" />
-    <span>Create new wallet</span>
+ 
+  <div  *ngIf="showIntroButtons">
+     <div class="newWalletButton" (click)="createNewAccount()" >
+        <img class="newWalletImage" src="../assets/images/frontButton.png" />
+        <label>Create new wallet</label>
+     </div>
+ <br> 
+   
+    <div class="newWalletButton" (click)="enterPassphrase()">
+      <img class="newWalletImage" src="../assets/images/frontButton.png"  />
+      <label>Enter passphrase</label>  
+    </div>
   </div>
 
-   <div class="newWalletButton">
-    <img class="newWalletBtn" src="../assets/images/frontButton.png" (click)="enterPassphrase()" />
-    <span>Enter passphrase</span>
+  <div  *ngIf="showPassphraseField">
+  
+  <input  class="textInput"  type="password" [(ngModel)]="passphrase"  placeholder="enter your 12 word recovery phrase"  name="passphrase"> 
+  <br> 
     
-  </div>
-   </div>
-    <div  *ngIf="showPassphraseField">
- <input   type="text" [(ngModel)]="passphrase" name="passphrase"> 
-
+    
+   <br>
   
  <div class="navButtons">
-    <span class="button">back</span>
+    <span class="button" (click)="backToStart()">back</span>
     <span class="button" (click)="checkPassphrase()">next</span>  
 </div>
     
-    <br><span class="shorturl">{{passphraseStatus}}</span><br>
+    <br><label class="shorturl">{{passphraseStatus}}</label><br>
   
    </div>
 
 
  <div  *ngIf="showPasswordField">
-    <span class="shorturl">Type a password and use the generated url to login to without typing your passphrase</span><br>
- <input   type="text" name="password"  [(ngModel)]="password"   (ngModelChange)="updateShortUrl()"> 
+  <label class="title">Make quick url</label><br>
+  <br>
+    <label class="desc" >{{getMessage()}}</label><br>
+    <br>
+ <input   class="textInput"   type="password" name="password" placeholder="enter a secure password" [(ngModel)]="password"   (ngModelChange)="updateShortUrl()"> 
 
-  
+
  <div class="navButtons">
-    <span class="button">back</span>
-    <span class="button"  (click)="continueLogin()">next</span>  
-      <span class="button" (click)="copyShortUrl()">copy</span>  
+     
+      <span class="button" (click)="setShortUrl()">set</span>
+      <p  style="color:white">make sure to write down your recovery phrase first!</p>  
 </div>
-   <br><span class="shorturl">{{shorturl}}</span><br>
-   
+   <br> 
    </div>
 
 
  <div  *ngIf="showPasswordDecryptField">
-     <span class="shorturl">enter your password</span><br>
- <input   type="text" name="password"  [(ngModel)]="password"> 
+     <label class="shorturl">enter your password</label><br>
+     <br>
+ <input class="textInput"  type="password" name="password" [(ngModel)]="password"> 
 
   
  <div class="navButtons"> 
     <span class="button" (click)="decryptPassphrase()">next</span>     
 </div>
-  <br><span class="shorturl">{{decryptStatus}}</span><br>
+  <br><label class="shorturl">{{decryptStatus}}</label><br>
    
    </div>
 
 
    <div  *ngIf="showNewPassphrase">
-     <span class="shorturl">Please write down this passphrase</span><br>
-  <span class="shorturl">{{passphrase}}</span><br>
+     <label class="title">Please write down this passphrase</label><br>
+     <br>
+  <label class="desc">{{passphrase}}</label><br>
   
-  
+   <br> 
+   
+    
+   <br>
  <div class="navButtons"> 
-     <span class="button">back</span>
-    <span class="button" (click)="continueLogin()">next</span>     
+     <span class="button" (click)="backToStart()">back</span>
+    <span class="button" (click)="checkPassphrase()">next</span>     
 </div> 
    
    </div>
-
+ </div>
 
    </div>
    

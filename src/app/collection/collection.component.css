@@ -1,68 +1,61 @@
-ul.rig {
-	list-style: none;
-	font-size: 0px;
+ul {  flex-direction: column;
+     -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+   list-style: none;
+   padding: 0 !important;   
+   margin-right: 5px;
+   margin-left: 5px;
+   overflow:hidden; overflow-y:scroll;
+
+
+}
+ul li {
+    display: inline;  
+  width:33vw; 
+}
+.collection{
+
+   height:78vh;
+   width:100vw;
+   text-align: center; 
+	 overflow:hidden; overflow-y:scroll;
+}
+.cardBox { 
+	width:31%;
+	margin-left:2%;
+	margin-top: 10px;
+  cursor: pointer;  
+  text-align: center; 
+  font-size: 0;
+  float:left;
  
 }
-ul.rig li {
-	
-	display: inline-block;
-	padding: 10px;
-	margin: 0 0 0% 0%;
-	background: transparent; 
-	font-size: 16px;
-	font-size: 1rem;
-	vertical-align: top; 
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
+
+.card {  
+ 
+
+ background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
+background-size: 100% 100%; 
+width: 100%;
+ margin: 0 auto;
 }
-ul.rig li img {
-	max-width: 100%;
-	height: auto;
-	margin: 0 0 0px;
-}
-ul.rig li h3 {
-	margin: 0 0 0px;
-}
-ul.rig li p {
-	font-size: .9em;
-	line-height: 1.5em;
-	color: #999;
-}
-/* class for 2 columns */
-ul.rig.columns-2 li {
-	width: 47.5%; /* this value + 2.5 should = 50% */
-}
-/* class for 3 columns */
-ul.rig.columns-3 li {
-	left:0;
-	width: 33.33%; /* this value + 2.5 should = 33% */
-	 display: inline-block; 
-}
-/* class for 4 columns */
-ul.rig.columns-4 li {
-	width: 22.5%; /* this value + 2.5 should = 25% */
+
+ 
+
+
+.shadowBox { 
+	 
+	background: url('/assets/images/shadowView.png') no-repeat scroll 0 0;
+background-size: 100% 100%; 
+width:60%;
+height:40px;
+    border: 0;
+    margin: 0;
+    display: inline-block;
+
 }
  
-@media (max-width: 480px) {
-	ul.grid-nav li {
-		display: block; 
-	}
-	ul.grid-nav li a {
-		display: block;
-	}
-	ul.rig {
-		margin-left: 0;
-	}
-	ul.rig li {
-		width: 100% !important; /* over-ride all li styles */
-		margin: 0 0 0px;
-	}
-}
-
-
-
-
 
 
 .ownAllButton { 
@@ -101,42 +94,14 @@ ul.rig.columns-4 li {
 }
 
 
-.cardBox { 
-  cursor: pointer;  
-  text-align: center;
- 
-}
-
-.card {  
-  background: url('/assets/cardback.png') no-repeat scroll 0 0;
-background-size: 100% 100%;
-
-
-}
-
-.shadowBox { 
-	  padding: 0;
-  margin: 0;
-  display: block;
-	bottom:0px;
-      position: relative; 
-   width:80px;
-    display: inline-block; 
-  
-}
-.shadow { 
-
-      position: absolute; 
-   width:100%;
-}
 
 .cardNum { 
     color: #ffffd5;
 	text-align: center;
-	width:100%;
-	padding-top: 10px;
+	width:100%; 
+	top:5px;
       position: relative;
     font-family:   merriweather;
 	 display: inline-block; 
- font-size:1em;
+ font-size:12pt;
 }

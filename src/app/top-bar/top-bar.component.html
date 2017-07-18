@@ -9,7 +9,7 @@
   </div>
    <div id="myDropdown" class="dropdown-content">
    <li *ngFor="let environmentKey of environmentKeys;  let i = index">
-    <span class="envtitle" (click)="setEnvironment(environmentKeys[i])">{{environments[environmentKey].Definition.Title}}</span>
+    <span class="envtitle" (click)="setEnvironment(environmentKeys[i])">{{environments[environmentKey].Title}}</span>
    
    </li>
   </div>

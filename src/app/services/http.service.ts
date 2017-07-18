@@ -8,16 +8,41 @@ import 'rxjs/Rx';
 @Injectable()
 export class HTTPService{
     apiKey = "f29809821767e00b19e887e762e78e01";
+       defaultBundleID = "com.spellsofgenesis";
+     defaultEnvCode = "eSog";
+   baseOrbUrl = "https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center";
+  devExt = "&apiv=2";
+    
+
+
   constructor(private _http:Http){}
 
 
     
     getEnvironments(){
-        
-
-      return this._http.get("https://spellsofgenesis.com/api/orbscenter/?entity=orbs_center&action=getOrbs&rarepepe=true&memorychain=true&bitgirls=true&diecast=true&aoc=true")
+         var header = new Headers();
+ header.append('Access-Control-Allow-Origin', '*');
+      return this._http.get(this.baseOrbUrl+"&action=getEnvironments&responseType=JSON"+this.devExt, {
+        headers:header
+      })
       .map(res=>res.json());
+
+
     };
+
+
+    getEnvironment(env:string){
+         var header = new Headers();
+ header.append('Access-Control-Allow-Origin', '*');
+      return this._http.get(this.baseOrbUrl+ "&action=getEnvironment&env=" + env + "&responseType=JSON"+this.devExt, {
+        headers:header
+      })
+      .map(res=>res.json());
+
+
+    };
+
+ 
 
     getRawTransaction(txid){
         
@@ -44,6 +69,7 @@ export class HTTPService{
       var params = json;
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
 
       return this._http.post("https://api.indiesquare.me/v2/transactions/broadcast?X-Api-Key=" + this.apiKey,params, {
         headers:header

@@ -47,8 +47,9 @@ rotated = false;
 setEnvironments(environmentData:Array<any> ){
 
   this.environments = environmentData;
+  console.log(this.environments);
  this.environmentKeys = Object.keys(this.environments);
-
+console.log(this.environmentKeys);
 if(this.environmentKeys.length > 0){
  this.setEnvironment(this.environmentKeys[0]);
 }
@@ -74,9 +75,9 @@ openEnvironmentList() {
 setEnvironment(key:string){
   this.currentEnvKey = key;
  this.currentEnv = this.environments[this.currentEnvKey];
- this.currentEnvTitle = this.currentEnv.Definition.Title;
+ this.currentEnvTitle = this.currentEnv.Title;
 
-this.dataService.collection.setCurrentOrbs();
+this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode,this.currentEnvKey);
 
 }
 

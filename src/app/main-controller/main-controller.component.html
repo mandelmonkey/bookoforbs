@@ -5,3 +5,31 @@
    <app-collection *ngIf="showCollection" ></app-collection>
 
   <app-intro  *ngIf="showIntro"></app-intro>
+
+  <app-bottom-bar  *ngIf="showBottomBar"></app-bottom-bar>
+
+<div class="largeORB" *ngIf="selectedOrb" (click)="closeLarge()" >
+<div class="container">
+ <label class="titleLabel">{{selectedKey}}</label> 
+  <img class="largeORBImage" [src]="selectedOrb.image"/> 
+  
+
+    <div class="largeButtons">
+    
+     <div id="largeButtonSend">
+      
+        <label class="buttonLabel">Send</label> 
+     </div>
+ 	 
+   
+    <div id="largeButtonMarket">
+
+  
+      <label class="buttonLabel">Market</label> 
+     
+</div>
+  </div>
+
+
+</div>
+ 

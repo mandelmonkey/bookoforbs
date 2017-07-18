@@ -32,13 +32,30 @@ export class IntroComponent implements OnInit {
 
 }
 
+  getMessage(){
 
+    let isMobile = /Android|iPhone/i.test(window.navigator.userAgent)
+    if(isMobile){
+      return "Enter a password and save the next page to your home screen, this will let you login without entering your recovery phrase";
+    }else{
+      return "Enter a password and save the next page to your bookmarks, this will let you login without entering your recovery phrase";
+   
+    }
+
+  }
   ngOnInit() {
   
     this.shorturl = window.location.href+"?pass=";
 
  // http://localhost:4200/?pass=U2FsdGVkX19I3BKnbJ912%2FigiTTn%2FynHJwPa4obo7Do2i4roBIqAyKOt0bwD8m2rNRAEFvOFvAR7W59dHIpEC979hUStgpLxWEnriuukKmIsyXcsGJxBLISrV8PupDFF
 
+  }
+
+ backToStart(){
+   this.passphrase = "";
+ this.showNewPassphrase = false;
+   this.showIntroButtons = true;
+this.showPassphraseField = false;
   }
 createNewAccount(){
   this.showNewPassphrase = true;
@@ -67,7 +84,7 @@ createAddressFromPassphrase(m:any){
       
 }
 continueLogin(){
-
+this.dataService.maincontroller.showBottomBar = true;
     this.dataService.maincontroller.showCollection = true;
           this.dataService.maincontroller.showTopBar = true;
           this.dataService.maincontroller.showIntro = false;
@@ -88,6 +105,10 @@ continueLogin(){
     this.showPassphraseField = false;
        
       }
+
+
+      this.password = "W@x0nw@x0ff";
+     this.decryptPassphrase();
 
 
     }
@@ -125,7 +146,7 @@ continueLogin(){
    }
     }
    checkPassphrase(){
-    
+       this.showNewPassphrase = false;
 
      this.passphraseStatus = ""; 
      var words = null;
@@ -169,8 +190,14 @@ var ciphertext =  CryptoJS.AES.encrypt(this.passphrase, this.password);
 this.shorturl = window.location.href+"?pass="+ciphertext;
   }
 
-  copyShortUrl(){
-     this.copyToClipboard(this.shorturl);
+  setShortUrl(){
+    if(this.password.length > 3){
+    // this.copyToClipboard(this.shorturl);
+    window.location.href = this.shorturl;
+    }
+    else{
+      
+    }
   }
   copyToClipboard(text) {
   window.prompt("Copy to clipboard: Ctrl+C, Enter", text);

@@ -3,20 +3,19 @@
     <img class="ownAllButtonImg" src={{allOwnImage}} (click)="selectAllOwn()" />
     <span class="ownAllButtonLeft">My Orbs</span> <span class="ownAllButtonRight">All Orbs</span>
   </div>
-    
-<ul class="rig columns-3">
-<li *ngFor="let orbKey of currentOrbsKeys">
+  <div class="collection" #scrollMe (scroll)="onScroll()">  
  
- <div class="cardBox">
-	 <img class="card" src={{currentOrbs[orbKey].image}} />
-    <div class="shadowBox">
-    <img class="shadow" src="../assets/images/shadowView.png" />
-	  <span class="cardNum">x{{getUserBalance(orbKey)}}</span>
-    </div>
-    </div>
-		 
-	</li>
-</ul>
+ <div *ngFor="let orbKey of scrollOrbsKeys; let idx = index" class="cardBox">
 
+	  <img class="card" [src]="getImage(currentOrbs[orbKey])" (click)="showORB(currentOrbs[orbKey],orbKey)"/> 
+    <div class="shadowBox">
+    
+	  <span class="cardNum">x{{getUserBalance(orbKey)}}</span>
+    </div> 
+
+    </div>
+		
+	 
+ </div>
 
  

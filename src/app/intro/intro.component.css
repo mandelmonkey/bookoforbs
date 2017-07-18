@@ -2,65 +2,110 @@
 .background{
     min-height:100%;
     min-width:100%;
-    height:auto;
-    width:auto;
-    position:absolute;
-    top:-100%; bottom:-100%;
-    left:-100%; right:-100%;
-    margin:auto;
+    height:100%;
+    width:100%;
+    position:absolute;  
 }
 
-.newWalletBtn {
-    position: absolute;
-  top: 3px;
-  left: 10px;
+.newWalletImage {  
   width:250px;
   height:60px;
 }
 
 
  .newWalletButton {
-     cursor: pointer;
-    position: relative;
-    top: 3px;
-  left: 10px;
-  width:250px;
+     cursor: pointer;  
+  width:100%;
   height:60px;
+  overflow: hidden; 
+    text-align: center;
 }
 
-.newWalletButton span {
-    
-     pointer-events: none;
-    position: absolute;
-    left: 80px;
-    top: 23px;
+.newWalletButton label {
+    position: absolute;   
+   left: 0; 
+   width: 100%; 
+   display: inline-block;
+   padding-top: 20px;
+    height: 60px;
     color: #ffffd5;
     font-family:   merriweather;
 }
+.title {
+    text-align: center;
+    width:80%;
+ font-size: 15pt;
+display: inline-block; 
+    color: #ffffd5;
+    font-family:  Sling;
+}
+.topImage{
+  text-align: center; 
+     padding-top:20px; 
+    width:90%;
+    max-width: 500px;
 
+ 
+}
+.desc {
+   color:white;
+}
 .shorturl {
-    
-    
+    text-align: center;
+    width:80%; 
+display: inline-block; 
     color: #ffffd5;
-    font-family:   merriweather;
+    font-family:  Sling;
+}
+.introPage { 
+text-align: center; 
+    width:100%;
+   height:100%;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-image: url('/assets/images/bookBack2.jpg');
+      background-repeat: no-repeat; 
+     background-size: cover;
+     
+
 }
 
+.textInput {
+ width:70%;
+ max-width: 500px;
+   height:30px;
+   ::-webkit-input-placeholder { /* WebKit browsers */
+   text-align: center;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     text-align: center;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ but I'm not sure about working */
+   text-align: center;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    text-align: center;
+}
+}
+ .introButtons {
+    padding-top:50px; 
+    text-align: center; 
 
- .introButtons { 
-    position:absolute;
-    top:50%;
-    left:50%;
-    margin-left:-100px;/* half width*/
-    margin-top:-300px;/* half height*/
+   
 }
 
  .button {
-        appearance: button;
-        -moz-appearance: button;
-        -webkit-appearance: button;
+        
         text-decoration: none; 
-        font: menu; 
+        font-family: slingBold; 
+        font-size: 15pt;
         color: ButtonText;
         display: inline-block; 
-        padding: 2px 8px;
+        padding: 30px 10px;
+         color: #ffffd5;
+         background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
     }
