@@ -20,6 +20,7 @@ public userBalance :Array<any>;
 public currentAddress = "";
 public selectedOrb:any;
 public selectedKey:string;
+public currentBundleId:string;
   loadEnvironments(){
   
     

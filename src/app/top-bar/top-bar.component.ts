@@ -76,8 +76,8 @@ setEnvironment(key:string){
   this.currentEnvKey = key;
  this.currentEnv = this.environments[this.currentEnvKey];
  this.currentEnvTitle = this.currentEnv.Title;
-
-this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode,this.currentEnvKey);
+this.dataService.maincontroller.currentBundleId = this.currentEnvKey;
+this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode);
 
 }
 
