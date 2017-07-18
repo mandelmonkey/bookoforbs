@@ -28,7 +28,7 @@ export class CollectionComponent implements OnInit {
     this.currentScroll = 12;
     this.floatCheck = 0;
   }
-private onScroll() {
+ onScroll() {
     let element = this.myScrollContainer.nativeElement
     let atBottom = element.scrollHeight - element.scrollTop === element.clientHeight
     /*if (this.disableScrollDown && atBottom) {
