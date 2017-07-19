@@ -1,0 +1,97 @@
+<div class="backGround">
+<div class="parent">
+  <img class="backbar" src="../assets/images/tool_bar_background.png" />
+  <img class="leftbracket" src="../assets/images/leftBracket.png" />
+  <img class="rightbracket" src="../assets/images/rightBracket.png" />
+
+   <div class="backButton" (click)="closeSend()">
+    <img class="backButtonImg" src="../assets/images/filterButtonBackground.png" />
+    <label>back</label>
+    
+  </div>
+
+</div>
+<div class="darkView">
+</div>
+ <label class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label>
+<div class="sendOrbBack2">
+<img class="sendOrbBackImg2" [src]="this.dataService.maincontroller.selectedOrb.image" />
+ </div>
+<div class="sendOrbBack">
+<img class="sendOrbBackImg" [src]="this.dataService.maincontroller.selectedOrb.image"  />
+ </div>
+<div class="sendOrb">
+<img class="sendOrbImg" [src]="this.dataService.maincontroller.selectedOrb.image"  />
+ </div>
+ <img class="keypadBack" src="../assets/images/qrbottomback.jpg" />
+ 
+
+<div class="middleBar">
+
+  <img class="middleBarImg" src="../assets/images/sendMiddleBar.png" />
+ 
+   <div class="sendButton" (click)="send()">
+    <img class="sendButtonImg" src="../assets/images/filterButtonBackground.png" />
+    <label>send</label>
+    
+  </div>
+  
+</div>
+<label class="amountText">{{currentORB}}{{amount}}</label>
+ <input type="text" class="addressText" placeholder="enter address">
+ 
+
+<div class="keypad">
+
+
+
+<div id="1" class="button" (click)="addKey('1')">
+<label>1</label>
+</div>
+
+<div id="2" class="button" (click)="addKey('2')">
+<label>2</label>
+</div>
+
+<div id="3" class="button" (click)="addKey('3')">
+<label>3</label>
+</div>
+
+<div id="4" class="button" (click)="addKey('4')">
+<label>4</label>
+</div>
+
+<div id="5" class="button" (click)="addKey('5')">
+<label>5</label>
+</div>
+
+<div id="6" class="button" (click)="addKey('6')">
+<label>6</label>
+</div>
+
+<div id="7" class="button" (click)="addKey('7')">
+<label>7</label>
+</div>
+
+<div id="8" class="button" (click)="addKey('8')">
+<label>8</label>
+</div>
+
+<div id="9" class="button" (click)="addKey('9')">
+<label>9</label>
+</div>
+
+<div id="blank" class="button">
+<label>&nbsp;</label>
+</div>
+
+<div id="0" class="button" (click)="addKey('0')">
+<label>0</label>
+</div>
+
+<div id="del" class="button" (click)="addKey('-1')">
+<label>del</label>
+</div>
+
+</div>
+</div>

@@ -3,42 +3,25 @@
 <head>
   <script src="https://rawgit.com/bitpay/bitcore-lib/master/bitcore-lib.js"></script>
    <script src="assets/scripts/mnemonic.js"></script>
-
+<script src="https://raw.githubusercontent.com/lazd/iNoBounce/master/inobounce.min.js"></script> 
   <meta charset="utf-8">
-  <title>Bookoforbs</title>
+  <title>Book of Orbs</title>
   <base href="/">
 
   <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <meta name="Book of Orbs" content="onlyWebPro" /> 
+
+  <link rel="apple-touch-icon" href="apple-touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/images/defaulticon.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/images/defaulticon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/images/defaulticon.png">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <meta name="viewport" content = "width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no" />
   <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-
-  <script>
- document.addEventListener("DOMContentLoaded", function() {
-  /*
- var conf = confirm("Fullscreen mode?");
-var docelem = document.documentElement;
-
-if (conf == true) {
-    if (docelem.requestFullscreen) {
-        docelem.requestFullscreen();
-    }
-    else if (docelem.mozRequestFullScreen) {
-        docelem.mozRequestFullScreen();
-    }
-    else if (docelem.webkitRequestFullscreen) {
-        docelem.webkitRequestFullscreen();
-    }
-    else if (docelem.msRequestFullscreen) {
-        docelem.msRequestFullscreen();
-    }
-}
-*/
-});
-     
+   
+   
  
-</script>
 </head>
 <body>
   <app-root><style type="text/css">
@@ -59,7 +42,7 @@ if (conf == true) {
                 position: absolute ;
                 right: 0px ;
                 text-align: center ;
-                top: 50% ;
+                top: 30% ;
             }
             #pre-bootstrap h1 {
                  color: #ffffd5;
@@ -74,14 +57,17 @@ if (conf == true) {
                 line-height: 14px ;
                 margin: 0px 0px 0px 0px ;
             }
+            
         </style>
 
-        <div id="pre-bootstrap">
+        <div id="pre-bootstrap" style=" background-image: url('/assets/images/bookBack2.jpg');
+      background-repeat: no-repeat; 
+     background-size: cover;">
             <div class="messaging">
-
-                <h1>
+                <img style="width:40%;  " src="assets/images/orbsImage.png">
+                <h2>
                    Loading...
-                </h1>
+                </h2>
 
 
             </div>

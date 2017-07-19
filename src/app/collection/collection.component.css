@@ -1,25 +1,18 @@
-ul {  flex-direction: column;
-     -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
-   list-style: none;
-   padding: 0 !important;   
-   margin-right: 5px;
-   margin-left: 5px;
-   overflow:hidden; overflow-y:scroll;
-
-
-}
-ul li {
-    display: inline;  
-  width:33vw; 
-}
-.collection{
+ 
+.collectionScroll{
 
    height:78vh;
    width:100vw;
    text-align: center; 
 	 overflow:hidden; overflow-y:scroll;
+    overflow: auto;
+        -webkit-overflow-scrolling: touch;
+}
+.collection{
+ 
+  
+   width:100%;
+   text-align: center;  
 }
 .cardBox { 
 	width:31%;
@@ -56,41 +49,54 @@ height:40px;
 
 }
  
-
-
+ 
 .ownAllButton { 
-     cursor: pointer; 
-  left: 10px;
-  width:250px;
-  height:46px; 
   margin: 0 auto;
+     cursor: pointer; 
+  width:250px;
+  height:46px;  
+  display: inline-block;
+  text-align: center;  
 }
-.ownAllButtonLeft {
-    top:11px;
-	left:32px;
+.ownAllButtonLeft { 
+  width:100px;
+  top: 12px;
+  display: inline-block;
      pointer-events: none;
     position: relative;
     color: #ffffd5;
-    font-family:   merriweather;
+    font-family:   merriweather;  
 }
 
+.status{
+  top:200px; 
+  width:100%;
+  left:0;
+  position: absolute;
+ color: #ffffd5;
+    font-family:   merriweather; 
 
-.ownAllButtonRight {
-    
+}
+.ownAllButtonRight { 
+   width:100px;
+   top: 12px;
      pointer-events: none;
-      position: relative;
-     top:11px;
-	left:70px;
+      position: relative; 
+  display: inline-block;
     color: #ffffd5;
-    font-family:   merriweather;
+    font-family:   merriweather; 
 }
 
 
 
 .ownAllButtonImg {
-    position: absolute;
-  width:250px;
+   position: absolute; 
+  margin-left:-125px;
+    left:50%;
   height:46px;
+   width:250px;
+    outline: 0 !important;
+    border:0 none !important;
 }
 
 

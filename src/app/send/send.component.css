@@ -1,0 +1,250 @@
+
+.backGround {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  background: url('/assets/images/stoneBack.jpg') no-repeat scroll 0 0;
+  width:100%;
+ 
+     background-repeat: no-repeat; 
+     background-size: cover;
+
+}
+.parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+
+}
+.middleBar {
+  position: absolute;
+  bottom: 40%;
+  left: 0;
+  height: 100px;
+    width:100%;
+
+}
+.middleBarImg {
+  position: relative;
+  top: 0;
+  left: 0;
+  width:100%;
+   height: 100%;
+  
+
+}
+.backbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:60px;
+}
+.leftbracket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:10px;
+  height:55px;
+}
+.rightbracket {
+  position: absolute;
+  top: 0;
+  right: 0;
+   width:10px;
+  height:55px;
+}
+  
+
+.backButtonImg {
+    position: absolute;
+  top: 3px;
+  left: 10px;
+  width:100px;
+  height:42px;
+}
+
+
+ .backButton {
+  text-align: center;
+     cursor: pointer;
+    position: absolute;
+    top: 3px;
+  left: 0px;
+  width:100px;
+  height:42px;
+}
+ .backButton label {
+     position: absolute;
+  left: 10px;
+  top: 12px;
+  width:100px;
+  height:42px;
+  z-index: 0;
+  color: #ffffd5;
+    font-family:   merriweather;
+}
+
+
+.sendButtonImg {
+    position: absolute;
+  top: 3px;
+  right: 10px;
+  width:100px;
+  height:42px;
+}
+
+
+ .sendButton {
+  text-align: center;
+     cursor: pointer;
+    position: absolute;
+    top: 5px;
+  right: -5px;
+  width:100px;
+  height:42px;
+}
+ .sendButton label {
+     position: absolute;
+  right: 10px;
+  top: 12px;
+  width:100px;
+  height:42px;
+  z-index: 0; 
+  color: #ffffd5;
+    font-family:   merriweather;
+}
+ .title { 
+ position: absolute; 
+     top: 16px;
+     text-align: center;
+  width:100%;
+  height:60px;
+  color: #ffffd5;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+}
+
+ .addressText { 
+ position: absolute; 
+     bottom: 40%;
+     text-align: center;
+  width:100%;
+  height:60px;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+}
+
+ .amountText { 
+ position: absolute; 
+     bottom: 40%;
+     text-align: center;
+  width:100%;
+  height:83px;
+  color: #ffffd5;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+}
+.darkView{
+  position: absolute;
+   width:100%;
+   top: 0%;  
+   background-color: rgba(0,0,0,0.5);
+      text-align: center;
+}
+.sendOrb{
+  position: absolute;
+   width:100%;
+   top: 10%;   
+      text-align: center;
+}
+.sendOrbImg { 
+   width:60%; 
+  
+}
+.sendOrbBack{
+  position: absolute;
+   width:100%;
+   right:5px;
+   top: 9.5%;  
+
+      text-align: center;
+}
+.sendOrbBackImg{ 
+  opacity: 0.5;
+    filter: alpha(opacity=50);
+   width:60%; 
+  
+}
+
+.sendOrbBack2{
+  position: absolute;
+   width:100%;
+   right:10px;
+   top: 9%;  
+
+      text-align: center;
+}
+.sendOrbBackImg2{ 
+  opacity: 0.5;
+    filter: alpha(opacity=50);
+   width:60%; 
+  
+}
+ .keypadBack {
+  width:100%;
+  height: 50%;
+  top: 50%;
+  position: fixed; 
+
+}
+.keypad {
+text-align: center;
+  width:100%;
+  height: 40%;
+  bottom: 0;
+  position: absolute; 
+  z-index: 10;
+}
+.button {
+  display: inline-block;
+width:32%;
+height:25%;
+background-color:rgba(0,0,0,0.2);
+font-size: 20pt;
+ color: #ffffd5;
+    font-family:   merriweather;
+
+}
+.button label {
+  height: 100%;
+display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-input-placeholder { /* Chrome */
+  color: black;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: black;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: black;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: black;
+  opacity: 1;
+}
+
+ 
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}

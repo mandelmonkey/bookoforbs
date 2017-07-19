@@ -12,6 +12,7 @@ export class MainControllerComponent implements OnInit {
   constructor(public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef){}
 public loading = true;
 public showTopBar = false;
+public showSend = false;
 public showCollection = false;
 public showBottomBar = false;
 public showIntro = true;
@@ -21,6 +22,8 @@ public currentAddress = "";
 public selectedOrb:any;
 public selectedKey:string;
 public currentBundleId:string;
+public currentBalance:number;
+public currentImage:string;
   loadEnvironments(){
   
     
@@ -80,7 +83,11 @@ console.log("error gamecenter");
      */
 }
 
-
+openSend(){
+  console.log("show send");
+  this.showSend = true; 
+  //this.dataService.maincontroller.showCollection = false;
+}
  closeLarge(){
    this.selectedOrb = null;
 

@@ -48,7 +48,7 @@ export class CollectionComponent implements OnInit {
   setCurrentOrbs(env:string){
 
 
-
+this.loading = true;
 this.currentOrbs = [];
  this.currentOrbsKeys = [];
 this.scrollOrbsKeys = [];
@@ -155,11 +155,30 @@ this.ownedOrbsEnv = new Array<any>();
   }
    
   showORB(selectedOrb:any,selectedKey:string){
-    
+     if(this.allOrbs == false){
+        
+    this.dataService.maincontroller.currentBalance = this. getUserBalance(selectedKey);
     this.dataService.maincontroller.selectedOrb = selectedOrb;
     this.dataService.maincontroller.selectedKey = selectedKey;
-  }
 
+    }
+  }
+  showNoOrbs(){
+    if(this.loading){
+      return false;
+    }
+    if(this.scrollOrbsKeys){
+       if(this.scrollOrbsKeys.length == 0){
+        return true;
+       }
+       else{
+           return false;
+       }
+    }
+    else{
+      return true;
+    }
+  }
   selectAllOwn(){
     if(this.allOrbs == true){
        this.currentOrbsKeys = Object.keys(this.ownedOrbsEnv);

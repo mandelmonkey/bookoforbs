@@ -8,7 +8,20 @@
 
   <app-bottom-bar  *ngIf="showBottomBar"></app-bottom-bar>
 
-<div class="largeORB" *ngIf="selectedOrb" (click)="closeLarge()" >
+<div class="largeORB" *ngIf="selectedOrb && showCollection"  >
+
+<div class="parent">
+  <img class="backbar" src="../assets/images/tool_bar_background.png" />
+  <img class="leftbracket" src="../assets/images/leftBracket.png" />
+  <img class="rightbracket" src="../assets/images/rightBracket.png" />
+
+   <div class="backButton" (click)="closeLarge()">
+    <img class="backButtonImg" src="../assets/images/filterButtonBackground.png" />
+    <label>back</label>
+    
+  </div>
+</div>
+
 <div class="container">
  <label class="titleLabel">{{selectedKey}}</label> 
   <img class="largeORBImage" [src]="selectedOrb.image"/> 
@@ -16,7 +29,7 @@
 
     <div class="largeButtons">
     
-     <div id="largeButtonSend">
+     <div id="largeButtonSend" (click)="openSend()">
       
         <label class="buttonLabel">Send</label> 
      </div>
@@ -32,4 +45,8 @@
 
 
 </div>
+</div>
+
+
+<app-send *ngIf="showSend" ></app-send>
  

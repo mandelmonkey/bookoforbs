@@ -1,10 +1,13 @@
-   
+   <div class="collection">
+
   <div *ngIf="!loading" class="ownAllButton">
     <img class="ownAllButtonImg" src={{allOwnImage}} (click)="selectAllOwn()" />
-    <span class="ownAllButtonLeft">My Orbs</span> <span class="ownAllButtonRight">All Orbs</span>
+    <div class="ownAllButtonLeft">My Orbs</div>  <div class="ownAllButtonRight">All Orbs</div>
   </div>
-  <div class="collection" #scrollMe (scroll)="onScroll()">  
  
+  <div class="collectionScroll" #scrollMe (scroll)="onScroll()">  
+ <label class="status" *ngIf="loading">loading...</label>
+<label class="status" *ngIf="showNoOrbs()">You do not have any ORBs</label>
  <div *ngFor="let orbKey of scrollOrbsKeys; let idx = index" class="cardBox">
 
 	  <img class="card" [src]="getImage(currentOrbs[orbKey])" (click)="showORB(currentOrbs[orbKey],orbKey)"/> 
@@ -16,6 +19,7 @@
     </div>
 		
 	 
+ </div>
  </div>
 
  

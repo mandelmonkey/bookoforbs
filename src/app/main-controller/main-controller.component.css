@@ -1,3 +1,66 @@
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.backbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:60px;
+}
+.leftbracket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:10px;
+  height:55px;
+}
+.rightbracket {
+  position: absolute;
+  top: 0;
+  right: 0;
+   width:10px;
+  height:55px;
+}
+  
+
+.backButtonImg {
+    position: absolute;
+  top: 3px;
+  left: 10px;
+  width:100px;
+  height:42px;
+}
+
+
+ .backButton {
+  text-align: center;
+     cursor: pointer;
+    position: absolute;
+    top: 3px;
+  left: 10px;
+  width:100px;
+  height:42px;
+}
+ .backButton label {
+     position: absolute;
+  left: 10px;
+  top: 12px;
+  width:100px;
+  height:42px;
+  z-index: 0;
+  color: #ffffd5;
+    font-family:   merriweather;
+}
+ 
+
+
+
+
+
 .largeORB {
    position: absolute;
    top:0;
@@ -19,7 +82,7 @@
 }
 .largeORBImage {
 	background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
-  
+  width:100%;
  
      background-repeat: no-repeat; 
      background-size: cover;
