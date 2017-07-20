@@ -155,13 +155,13 @@ this.ownedOrbsEnv = new Array<any>();
   }
    
   showORB(selectedOrb:any,selectedKey:string){
-     if(this.allOrbs == false){
+    // if(this.allOrbs == false){
         
     this.dataService.maincontroller.currentBalance = this. getUserBalance(selectedKey);
     this.dataService.maincontroller.selectedOrb = selectedOrb;
     this.dataService.maincontroller.selectedKey = selectedKey;
 
-    }
+    //}
   }
   showNoOrbs(){
     if(this.loading){
