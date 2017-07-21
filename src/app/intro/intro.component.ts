@@ -23,6 +23,7 @@ export class IntroComponent implements OnInit {
      passphrase = "";
      password = "";
      cipherText = "";
+     userAgent = "";
      
  constructor(public dataService:DataService, private route: ActivatedRoute) { 
     route.queryParams.subscribe(
@@ -46,6 +47,10 @@ export class IntroComponent implements OnInit {
   ngOnInit() {
   
     this.shorturl = window.location.href+"?pass=";
+
+    this.userAgent = "User-agent header sent: " + navigator.userAgent;
+    console.log( this.userAgent);
+
 
  // http://localhost:4200/?pass=U2FsdGVkX19I3BKnbJ912%2FigiTTn%2FynHJwPa4obo7Do2i4roBIqAyKOt0bwD8m2rNRAEFvOFvAR7W59dHIpEC979hUStgpLxWEnriuukKmIsyXcsGJxBLISrV8PupDFF
 
