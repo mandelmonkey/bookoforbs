@@ -61,7 +61,7 @@ export class IntroComponent implements OnInit {
     // 'port': 8080
   });
       let userAg = this.userAgent;
-
+ 
       indiesquare.getAddress('Test', function(url, urlScheme, error){
     if( error ){
         console.error("error"+error);
@@ -85,6 +85,8 @@ export class IntroComponent implements OnInit {
     }
     console.log("res"+result.address);
    userAg = result.address;
+
+   alert(result.address);
 
 });
     //}
