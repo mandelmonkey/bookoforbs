@@ -25,6 +25,7 @@ export class IntroComponent implements OnInit {
      password = "";
      cipherText = "";
      userAgent = "";
+     testObj:any;
      
  constructor(public dataService:DataService, private route: ActivatedRoute) { 
     route.queryParams.subscribe(
@@ -46,12 +47,12 @@ export class IntroComponent implements OnInit {
 
   }
   ngOnInit() {
-  
+  this.testObj = [];
+ this.testObj.userAgent = "";
     this.shorturl = window.location.href+"?pass=";
 
-    this.userAgent = "User-agent header sent: " + navigator.userAgent;
-    console.log( this.userAgent);
-
+    this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
+   var obj = this.testObj;
  
    // if(this.userAgent.indexOf("IndieSquare") == -1){
 
@@ -60,12 +61,12 @@ export class IntroComponent implements OnInit {
     // 'use-server': true,
     // 'port': 8080
   });
-      let userAg = this.userAgent;
+     
  
       indiesquare.getAddress('Test', function(url, urlScheme, error){
     if( error ){
         console.error("error"+error);
-         userAg = "error";
+         obj.userAgent  = "error";
         return;
     }else{
       console.log("went here"+url);
@@ -76,16 +77,15 @@ export class IntroComponent implements OnInit {
         width: 128, height: 128,
         correctLevel : QRCode.CorrectLevel.L
     });*/
-    userAg =url;
+   obj.userAgent   =url;
 }, function(result, error){
     if( error ){
-      userAg = "err";
-         console.error("error"+error);
-            alert("error"+error);
+     obj.userAgent  = "err"+error;
+         console.error("error"+error); 
         return;
     }
     console.log("res"+result.address);
-   userAg = result.address;
+   obj.userAgent  = result.address;
 
    alert(result.address);
 
