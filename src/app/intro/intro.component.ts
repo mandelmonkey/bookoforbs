@@ -53,7 +53,7 @@ export class IntroComponent implements OnInit {
     console.log( this.userAgent);
 
  
-    if(this.userAgent.indexOf("IndieSquare") == -1){
+   // if(this.userAgent.indexOf("IndieSquare") == -1){
 
       var indiesquare = new IndieSquare({
     'apikey': 'your-api-key', // See https://developer.indiesquare.me/#api-key
@@ -87,7 +87,7 @@ export class IntroComponent implements OnInit {
    userAg = result.address;
 
 });
-    }
+    //}
 
 
 
