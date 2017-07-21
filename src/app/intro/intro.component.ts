@@ -81,6 +81,7 @@ export class IntroComponent implements OnInit {
     if( error ){
       userAg = "err";
          console.error("error"+error);
+            alert("error"+error);
         return;
     }
     console.log("res"+result.address);
