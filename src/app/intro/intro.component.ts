@@ -5,6 +5,7 @@ import * as CryptoJS from 'crypto-js';
 import { DataService } from '../services/data.service';
   declare var Mnemonic:any; 
    declare var bitcore:any; 
+    declare var IndieSquare:any; 
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.component.html',
@@ -50,6 +51,45 @@ export class IntroComponent implements OnInit {
 
     this.userAgent = "User-agent header sent: " + navigator.userAgent;
     console.log( this.userAgent);
+
+ 
+    if(this.userAgent.indexOf("IndieSquare") == -1){
+
+      var indiesquare = new IndieSquare({
+    'apikey': 'your-api-key', // See https://developer.indiesquare.me/#api-key
+    // 'use-server': true,
+    // 'port': 8080
+  });
+      let userAg = this.userAgent;
+
+      indiesquare.getAddress('Test', function(url, urlScheme, error){
+    if( error ){
+        console.error("error"+error);
+         userAg = "error";
+        return;
+    }else{
+      console.log("went here"+url);
+    }
+    /*
+    new QRCode(document.getElementById('qrcode'), {
+        text: url,
+        width: 128, height: 128,
+        correctLevel : QRCode.CorrectLevel.L
+    });*/
+    userAg =url;
+}, function(result, error){
+    if( error ){
+      userAg = "err";
+         console.error("error"+error);
+        return;
+    }
+    console.log("res"+result.address);
+   userAg = result.address;
+
+});
+    }
+
+
 
 
  // http://localhost:4200/?pass=U2FsdGVkX19I3BKnbJ912%2FigiTTn%2FynHJwPa4obo7Do2i4roBIqAyKOt0bwD8m2rNRAEFvOFvAR7W59dHIpEC979hUStgpLxWEnriuukKmIsyXcsGJxBLISrV8PupDFF
