@@ -65,7 +65,7 @@ export class IntroComponent implements OnInit {
  
       indiesquare.getAddress('Test', function(url, urlScheme, error){
     if( error ){
-        console.error("error"+error);
+        console.log("error"+error);
          obj.userAgent  = "error";
         return;
     }else{
@@ -77,17 +77,9 @@ export class IntroComponent implements OnInit {
         width: 128, height: 128,
         correctLevel : QRCode.CorrectLevel.L
     });*/
-   obj.userAgent   =url;
+   obj.userAgent   = url;
 }, function(result, error){
-    if( error ){
-     obj.userAgent  = "err"+error;
-         console.error("error"+error); 
-        return;
-    }
-    console.log("res"+result.address);
-   obj.userAgent  = result.address;
-
-   
+    
 
 });
     //}
