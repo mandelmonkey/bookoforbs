@@ -61,7 +61,7 @@ export class IntroComponent implements OnInit {
     // 'use-server': true,
     // 'port': 8080
   });
-     
+     alert("test");
  
       indiesquare.getAddress('Test', function(url, urlScheme, error){
     if( error ){
