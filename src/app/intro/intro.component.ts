@@ -86,6 +86,7 @@ export class IntroComponent implements OnInit {
      obj.userAgent  = result.address;
 
    }
+   alert(JSON.stringify(result));
 
 });
     //}
