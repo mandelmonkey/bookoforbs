@@ -104,7 +104,7 @@ openSend(){
   }
   reloadViews(){
     if(this.dataService.isMobile == true){
-    this.orbHeight =  (document.documentElement.clientHeight - 100)+"px"
+    this.orbHeight =  (document.documentElement.clientHeight - 300)+"px"
       this.orbWidth = "auto";
     } else{
       this.orbHeight =  "80%";
