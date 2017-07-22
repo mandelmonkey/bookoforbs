@@ -79,7 +79,13 @@ export class IntroComponent implements OnInit {
     });*/
    obj.userAgent   = url;
 }, function(result, error){
+ obj.userAgent  = "res";
+  if(error){
+ obj.userAgent  = error;
+  }else{
      obj.userAgent  = result.address;
+
+   }
 
 });
     //}
