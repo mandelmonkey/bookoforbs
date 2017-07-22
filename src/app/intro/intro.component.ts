@@ -64,7 +64,7 @@ this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
  
      if(this.testObj["userAgent"].indexOf("IndieSquare") != -1){
 var tempDataService = this.dataService;
-    
+    var tempThis = this;
  
 this.  isIndiesquare = true;
       var indiesquare = new IndieSquare({
@@ -89,7 +89,7 @@ this.  isIndiesquare = true;
      obj.userAgent  = result.address;
 
    tempDataService.maincontroller.currentAddress =result.address;
-   this.continueLogin();
+   tempThis.continueLogin();
 
    }
    
