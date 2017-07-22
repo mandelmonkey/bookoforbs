@@ -58,13 +58,13 @@ export class IntroComponent implements OnInit {
    
  this.testObj.userAgent = "";
     
-
+this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
    
    var obj = this.testObj;
  
-     if(this.userAgent.indexOf("IndieSquare") != -1){
-
-    this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
+     if(this.testObj["userAgent"].indexOf("IndieSquare") != -1){
+var tempDataService = this.dataService;
+    
  
 this.  isIndiesquare = true;
       var indiesquare = new IndieSquare({
@@ -88,7 +88,7 @@ this.  isIndiesquare = true;
   }else{
      obj.userAgent  = result.address;
 
-   this.dataService.maincontroller.currentAddress =result.address;
+   tempDataService.maincontroller.currentAddress =result.address;
    this.continueLogin();
 
    }
