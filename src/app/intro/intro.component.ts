@@ -47,7 +47,25 @@ export class IntroComponent implements OnInit {
 
   }
   ngOnInit() {
-  this.testObj = [];
+ 
+    //}
+
+ alert("test");
+
+
+ // http://localhost:4200/?pass=U2FsdGVkX19I3BKnbJ912%2FigiTTn%2FynHJwPa4obo7Do2i4roBIqAyKOt0bwD8m2rNRAEFvOFvAR7W59dHIpEC979hUStgpLxWEnriuukKmIsyXcsGJxBLISrV8PupDFF
+
+  }
+
+ backToStart(){
+   this.passphrase = "";
+ this.showNewPassphrase = false;
+   this.showIntroButtons = true;
+this.showPassphraseField = false;
+  }
+createNewAccount(){
+
+   this.testObj = [];
  this.testObj.userAgent = "";
     this.shorturl = window.location.href+"?pass=";
 
@@ -89,22 +107,8 @@ export class IntroComponent implements OnInit {
    alert(JSON.stringify(result));
 
 });
-    //}
 
-
-
-
- // http://localhost:4200/?pass=U2FsdGVkX19I3BKnbJ912%2FigiTTn%2FynHJwPa4obo7Do2i4roBIqAyKOt0bwD8m2rNRAEFvOFvAR7W59dHIpEC979hUStgpLxWEnriuukKmIsyXcsGJxBLISrV8PupDFF
-
-  }
-
- backToStart(){
-   this.passphrase = "";
- this.showNewPassphrase = false;
-   this.showIntroButtons = true;
-this.showPassphraseField = false;
-  }
-createNewAccount(){
+  return;
   this.showNewPassphrase = true;
    this.showIntroButtons = false;
 
