@@ -31,17 +31,13 @@ export class CollectionComponent implements OnInit {
  onScroll() {
     let element = this.myScrollContainer.nativeElement
     let atBottom = element.scrollHeight - element.scrollTop === element.clientHeight
-    /*if (this.disableScrollDown && atBottom) {
-        this.disableScrollDown = false
-    } else {
-        this.disableScrollDown = true
-    }*/
-    if(atBottom){
+     
+   // if(atBottom){
       if(this.currentScroll < this.currentOrbsKeys.length){
-      this.currentScroll += 10;
+      this.currentScroll += 1;
        this.scrollOrbsKeys = this.currentOrbsKeys.slice(0,this.currentScroll);
     console.log("scroll");
-  }
+  //}
   }
 }
 
