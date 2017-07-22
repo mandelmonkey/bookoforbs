@@ -108,7 +108,7 @@ createNewAccount(){
 
 });
 
-  return;
+ /*
   this.showNewPassphrase = true;
    this.showIntroButtons = false;
 
@@ -119,6 +119,7 @@ createNewAccount(){
       this.passphrase =  m.toWords().toString().replace(/,/gi, ' ');
   
       this.createAddressFromPassphrase(m);
+      */
      
 
 }
