@@ -49,9 +49,7 @@ export class IntroComponent implements OnInit {
   ngOnInit() {
  
     //}
-
- alert("test");
-
+ 
 
  // http://localhost:4200/?pass=U2FsdGVkX19I3BKnbJ912%2FigiTTn%2FynHJwPa4obo7Do2i4roBIqAyKOt0bwD8m2rNRAEFvOFvAR7W59dHIpEC979hUStgpLxWEnriuukKmIsyXcsGJxBLISrV8PupDFF
 
@@ -79,7 +77,7 @@ createNewAccount(){
     // 'use-server': true,
     // 'port': 8080
   });
-     alert("test");
+    
  
       indiesquare.getAddress('Test', function(url, urlScheme, error){
     if( error ){
@@ -104,7 +102,7 @@ createNewAccount(){
      obj.userAgent  = result.address;
 
    }
-   alert(JSON.stringify(result));
+   
 
 });
 
