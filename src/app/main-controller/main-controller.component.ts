@@ -24,6 +24,9 @@ public selectedKey:string;
 public currentBundleId:string;
 public currentBalance:number;
 public currentImage:string;
+
+public orbHeight:string;
+public orbWidth:string;
   loadEnvironments(){
   
     
@@ -96,8 +99,19 @@ openSend(){
   ngOnInit() {
     this.dataService.maincontroller = this;
     this.selectedOrb = null;
+    
+    
   }
-
+  reloadViews(){
+    if(this.dataService.isMobile == true){
+    this.orbHeight =  "auto";
+    this.orbWidth = "90vw";
+    } else{
+      this.orbHeight =  "80%";
+      this.orbWidth = "auto";
+    }
+ 
+  }
 
 
 }

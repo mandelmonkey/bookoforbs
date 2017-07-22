@@ -24,9 +24,9 @@
 
 <div class="container">
  <label class="titleLabel">{{selectedKey}}</label> 
-  <img class="largeORBImage" [src]="selectedOrb.image"/> 
+  <img class="largeORBImage" [src]="selectedOrb.image" [style.height]="orbHeight"  [style.width]="orbWidth"/> 
   
-
+<br>
     <div class="largeButtons">
     
      <div id="largeButtonSend" (click)="openSend()">

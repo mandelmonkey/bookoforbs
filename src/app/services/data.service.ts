@@ -10,6 +10,7 @@ export class DataService {
   collection:CollectionComponent;
   maincontroller: MainControllerComponent;
   currentTab:number;
+  isMobile:boolean;
    constructor(){
     this.currentTab = 1;
 

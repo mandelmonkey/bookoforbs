@@ -55,10 +55,7 @@
   color: #ffffd5;
     font-family:   merriweather;
 }
- 
-
-
-
+  
 
 
 .largeORB {
@@ -69,20 +66,18 @@
    background-color: rgba(0,0,0,0.7);
 }
 
-.container {
-	  width:80%;
-	   height:80%;
+.container { 
+	   height:100%;
    margin: auto;
-    top: 0;
+    top: 60;
     left: 0;
-    right: 0;
-    bottom: 0;
+    right: 0; 
 	 position: absolute; 
 	 text-align: center;
 }
 .largeORBImage {
 	background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
-  width:100%;
+ 
  
      background-repeat: no-repeat; 
      background-size: cover;
@@ -90,22 +85,21 @@
 
 .largeButtons {
 	 
-   width:100%; 
+   width:400px; 
    margin: auto;
     top: 0;
     left: 0;
     text-align: center; 
+
+    display: inline-block;
    
 }
 #largeButtonSend {
 	 background: url('/assets/images/sendButtonCollection.png');
-   
-     background-repeat: no-repeat; 
-     background-size: cover;
-
+     background-repeat: no-repeat;  
+background-size: 100%;
      cursor: pointer;  
-  width:49%;
-  height:60px;
+   width:40%;
   overflow: hidden; 
     text-align: center;
     display: inline-block;
@@ -115,11 +109,10 @@
 	 background: url('/assets/images/marketButtonCollection.png');
    
      background-repeat: no-repeat; 
-     background-size: cover;
-
+    
+background-size: 100%;
      cursor: pointer;  
-  width:49%;
-  height:60px;
+    width:40%;
   overflow: hidden; 
     text-align: center;
     display: inline-block;

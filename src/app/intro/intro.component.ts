@@ -38,8 +38,8 @@ export class IntroComponent implements OnInit {
 
   getMessage(){
 
-    let isMobile = /Android|iPhone/i.test(window.navigator.userAgent)
-    if(isMobile){
+    
+    if(this.dataService.isMobile){
       return "Enter a password and save the next page to your home screen, this will let you login without entering your recovery phrase";
     }else{
       return "Enter a password and save the next page to your bookmarks, this will let you login without entering your recovery phrase";
@@ -48,6 +48,8 @@ export class IntroComponent implements OnInit {
 
   }
   ngOnInit() {
+    this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent)
+  
     this.isIndiesquare = false; 
     this.shorturl = window.location.href+"?pass=";
    this.testObj = [];

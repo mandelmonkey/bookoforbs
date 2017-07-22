@@ -20,13 +20,26 @@ export class CollectionComponent implements OnInit {
   ownedOrbsEnv:Array<any>;
   currentScroll:number;
   floatCheck:number;
+  cardWidth:string;
+  scrollHeight:string;
  constructor(public dataService:DataService,private httpService:HTTPService) {
  }
 
   ngOnInit() {
     this.dataService.collection = this;
-    this.currentScroll = 12;
+    this.currentScroll = 40;
     this.floatCheck = 0;
+   
+    this.cardWidth = "16%";
+    if(this.dataService.isMobile == true){
+       this.cardWidth = "29%";
+       this.currentScroll = 12;
+    }
+
+     //console.log(this.elRef.nativeElement.offsetLeft);
+
+    this.scrollHeight =  (window.screen.height-document.getElementById("collectionScroll").offsetTop-60)+"px"; 
+        
   }
  onScroll() {
     let element = this.myScrollContainer.nativeElement
@@ -156,6 +169,7 @@ this.ownedOrbsEnv = new Array<any>();
     this.dataService.maincontroller.currentBalance = this. getUserBalance(selectedKey);
     this.dataService.maincontroller.selectedOrb = selectedOrb;
     this.dataService.maincontroller.selectedKey = selectedKey;
+    this.dataService.maincontroller.reloadViews();
 
     //}
   }
