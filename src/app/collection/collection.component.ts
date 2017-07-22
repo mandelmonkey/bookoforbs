@@ -33,7 +33,7 @@ export class CollectionComponent implements OnInit {
     this.cardWidth = "16%";
     if(this.dataService.isMobile == true){
        this.cardWidth = "29%";
-       this.currentScroll = 12;
+       this.currentScroll = 40;
     }
 
      //console.log(this.elRef.nativeElement.offsetLeft);
