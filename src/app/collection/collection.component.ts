@@ -38,7 +38,7 @@ export class CollectionComponent implements OnInit {
 
      //console.log(this.elRef.nativeElement.offsetLeft);
 
-    this.scrollHeight =  (window.screen.height-document.getElementById("collectionScroll").offsetTop-60)+"px"; 
+    this.scrollHeight =  (document.documentElement.clientHeight-document.getElementById("collectionScroll").offsetTop-90)+"px"; 
         
   }
  onScroll() {
