@@ -26,6 +26,7 @@ export class IntroComponent implements OnInit {
      cipherText = "";
      userAgent = "";
      testObj:any;
+     isIndiesquare = false;
      
  constructor(public dataService:DataService, private route: ActivatedRoute) { 
     route.queryParams.subscribe(
@@ -47,13 +48,55 @@ export class IntroComponent implements OnInit {
 
   }
   ngOnInit() {
- 
-    //}
- 
-
- // http://localhost:4200/?pass=U2FsdGVkX19I3BKnbJ912%2FigiTTn%2FynHJwPa4obo7Do2i4roBIqAyKOt0bwD8m2rNRAEFvOFvAR7W59dHIpEC979hUStgpLxWEnriuukKmIsyXcsGJxBLISrV8PupDFF
-
+    this.isIndiesquare = false; 
+    this.shorturl = window.location.href+"?pass=";
+   this.testObj = [];
+     this.linkIndiesquare();
   }
+
+  linkIndiesquare(){
+   
+ this.testObj.userAgent = "";
+    
+
+   
+   var obj = this.testObj;
+ 
+     if(this.userAgent.indexOf("IndieSquare") != -1){
+
+    this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
+ 
+this.  isIndiesquare = true;
+      var indiesquare = new IndieSquare({
+    'apikey': 'your-api-key',  
+  });
+     
+      indiesquare.getAddress('Test', function(url, urlScheme, error){
+    if( error ){
+        console.log("error"+error);
+         obj.userAgent  = "error";
+        return;
+    }else{
+      console.log("went here"+url);
+    }
+   
+   obj.userAgent   = url;
+}, function(result, error){
+ obj.userAgent  = "res";
+  if(error){
+ obj.userAgent  = error;
+  }else{
+     obj.userAgent  = result.address;
+
+   this.dataService.maincontroller.currentAddress =result.address;
+   this.continueLogin();
+
+   }
+   
+
+});
+  }
+}
 
  backToStart(){
    this.passphrase = "";
@@ -63,50 +106,8 @@ this.showPassphraseField = false;
   }
 createNewAccount(){
 
-   this.testObj = [];
- this.testObj.userAgent = "";
-    this.shorturl = window.location.href+"?pass=";
-
-    this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
-   var obj = this.testObj;
+  
  
-   // if(this.userAgent.indexOf("IndieSquare") == -1){
-
-      var indiesquare = new IndieSquare({
-    'apikey': 'your-api-key', // See https://developer.indiesquare.me/#api-key
-    // 'use-server': true,
-    // 'port': 8080
-  });
-    
- 
-      indiesquare.getAddress('Test', function(url, urlScheme, error){
-    if( error ){
-        console.log("error"+error);
-         obj.userAgent  = "error";
-        return;
-    }else{
-      console.log("went here"+url);
-    }
-    /*
-    new QRCode(document.getElementById('qrcode'), {
-        text: url,
-        width: 128, height: 128,
-        correctLevel : QRCode.CorrectLevel.L
-    });*/
-   obj.userAgent   = url;
-}, function(result, error){
- obj.userAgent  = "res";
-  if(error){
- obj.userAgent  = error;
-  }else{
-     obj.userAgent  = result.address;
-
-   }
-   
-
-});
-
- /*
   this.showNewPassphrase = true;
    this.showIntroButtons = false;
 
@@ -117,7 +118,7 @@ createNewAccount(){
       this.passphrase =  m.toWords().toString().replace(/,/gi, ' ');
   
       this.createAddressFromPassphrase(m);
-      */
+       
      
 
 }

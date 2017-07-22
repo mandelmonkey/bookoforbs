@@ -4,8 +4,10 @@
    <h2 style="color:pink;">{{testObj.userAgent}}</h2>
   <img class="topImage" src="../assets/images/bookLiningFront.png" />
  <div class="introButtons">
-
- 
+<div *ngIf="isIndiesquare">
+ <h2 style="color:pink;">linking with indieSquare Wallet</h2>
+</div>
+ <div *ngIf="!isIndiesquare">
   <div  *ngIf="showIntroButtons">
      <div class="newWalletButton" (click)="createNewAccount()" >
         <img class="newWalletImage" src="../assets/images/frontButton.png" />
@@ -84,6 +86,6 @@
    
    </div>
  </div>
-
+  </div>
    </div>
    
