@@ -27,7 +27,7 @@
   <img class="largeORBImage" [src]="selectedOrb.image" [style.height]="orbHeight"  [style.width]="orbWidth"/> 
   
 <br>
-    <div class="largeButtons">
+    <div class="largeButtons" *ngIf="dataService.maincontroller.currentBalance > 0">
     
      <div id="largeButtonSend" (click)="openSend()">
       

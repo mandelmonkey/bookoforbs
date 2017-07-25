@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {HTTPService} from "../services/http.service";
 import { ActivatedRoute }     from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 import { DataService } from '../services/data.service';
@@ -9,6 +9,7 @@ import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.component.html',
+   providers:[HTTPService],
   styleUrls: ['./intro.component.css']
   
 })
@@ -25,10 +26,9 @@ export class IntroComponent implements OnInit {
      password = "";
      cipherText = "";
      userAgent = "";
-     testObj:any;
-     isIndiesquare = false;
+     testObj:any; 
      
- constructor(public dataService:DataService, private route: ActivatedRoute) { 
+ constructor(public dataService:DataService, private httpService:HTTPService, private route: ActivatedRoute) { 
     route.queryParams.subscribe(
       data =>  this.loadShortUrl(data['pass']));
 
@@ -50,7 +50,7 @@ export class IntroComponent implements OnInit {
   ngOnInit() {
     this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent)
   
-    this.isIndiesquare = false; 
+  
     this.shorturl = window.location.href+"?pass=";
    this.testObj = [];
      this.linkIndiesquare();
@@ -62,35 +62,37 @@ export class IntroComponent implements OnInit {
     
 this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
    
-   var obj = this.testObj;
+  
  
      if(this.testObj["userAgent"].indexOf("IndieSquare") != -1){
 var tempDataService = this.dataService;
     var tempThis = this;
  
-this.  isIndiesquare = true;
+ 
       var indiesquare = new IndieSquare({
-    'apikey': 'your-api-key',  
+    'apikey': this.httpService.apiKey  
   });
      
       indiesquare.getAddress('Test', function(url, urlScheme, error){
     if( error ){
         console.log("error"+error);
-         obj.userAgent  = "error";
+       
         return;
     }else{
       console.log("went here"+url);
     }
    
-   obj.userAgent   = url;
+   
 }, function(result, error){
- obj.userAgent  = "res";
+ 
   if(error){
- obj.userAgent  = error;
+    console.error(error);
+ return;
   }else{
-     obj.userAgent  = result.address;
+     
 
    tempDataService.maincontroller.currentAddress =result.address;
+   tempDataService.maincontroller.linkType = "indiesquare";
    tempThis.continueLogin();
 
    }
@@ -137,11 +139,15 @@ createAddressFromPassphrase(m:any){
       
 }
 continueLogin(){
+
+          this.dataService.maincontroller.showTopBar = true;
 this.dataService.maincontroller.showBottomBar = true;
     this.dataService.maincontroller.showCollection = true;
-          this.dataService.maincontroller.showTopBar = true;
           this.dataService.maincontroller.showIntro = false;
-          this.dataService.maincontroller.loadEnvironments();
+var tmpdata =  this.dataService;
+          setTimeout(function() {
+         tmpdata.maincontroller.loadEnvironments();
+        },500);
 
 }
   enterPassphrase(){
@@ -176,6 +182,8 @@ this.dataService.maincontroller.showBottomBar = true;
 
   var words = null;
 		if( this.passphrase != null ) words = this.passphrase.split(' ');
+
+     this.dataService.maincontroller.recoveryPhrase = words;
     	var m;
 		try{
       
@@ -197,6 +205,13 @@ this.dataService.maincontroller.showBottomBar = true;
       this.decryptStatus = "password or link incorrect";
     
    }
+    }
+
+    continueNoAddress(){
+
+
+      this.dataService.maincontroller.currentAddress = "empty";
+   this.continueLogin();
     }
    checkPassphrase(){
        this.showNewPassphrase = false;

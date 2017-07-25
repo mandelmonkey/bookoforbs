@@ -21,29 +21,49 @@ export class HTTPService{
     
     getEnvironments(){
          var header = new Headers();
- header.append('Access-Control-Allow-Origin', '*');
-      return this._http.get(this.baseOrbUrl+"&action=getEnvironments&responseType=JSON"+this.devExt, {
+   
+ 
+
+     var url = this.baseOrbUrl+"&action=getEnvironments&responseType=JSON"+this.devExt;
+       console.log( url);
+      
+ var json = JSON.stringify({
+             url: url,
+        });
+
+      var params = json;
+      var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
         headers:header
       })
-      .map(res=>res.json());
-
+      .map(res => res.json());
 
     };
  
 
     getEnvironment(env:string){
          var header = new Headers();
-/*
- header.append('Access-Control-Allow-Origin', '*');
-      return this._http.get(this.baseOrbUrl+ "&action=getEnvironment&env=" + env + "&responseType=JSON"+this.devExt, {
+ 
+
+     var url = this.baseOrbUrl+"&action=getEnvironment&env="+env+"&responseType=JSON"+this.devExt;
+       console.log(url);
+      
+ var json = JSON.stringify({
+             url: url,
+        });
+
+      var params = json;
+      var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
         headers:header
       })
-      .map(res=>res.json());*/
-return this._http.get("https://sarutobigob1309.herokuapp.com/returnUrl?envv="+env)
-      .map(res=>res.json());
-      
-
-
+      .map(res => res.json());
     };
 
  
@@ -126,6 +146,7 @@ return this._http.get("https://sarutobigob1309.herokuapp.com/returnUrl?envv="+en
             });
         }
       var params = json;
+      console.log(params);
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
 

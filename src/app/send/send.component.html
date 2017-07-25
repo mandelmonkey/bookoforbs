@@ -2,7 +2,7 @@
 
 <div class="darkView">
 </div>
- <label class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label>
+
 <div class="sendOrbBack2">
 <img class="sendOrbBackImg2" [src]="this.dataService.maincontroller.selectedOrb.image" />
  </div>
@@ -19,7 +19,7 @@
 
   <img class="middleBarImg" src="../assets/images/sendMiddleBar.png" />
  
-   <div class="sendButton">
+   <div class="sendButton" (click)="send()">
     <img class="sendButtonImg" src="../assets/images/filterButtonBackground.png" />
     <label>send</label>
     
@@ -27,7 +27,7 @@
   
 </div>
 <label class="amountText">{{currentORB}}{{amount}}</label>
- <input type="text" class="addressText" placeholder="enter address">
+ <input type="text" class="addressText" placeholder="enter address" [(ngModel)]="sendAddress" >
  
 
 <div class="keypad">
@@ -93,9 +93,11 @@
 
    <div class="backButton" (click)="closeSend()">
     <img class="backButtonImg" src="../assets/images/filterButtonBackground.png" />
+
+
     <label>back</label>
     
   </div>
-
+<label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> <h1>{{status}}</h1>
 </div>
 </div>

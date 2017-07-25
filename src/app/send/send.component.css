@@ -65,6 +65,7 @@
   left: 10px;
   width:100px;
   height:42px;
+   pointer-events: none;
 }
 
 
@@ -86,6 +87,7 @@
   z-index: 0;
   color: #ffffd5;
     font-family:   merriweather;
+     pointer-events: none;
 }
 
 
@@ -95,6 +97,7 @@
   right: 10px;
   width:100px;
   height:42px;
+  pointer-events: none;
 }
 
 
@@ -116,6 +119,13 @@
   z-index: 0; 
   color: #ffffd5;
     font-family:   merriweather;
+    pointer-events: none;
+}
+img{
+  pointer-events: none;
+}
+label{
+  pointer-events: none;
 }
  .title { 
  position: absolute; 
@@ -127,6 +137,7 @@
    font-family:   merriweather; 
    background-color: transparent;
    border-color: transparent;
+   pointer-events: none;
 }
 
  .addressText { 
@@ -227,6 +238,10 @@ font-size: 20pt;
 display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#balance{
+pointer-events: none;
 }
 
 ::-webkit-input-placeholder { /* Chrome */
