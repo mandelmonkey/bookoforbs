@@ -26,7 +26,8 @@ export class IntroComponent implements OnInit {
      password = "";
      cipherText = "";
      userAgent = "";
-     testObj:any; 
+     testObj:any;
+     isIndiesquare = false;
      
  constructor(public dataService:DataService, private httpService:HTTPService, private route: ActivatedRoute) { 
     route.queryParams.subscribe(
@@ -50,7 +51,7 @@ export class IntroComponent implements OnInit {
   ngOnInit() {
     this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent)
   
-  
+    this.isIndiesquare = false; 
     this.shorturl = window.location.href+"?pass=";
    this.testObj = [];
      this.linkIndiesquare();
@@ -68,7 +69,7 @@ this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
 var tempDataService = this.dataService;
     var tempThis = this;
  
- 
+this.isIndiesquare = true;
       var indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
   });
