@@ -10,8 +10,56 @@
 				
 				<app-order-info  [token]="orbKey"></app-order-info>
 			</div>
-</div>
+			</div>
+
 		</div>
+ 		<img  class="divider" src="../assets/images/feltDivider.png" />
+ 		<div class="marketSubScroll">
+
+
+		<label class="title">New ORBS</label><label class="titleRight">View All</label>
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+			<div>
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/>
+				
+				<app-order-info  [token]="orbKey"></app-order-info>
+			</div>
+			</div>
+
+		</div>
+ 		<img  class="divider" src="../assets/images/feltDivider.png" />
+ 		<div class="marketSubScroll">
+
+
+		<label class="title">New ORBS</label><label class="titleRight">View All</label>
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+			<div>
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/>
+				
+				<app-order-info  [token]="orbKey"></app-order-info>
+			</div>
+			</div>
+
+		</div>
+ 		<img  class="divider" src="../assets/images/feltDivider.png" />
+ 		<div class="marketSubScroll">
+
+
+		<label class="title">New ORBS</label><label class="titleRight">View All</label>
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+			<div>
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/>
+				
+				<app-order-info  [token]="orbKey"></app-order-info>
+			</div>
+			</div>
+
+		</div>
+ 		<img  class="divider" src="../assets/images/feltDivider.png" />
+
+
+
+
 
 	</div>
 </div>
