@@ -46,10 +46,6 @@ rotated = false;
 
  if(this.dataService.maincontroller.currentFee == "fastestFee"){
 
-      return "fee: very high";
-    }
-    else if(this.dataService.maincontroller.currentFee == "halfHourFee"){
-
       return "fee: high";
     }
     else if(this.dataService.maincontroller.currentFee == "lowFee"){
@@ -62,7 +58,7 @@ rotated = false;
     }
     else{
 
-      return "fee: "+ this.dataService.maincontroller.customFee+" btc";
+      return  this.dataService.maincontroller.customFee+" btc";
     }
  
 
@@ -91,7 +87,7 @@ rotated = false;
 
     if(index == 0){
 
-      return "Very High";
+      return "High";
     }
     else if(index == 1){
 

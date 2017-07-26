@@ -108,16 +108,13 @@
 
 
    <div class="feeButton"  (click)="openFeeList()" >
-    <img class="feebuttonImage" src="../assets/images/selectGameButtonBackground.png"/>
+    <img class="feebuttonImage" src="../assets/images/filterButtonBackgroundLong.png"/>
     <span>{{getFeeTitle()}}</span>
     <img id="smallarrowFee" class="smallarrow" src="../assets/images/littleArrow.png" />
   </div>
    <div id="myDropdownFee" class="dropdown-content-fee">
    <li>
     <span class="feetitle" (click)="setFee(0)">{{getTitleForFee(0)}}</span>
-   </li>
-    <li>
-    <span class="feetitle" (click)="setFee(1)">{{getTitleForFee(1)}}</span>
    </li>
     <li>
     <span class="feetitle" (click)="setFee(2)">{{getTitleForFee(2)}}</span>
@@ -127,7 +124,7 @@
    </li>
     <li>
     <div class="customfee">
-    <span> <input  class="textInput"  type="text" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="custom fee btc"  name="customfee">
+    <span> <input  class="textInput"  type="number" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="custom fee btc"  name="customfee">
     <button (click)="setFee(4)">Set</button>
     </span> 
     </div>
