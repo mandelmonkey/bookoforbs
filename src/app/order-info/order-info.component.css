@@ -1,0 +1,22 @@
+.priceBuy{ 
+  
+  white-space:pre-wrap;
+  margin-top: 10px;
+  width: 50%;
+  height: 50px;
+  float: left;
+  color: #ffffd5;
+    font-family:   merriweather;
+    font-size: 15pt;
+}
+.priceSell{ 
+
+  white-space:pre-wrap;
+  margin-top: 10px;
+  width: 50%;
+  height: 50px;
+  float: right;
+  color: #ffffd5;
+    font-family:   merriweather;
+    font-size: 15pt;
+}
