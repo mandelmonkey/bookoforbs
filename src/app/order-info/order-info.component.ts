@@ -44,7 +44,7 @@ var marged = new Array();
 			return marged;
  }
 getPrice(){
-	 this.httpService.getOrders(this.token, + " "+this.dataService.maincontroller.currentCurrency).subscribe(
+	 this.httpService.getOrders(this.token, this.dataService.maincontroller.currentCurrency).subscribe(
      data => { 
           
           var sell_orders = this.marge(data, 'sell');
