@@ -1,0 +1,55 @@
+ 
+.marketScroll{
+
+ 
+   overflow-y: auto;
+  height: 100%;
+ 
+}
+.market{
+ 
+  
+   width:100%;
+  /* text-align: center;  */
+}
+ 
+.marketSubScroll{
+  overflow-x: auto;
+    white-space: nowrap;
+  /*overflow-x: scroll;
+    overflow-y: hidden;
+   height:200px;
+   width:500px;
+   
+   overflow:hidden; overflow-x:scroll;
+    overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+ */ 
+}
+.cardBox { 
+   display: inline-block;
+ width:20%; 
+ 	margin-left:2%;
+  margin-right:2%;
+	margin-top: 5px;
+  margin-bottom: 5px;
+   
+  text-align: center; 
+  font-size: 0;   
+
+  
+
+ 
+}
+
+.card {  
+ 
+
+ background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
+background-size: 100% 100%; 
+width: 100%;
+ margin: 0 auto;
+}
+
+ 

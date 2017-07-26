@@ -1,0 +1,32 @@
+<div class="market" id="market" *ngIf="dataService.currentTab == 2" [style.height]="getMarketHeight()">
+	<div class="marketScroll" >
+		<div class="marketSubScroll">
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
+			</div>
+		</div>
+		<div class="marketSubScroll">
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
+			</div>
+		</div>
+		<div class="marketSubScroll">
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
+			</div>
+		</div>
+		<div class="marketSubScroll">
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
+			</div>
+		</div>
+		<div class="marketSubScroll">
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
