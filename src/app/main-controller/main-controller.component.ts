@@ -39,6 +39,9 @@ public currentFee:string;
 
 public customFee:string;
 public currentOwner:any;
+public currentCurrency:string;
+public currentAbrev:string;
+public currentCurrencyImg:string;
 
 
   public currentOrbs : Array<any>;

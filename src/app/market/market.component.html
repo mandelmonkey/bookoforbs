@@ -1,30 +1,18 @@
 <div class="market" id="market" *ngIf="dataService.currentTab == 2" [style.height]="getMarketHeight()">
-	<div class="marketScroll" >
+	<div class="marketScroll" *ngIf="dataService.maincontroller.currentOrbsKeys.length > 0">
 		<div class="marketSubScroll">
+
+
+		<label class="title">New ORBS</label><label class="titleRight">View All</label>
 			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
-				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
+			<div>
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/>
+				
+				<app-order-info  [token]="orbKey"></app-order-info>
 			</div>
+</div>
 		</div>
-		<div class="marketSubScroll">
-			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
-				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
-			</div>
-		</div>
-		<div class="marketSubScroll">
-			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
-				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
-			</div>
-		</div>
-		<div class="marketSubScroll">
-			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
-				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
-			</div>
-		</div>
-		<div class="marketSubScroll">
-			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
-				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/> 
-			</div>
-		</div>
+
 	</div>
 </div>
 

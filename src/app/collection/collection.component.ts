@@ -97,8 +97,11 @@ console.log("error balance");
  this.loading = false;
 this.ownedOrbsEnv = new Array<any>();
 
-     
-
+     var definition = data["Environements"][this.dataService.maincontroller.currentBundleId].Definition;
+ this.dataService.maincontroller.currentCurrency = definition.MasterCurrency;
+  this.dataService.maincontroller.currentAbrev = definition.ticker;
+   this.dataService.maincontroller.currentCurrencyImg = "";
+console.log("env "+JSON.stringify(data));
       this.dataService.maincontroller.currentOrbs = data["Environements"][this.dataService.maincontroller.currentBundleId].Assets;
       this.dataService.market.setMarketData();
 

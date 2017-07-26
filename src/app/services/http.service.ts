@@ -74,7 +74,12 @@ export class HTTPService{
       return this._http.get("https://api.indiesquare.me/v2/transactions/"+txid+"/raw?X-Api-Key=" + this.apiKey)
       .map(res=>res.json());
     };
-    
+     
+    getOrders(token,currency){
+        
+       return this._http.get("https://api.indiesquare.me/v2/orders/"+token+"/book?base_token="+currency)
+      .map(res=>res.json());
+    };
     getBalance(address){
       /*
       return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/balances?X-Api-Key=" + this.apiKey)

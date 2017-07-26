@@ -5,6 +5,7 @@ import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-market',
   templateUrl: './market.component.html',
+   providers:[HTTPService],
   styleUrls: ['./market.component.css']
 })
 export class MarketComponent implements OnInit {
@@ -22,7 +23,11 @@ export class MarketComponent implements OnInit {
 
   }
 
+ 
+getSellPrice(token:string){
+	return 'Sell\n100 BCY';
 
+}
 getMarketHeight(){
 	return (document.documentElement.clientHeight-document.getElementById("market").offsetTop-55)+"px"; 
 }

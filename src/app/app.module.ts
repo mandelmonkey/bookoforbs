@@ -13,6 +13,7 @@ import { RouterModule, Routes }  from '@angular/router';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { SendComponent } from './send/send.component';
 import { MarketComponent } from './market/market.component';
+import { OrderInfoComponent } from './order-info/order-info.component';
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     IntroComponent,
     BottomBarComponent,
     SendComponent,
-    MarketComponent
+    MarketComponent,
+    OrderInfoComponent
   ],
   imports: [
     BrowserModule,
