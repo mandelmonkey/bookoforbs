@@ -35,12 +35,17 @@ export class BottomBarComponent implements OnInit {
   		console.log("2");
   }
   select3(){
-  		this.dataService.currentTab = 3;
+  		/*this.dataService.currentTab = 3;
   		this.image1 = "../assets/images/bottomBarClear.png";
   		this.image2 = "../assets/images/bottomBarClear.png";
   		this.image3 = "../assets/images/bottomBarBlack.png";
   		this.image4 = "../assets/images/bottomBarClear.png";
   		console.log("3");
+
+      */
+
+        window.open("https://walletapp.indiesquare.me/explorer/#/addresses/"+this.dataService.maincontroller.currentAddress);
+
   }
   select4(){
   		this.dataService.currentTab = 4;

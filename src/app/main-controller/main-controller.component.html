@@ -1,6 +1,6 @@
    
    
- <app-top-bar *ngIf="showTopBar" ></app-top-bar>
+ <app-top-bar *ngIf="showTopBar"></app-top-bar>
   
    <app-collection *ngIf="showCollection" ></app-collection>
 
@@ -26,27 +26,47 @@
  <label class="titleLabel">{{selectedKey}}</label> 
   <img class="largeORBImage" [src]="selectedOrb.image" [style.height]="orbHeight"  [style.width]="orbWidth"/> 
   
-<br>
+    <br>
     <div class="largeButtons" *ngIf="dataService.maincontroller.currentBalance > 0">
-    
-     <div id="largeButtonSend" (click)="openSend()">
+        
+      <div id="largeButtonSend" (click)="openSend()">
       
         <label class="buttonLabel">Send</label> 
      </div>
  	 
    
-    <div id="largeButtonMarket">
+      <div id="largeButtonMarket">
 
   
-      <label class="buttonLabel">Market</label> 
+       <label class="buttonLabel">Market</label> 
      
+      </div>
+    </div>
+
+
+  </div>
+
+ 
+
+
+
+
+
 </div>
+<app-send *ngIf="showSend" ></app-send>
+ <div class="messageDark"  *ngIf="showingMessage">
+   <div class="messageBack"> 
+  <label class="messageText">{{messageText}}</label> 
+       <div class="closeMessageButton" (click)="closeMessage()">
+      
+        <label class="buttonLabel">close</label> 
+     </div>
+       </div>
+
+
   </div>
 
 
-</div>
-</div>
 
 
-<app-send *ngIf="showSend" ></app-send>
  

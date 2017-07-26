@@ -13,7 +13,7 @@
 	  <img class="card" [src]="getImage(currentOrbs[orbKey])" (click)="showORB(currentOrbs[orbKey],orbKey)"/> 
     <div class="shadowBox">
     
-	  <span class="cardNum">x{{getUserBalance(orbKey)}}</span>
+	  <span class="cardNum">x{{getUserBalance(orbKey)}}{{getUserUnconfBalance(orbKey)}}</span>
     </div> 
 
     </div>

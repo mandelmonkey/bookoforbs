@@ -73,6 +73,8 @@ openEnvironmentList() {
 }
 
 setEnvironment(key:string){
+
+  
   this.currentEnvKey = key;
  this.currentEnv = this.environments[this.currentEnvKey];
  this.currentEnvTitle = this.currentEnv.Title;

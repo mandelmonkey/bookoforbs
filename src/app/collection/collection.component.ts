@@ -129,7 +129,7 @@ this.ownedOrbsEnv = new Array<any>();
     }
 
 
-          
+
 
   }
   getImgSource(img:string){
@@ -197,6 +197,21 @@ this.ownedOrbsEnv = new Array<any>();
     }
    
       return 0;
+     
+  }
+
+    getUserUnconfBalance(key:string){
+    var userToken = this.dataService.maincontroller.userBalance[key];
+    for(var i = 0; i <this.dataService.maincontroller.userBalance.length;i++ ){
+      var aUserToken = this.dataService.maincontroller.userBalance[i];
+      if(aUserToken.token == key){
+          if(aUserToken.unconfirmed_balance != 0){
+            return " "+aUserToken.unconfirmed_balance;
+          }
+      }
+    }
+   
+      return "";
      
   }
 

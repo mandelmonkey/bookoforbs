@@ -19,11 +19,12 @@
 
   <img class="middleBarImg" src="../assets/images/sendMiddleBar.png" />
  
-   <div class="sendButton" (click)="send()">
+   <div *ngIf="!sending" class="sendButton" (click)="send()">
     <img class="sendButtonImg" src="../assets/images/filterButtonBackground.png" />
     <label>send</label>
     
   </div>
+   <img id="spinner"  src="../assets/images/spinner.gif" *ngIf="sending" />
   
 </div>
 <label class="amountText">{{currentORB}}{{amount}}</label>
@@ -96,8 +97,42 @@
 
 
     <label>back</label>
-    
+      
+   
+
+
+
   </div>
-<label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> <h1>{{status}}</h1>
+
+<label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> 
+
+
+   <div class="feeButton"  (click)="openFeeList()" >
+    <img class="feebuttonImage" src="../assets/images/selectGameButtonBackground.png"/>
+    <span>{{getFeeTitle()}}</span>
+    <img id="smallarrowFee" class="smallarrow" src="../assets/images/littleArrow.png" />
+  </div>
+   <div id="myDropdownFee" class="dropdown-content-fee">
+   <li>
+    <span class="feetitle" (click)="setFee(0)">{{getTitleForFee(0)}}</span>
+   </li>
+    <li>
+    <span class="feetitle" (click)="setFee(1)">{{getTitleForFee(1)}}</span>
+   </li>
+    <li>
+    <span class="feetitle" (click)="setFee(2)">{{getTitleForFee(2)}}</span>
+   </li>
+    <li>
+    <span class="feetitle" (click)="setFee(3)">{{getTitleForFee(3)}}</span>
+   </li>
+    <li>
+    <div class="customfee">
+    <span> <input  class="textInput"  type="text" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="custom fee btc"  name="customfee">
+    <button (click)="setFee(4)">Set</button>
+    </span> 
+    </div>
+   </li>
+  </div>
+
 </div>
 </div>
