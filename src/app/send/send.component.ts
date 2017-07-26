@@ -18,9 +18,11 @@ export class SendComponent implements OnInit {
   public sendAddress:string;
   public status:string;
 public params:any;
+public currentSendResponse:any;
 public sending:boolean;
     public basePath = 'm/0\'/0/';
   public account = null;
+  public indiesquare:any;
 rotated = false;
   public fees:any;
   ngOnInit() {
@@ -28,6 +30,10 @@ rotated = false;
     this.sendAddress = "";
     this.status = "";
     this.sending = false;
+
+    this.indiesquare = new IndieSquare({
+    'apikey': this.httpService.apiKey  
+  });
   }
 
   closeSend(){
@@ -35,8 +41,15 @@ rotated = false;
   }
   addKey(num:string){
   	if(num == "-1"){
+
+
   		this.amount = this.amount.slice(0, -1);
   	}else{
+       if(num == "."){
+        if(this.amount.indexOf(".") != -1 || this.amount.length == 0){
+          return;
+        }
+      }
   		this.amount = this.amount+num;
   	}
   	
@@ -139,100 +152,11 @@ rotated = false;
 
   }
 
-  send(){
-    
-    if(parseFloat(this.amount) < 0 || parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
-      this.dataService.maincontroller.showMessage("please enter a valid amount");
-      return;
-    }
 
-    if( bitcore.Address.isValid(this.sendAddress, 'livenet') == false){
-           this.dataService.maincontroller.showMessage("please enter a valid address");
-        return;
+  broadcast(){
+this.sending = false
 
-}
-        
-         
-
-            var indiesquare = new IndieSquare({
-    'apikey': this.httpService.apiKey  
-  });
-var tmpThis = this
-   // if(this.dataService.maincontroller.currentAddress)
-  this.sending = true;
-
-   var tmpthis = this;
-
-   var fee = -1;
-   var feePerKb = -1;
-
-if(this.dataService.maincontroller.currentFee == "custom"){
-
-  fee =  Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
-  feePerKb = -1;
-
-}else{
-  fee = -1;
-  feePerKb = this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
-}
-
-console.log("fee "+fee);
-console.log("feeperkb "+feePerKb);
-
- this.httpService.createSendTransaction(this.dataService.maincontroller.currentAddress,this.sendAddress,this.dataService.maincontroller.selectedKey,this.amount,feePerKb,fee).subscribe(
-     data => { 
-      console.log(JSON.stringify(data));
-
-        if(data.unsigned_tx != null){
- 
-      if(this.dataService.maincontroller.linkType == "indiesquare"){
-
-
-     
-       indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){
-  
-    if( error ){
-        tmpthis.sending = false;
-        console.log("error"+error);
-       
-        return;
-    } 
-   
-   
-}, function(result, error){
- 
-  if(error){
-    console.error(error);
-    tmpthis.sending = false;
- return;
-  }else{
-     
-console.log(result.signed_tx); 
-
-    indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
-    if( error ){
-        console.error(error);
-         tmpthis.sending = false;
-        return;
-    }
-    tmpthis.dataService.maincontroller.showMessage("sent!");
-});
-
-
-
-   }
-   
-
-});
-
-
-
-
-
-
-
-
-      }else{
+    var tmpthis = this;
 
     try {
         var seed = new Mnemonic(this.dataService.maincontroller.recoveryPhrase).toHex();
@@ -264,10 +188,9 @@ console.log(result.signed_tx);
         
           this.params["address"] = privkey.toAddress().toString();
           this.params.callback = function(signed_tx){
-               console.log("signed "+signed_tx);
-              
-
-                 indiesquare.broadcast({"tx": signed_tx}, function(data, error){
+                
+             
+                       tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
     if( error ){
        tmpthis.sending = false;
         console.error(error);
@@ -275,7 +198,10 @@ console.log(result.signed_tx);
     }
      tmpthis.sending = false;
     tmpthis.dataService.maincontroller.showMessage("sent!");
+    tmpthis.closeSend();
 });
+              
+
             
         };
           this.params.onError = function(error){
@@ -290,7 +216,7 @@ console.log(result.signed_tx);
         };
          try {
             
-            var result = bitcore.signrawtransaction(data.unsigned_tx, privkey, this.params,this.httpService.apiKey);
+            var result = bitcore.signrawtransaction(tmpthis.currentSendResponse.unsigned_tx, privkey, this.params,this.httpService.apiKey);
            
 
 
@@ -300,12 +226,124 @@ console.log(result.signed_tx);
            console.log("error"+err);
         }
 
+
+
+
+
+  }
+  cancelSend(currentOwner:any){
+
+    currentOwner.sending = false;
+
+  }
+
+  send(){
+    
+    if(parseFloat(this.amount) < 0 || parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
+      this.dataService.maincontroller.showMessage("please enter a valid amount");
+      return;
+    }
+
+    if( bitcore.Address.isValid(this.sendAddress, 'livenet') == false){
+           this.dataService.maincontroller.showMessage("please enter a valid address");
+        return;
+
+}
+        
+         
+
+           
+var tmpThis = this
+   // if(this.dataService.maincontroller.currentAddress)
+  this.sending = true;
+
+   var tmpthis = this;
+
+   var fee = -1;
+   var feePerKb = -1;
+
+if(this.dataService.maincontroller.currentFee == "custom"){
+
+  fee =  Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
+  feePerKb = -1;
+
+}else{
+  fee = -1;
+  feePerKb = this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
+}
+
+console.log("fee "+fee);
+console.log("feeperkb "+feePerKb);
+
+ this.httpService.createSendTransaction(this.dataService.maincontroller.currentAddress,this.sendAddress,this.dataService.maincontroller.selectedKey,this.amount,feePerKb,fee).subscribe(
+     data => { 
+      console.log(JSON.stringify(data));
+        tmpthis.currentSendResponse = data;
+      var feeBTC = (tmpthis.currentSendResponse.fee / 100000000);
+        if(data.unsigned_tx != null){
+ 
+      if(this.dataService.maincontroller.linkType == "indiesquare"){
+
+
+     
+     tmpthis.indiesquare.signTransaction({'unsigned_tx': tmpthis.currentSendResponse.unsigned_tx}, function(url, urlScheme, error){
+  
+    if( error ){
+        tmpthis.sending = false;
+        console.log("error"+error);
+       
+        return;
+    } 
+   
+   
+}, function(result, error){
+ 
+  if(error){
+    console.error(error);
+    tmpthis.sending = false;
+ return;
+  }else{
+     
+console.log(result.signed_tx); 
+
+  
+     tmpthis.indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
+        if( error ){
+            console.error(error);
+             tmpthis.sending = false;
+            return;
+        }
+        tmpthis.dataService.maincontroller.showMessage("sent!");
+      }); 
+
+
+
+   }
+   
+
+});
+
+
+
+
+
+
+
+
+      }else{
+
+         tmpthis.dataService.maincontroller.showConf("You are sending\n\n"+tmpthis.amount+ " " +tmpthis.dataService.maincontroller.selectedKey+" to "+tmpthis.sendAddress+"\n\nfee:"+feeBTC,tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
+
+
+    
+
       } 
       }
       },   
       error => {
         tmpthis.sending = false;
- 
+         tmpthis.dataService.maincontroller.showMessage( JSON.parse(error._body).message);
+         //["message"]
  
       },
      () => {});

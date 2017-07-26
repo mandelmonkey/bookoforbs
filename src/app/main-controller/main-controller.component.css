@@ -95,23 +95,26 @@
   outline: none;
 }
 
+ 
 .messageText {
  color: #ffffd5;
+ width:80%;
+  white-space:pre-wrap;
     top: 30%; left: 50%;
     position: absolute;
   transform: translate(-50%,-30%);
     font-family:   merriweather;
+     word-wrap: break-word;
+
 }
 
-.messageText {
+.confirmMessageButton {
  color: #ffffd5;
-    top: 30%; left: 50%;
+    bottom: 10%; left: 50%;
     position: absolute;
-  transform: translate(-50%,-30%);
+  transform: translate(-50%,-10%);
     font-family:   merriweather;
 }
-
-
 .closeMessageButton {
  color: #ffffd5;
     bottom: 0%; left: 50%;

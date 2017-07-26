@@ -27,6 +27,7 @@ public currentBalance:number;
 public currentImage:string;
 public currentIndex = 0;
 public showingMessage = false;
+public showingConf = false;
 public orbHeight:string;
 public orbWidth:string;
 public messageText:string;
@@ -36,6 +37,9 @@ public feeKeys:any;
 public currentFee:string;
 
 public customFee:string;
+public currentOwner:any;
+currentConfirm;
+currentCancel;
   loadEnvironments(){
   
     /*
@@ -152,6 +156,8 @@ this.showingMessage = false;
     this.linkType = "";
     this.dataService.maincontroller.currentFee = "hourFee";
     this.getFees();
+
+
     
   }
   reloadViews(){
@@ -171,6 +177,25 @@ this.showingMessage = false;
    
 
   }
+
+   showConf(message:string,confirm,cancel,owner:any){
+    this.messageText = message;
+    this.showingConf = true;
+   this.currentConfirm = confirm;
+   this.currentCancel = cancel;
+   this.currentOwner = owner;
+  }
+
+  didConfirm(){
+ this.showingConf = false;
+    this.currentConfirm();
+
+  }
+  didCancel(){
+    this.showingConf = false;
+     this.currentCancel(this.currentOwner);
+  }
+
 
 
 }

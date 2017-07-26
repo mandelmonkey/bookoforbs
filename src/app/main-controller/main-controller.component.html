@@ -56,11 +56,26 @@
 <app-send *ngIf="showSend" ></app-send>
  <div class="messageDark"  *ngIf="showingMessage">
    <div class="messageBack"> 
-  <label class="messageText">{{messageText}}</label> 
+  <div class="messageText">{{messageText}}</div> 
        <div class="closeMessageButton" (click)="closeMessage()">
       
         <label class="buttonLabel">close</label> 
      </div>
+       </div>
+
+
+  </div>
+
+   <div class="messageDark"  *ngIf="showingConf">
+   <div class="messageBack"> 
+  <div class="messageText">{{messageText}}</div> 
+         <div class="confirmMessageButton" (click)="didConfirm()">
+        <label class="buttonLabel">confirm</label> 
+       </div>
+       <br>
+       <div class="closeMessageButton" (click)="didCancel()">
+        <label class="buttonLabel">cancel</label> 
+       </div>
        </div>
 
 
