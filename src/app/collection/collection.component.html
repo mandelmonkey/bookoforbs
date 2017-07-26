@@ -1,16 +1,16 @@
-   <div class="collection">
+   <div class="collection" *ngIf="dataService.currentTab == 1">
 
   <div *ngIf="!loading" class="ownAllButton">
     <img class="ownAllButtonImg" src={{allOwnImage}} (click)="selectAllOwn()" />
     <div class="ownAllButtonLeft">My Orbs</div>  <div class="ownAllButtonRight">All Orbs</div>
   </div>
  
-  <div class="collectionScroll" id="collectionScroll" #scrollMe (scroll)="onScroll()" [style.height]="scrollHeight">  
+  <div class="collectionScroll" id="collectionScroll" #scrollMe (scroll)="onScroll()" [style.height]="getCollectionHeight()">  
  <label class="status" *ngIf="loading">loading...</label>
 <label class="status" *ngIf="showNoOrbs() && !allOrbs">You do not have any ORBs</label>
  <div *ngFor="let orbKey of scrollOrbsKeys; let idx = index" class="cardBox" [style.width]="cardWidth">
 
-	  <img class="card" [src]="getImage(currentOrbs[orbKey])" (click)="showORB(currentOrbs[orbKey],orbKey)"/> 
+	  <img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)"/> 
     <div class="shadowBox">
     
 	  <span class="cardNum">x{{getUserBalance(orbKey)}}{{getUserUnconfBalance(orbKey)}}</span>

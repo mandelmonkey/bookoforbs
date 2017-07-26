@@ -153,13 +153,13 @@ rotated = false;
   }
 
 
-  broadcast(){
-this.sending = false
+  broadcast(currentOwner:any){
+currentOwner.sending = true;
 
-    var tmpthis = this;
+    var tmpthis = currentOwner;
 
     try {
-        var seed = new Mnemonic(this.dataService.maincontroller.recoveryPhrase).toHex();
+        var seed = new Mnemonic(tmpthis.dataService.maincontroller.recoveryPhrase).toHex();
     }
     catch(err) {
        
@@ -170,24 +170,24 @@ this.sending = false
     
     var master = bitcore.HDPrivateKey.fromSeed(seed);
     
-    var route = this.basePath + this.dataService.maincontroller.currentIndex;
+    var route = tmpthis.basePath + tmpthis.dataService.maincontroller.currentIndex;
     
     var masterderive = master.derive( route );
     
      
      
 
-          this.params = [];
+         tmpthis.params = [];
        
         
-          this.params["pubkey"] = masterderive.publicKey;
+        tmpthis.params["pubkey"] = masterderive.publicKey;
        
-          this.params["destination"] = this.sendAddress;
+         tmpthis.params["destination"] = tmpthis.sendAddress;
         
         var privkey = bitcore.PrivateKey(masterderive.privateKey);
         
-          this.params["address"] = privkey.toAddress().toString();
-          this.params.callback = function(signed_tx){
+         tmpthis.params["address"] = privkey.toAddress().toString();
+         tmpthis.params.callback = function(signed_tx){
                 
              
                        tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
@@ -204,19 +204,19 @@ this.sending = false
 
             
         };
-          this.params.onError = function(error){
+         tmpthis.params.onError = function(error){
             console.log("error "+error);
             tmpthis.sending = false;
             
         };
-          this.params.fail = function(error){
+         tmpthis.params.fail = function(error){
             console.log("fail "+error);
             tmpthis.sending = false;
             
         };
          try {
             
-            var result = bitcore.signrawtransaction(tmpthis.currentSendResponse.unsigned_tx, privkey, this.params,this.httpService.apiKey);
+            var result = bitcore.signrawtransaction(tmpthis.currentSendResponse.unsigned_tx, privkey, tmpthis.params,tmpthis.httpService.apiKey);
            
 
 
@@ -332,7 +332,7 @@ console.log(result.signed_tx);
 
       }else{
 
-         tmpthis.dataService.maincontroller.showConf("You are sending\n\n"+tmpthis.amount+ " " +tmpthis.dataService.maincontroller.selectedKey+" to "+tmpthis.sendAddress+"\n\nfee:"+feeBTC,tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
+         tmpthis.dataService.maincontroller.showConf("You are sending\n\n"+tmpthis.amount+ " " +tmpthis.dataService.maincontroller.selectedKey+" to "+tmpthis.sendAddress+"\n\nfee: "+feeBTC+" btc",tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
 
 
     

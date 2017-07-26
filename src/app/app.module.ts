@@ -12,6 +12,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { RouterModule, Routes }  from '@angular/router';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { SendComponent } from './send/send.component';
+import { MarketComponent } from './market/market.component';
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     MainControllerComponent,
     IntroComponent,
     BottomBarComponent,
-    SendComponent
+    SendComponent,
+    MarketComponent
   ],
   imports: [
     BrowserModule,

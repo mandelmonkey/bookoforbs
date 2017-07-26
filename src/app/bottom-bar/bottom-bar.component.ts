@@ -23,7 +23,8 @@ export class BottomBarComponent implements OnInit {
   		this.image1 = "../assets/images/bottomBarBlack.png";
   		this.image2 = "../assets/images/bottomBarClear.png";
   		this.image3 = "../assets/images/bottomBarClear.png";
-  		this.image4 = "../assets/images/bottomBarClear.png";
+  		this.image4 = "../assets/images/bottomBarClear.png"; 
+       this.dataService.maincontroller.showMarket= false;
   	console.log("1");
   }
   select2(){
@@ -33,6 +34,10 @@ export class BottomBarComponent implements OnInit {
   		this.image3 = "../assets/images/bottomBarClear.png";
   		this.image4 = "../assets/images/bottomBarClear.png";
   		console.log("2");
+
+ 
+       this.dataService.maincontroller.showMarket= true;
+
   }
   select3(){
   		/*this.dataService.currentTab = 3;

@@ -14,8 +14,6 @@ export class CollectionComponent implements OnInit {
  allOwnImage = "../assets/images/leftOptionSeg.png";
   public allOrbs = false;
     public loading = true;
-  currentOrbs : Array<any>;
-  currentOrbsKeys : Array<any>;
   scrollOrbsKeys : Array<any>;
   ownedOrbsEnv:Array<any>;
   currentScroll:number;
@@ -26,6 +24,7 @@ export class CollectionComponent implements OnInit {
  }
 
   ngOnInit() {
+    console.log("collection inited");
     this.dataService.collection = this;
     this.currentScroll = 40;
     this.floatCheck = 0;
@@ -38,17 +37,21 @@ export class CollectionComponent implements OnInit {
 
      //console.log(this.elRef.nativeElement.offsetLeft);
 
-    this.scrollHeight =  (document.documentElement.clientHeight-document.getElementById("collectionScroll").offsetTop-90)+"px"; 
+  
         
+  }
+
+  getCollectionHeight(){
+    return (document.documentElement.clientHeight-document.getElementById("collectionScroll").offsetTop-55)+"px"; 
   }
  onScroll() {
     let element = this.myScrollContainer.nativeElement
     let atBottom = element.scrollHeight - element.scrollTop === element.clientHeight
      
    // if(atBottom){
-      if(this.currentScroll < this.currentOrbsKeys.length){
+      if(this.currentScroll < this.dataService.maincontroller.currentOrbsKeys.length){
       this.currentScroll += 1;
-       this.scrollOrbsKeys = this.currentOrbsKeys.slice(0,this.currentScroll);
+       this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
     console.log("scroll");
   //}
   }
@@ -58,8 +61,8 @@ export class CollectionComponent implements OnInit {
 
 
 this.loading = true;
-this.currentOrbs = [];
- this.currentOrbsKeys = [];
+this.dataService.maincontroller.currentOrbs = [];
+this.dataService.maincontroller.currentOrbsKeys = [];
 this.scrollOrbsKeys = [];
    
  
@@ -90,38 +93,39 @@ console.log("error balance");
 
   }
   continueLoad(data:any){
+
  this.loading = false;
 this.ownedOrbsEnv = new Array<any>();
 
      
 
-      this.currentOrbs = data["Environements"][this.dataService.maincontroller.currentBundleId].Assets;
-
+      this.dataService.maincontroller.currentOrbs = data["Environements"][this.dataService.maincontroller.currentBundleId].Assets;
+      this.dataService.market.setMarketData();
 
         for(var i = 0; i < this.dataService.maincontroller.userBalance.length; i++){
 
           let anOwnedToken = this.dataService.maincontroller.userBalance[i];
-          if(this.currentOrbs[anOwnedToken.token]){
-            this.ownedOrbsEnv[anOwnedToken.token]=this.currentOrbs[anOwnedToken.token];
+          if(this.dataService.maincontroller.currentOrbs[anOwnedToken.token]){
+            this.ownedOrbsEnv[anOwnedToken.token]=this.dataService.maincontroller.currentOrbs[anOwnedToken.token];
           }
           
       }
      
      if(this.allOrbs == false){
-       this.currentOrbsKeys = Object.keys(this.ownedOrbsEnv);
+      this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.ownedOrbsEnv);
 
      }else{
-      this.currentOrbsKeys = Object.keys(this.currentOrbs);
+      this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
      }
 
-          this.scrollOrbsKeys = this.currentOrbsKeys.slice(0,this.currentScroll);
+          this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
 
 
 
              if(this.dataService.maincontroller.currentAddress == "empty"){
-            this.currentOrbsKeys = Object.keys(this.currentOrbs);
+           this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
          
-         this.scrollOrbsKeys = this.currentOrbsKeys.slice(0,this.currentScroll);
+         this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
 
       this.allOrbs = true;
       this.allOwnImage = "../assets/images/rightOptionSeg.png";
@@ -172,15 +176,15 @@ this.ownedOrbsEnv = new Array<any>();
   }
   selectAllOwn(){
     if(this.allOrbs == true){
-       this.currentOrbsKeys = Object.keys(this.ownedOrbsEnv);
-         this.scrollOrbsKeys = this.currentOrbsKeys.slice(0,this.currentScroll);
+      this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.ownedOrbsEnv);
+         this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
 
       this.allOrbs = false;
       this.allOwnImage = "../assets/images/leftOptionSeg.png";
     }
     else{
-       this.currentOrbsKeys = Object.keys(this.currentOrbs);
-         this.scrollOrbsKeys = this.currentOrbsKeys.slice(0,this.currentScroll);
+       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
+         this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
 
       this.allOrbs = true;
       this.allOwnImage = "../assets/images/rightOptionSeg.png";

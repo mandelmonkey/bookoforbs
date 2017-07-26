@@ -14,6 +14,7 @@ public loading = true;
 public showTopBar = false;
 public showSend = false;
 public showCollection = false;
+public showMarket = false;
 public showBottomBar = false;
 public showIntro = true;
 public orbData :any;
@@ -38,6 +39,10 @@ public currentFee:string;
 
 public customFee:string;
 public currentOwner:any;
+
+
+  public currentOrbs : Array<any>;
+  public currentOrbsKeys : Array<any>;
 currentConfirm;
 currentCancel;
   loadEnvironments(){
@@ -188,7 +193,7 @@ this.showingMessage = false;
 
   didConfirm(){
  this.showingConf = false;
-    this.currentConfirm();
+    this.currentConfirm(this.currentOwner);
 
   }
   didCancel(){
