@@ -47,7 +47,7 @@ getPrice(){
 	 this.httpService.getOrders(this.token, this.dataService.maincontroller.currentCurrency).subscribe(
      data => { 
           
-          var sell_orders = this.marge(data, 'sell');
+          var sell_orders = this.marge(data.ask, 'sell');
 
 						var buy_orders = this.marge(data.bid, 'buy');
 
@@ -55,22 +55,26 @@ getPrice(){
 
 						 
 								
-							this.buyPrice = buy_orders[0].price + " "+this.dataService.maincontroller.currentAbrev;
+							this.buyPrice = "sell\n"+buy_orders[0].price + " "+this.dataService.maincontroller.currentAbrev;
 								
 							
 								
 							 
 							
 
+						}else{
+							this.buyPrice = "-";
 						}
 
 						if (sell_orders.length > 0) {
 						 
-								this.sellPrice = sell_orders[0].price + " "+this.dataService.maincontroller.currentAbrev;
+									this.sellPrice = "buy\n"+sell_orders[0].price + " "+this.dataService.maincontroller.currentAbrev;
 								
 							 
 							
 
+						}else{
+							this.sellPrice = "-";
 						}
 
 		 
@@ -79,6 +83,7 @@ getPrice(){
 
       },   
       error => {
+      	console.log(JSON.stringify(error));
  			this.buyPrice= "error";
       },
      () => {});
