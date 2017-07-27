@@ -78,13 +78,13 @@ export class HTTPService{
     getOrders(token,currency){
          var header = new Headers();
  header.append('Content-type','Content-Type: application/json; charset=utf-8');
-
+header.append('X-Api-Key', this.apiKey);
       /*
          header.append("Access-Control-Allow-Origin", "*");
     header.append("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
      header.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");*/
   
-       return this._http.get("https://api.indiesquare.me/v2/orders/"+token+"/book?base_token="+currency+"?X-Api-Key=" + this.apiKey,{
+       return this._http.get("https://api.indiesquare.me/v2/orders/"+token+"/book?base_token="+currency,{
         headers:header
       })
       .map(res => res.json());
