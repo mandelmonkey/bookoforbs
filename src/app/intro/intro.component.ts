@@ -160,9 +160,14 @@ var tmpdata =  this.dataService;
   
        if(typeof this.cipherText !=  "undefined"){
 
+           if(this.cipherText == "view"){
+               this.continueNoAddress();
+           }
+           else{
          this.showPasswordDecryptField =true;
           this.showIntroButtons =false;
     this.showPassphraseField = false;
+  }
        
       }
 
