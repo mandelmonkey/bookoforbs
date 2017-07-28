@@ -36,7 +36,7 @@ public linkType:string;
 public fees:any;
 public feeKeys:any;
 public currentFee:string;
-
+public ownedOrbsEnv:Array<any>;
 public customFee:string;
 public currentOwner:any;
 public currentCurrency:string;
@@ -46,6 +46,7 @@ public currentCurrencyImg:string;
 
   public currentOrbs : Array<any>;
   public currentOrbsKeys : Array<any>;
+  public allOrbsKeys : Array<any>;
 currentConfirm;
 currentCancel;
   loadEnvironments(){
@@ -118,7 +119,7 @@ this.showMessage("error loading balance");
           
      },   
       error => {
-       
+       this.showMessage("error loading");
 console.log("error gamecenter");
  this.loading = false;
       },
@@ -203,6 +204,36 @@ this.showingMessage = false;
     this.showingConf = false;
      this.currentCancel(this.currentOwner);
   }
+
+  marge(orders:any,type:string){
+var marged = new Array();
+      var n = 0;
+      for (var i = 0; i < orders.length; i++) {
+        var is = true;
+        if (i > 0) {
+          if (orders[i].price == marged[n].price) {
+            marged[n].order += orders[i].order;
+            is = false;
+          } else {
+            n++;
+            is = true;
+          }
+        }
+        if (is) {
+          if (marged[n] == null)
+            marged[n] = {};
+          marged[n].price = orders[i].price;
+          if (type === 'buy') {
+            marged[n].quantity = orders[i]["get_quantity"];
+          } else {
+            marged[n].quantity = orders[i]["give_quantity"];
+          }
+          marged[n].order = orders[i].order;
+          marged[n].type = type;
+        }
+      }
+      return marged;
+ }
 
 
 

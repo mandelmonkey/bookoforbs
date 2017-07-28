@@ -13,16 +13,20 @@
    filter: alpha(opacity=20); 
 }
 .title{
-  left:10px;
-  top:10px;
-  position: absolute;
+   top: 20px;
+   left:10px;
+ position: absolute;
   color: #ffffd5;
     font-family:   merriweather;
 }
+.marketSection{
+position: relative;
+}
 .titleRight{
-  right:10px;
-  top:10px;
-  position: absolute;
+  top: 20px;
+   right:10px;
+ position: absolute;
+  float: right;
   color: #ffffd5;
     font-family:   merriweather;
 }

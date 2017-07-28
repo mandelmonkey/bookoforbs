@@ -14,42 +14,22 @@ export class OrderInfoComponent implements OnInit {
  constructor(public dataService:DataService,private httpService:HTTPService) {
  	 
  }
- marge(orders:any,type:string){
-var marged = new Array();
-			var n = 0;
-			for (var i = 0; i < orders.length; i++) {
-				var is = true;
-				if (i > 0) {
-					if (orders[i].price == marged[n].price) {
-						marged[n].order += orders[i].order;
-						is = false;
-					} else {
-						n++;
-						is = true;
-					}
-				}
-				if (is) {
-					if (marged[n] == null)
-						marged[n] = {};
-					marged[n].price = orders[i].price;
-					if (type === 'buy') {
-						marged[n].quantity = orders[i]["get_quantity"];
-					} else {
-						marged[n].quantity = orders[i]["give_quantity"];
-					}
-					marged[n].order = orders[i].order;
-					marged[n].type = type;
-				}
-			}
-			return marged;
- }
+ 
 getPrice(){
+	if(typeof this.dataService.maincontroller.currentOrbs[this.token]["bestBuyPrice"] != "undefined" ){
+this.buyPrice = "sell\n"+this.dataService.maincontroller.currentOrbs[this.token]["bestBuyPrice"] + " "+this.dataService.maincontroller.currentAbrev;
+		 if(typeof this.dataService.maincontroller.currentOrbs[this.token]["bestSellPrice"] != "undefined" ){
+			this.sellPrice = "buy\n"+this.dataService.maincontroller.currentOrbs[this.token]["bestSellPrice"] + " "+this.dataService.maincontroller.currentAbrev;
+		}else{
+			this.sellPrice = "-";
+		}
+	}else{
 	 this.httpService.getOrders(this.token, this.dataService.maincontroller.currentCurrency).subscribe(
      data => { 
           
-          var sell_orders = this.marge(data.ask, 'sell');
+          var sell_orders = this.dataService.maincontroller.marge(data.ask, 'sell');
 
-						var buy_orders = this.marge(data.bid, 'buy');
+						var buy_orders = this.dataService.maincontroller.marge(data.bid, 'buy');
 
 						if (buy_orders.length > 0) {
 
@@ -57,6 +37,7 @@ getPrice(){
 								
 							this.buyPrice = "sell\n"+buy_orders[0].price + " "+this.dataService.maincontroller.currentAbrev;
 								
+								this.dataService.maincontroller.currentOrbs[this.token]["bestBuyPrice"] = buy_orders[0].price;
 							
 								
 							 
@@ -69,13 +50,18 @@ getPrice(){
 						if (sell_orders.length > 0) {
 						 
 									this.sellPrice = "buy\n"+sell_orders[0].price + " "+this.dataService.maincontroller.currentAbrev;
-								
+								this.dataService.maincontroller.currentOrbs[this.token]["bestSellPrice"] = sell_orders[0].price;
+							
 							 
 							
 
 						}else{
 							this.sellPrice = "-";
 						}
+
+
+						this.dataService.maincontroller.currentOrbs[this.token]["openOrders"] = sell_orders.length + buy_orders.length;
+							
 
 		 
      
@@ -87,6 +73,7 @@ getPrice(){
  			this.buyPrice= "error";
       },
      () => {});
+	}
  
 
 	 

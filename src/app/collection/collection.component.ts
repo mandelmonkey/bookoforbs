@@ -15,7 +15,7 @@ export class CollectionComponent implements OnInit {
   public allOrbs = false;
     public loading = true;
   scrollOrbsKeys : Array<any>;
-  ownedOrbsEnv:Array<any>;
+  
   currentScroll:number;
   floatCheck:number;
   cardWidth:string;
@@ -70,7 +70,7 @@ this.scrollOrbsKeys = [];
      data => { 
           
 this.loading = false;
-this.ownedOrbsEnv = new Array<any>();
+this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
 this.continueLoad(data);
      
       
@@ -95,7 +95,7 @@ console.log("error balance");
   continueLoad(data:any){
 
  this.loading = false;
-this.ownedOrbsEnv = new Array<any>();
+this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
 
      var definition = data["Environements"][this.dataService.maincontroller.currentBundleId].Definition;
  this.dataService.maincontroller.currentCurrency = definition.MasterCurrency;
@@ -103,23 +103,27 @@ this.ownedOrbsEnv = new Array<any>();
    this.dataService.maincontroller.currentCurrencyImg = "";
 console.log("env "+JSON.stringify(data));
       this.dataService.maincontroller.currentOrbs = data["Environements"][this.dataService.maincontroller.currentBundleId].Assets;
+
+       this.dataService.maincontroller.allOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
+
       this.dataService.market.setMarketData();
 
         for(var i = 0; i < this.dataService.maincontroller.userBalance.length; i++){
 
           let anOwnedToken = this.dataService.maincontroller.userBalance[i];
           if(this.dataService.maincontroller.currentOrbs[anOwnedToken.token]){
-            this.ownedOrbsEnv[anOwnedToken.token]=this.dataService.maincontroller.currentOrbs[anOwnedToken.token];
+          this.dataService.maincontroller.ownedOrbsEnv[anOwnedToken.token]=this.dataService.maincontroller.currentOrbs[anOwnedToken.token];
           }
           
       }
      
      if(this.allOrbs == false){
-      this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.ownedOrbsEnv);
+      this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
 
      }else{
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
      }
+
 
           this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
 
@@ -179,7 +183,7 @@ console.log("env "+JSON.stringify(data));
   }
   selectAllOwn(){
     if(this.allOrbs == true){
-      this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.ownedOrbsEnv);
+      this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
          this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
 
       this.allOrbs = false;
