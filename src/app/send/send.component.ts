@@ -146,13 +146,14 @@ currentOwner.sending = true;
   // Get Qrcode data via wallet
   this.indiesquare.getQRcode('ServiceNameHere', function(url, urlScheme, error){
     if( error ){
+       thi.sendAddress = "err1"+JSON.stringify(error);
       console.error(error);
       return;
     }
     
   }, function(result, error){
     if( error ){
-      console.error(error);
+      thi.sendAddress = "err2"+JSON.stringify(error);
       return;
     }
     console.dir(result); // {data: "READ-STRINGS"}
