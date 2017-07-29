@@ -154,14 +154,14 @@ console.log("env "+JSON.stringify(data));
   }
    
   showORB(selectedOrb:any,selectedKey:string){
-    // if(this.allOrbs == false){
         
-    this.dataService.maincontroller.currentBalance = this. getUserBalance(selectedKey);
+    this.dataService.maincontroller.currentBalance =  this.dataService.maincontroller.getUserBalance(selectedKey);
     this.dataService.maincontroller.selectedOrb = selectedOrb;
     this.dataService.maincontroller.selectedKey = selectedKey;
-    this.dataService.maincontroller.reloadViews();  
+    this.dataService.maincontroller.reloadViews(); 
+    this.dataService.maincontroller.showSelected = true; 
 
-    //}
+    
   }
   showNoOrbs(){
     if(this.loading){
@@ -198,32 +198,6 @@ console.log("env "+JSON.stringify(data));
     }
   }
 
-  getUserBalance(key:string){
-    var userToken = this.dataService.maincontroller.userBalance[key];
-    for(var i = 0; i <this.dataService.maincontroller.userBalance.length;i++ ){
-      var aUserToken = this.dataService.maincontroller.userBalance[i];
-      if(aUserToken.token == key){
-          return aUserToken.balance;
-      }
-    }
-   
-      return 0;
-     
-  }
 
-    getUserUnconfBalance(key:string){
-    var userToken = this.dataService.maincontroller.userBalance[key];
-    for(var i = 0; i <this.dataService.maincontroller.userBalance.length;i++ ){
-      var aUserToken = this.dataService.maincontroller.userBalance[i];
-      if(aUserToken.token == key){
-          if(aUserToken.unconfirmed_balance != 0){
-            return " "+aUserToken.unconfirmed_balance;
-          }
-      }
-    }
-   
-      return "";
-     
-  }
 
 }

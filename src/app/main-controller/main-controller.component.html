@@ -8,7 +8,7 @@
 
   <app-bottom-bar  *ngIf="showBottomBar"></app-bottom-bar>
 
-<div class="largeORB" *ngIf="selectedOrb && showCollection"  >
+<div class="largeORB" *ngIf="showSelected && showCollection"  >
 
 <div class="parent">
   <img class="backbar" src="../assets/images/tool_bar_background.png" />
@@ -27,9 +27,9 @@
   <img class="largeORBImage" [src]="selectedOrb.image" [style.height]="orbHeight"  [style.width]="orbWidth"/> 
   
     <br>
-    <div class="largeButtons" *ngIf="dataService.maincontroller.currentBalance > 0">
+    <div class="largeButtons" >
         
-      <div id="largeButtonSend" (click)="openSend()">
+      <div id="largeButtonSend" (click)="openSend()" *ngIf="dataService.maincontroller.currentBalance > 0">
       
         <label class="buttonLabel">Send</label> 
      </div>
@@ -38,7 +38,7 @@
       <div id="largeButtonMarket">
 
   
-       <label class="buttonLabel">Market</label> 
+       <label class="buttonLabel" (click)="openMarket()">Market</label> 
      
       </div>
     </div>
@@ -54,6 +54,7 @@
 
 </div>
 <app-send *ngIf="showSend" ></app-send>
+<app-order-page *ngIf="showOrderPage" ></app-order-page>
  <div class="messageDark"  *ngIf="showingMessage">
    <div class="messageBack"> 
   <div class="messageText">{{messageText}}</div> 

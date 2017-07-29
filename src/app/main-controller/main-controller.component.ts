@@ -13,7 +13,9 @@ export class MainControllerComponent implements OnInit {
 public loading = true;
 public showTopBar = false;
 public showSend = false;
+public showOrderPage = false;
 public showCollection = false;
+public showSelected = false;
 public showMarket = false;
 public showBottomBar = false;
 public showIntro = true;
@@ -146,6 +148,11 @@ console.log("error fees");
 
 
 }
+openMarket(){
+  console.log("show send");
+  this.showOrderPage = true; 
+  //this.dataService.maincontroller.showCollection = false;
+}
 openSend(){
   console.log("show send");
   this.showSend = true; 
@@ -153,6 +160,7 @@ openSend(){
 }
  closeLarge(){
    this.selectedOrb = null;
+   this.showSelected = false;
 
  }
 closeMessage(){
@@ -204,7 +212,33 @@ this.showingMessage = false;
     this.showingConf = false;
      this.currentCancel(this.currentOwner);
   }
+  getUserBalance(key:string){
+    var userToken = this.userBalance[key];
+    for(var i = 0; i <this.userBalance.length;i++ ){
+      var aUserToken = this.userBalance[i];
+      if(aUserToken.token == key){
+          return aUserToken.balance;
+      }
+    }
+   
+      return 0;
+     
+  }
 
+    getUserUnconfBalance(key:string){
+    var userToken = this.userBalance[key];
+    for(var i = 0; i <this.userBalance.length;i++ ){
+      var aUserToken = this.userBalance[i];
+      if(aUserToken.token == key){
+          if(aUserToken.unconfirmed_balance != 0){
+            return " "+aUserToken.unconfirmed_balance;
+          }
+      }
+    }
+   
+      return "";
+     
+  }
   marge(orders:any,type:string){
 var marged = new Array();
       var n = 0;

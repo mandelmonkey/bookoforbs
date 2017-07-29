@@ -14,6 +14,8 @@ import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { SendComponent } from './send/send.component';
 import { MarketComponent } from './market/market.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
+import { OrderPageComponent } from './order-page/order-page.component';
+import { FeeSelectorComponent } from './fee-selector/fee-selector.component';
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -28,7 +30,9 @@ const appRoutes: Routes = [
     BottomBarComponent,
     SendComponent,
     MarketComponent,
-    OrderInfoComponent
+    OrderInfoComponent,
+    OrderPageComponent,
+    FeeSelectorComponent
   ],
   imports: [
     BrowserModule,

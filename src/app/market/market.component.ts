@@ -193,6 +193,17 @@ console.log("ownedKeys "+ownedKeys);
 
   return array;
 }
+
+  showORB(selectedOrb:any,selectedKey:string){
+        
+    this.dataService.maincontroller.currentBalance =  this.dataService.maincontroller.getUserBalance(selectedKey);
+    this.dataService.maincontroller.selectedOrb = selectedOrb;
+    this.dataService.maincontroller.selectedKey = selectedKey;
+    this.dataService.maincontroller.showOrderPage = true;
+
+    
+  }
+
 getMarketHeight(){
 	return (document.documentElement.clientHeight-document.getElementById("market").offsetTop-55)+"px"; 
 }

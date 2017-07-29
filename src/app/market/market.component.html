@@ -9,7 +9,7 @@
 
 
 		
-			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" >
+			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
 			<div>
 				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/>
 				
