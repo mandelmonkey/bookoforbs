@@ -141,6 +141,28 @@ currentOwner.sending = true;
 
   }
 
+  scan(){
+    var thi = this;
+  // Get Qrcode data via wallet
+  this.indiesquare.getQRcode('ServiceNameHere', function(url, urlScheme, error){
+    if( error ){
+      console.error(error);
+      return;
+    }
+    
+  }, function(result, error){
+    if( error ){
+      console.error(error);
+      return;
+    }
+    console.dir(result); // {data: "READ-STRINGS"}
+    thi.sendAddress = JSON.stringify(result);
+  });
+  
+}
+        
+     
+
   send(){
     
     if(parseFloat(this.amount) < 0 || parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
@@ -153,8 +175,8 @@ currentOwner.sending = true;
         return;
 
 }
-        
-         
+
+
 
            
 var tmpThis = this

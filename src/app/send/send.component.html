@@ -24,6 +24,11 @@
     <label>send</label>
     
   </div>
+   <div *ngIf="!sending" class="scanButton" (click)="scan()">
+    <img class="sendButtonImg" src="../assets/images/filterButtonBackground.png" />
+    <label>scan</label>
+    
+  </div>
    <img id="spinner"  src="../assets/images/spinner.gif" *ngIf="sending" />
   <label class="amountText">{{currentORB}}{{amount}}</label>
  <input type="text" class="addressText" placeholder="enter address" [(ngModel)]="sendAddress" >

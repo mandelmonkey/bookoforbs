@@ -109,6 +109,27 @@
   width:30px;
   height:30px;
 }
+
+.scanButton {
+  text-align: center;
+     cursor: pointer;
+    position: absolute;
+    top: 5px;
+  left: 5px;
+  width:100px;
+  height:42px;
+}
+ .scanButton label {
+     position: absolute;
+  right: 10px;
+  top: 12px;
+  width:100px;
+  height:42px;
+  z-index: 0; 
+  color: #ffffd5;
+    font-family:   merriweather;
+    pointer-events: none;
+}
  .sendButton {
   text-align: center;
      cursor: pointer;
