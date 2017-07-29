@@ -1,0 +1,40 @@
+<div class="backGround">
+
+<div class="darkView">
+</div>
+
+ 
+<div class="sendOrb">
+<img class="sendOrbImg" [src]="this.dataService.maincontroller.selectedOrb.image"  />
+ </div>
+  
+ 
+
+ 
+
+<div class="parent">
+  <img class="backbar" src="../assets/images/tool_bar_background.png" />
+  <img class="leftbracket" src="../assets/images/leftBracket.png" />
+  <img class="rightbracket" src="../assets/images/rightBracket.png" />
+
+
+
+   <div class="backButton" (click)="closeSelf()">
+    <img class="backButtonImg" src="../assets/images/filterButtonBackground.png" />
+
+
+    <label>back</label>
+      
+   
+
+
+
+  </div>
+
+<label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> 
+
+
+      <app-fee-selector></app-fee-selector>
+
+</div>
+</div>

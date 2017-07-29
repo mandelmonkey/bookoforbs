@@ -1,0 +1,373 @@
+
+.backGround {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  background: url('/assets/images/stoneBack.jpg') no-repeat scroll 0 0;
+  width:100%;
+ 
+     background-repeat: no-repeat; 
+     background-size: cover;
+
+}
+.parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+
+}
+.middleBar {
+  position: absolute;
+  bottom: 40%;
+  left: 0;
+  height: 100px;
+    width:100%;
+
+}
+.middleBarImg {
+  position: relative;
+  top: 0;
+  left: 0;
+  width:100%;
+   height: 100%;
+  
+
+}
+.backbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:60px;
+}
+.leftbracket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:10px;
+  height:55px;
+}
+.rightbracket {
+  position: absolute;
+  top: 0;
+  right: 0;
+   width:10px;
+  height:55px;
+}
+  
+
+.backButtonImg {
+    position: absolute;
+  top: 3px;
+  left: 10px;
+  width:100px;
+  height:42px;
+   pointer-events: none;
+}
+
+
+ .backButton {
+  text-align: center;
+     cursor: pointer;
+    position: absolute;
+    top: 3px;
+  left: 0px;
+  width:100px;
+  height:42px;
+}
+ .backButton label {
+     position: absolute;
+  left: 10px;
+  top: 12px;
+  width:100px;
+  height:42px;
+  z-index: 0;
+  color: #ffffd5;
+    font-family:   merriweather;
+     pointer-events: none;
+}
+
+
+.sendButtonImg {
+    position: absolute;
+  top: 3px;
+  right: 10px;
+  width:100px;
+  height:42px;
+  pointer-events: none;
+}
+
+#spinner{
+  text-align: center;
+     cursor: pointer;
+    position: absolute;
+    top: 13px;
+  right: 15px;
+  width:30px;
+  height:30px;
+}
+ .sendButton {
+  text-align: center;
+     cursor: pointer;
+    position: absolute;
+    top: 5px;
+  right: -5px;
+  width:100px;
+  height:42px;
+}
+ .sendButton label {
+     position: absolute;
+  right: 10px;
+  top: 12px;
+  width:100px;
+  height:42px;
+  z-index: 0; 
+  color: #ffffd5;
+    font-family:   merriweather;
+    pointer-events: none;
+}
+img{
+  pointer-events: none;
+}
+label{
+  pointer-events: none;
+}
+ .title { 
+ position: absolute; 
+     top: 16px;
+     text-align: center;
+  width:100%;
+  height:60px;
+  color: #ffffd5;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+}
+
+ .addressText {  
+   position: absolute; 
+     bottom: 10px;
+     text-align: center;
+  width:100%;
+  height:40px;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+}
+
+ .amountText { 
+ position: absolute; 
+   bottom: 48px;
+     text-align: center;
+  width:100%;
+  height:33px;
+  color: #ffffd5;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+}
+.darkView{
+  position: absolute;
+   width:100%;
+   top: 0%;  
+   background-color: rgba(0,0,0,0.5);
+      text-align: center;
+}
+.sendOrb{
+  position: absolute;
+   width:100%;
+   top: 10%;   
+      text-align: center;
+}
+.sendOrbImg { 
+   width:60%; 
+  
+}
+.sendOrbBack{
+  position: absolute;
+   width:100%;
+   right:5px;
+   top: 9.5%;  
+
+      text-align: center;
+}
+.sendOrbBackImg{ 
+  opacity: 0.5;
+    filter: alpha(opacity=50);
+   width:60%; 
+  
+}
+
+.sendOrbBack2{
+  position: absolute;
+   width:100%;
+   right:10px;
+   top: 9%;  
+
+      text-align: center;
+}
+.sendOrbBackImg2{ 
+  opacity: 0.5;
+    filter: alpha(opacity=50);
+   width:60%; 
+  
+}
+ .keypadBack {
+  width:100%;
+  height: 50%;
+  top: 50%;
+  position: fixed; 
+
+}
+.keypad {
+text-align: center;
+  width:100%;
+  height: 40%;
+  bottom: 0;
+  position: absolute; 
+  z-index: 1;
+}
+.button {
+  display: inline-block;
+width:32%;
+height:25%;
+background-color:rgba(0,0,0,0.2);
+font-size: 20pt;
+ color: #ffffd5;
+    font-family:   merriweather;
+
+}
+.button label {
+  height: 100%;
+display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#balance{
+pointer-events: none;
+font-size: 10pt;
+}
+
+::-webkit-input-placeholder { /* Chrome */
+  color: black;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: black;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: black;
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: black;
+  opacity: 1;
+}
+
+
+
+
+.feeButton span {
+    
+     pointer-events: none;
+    position: absolute;
+    left: 27px; 
+    top:3px;
+    color: #ffffd5;
+    font-family:   merriweather;
+    font-size: 10pt;
+     height:42px;
+     text-align: right;
+    line-height:42px;
+}
+
+.feebuttonImage {
+    position: absolute;
+  top: 3px;
+  right: 10px;
+  width:100%;
+  height:42px;
+}
+
+
+ .feeButton {
+     cursor: pointer;
+    position: absolute;
+    top: 3px;
+  right: 5px;
+  width:140px;
+  height:42px;
+
+     text-align: right;
+}
+
+/* Dropdown button on hover & focus */
+.feeButton:hover, .feeButton:focus {
+   
+}
+
+ 
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content-fee {
+    display: none;
+    top:52px;
+    right:5px;
+    position: absolute;
+    background-color: #442117;
+    min-width: 90px;
+       width:170px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+ .smallarrow {
+  position: absolute;
+  top: 19px;
+  right: 8px;
+   width:16px;
+  height:10px;
+}
+ 
+.feetitle {
+  display: table-cell;
+  vertical-align: middle;
+      cursor: pointer;
+    color: #ffffd5;
+    font-family:   merriweather;
+    font-size: 12pt;
+    left: 7px;
+}
+
+.customfee{
+ height:50px;
+    line-height:50px; 
+}
+.customfee input{
+ 
+    width:110px;
+}
+li
+{
+  
+    background-color: #442117;
+    display: table;
+    min-width: 50px;
+    width:170px;
+    list-style-type:none;
+    padding-left:15px;
+    margin:0px;
+    height:50px;
+}
+/* Change color of dropdown links on hover */
+li:hover {background-color: #654137}
+
+
+ 
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
