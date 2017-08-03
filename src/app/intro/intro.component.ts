@@ -104,11 +104,31 @@ this.isIndiesquare = true;
 //this.testObj.userAgent = "here";
     var userAgent = this.testObj["userAgent"].replace("phrase:","");
 
-this.testObj.userAgent = userAgent;
-    this.createAddressFromPassphrase(userAgent);
-     this.showIntroButtons = false;
- this.continueLogin();
+this.passphrase = userAgent;
+    var words = null;
+    if( this.passphrase != null ) words = this.passphrase.split(' ');
+
+     this.dataService.maincontroller.recoveryPhrase = words;
+      var m;
+    try{
+      
+      m = new Mnemonic(words);
+
+   this.createAddressFromPassphrase(m);
+      this.continueLogin();
+
+    }
+    catch(e){ 
+      
+      this.decryptStatus = "password or link incorrect";
+    
+
+
+
+
   }
+
+}
 }
 
  backToStart(){
