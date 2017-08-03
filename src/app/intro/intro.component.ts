@@ -100,11 +100,14 @@ this.isIndiesquare = true;
    
 
 });
-  }else if(this.testObj["userAgent"].indexOf("phrase") != -1){
+  }else if(this.testObj["userAgent"].indexOf("phrase:") != -1){
 
     var userAgent = this.testObj["userAgent"].replace('phrase:',"");
 
+
     this.createAddressFromPassphrase(userAgent);
+     this.showIntroButtons = false;
+ this.continueLogin();
   }
 }
 
