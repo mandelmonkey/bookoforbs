@@ -26,7 +26,9 @@ export class MarketComponent implements OnInit {
  	 
 
   }
-
+getCollectionHeight(){
+    return (document.documentElement.clientHeight-document.getElementById("marketScroll").offsetTop-55)+"px"; 
+  }
  
 getPrice(token:string){
 
