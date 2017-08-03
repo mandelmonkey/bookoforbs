@@ -59,7 +59,7 @@ export class IntroComponent implements OnInit {
 
   linkIndiesquare(){
    
- this.testObj.userAgent = "";
+ this.testObj.userAgent = "loading...";
     
 this.testObj["userAgent"]  = "User-agent header sent: " + navigator.userAgent;
    
@@ -101,10 +101,10 @@ this.isIndiesquare = true;
 
 });
   }else if(this.testObj["userAgent"].indexOf("phrase:") != -1){
-
+this.testObj.userAgent = "here";
     var userAgent = this.testObj["userAgent"].replace('phrase:',"");
 
-
+this.testObj.userAgent = userAgent;
     this.createAddressFromPassphrase(userAgent);
      this.showIntroButtons = false;
  this.continueLogin();
