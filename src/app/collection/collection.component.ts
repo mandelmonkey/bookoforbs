@@ -61,6 +61,7 @@ export class CollectionComponent implements OnInit {
 
 
 this.loading = true;
+console.log("called here");
 this.dataService.maincontroller.currentOrbs = [];
 this.dataService.maincontroller.currentOrbsKeys = [];
 this.scrollOrbsKeys = [];
@@ -101,9 +102,9 @@ this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
  this.dataService.maincontroller.currentCurrency = definition.MasterCurrency;
   this.dataService.maincontroller.currentAbrev = definition.ticker;
    this.dataService.maincontroller.currentCurrencyImg = "";
-console.log("env "+JSON.stringify(data));
+ 
       this.dataService.maincontroller.currentOrbs = data["Environements"][this.dataService.maincontroller.currentBundleId].Assets;
-
+       
        this.dataService.maincontroller.allOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
 
       this.dataService.market.setMarketData();
@@ -190,6 +191,8 @@ console.log("env "+JSON.stringify(data));
       this.allOwnImage = "../assets/images/leftOptionSeg.png";
     }
     else{
+   
+
        this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
          this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
 

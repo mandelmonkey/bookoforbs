@@ -11,7 +11,7 @@ export class HTTPService{
        defaultBundleID = "com.spellsofgenesis";
      defaultEnvCode = "eSog";
    baseOrbUrl = "https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center";
-  devExt = "&apiv=2";
+  devExt = "&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd";
     
 
 
