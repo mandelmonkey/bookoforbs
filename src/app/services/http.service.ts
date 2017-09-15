@@ -142,7 +142,7 @@ header.append('X-Api-Key', this.apiKey);
     };
 
     getRawTransactions(address){
-      return this._http.get("https://api.indiesquare.net/v2/addresses/"+address+"/rawtransactions?X-Api-Key=" + this.apiKey)
+      return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/rawtransactions?X-Api-Key=" + this.apiKey)
       .map(res=>res.json());
     };
 
