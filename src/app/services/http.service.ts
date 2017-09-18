@@ -12,10 +12,66 @@ export class HTTPService{
      defaultEnvCode = "eSog";
    baseOrbUrl = "https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center";
   devExt = "&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd";
-    
+    huburl = "https://52.243.37.50:15000/api/";
 
 
   constructor(private _http:Http){}
+
+   hubStatus(){
+         var header = new Headers();
+   
+ 
+
+      
+      
+ var json = JSON.stringify({
+             jsonrpc: "2.0", 
+             id: 0,
+             method: "mph_status", 
+            
+        });
+
+      var params = json;
+      var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json'); 
+
+      return this._http.post(this.huburl,params, {
+        headers:header
+      })
+      .map(res => res.json());
+
+    };
+
+
+    requestConnection(url:string,asset:string,spendSecretHash:string){
+         var header = new Headers();
+   
+ 
+
+      
+      
+ var json = JSON.stringify({
+             jsonrpc: "2.0", 
+             id: 0,
+             method: "mph_request",
+             arguments: {
+                url: url,
+             asset:asset,
+             spend_secret_hash:spendSecretHash
+             }
+            
+        });
+
+      var params = json;
+      var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json'); 
+
+      return this._http.post(this.huburl,params, {
+        headers:header
+      })
+      .map(res => res.json());
+
+    };
 
 
     

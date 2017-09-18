@@ -16,6 +16,7 @@ import { MarketComponent } from './market/market.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { FeeSelectorComponent } from './fee-selector/fee-selector.component';
+import { PicoComponent } from './pico/pico.component';
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     MarketComponent,
     OrderInfoComponent,
     OrderPageComponent,
-    FeeSelectorComponent
+    FeeSelectorComponent,
+    PicoComponent
   ],
   imports: [
     BrowserModule,
