@@ -13,8 +13,9 @@ export class HTTPService{
    baseOrbUrl = "https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center";
   devExt = "&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd";
     huburl = "https://52.243.37.50:15000/api/";
-
-
+    counterpartyurl = "http://52.243.37.50:14000/api/";
+  counterpartyUsername = "rpc";
+   counterpartyPassword = "u3Hde3Loib5HjDq1SdehBKiSSAlq";
   constructor(private _http:Http){}
 
    hubStatus(){
@@ -31,11 +32,11 @@ export class HTTPService{
             
         });
 
-      var params = json;
+      
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json'); 
 
-      return this._http.post(this.huburl,params, {
+      return this._http.post(this.huburl,json, {
         headers:header
       })
       .map(res => res.json());
@@ -43,30 +44,119 @@ export class HTTPService{
     };
 
 
-    requestConnection(url:string,asset:string,spendSecretHash:string){
+    requestConnection(params:any){
          var header = new Headers();
-   
- 
-
-      
+    
       
  var json = JSON.stringify({
              jsonrpc: "2.0", 
              id: 0,
              method: "mph_request",
-             arguments: {
-                url: url,
-             asset:asset,
-             spend_secret_hash:spendSecretHash
-             }
+            params: params
             
         });
 
-      var params = json;
+console.log("psoting "+ json);
+   
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json'); 
 
-      return this._http.post(this.huburl,params, {
+      return this._http.post(this.huburl,json, {
+        headers:header
+      })
+      .map(res => res.json());
+
+    };
+
+    deposit(params:any){
+         var header = new Headers();
+    
+      
+ var json = JSON.stringify({
+             jsonrpc: "2.0", 
+             id: 0,
+             method: "mph_deposit",
+             params:params
+            
+        });
+
+
+
+
+console.log("posting "+ json);
+   
+      var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json'); 
+
+      return this._http.post(this.huburl,json, {
+        headers:header
+      })
+      .map(res => res.json());
+
+    };
+ 
+    
+
+      sendRawTx(hex:string){
+         var header = new Headers();
+    
+      
+ var json = JSON.stringify({
+             jsonrpc: "2.0", 
+             id: 0,
+             method: "sendrawtransaction",
+            params: {
+              tx_hex:hex
+            }
+            
+        });
+
+console.log("psoting "+ json);
+   
+      var header = new Headers();
+      var auth = window.btoa( this.counterpartyUsername+":"+ this.counterpartyPassword);
+     
+     
+      header.append('Authorization', "Basic " + auth);
+      header.append('Content-type', 'Content-Type: application/json'); 
+
+      return this._http.post(this.counterpartyurl,json, {
+        headers:header
+      })
+      .map(res => res.json());
+
+    };
+
+      makeDeposit(asset:string,payerPubkey:string,payeePubkey:string,spendSecretHash:string,expireTime:number,quantity:number){
+         var header = new Headers();
+    
+      
+ var json = JSON.stringify({
+             jsonrpc: "2.0", 
+             id: 0,
+             method: "mpc_make_deposit",
+            params: {
+              asset:asset,
+              payer_pubkey:payerPubkey,
+            payee_pubkey:payeePubkey,
+            spend_secret_hash:spendSecretHash,
+            expire_time:expireTime,
+            quantity:quantity
+
+            }
+            
+        });
+
+console.log("psoting "+ json);
+   
+      var header = new Headers();
+      var auth = window.btoa( this.counterpartyUsername+":"+ this.counterpartyPassword);
+     
+     
+      header.append('Authorization', "Basic " + auth);
+      header.append('Content-type', 'Content-Type: application/json'); 
+
+      return this._http.post(this.counterpartyurl,json, {
         headers:header
       })
       .map(res => res.json());
