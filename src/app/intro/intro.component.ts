@@ -60,20 +60,19 @@ export class IntroComponent implements OnInit {
       var indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
   });
-    indiesquare.signTransaction({'unsigned_tx': '0100000001425fc12873a1a09c744ce7e782e95acc5cb69611d9f9b69550a45576383338f7020000001976a914edee861dff4de166683e4c54ae3869cd05c7ae0f88acffffffff0336150000000000001976a9141485d9d03b41aaa9dca7d70d7f63ff4a0826100e88ac00000000000000001e6a1cacd10644550a44ead1ce07effa7abcdd01911e197349b796338f1fe0b0561400000000001976a914edee861dff4de166683e4c54ae3869cd05c7ae0f88ac00000000'}, function(url, urlScheme, error){
+    indiesquare.getAddress("Test", function(url, urlScheme, error){
     if( error ){
         console.error(error);
         return;
     }
-   alert(urlScheme);
-    alert(url);
+   alert(url);
   
 }, function(data, error){
     if( error ){
         console.error(error);
         return;
     }
-    alert("sig"+data.signed_tx);
+    alert("sig"+data.address);
 });
 
   }
