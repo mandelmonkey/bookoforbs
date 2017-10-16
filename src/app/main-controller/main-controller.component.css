@@ -136,10 +136,22 @@
 	background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
  
  
+ height:70%;
+
      background-repeat: no-repeat; 
      background-size: cover;
 }
+.largeORBImageLandscape {
+  background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
+ 
 
+ height: auto; 
+max-width: 95%;
+ max-height: 75%;
+
+     background-repeat: no-repeat; 
+     background-size: cover;
+}
 .largeButtons {
 	 
    width:400px; 

@@ -10,7 +10,7 @@
 <label class="status" *ngIf="showNoOrbs() && !allOrbs">You do not have any ORBs</label>
  <div *ngFor="let orbKey of scrollOrbsKeys; let idx = index" class="cardBox" [style.width]="cardWidth">
 
-	  <img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)"/> 
+	  <img class="card" [lazyLoad]="getImage(dataService.maincontroller.currentOrbs[orbKey])" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)"/> 
     <div class="shadowBox">
     
 	  <span class="cardNum">x{{dataService.maincontroller.getUserBalance(orbKey)}}{{dataService.maincontroller.getUserUnconfBalance(orbKey)}}</span>

@@ -34,10 +34,7 @@ export class CollectionComponent implements OnInit {
        this.cardWidth = "29%";
        this.currentScroll = 40;
     }
-
-     //console.log(this.elRef.nativeElement.offsetLeft);
-
-  
+ 
         
   }
 
@@ -95,10 +92,20 @@ console.log("error balance");
   }
   continueLoad(data:any){
 
+
  this.loading = false;
 this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
+var currentData = data["Environements"][this.dataService.maincontroller.currentBundleId];
+if(currentData != null){
+     var definition = currentData.Definition;
 
-     var definition = data["Environements"][this.dataService.maincontroller.currentBundleId].Definition;
+     if(definition.assetOrientation == "landscape"){
+this.dataService.landscape = true;
+ }else{
+this.dataService.landscape = false;
+ 
+ }
+ 
  this.dataService.maincontroller.currentCurrency = definition.MasterCurrency;
   this.dataService.maincontroller.currentAbrev = definition.ticker;
    this.dataService.maincontroller.currentCurrencyImg = "";
@@ -107,7 +114,9 @@ this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
        
        this.dataService.maincontroller.allOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
 
+       if(this.dataService.market != null){
       this.dataService.market.setMarketData();
+    }
 
         for(var i = 0; i < this.dataService.maincontroller.userBalance.length; i++){
 
@@ -139,7 +148,7 @@ this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
       this.allOwnImage = "../assets/images/rightOptionSeg.png";
 
     }
-
+}
 
 
 

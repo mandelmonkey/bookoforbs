@@ -65,7 +65,7 @@ getPrice(token:string){
 						} 
 
 
-						this.dataService.maincontroller.currentOrbs[ token]["openOrders"] = sell_orders.length + buy_orders.length;
+						this.dataService.maincontroller.currentOrbs[token]["openOrders"] = sell_orders.length + buy_orders.length;
 							
 
 		 
@@ -89,19 +89,7 @@ updateMarket(){
   var bestSellArray = [];
 	var trendingArray = [];
 
-
-	var arr = []; // Array
-
-// push a few objects to the array.
-arr.push({name: 'BOB', age: 10});
-arr.push({name: 'TOM', age: 3});
-arr.push({name: 'ROB', age: 22});
-arr.push({name: 'JON', age: 7});
-
-var sorted = arr.sort(function(a, b) {
-  return a.age - b.age;
-});
-
+ 
 
 	 for (var i = this.dataService.maincontroller.allOrbsKeys.length - 1; i >= 0; i--) {
   	 	var key = this.dataService.maincontroller.allOrbsKeys[i];
@@ -174,6 +162,11 @@ console.log("ownedKeys "+ownedKeys);
   	 	this.trendingOrbs.push(sorted[i].key);
   		 
   	 } 
+
+
+    this.sellHighOrbs = this.sellHighOrbs.slice(0,5);
+       this.buyLowOrbs =    this.buyLowOrbs.slice(0,5);
+          this.trendingOrbs =    this.trendingOrbs.slice(0,5);
   	   
   	 
 }

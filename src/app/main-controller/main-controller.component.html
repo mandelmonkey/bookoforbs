@@ -1,10 +1,9 @@
-   <app-pico ></app-pico>
-
+ 
    
  <app-top-bar *ngIf="showTopBar"></app-top-bar>
   
    <app-collection *ngIf="showCollection" ></app-collection>
-<app-market ></app-market>
+<app-market  ></app-market>
   <app-intro  *ngIf="showIntro"></app-intro>
 
   <app-bottom-bar  *ngIf="showBottomBar"></app-bottom-bar>
@@ -25,8 +24,9 @@
 
 <div class="container">
  <label class="titleLabel">{{selectedKey}}</label> 
-  <img class="largeORBImage" [src]="selectedOrb.image" [style.height]="orbHeight"  [style.width]="orbWidth"/> 
-  
+  <img *ngIf="dataService.landscape" class="largeORBImageLandscape" [src]="selectedOrb.image"  /> 
+   <img *ngIf="!dataService.landscape" class="largeORBImage" [src]="selectedOrb.image"  /> 
+  <span  *ngIf="dataService.landscape">LANDSCAPE</span>
     <br>
     <div class="largeButtons" >
         

@@ -71,6 +71,41 @@
    
 }
 
+
+.loginLogoutButton span {
+    
+     pointer-events: none;
+    position: absolute;
+    text-align: center;
+    right:5px;
+    width: 100%;
+    top: 13px;
+    color: #ffffd5;
+    font-family:   merriweather;
+}
+.loginLogoutButton {
+    position: absolute;
+  top: 3px;
+  right: 5px;
+   width:120px;
+  height:42px;
+}
+
+
+ .loginLogoutText {
+     cursor: pointer;
+    position: absolute;
+    top: 3px;
+  right: 5px;
+   width:120px;
+  height:42px; 
+}
+ 
+.loginLogoutButton :hover, .loginLogoutButton :focus {
+   
+}
+
+ 
  
 
 /* Dropdown Content (Hidden by Default) */

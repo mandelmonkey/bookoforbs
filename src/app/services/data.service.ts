@@ -13,6 +13,8 @@ export class DataService {
   market:MarketComponent;
   currentTab:number;
   isMobile:boolean;
+  viewMode:boolean;
+  landscape:boolean;
    constructor(){
     this.currentTab = 1;
 

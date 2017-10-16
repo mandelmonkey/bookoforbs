@@ -49,31 +49,14 @@ export class IntroComponent implements OnInit {
 
   }
   ngOnInit() {
+
     this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent)
   
     this.isIndiesquare = false; 
     this.shorturl = window.location.href+"?pass=";
    this.testObj = [];
     // this.linkIndiesquare();
-
- 
-      var indiesquare = new IndieSquare({
-    'apikey': this.httpService.apiKey  
-  });
-    indiesquare.getAddress("Test", function(url, urlScheme, error){
-    if( error ){
-        console.error(error);
-        return;
-    }
-   alert(url);
-  
-}, function(data, error){
-    if( error ){
-        console.error(error);
-        return;
-    }
-    alert("sig"+data.address);
-});
+ this.continueNoAddress();
 
   }
 
@@ -210,14 +193,11 @@ var tmpdata =  this.dataService;
   
        if(typeof this.cipherText !=  "undefined"){
 
-           if(this.cipherText == "view"){
-               this.continueNoAddress();
-           }
-           else{
+          
          this.showPasswordDecryptField =true;
           this.showIntroButtons =false;
     this.showPassphraseField = false;
-  }
+   
        
       }
 
@@ -265,7 +245,7 @@ var tmpdata =  this.dataService;
 
     continueNoAddress(){
 
-
+this.dataService.viewMode = true;
       this.dataService.maincontroller.currentAddress = "empty";
    this.continueLogin();
     }

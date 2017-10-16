@@ -2,6 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { PersistenceService, StorageType } from 'angular-persistence';
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -20,7 +21,7 @@ environmentKeys: Array<any>;
 environments: Array<any>;
 rotated = false;
 
-  constructor(public dataService:DataService) {
+  constructor(public dataService:DataService,private persistenceService: PersistenceService) {
         document.addEventListener('click', this.offClickHandler.bind(this)); // bind on doc
     }
 
@@ -50,8 +51,21 @@ setEnvironments(environmentData:Array<any> ){
   console.log(this.environments);
  this.environmentKeys = Object.keys(this.environments);
 console.log(this.environmentKeys);
+ 
+
+ var lastKey = this.persistenceService.get('selectedEnv',   StorageType.LOCAL);
+  
+if(typeof lastKey != "undefined" && this.environmentKeys.indexOf(lastKey) != -1){
+this.setEnvironment(lastKey);
+
+}
+else{
 if(this.environmentKeys.length > 0){
+ 
  this.setEnvironment(this.environmentKeys[0]);
+
+}
+
 }
 
 }
@@ -77,10 +91,14 @@ setEnvironment(key:string){
 
   this.currentEnvKey = key;
  this.currentEnv = this.environments[this.currentEnvKey];
+ 
  this.currentEnvTitle = this.currentEnv.Title;
 this.dataService.maincontroller.currentBundleId = this.currentEnvKey;
 this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode);
 
+   
+
+ this.persistenceService.set('selectedEnv', key, {type: StorageType.LOCAL}); 
 
 
 }
