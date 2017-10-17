@@ -5,30 +5,67 @@
 
  
 <div class="sendOrb">
+	<div class="topSection">
+	<div class="sendOrbImgBox">
+	<span class="orbImgTitle">{{dataService.maincontroller.selectedKey}}<b><br>{{getOrbInfo()}}</b><span>&nbsp;{{getOrbLock()}}</span></span>
 <img class="sendOrbImg" [src]="this.dataService.maincontroller.selectedOrb.image"  />
  </div>
-  
- 
 
- 
+ <div class="ordersList">
+ 	<span class="ordersTitle">Sellers</span>
+ 	<div class="sellOrdersList" *ngFor="let order of sell_orders" >
+
+	<div class="aBuyOrder">
+	  
+		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></span>
+			 
+	</div>
+</div> 
+<br>
+<span class="ordersTitle">Buyers</span>
+<div lass="buyOrdersList" *ngFor="let order of buy_orders" >
+<div class="aSellOrder">
+		 
+		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></span>
+	</div>
+</div> 
+
+
+</div>
+</div>
+<div class="bottomSection">
+	
+	<div class="customOrder1" [style.left]="customOrder1Left">
+		
+		<div class="items1">
+	<div class="itemTitle">Place a custom order</div>
+
+	<div class="items1Buttons">
+		<div class="customBuyButton"> <span>Buy</span> </div> <div class="customBuyButton"> <span>Sell</span> </div>
+	</div>
+
+	</div>
+	</div>
+	<div class="customOrder2" [style.left]="customOrder2Left">
+	Place a custom order2
+	</div>
+	<div class="customOrder3" [style.left]="customOrder3Left">
+	Place a custom order3
+	</div>
+</div>
+
+ </div>
 
 <div class="parent">
   <img class="backbar" src="../assets/images/tool_bar_background.png" />
   <img class="leftbracket" src="../assets/images/leftBracket.png" />
   <img class="rightbracket" src="../assets/images/rightBracket.png" />
-
-
-
+ 
    <div class="backButton" (click)="closeSelf()">
     <img class="backButtonImg" src="../assets/images/filterButtonBackground.png" />
-
-
+ 
     <label>back</label>
-      
-   
-
-
-
+     
   </div>
 
 <label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> 

@@ -2,8 +2,8 @@
    
  <app-top-bar *ngIf="showTopBar"></app-top-bar>
   
-   <app-collection *ngIf="showCollection" ></app-collection>
-<app-market  ></app-market>
+   <app-collection *ngIf="!showCollection" ></app-collection>
+<app-market  *ngIf="!showMarket" ></app-market>
   <app-intro  *ngIf="showIntro"></app-intro>
 
   <app-bottom-bar  *ngIf="showBottomBar"></app-bottom-bar>
@@ -26,7 +26,7 @@
  <label class="titleLabel">{{selectedKey}}</label> 
   <img *ngIf="dataService.landscape" class="largeORBImageLandscape" [src]="selectedOrb.image"  /> 
    <img *ngIf="!dataService.landscape" class="largeORBImage" [src]="selectedOrb.image"  /> 
-  <span  *ngIf="dataService.landscape">LANDSCAPE</span>
+   
     <br>
     <div class="largeButtons" >
         
