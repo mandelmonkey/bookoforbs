@@ -15,18 +15,18 @@
  	<span class="ordersTitle">Sellers</span>
  	<div class="sellOrdersList" *ngFor="let order of sell_orders" >
 
-	<div class="aBuyOrder">
+	<div class="aBuyOrder" (click)="buyOrder(order,'buy')">
 	  
-		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></span>
+		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b><br><b>{{getOrderAmount(order)}}</b></span>
 			 
 	</div>
 </div> 
 <br>
 <span class="ordersTitle">Buyers</span>
 <div lass="buyOrdersList" *ngFor="let order of buy_orders" >
-<div class="aSellOrder">
+<div class="aSellOrder" (click)="buyOrder(order,'sell')">
 		 
-		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></span>
+		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b><br><b>{{getOrderAmount(order)}}</b></span>
 	</div>
 </div> 
 
@@ -41,8 +41,8 @@
 			<div class="itemTitle">Place a custom order</div>
 			<br>
 				<div class="items1Buttons">
-					<input class="customButtonBuy" type="button" value="Buy" style="float: left; " (click)="goToCustom2()">
-		 			<input class="customButtonSell" type="button" value="Sell" style="float: left;" (click)="goToCustom2()">	 
+					<input class="customButtonBuy" type="button" value="Buy" style="float: left; " (click)="goToCustom2('buy')">
+		 			<input class="customButtonSell" type="button" value="Sell" style="float: left;" (click)="goToCustom2('sell')">	 
 				</div>
 		</div>
 
@@ -52,7 +52,7 @@
 			<div class="items2">
 			<div class="itemTitle">How Many {{dataService.maincontroller.selectedKey}}?</div>
 			<br>
-			<input  class="textInput"  type="number" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="e.g. 1"  name="customfee">
+			<input  class="textInput"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 1"  name="customfee">
 			<br>
 			<br>
 				<div class="items1Buttons">
@@ -66,12 +66,12 @@
 				<div class="items2">
 			<div class="itemTitle">enter price per card below</div>
 			<br>
-			<input  class="textInput"  type="number" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="e.g. 1"  name="customfee"><span class="abrev">&nbsp;{{dataService.maincontroller.currentAbrev}}</span>
+			<input  class="textInput"  type="number" [(ngModel)]="orderPrice"  placeholder="e.g. 1"  name="customfee"><span class="abrev">&nbsp;{{dataService.maincontroller.currentAbrev}}</span>
 			<br>
 			<br>
 				<div class="items1Buttons">
 					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom2()">
-		 			<input class="customButtonConfirm" type="button" value="confirm" style="float: left;" (click)="goToCustom3()">	 
+		 			<input class="customButtonConfirm" type="button" value="confirm" style="float: left;" (click)="showConf()">	 
 				</div>
 			</div>
 	</div>
@@ -79,6 +79,8 @@
 </div>
 
  </div>
+
+
 
 <div class="parent">
   <img class="backbar" src="../assets/images/tool_bar_background.png" />
@@ -99,3 +101,51 @@
 
 </div>
 </div>
+
+ <div *ngIf="showConfOverlay" class="orderConfOverlay">
+   <div class="messageBack"> 
+   	 	<div  class="loading" *ngIf="loading">
+   	 			<p>please wait...</p>
+   	 	</div>
+   	<div  *ngIf="!loading">
+  <div *ngIf="showOrderText" class="messageText">
+  	<p>{{buySellText}}</p>
+  	<p> {{orderAmount}}&nbsp; {{dataService.maincontroller.selectedKey}}</p>
+  	<p>at</p>
+  	<p>{{orderPrice}}&nbsp;  {{dataService.maincontroller.currentAbrev}} each</p>
+  	<p>Total: {{getTotalPrice()}}&nbsp; {{dataService.maincontroller.currentAbrev}}</p>
+  </div> 
+
+
+    <div *ngIf="showConfText" class="confText" style="white-space: pre-wrap;"> 
+  	<p>A {{currentTransactionFee}}BTC fee <br>will apply to place this order <br>would you still like to continue?</p>
+  	 
+  </div> 
+
+     <div *ngIf="selectAmount" class="messageText" > 
+  	<p>Order details</p>
+  	 <p>Price</p>
+  	 <p>{{orderPrice}}  {{dataService.maincontroller.currentAbrev}}</p>
+ <p>Availability </p>
+  	 <p>x{{originalOrderAmount}}</p> 
+ <p>Enter order amount </p> 
+ <input  class="textInputCenter"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 2"  name="customfee">
+
+ <div  class="placeOrderButtons">
+        <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="showConf()">
+        <br> <br>
+     
+		<input class="customButtonCancel" type="button" value="cancel"  (click)="closeConf()">
+       </div>
+ 
+  </div> 
+
+       <div *ngIf="!selectAmount" class="placeOrderButtons">
+        <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="createOrder()">
+        <br> <br>
+     
+		<input class="customButtonCancel" type="button" value="cancel"  (click)="closeConf()">
+       </div>
+     </div>
+      </div>
+ </div>

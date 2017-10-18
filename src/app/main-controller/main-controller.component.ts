@@ -1,6 +1,7 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
+import { PersistenceService, StorageType } from 'angular-persistence';
 @Component({
   selector: 'app-main-controller',
   templateUrl: './main-controller.component.html',
@@ -9,16 +10,16 @@ import { DataService } from '../services/data.service';
 })
 export class MainControllerComponent implements OnInit {
 
-  constructor(public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef){}
+  constructor(public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef,private persistenceService: PersistenceService){}
 public loading = true;
-public showTopBar = false;
+public showTopBar = true;
 public showSend = false;
 public showOrderPage = false;
-public showCollection = false;
+public showCollection = true;
 public showSelected = false;
 public showMarket = false;
-public showBottomBar = false;
-public showIntro = true;
+public showBottomBar = true;
+public showIntro = false;
 public orbData :any;
 public userBalance :Array<any>;
 public currentAddress = "";
@@ -148,7 +149,17 @@ console.log("error fees");
 
 
 }
- 
+ getCurrentFee(){
+if(this.currentFee == "fastestFee"){
+  return  this.fees[this.currentFee];
+ }else if(this.currentFee == "hourFee"){
+  return  this.fees[this.currentFee];
+ }else if(this.currentFee == "lowFee"){
+  return  this.fees[this.currentFee];
+ } else{
+   return "custom";
+ }
+}
 openMarket(){
   console.log("show send");
   this.showOrderPage = true; 
@@ -169,22 +180,48 @@ this.showingMessage = false;
 
 }
   ngOnInit() {
+   
+ this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent);
+  
+
     this.dataService.maincontroller = this;
     this.selectedOrb = null;
     this.linkType = "";
-    this.dataService.maincontroller.currentFee = "hourFee";
+       var lastFee = this.persistenceService.get('userFee',   StorageType.LOCAL);
+    if(typeof lastFee != "undefined"){
+       this.currentFee = lastFee;
+    }else{
+      this.currentFee = "hourFee";
+    }
+
+    var userAddress = this.persistenceService.get('userAddress0',   StorageType.LOCAL);
+    if(typeof userAddress != "undefined"){
+       this.currentAddress = userAddress;
+    }else{
+        this.currentAddress = "empty";
+    }
+
+     var linkType = this.persistenceService.get('linkType',   StorageType.LOCAL);
+    if(typeof linkType != "undefined"){
+       this.linkType = linkType;
+    }else{
+        this.linkType = "";
+    }
+
     this.getFees();
-  /*
+/*
     this.showOrderPage = true;
     var tempORB = {
       image:"http://api.moonga.com/RCT/cp/cards/view/normal/large/en/1456.jpg",
 
     };
- 
+   
     this.dataService.maincontroller.currentBalance = 1;
      this.dataService.maincontroller.selectedKey = "SARUTOBICARD";
     this.dataService.maincontroller.selectedOrb = tempORB;
 */
+
+  this.loadEnvironments();
     
   }
   reloadViews(){
@@ -272,6 +309,7 @@ var marged = new Array();
           } else {
             marged[n].quantity = orders[i]["give_quantity"];
           }
+          marged[n].amount = orders[i]["order_amount"];
           marged[n].order = orders[i].order;
           marged[n].type = type;
         }

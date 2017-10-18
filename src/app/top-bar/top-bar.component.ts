@@ -43,8 +43,25 @@ rotated = false;
   ngOnInit() {
       this.dataService.topbar = this;
   }
+getSignInText(){
+  if(this.dataService.maincontroller.currentAddress == "empty"){
+    return "Sign In";
+  }else{
+    return "Log Out";
+  }
+}
+logout(){
+  this.dataService.maincontroller.showIntro = true;
+  this.dataService.maincontroller.showCollection = false;
+  this.dataService.maincontroller.showMarket = false;
+  this.dataService.maincontroller.showSend = false;
+  this.dataService.maincontroller.showSelected = false;
+  this.dataService.maincontroller.showOrderPage = false;
+  this.dataService.maincontroller.showBottomBar = false;
+  this.dataService.maincontroller.showTopBar = false;
+  this.dataService.viewMode = false;
 
-
+}
 setEnvironments(environmentData:Array<any> ){
 
   this.environments = environmentData;

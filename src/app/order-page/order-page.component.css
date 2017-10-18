@@ -12,6 +12,23 @@
      background-size: cover;
 
 }
+.orderConfOverlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100vw;
+  height: 100vh;
+   background: rgba(255,255,255,0.4);
+   z-index: 0;
+}
+.loading {
+  margin-top: 100px;
+   font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+}
 .parent {
   position: absolute;
   top: 0;
@@ -227,6 +244,9 @@ label{
   float: left;
   margin-left: 10px;
 }
+.textInputCenter {
+   
+}
  .customOrder1 {
    position:absolute;
   width: 100vw;
@@ -262,6 +282,64 @@ label{
   background-repeat: no-repeat;
     background-position: 50% 50%;
 }
+.messageBack {
+  background: url('/assets/images/thinFrame.png') no-repeat scroll 0 0;
+    display: inline-block;
+  position: absolute;
+     background-repeat: no-repeat; 
+     background-size: 100% 100%;
+     width:315px;
+     height:500px;
+      top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  border-color: transparent;
+ border:none;
+  outline: none;
+  text-align: center;
+}
+.messageText {
+  padding-top: 50px;
+ color: #ffffd5;
+    font-family:   merriweather;
+     word-wrap: break-word;
+
+}
+.confText {
+  padding-top: 50px;
+ color: #ffffd5;
+    font-family:   merriweather;
+     word-wrap: break-word;
+
+}
+.placeOrderButtons {
+margin-top: 40px;
+}
+.customButtonPlaceOrder{
+  background: url(/assets/images/buyPriceButton.png) no-repeat;
+  background-size:100% 100%; 
+  width:90px; 
+  background-position: 50% 50%; 
+  height:40px; 
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+}
+.customButtonCancel{
+  background: url(/assets/images/filterButtonBackground.png) no-repeat;
+  background-size:100% 100%; 
+  width:80px; 
+  height:30px; 
+  background-position: 50% 50%; 
+ 
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+}
+
 .customButtonConfirm{
   background: url(/assets/images/buyPriceButton.png) no-repeat;
   background-size:100% 100%; 

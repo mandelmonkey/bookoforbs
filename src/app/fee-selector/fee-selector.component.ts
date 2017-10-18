@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
+import { PersistenceService, StorageType } from 'angular-persistence';
 @Component({
   selector: 'app-fee-selector',
   templateUrl: './fee-selector.component.html',
@@ -10,10 +11,12 @@ export class FeeSelectorComponent implements OnInit {
 rotated = false;
   public fees:any;
   showDropdown:boolean;
-  constructor(public dataService:DataService,private httpService:HTTPService) { }
+  constructor(public dataService:DataService,private httpService:HTTPService,private persistenceService: PersistenceService) { }
 
   ngOnInit() {
   	this.showDropdown = false;
+
+
   }
 
 
@@ -34,7 +37,7 @@ rotated = false;
     }
     else{
 
-      return  this.dataService.maincontroller.customFee+" btc";
+      return  this.dataService.maincontroller.currentFee+" btc";
     }
  
 
@@ -87,6 +90,7 @@ rotated = false;
   }
   setFee(index:number){
     if(index == 0){
+
         this.dataService.maincontroller.currentFee = "fastestFee";
     }
     else if(index == 1){
@@ -99,17 +103,17 @@ rotated = false;
         this.dataService.maincontroller.currentFee = "lowFee";
     }
      else if(index == 4){
-
-       if(parseFloat(this.dataService.maincontroller.customFee) < 0){
+       var customFee = parseFloat(this.dataService.maincontroller.customFee);
+       if(customFee < 0){
          this.dataService.maincontroller.showMessage("this fee is too low! please enter a fee greater than 0");
          this.dataService.maincontroller.customFee = "";
        }
-       else if(parseFloat(this.dataService.maincontroller.customFee) > 0.01){
+       else if(customFee > 0.01){
          this.dataService.maincontroller.showMessage("this fee is too high! please enter a fee less than 0.01");
          this.dataService.maincontroller.customFee = "";
        }
        else{
-        this.dataService.maincontroller.currentFee = "custom";
+        this.dataService.maincontroller.currentFee = customFee+"";
       }
 
 
@@ -117,6 +121,8 @@ rotated = false;
     }
 
     this.openFeeList();
+    this.persistenceService.set('userFee', this.dataService.maincontroller.currentFee, {type: StorageType.LOCAL}); 
+
 
   }
 
