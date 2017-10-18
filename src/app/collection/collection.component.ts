@@ -87,7 +87,7 @@ console.log("error balance");
  
 
   
-
+ 
 
   }
   continueLoad(data:any){
@@ -105,7 +105,7 @@ this.dataService.landscape = true;
 this.dataService.landscape = false;
  
  }
- 
+
  this.dataService.maincontroller.currentCurrency = definition.MasterCurrency;
   this.dataService.maincontroller.currentAbrev = definition.ticker;
    this.dataService.maincontroller.currentCurrencyImg = "";
