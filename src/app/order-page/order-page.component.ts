@@ -141,7 +141,7 @@ this.orderPrice = null;
 
        if(orderType == "buy"){
        	 this.buySellText = "you are buying";
-       }else{
+       }else if(orderType == "sell"){
        	this.buySellText = "you are selling";
        }
 
