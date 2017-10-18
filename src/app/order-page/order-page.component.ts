@@ -109,8 +109,59 @@ if(currentFee == "custom"){
     	 tmpthis.selectAmount = false; 
 		 tmpthis.showOrderText = false;
    tmpthis.showConfText = true;
-    tmpthis.loading = false;
+   
     console.dir('unsigned_tx:' + data.unsigned_tx);
+
+    if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
+    indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){
+    if( error ){
+        console.error(error);
+        return;
+    }
+    /*
+    new QRCode(document.getElementById('qrcode'), {
+        text: url,
+        width: 128, height: 128,
+        correctLevel : QRCode.CorrectLevel.L
+    });*/
+}, function(data, error){
+    if( error ){
+    	 tmpthis.loading = false;
+        console.error(error);
+        tmpthis.showConfOverlay = false;
+    	if(error.message != null){
+    		tmpthis.dataService.maincontroller.showMessage(error.message);
+    	}
+    	else{
+    		tmpthis.dataService.maincontroller.showMessage("error");
+    	}
+        return;
+    }
+
+        console.log(data.signed_tx);
+
+    indiesquare.broadcast({"tx": data.signed_tx}, function(data, error){
+    	 tmpthis.loading = false;
+    if( error ){
+
+        console.error(error);
+        tmpthis.showConfOverlay = false;
+    	if(error.message != null){
+    		tmpthis.dataService.maincontroller.showMessage(error.message);
+    	}
+    	else{
+    		tmpthis.dataService.maincontroller.showMessage("error");
+    	}
+        return;
+    }
+    tmpthis.dataService.maincontroller.showMessage("order placed");
+    console.dir('txid:' + data.txid);
+});
+
+});
+}
+
+
 
     tmpthis.currentTransactionFee = 0.0001;
 	});
