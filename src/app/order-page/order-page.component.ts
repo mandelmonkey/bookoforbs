@@ -112,7 +112,7 @@ if(currentFee == "custom"){
    
     console.dir('unsigned_tx:' + data.unsigned_tx);
 
-    if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
+    if(tmpthis.dataService.maincontroller.linkType == "indiesquare" || 1==1){
     indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){
     if( error ){
         console.error(error);
