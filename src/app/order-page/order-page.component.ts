@@ -39,10 +39,22 @@ return  "availability 199";
 getOrbLock(){
 	return "";
 }
-move(){
+goToCustom1(){
+	 this.customOrder1Left = "0";
+	  this.customOrder2Left = "100vw";
+	   this.customOrder3Left = "100vw";
+}
+goToCustom2(){
 	 this.customOrder1Left = "-100vw";
 	  this.customOrder2Left = "0";
+	   this.customOrder3Left = "100vw";
 }
+goToCustom3(){
+	 this.customOrder1Left = "-100vw";
+	  this.customOrder2Left = "-100vw";
+	   this.customOrder3Left = "0";
+}
+
 getOrders(){
 this.dataService.maincontroller.selectedKey = "SATOSHICARD";
 this.dataService.maincontroller.currentCurrency = "BITCRYSTALS";

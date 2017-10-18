@@ -5,7 +5,7 @@
   left: 0;
   width:100%;
   height:100%;
-  background: url('/assets/images/stoneBack.jpg') no-repeat scroll 0 0;
+ background: rgba(0,0,0,0.8);
   width:100%;
  
      background-repeat: no-repeat; 
@@ -215,14 +215,7 @@ label{
 .bottomSection {
   height: 40vh;
 }
-.customOrder1 {
-   position:absolute;
-  width: 100vw;
-  left:0;
-  background-color: red;
-  transition:left 0.1s linear;
-   
-}
+
 .items1 {
   float:left;
   width: 100%;
@@ -230,19 +223,27 @@ label{
 .items1Buttons{
    
 }
- 
+.textInput {
+  float: left;
+  margin-left: 10px;
+}
+ .customOrder1 {
+   position:absolute;
+  width: 100vw;
+  left:0; 
+  transition:left 0.1s linear;
+   
+}
 .customOrder2 {
   position:absolute;
   width: 100vw;
-  left:100vw;
-  background-color: blue;
+  left:100vw; 
      transition:left 0.1s linear;
 }
 .customOrder3 {
   position:absolute;
   width: 100vw;
-  left:200vw;
-  background-color: green;
+  left:200vw; 
   transition:left 0.1s linear;
 }
 .aBuyOrder  {
@@ -261,18 +262,77 @@ label{
   background-repeat: no-repeat;
     background-position: 50% 50%;
 }
+.customButtonConfirm{
+  background: url(/assets/images/buyPriceButton.png) no-repeat;
+  background-size:100% 100%; 
+  width:90px; 
+  background-position: 50% 50%; 
+  height:40px; 
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none;
+  margin-left: 10px; 
+}
+.customButtonBuy{
+  background: url(/assets/images/buyPriceButton.png) no-repeat;
+  background-size:100% 100%; 
+  width:80px; 
+  background-position: 50% 50%; 
+  height:30px; 
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none;
+  margin-left: 10px; 
+}
+.customButtonSell{
+  background: url(/assets/images/sellPriceButton.png) no-repeat;
+  background-size:100% 100%; 
+  width:80px; 
+  height:30px; 
+  background-position: 50% 50%; 
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none;
+  margin-left: 10px; 
+}
+.customButtonBackNext{
+  background: url(/assets/images/filterButtonBackground.png) no-repeat;
+  background-size:100% 100%; 
+  width:80px; 
+  height:30px; 
+  background-position: 50% 50%; 
+ 
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none;
+  margin-left: 10px; 
+}
+
 .itemTitle{
+  margin-left: 10px;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
   text-align: left;
 }
-.customBuyButton {
-     width: auto;
-    height: 3vh;
- background: url('/assets/images/buyPriceButton.png'); 
- background-size:contain;
-  background-repeat: no-repeat;
-    background-position: 50% 50%;
-      float:left; 
+ 
+.abrev{
+  margin-left: 10px;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  text-align: left;
+  float: left;
 }
+ 
  
 .orderPrice{
 position: relative;

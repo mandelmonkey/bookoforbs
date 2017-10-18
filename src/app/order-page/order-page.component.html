@@ -38,20 +38,44 @@
 	<div class="customOrder1" [style.left]="customOrder1Left">
 		
 		<div class="items1">
-	<div class="itemTitle">Place a custom order</div>
+			<div class="itemTitle">Place a custom order</div>
+			<br>
+				<div class="items1Buttons">
+					<input class="customButtonBuy" type="button" value="Buy" style="float: left; " (click)="goToCustom2()">
+		 			<input class="customButtonSell" type="button" value="Sell" style="float: left;" (click)="goToCustom2()">	 
+				</div>
+		</div>
 
-	<div class="items1Buttons">
-		<div class="customBuyButton"> <span>Buy</span> </div> <div class="customBuyButton"> <span>Sell</span> </div>
 	</div>
 
-	</div>
-	</div>
 	<div class="customOrder2" [style.left]="customOrder2Left">
-	Place a custom order2
+			<div class="items2">
+			<div class="itemTitle">How Many {{dataService.maincontroller.selectedKey}}?</div>
+			<br>
+			<input  class="textInput"  type="number" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="e.g. 1"  name="customfee">
+			<br>
+			<br>
+				<div class="items1Buttons">
+					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom1()">
+		 			<input class="customButtonBackNext" type="button" value="next" style="float: left;" (click)="goToCustom3()">	 
+				</div>
+			</div>
 	</div>
+
 	<div class="customOrder3" [style.left]="customOrder3Left">
-	Place a custom order3
+				<div class="items2">
+			<div class="itemTitle">enter price per card below</div>
+			<br>
+			<input  class="textInput"  type="number" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="e.g. 1"  name="customfee"><span class="abrev">&nbsp;{{dataService.maincontroller.currentAbrev}}</span>
+			<br>
+			<br>
+				<div class="items1Buttons">
+					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom2()">
+		 			<input class="customButtonConfirm" type="button" value="confirm" style="float: left;" (click)="goToCustom3()">	 
+				</div>
+			</div>
 	</div>
+
 </div>
 
  </div>

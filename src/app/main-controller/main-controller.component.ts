@@ -174,17 +174,17 @@ this.showingMessage = false;
     this.linkType = "";
     this.dataService.maincontroller.currentFee = "hourFee";
     this.getFees();
-
+  /*
     this.showOrderPage = true;
     var tempORB = {
       image:"http://api.moonga.com/RCT/cp/cards/view/normal/large/en/1456.jpg",
 
     };
-   
+ 
     this.dataService.maincontroller.currentBalance = 1;
      this.dataService.maincontroller.selectedKey = "SARUTOBICARD";
     this.dataService.maincontroller.selectedOrb = tempORB;
-
+*/
     
   }
   reloadViews(){
