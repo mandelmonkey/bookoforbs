@@ -154,7 +154,9 @@ if(currentFee == "custom"){
     	}
         return;
     }
-    tmpthis.dataService.maincontroller.showMessage("order placed");
+    tmpthis.dataService.maincontroller.showMessage("order placed!");
+     tmpthis.showConfOverlay = false;
+		 
     console.dir('txid:' + data.txid);
 });
 

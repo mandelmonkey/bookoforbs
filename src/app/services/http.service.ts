@@ -31,11 +31,17 @@ export class HTTPService{
       var params = json;
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json'); 
-
+      /*
       return this._http.get(url, {
         headers:header
       })
       .map(res => res.json());
+      */
+ return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
+        headers:header
+      })
+      .map(res => res.json());
+
 
     };
  
@@ -56,10 +62,17 @@ export class HTTPService{
       header.append('Content-type', 'Content-Type: application/json');
        header.append('Content-type', 'Content-Type: application/json');
 
+     /*
       return this._http.get(url, {
         headers:header
       })
       .map(res => res.json());
+      */
+ return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
+        headers:header
+      })
+      .map(res => res.json());
+
     };
 
  
