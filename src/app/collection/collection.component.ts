@@ -37,7 +37,9 @@ export class CollectionComponent implements OnInit {
  
         
   }
-
+  imgLoadError(){
+    console.log("load error");
+  }
   getCollectionHeight(){
     return (document.documentElement.clientHeight-document.getElementById("collectionScroll").offsetTop-55)+"px"; 
   }

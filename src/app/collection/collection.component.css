@@ -19,6 +19,24 @@
    width:100%;
    text-align: center;  
 }
+virtual-scroll {
+ width:100vw;
+   text-align: center;  
+    margin-left: auto;
+    margin-right: auto;
+ 
+}
+
+app-collection-card {
+    margin-left:2%;
+  margin-right:2%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;  
+  text-align: center; 
+  font-size: 0; 
+  display: inline-block;
+}
 .cardBox { 
 	margin-left:2%;
   margin-right:2%;

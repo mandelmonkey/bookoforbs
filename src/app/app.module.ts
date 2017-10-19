@@ -17,7 +17,8 @@ import { OrderInfoComponent } from './order-info/order-info.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { FeeSelectorComponent } from './fee-selector/fee-selector.component'; 
 import { PersistenceModule } from 'angular-persistence';
-
+import { VirtualScrollModule } from 'angular2-virtual-scroll';
+import { CollectionCardComponent } from './collection-card/collection-card.component';
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -34,13 +35,15 @@ const appRoutes: Routes = [
     MarketComponent,
     OrderInfoComponent,
     OrderPageComponent,
-    FeeSelectorComponent
+    FeeSelectorComponent,
+    CollectionCardComponent
   ],
   imports: [
     PersistenceModule,
     BrowserModule,
     FormsModule,
     HttpModule,
+    VirtualScrollModule,
     LazyLoadImageModule,
    RouterModule.forRoot(appRoutes) 
   ],
