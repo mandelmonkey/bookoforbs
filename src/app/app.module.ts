@@ -19,6 +19,8 @@ import { FeeSelectorComponent } from './fee-selector/fee-selector.component';
 import { PersistenceModule } from 'angular-persistence';
 import { VirtualScrollModule } from 'angular2-virtual-scroll';
 import { CollectionCardComponent } from './collection-card/collection-card.component';
+import { AccountComponent } from './account/account.component';
+import { ViewportModule } from 'angular2-viewport';
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -36,13 +38,15 @@ const appRoutes: Routes = [
     OrderInfoComponent,
     OrderPageComponent,
     FeeSelectorComponent,
-    CollectionCardComponent
+    CollectionCardComponent,
+    AccountComponent
   ],
   imports: [
     PersistenceModule,
     BrowserModule,
     FormsModule,
     HttpModule,
+    ViewportModule,
     VirtualScrollModule,
     LazyLoadImageModule,
    RouterModule.forRoot(appRoutes) 

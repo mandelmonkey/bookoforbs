@@ -18,7 +18,9 @@ public showOrderPage = false;
 public showCollection = true;
 public showSelected = false;
 public showMarket = false;
+public showHistory = true;
 public showBottomBar = true;
+public showAccount = false;
 public showIntro = false;
 public orbData :any;
 public userBalance :Array<any>;
@@ -45,7 +47,6 @@ public currentOwner:any;
 public currentCurrency:string;
 public currentAbrev:string;
 public currentCurrencyImg:string;
-
 
   public currentOrbs : Array<any>;
   public currentOrbsKeys : Array<any>;

@@ -24,7 +24,10 @@ export class BottomBarComponent implements OnInit {
   		this.image2 = "../assets/images/bottomBarClear.png";
   		this.image3 = "../assets/images/bottomBarClear.png";
   		this.image4 = "../assets/images/bottomBarClear.png"; 
-       this.dataService.maincontroller.showMarket= false;
+       this.dataService.maincontroller.showAccount = false;
+      this.dataService.maincontroller.showCollection = true;
+      this.dataService.maincontroller.showMarket= false;
+      this.dataService.maincontroller.showHistory= false;
   	console.log("1");
   }
   select2(){
@@ -35,21 +38,27 @@ export class BottomBarComponent implements OnInit {
   		this.image4 = "../assets/images/bottomBarClear.png";
   		console.log("2");
 
- 
-       this.dataService.maincontroller.showMarket= true;
+  this.dataService.maincontroller.showAccount = false;
+      this.dataService.maincontroller.showCollection = false;
+      this.dataService.maincontroller.showMarket= true;
+      this.dataService.maincontroller.showHistory= false;
 
   }
   select3(){
-  		/*this.dataService.currentTab = 3;
+  		 this.dataService.currentTab = 3;
   		this.image1 = "../assets/images/bottomBarClear.png";
   		this.image2 = "../assets/images/bottomBarClear.png";
   		this.image3 = "../assets/images/bottomBarBlack.png";
   		this.image4 = "../assets/images/bottomBarClear.png";
   		console.log("3");
 
-      */
+       this.dataService.maincontroller.showAccount = false;
+      this.dataService.maincontroller.showCollection = false;
+      this.dataService.maincontroller.showMarket= false;
+      this.dataService.maincontroller.showHistory= true;
+     
 
-        window.open("https://walletapp.indiesquare.me/explorer/#/addresses/"+this.dataService.maincontroller.currentAddress);
+       // window.open("https://walletapp.indiesquare.me/explorer/#/addresses/"+this.dataService.maincontroller.currentAddress);
 
   }
   select4(){
@@ -58,6 +67,12 @@ export class BottomBarComponent implements OnInit {
   		this.image2 = "../assets/images/bottomBarClear.png";
   		this.image3 = "../assets/images/bottomBarClear.png";
   		this.image4 = "../assets/images/bottomBarBlack.png";
+     
+      this.dataService.maincontroller.showAccount = true;
+      this.dataService.maincontroller.showCollection = false;
+      this.dataService.maincontroller.showMarket= false;
+      this.dataService.maincontroller.showHistory= false;
+
   		console.log("4");
   }
 

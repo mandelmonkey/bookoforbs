@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild, ElementRef,ChangeDetectorRef } from '@angular/core';
 
-
+import { Observable } from 'rxjs/Observable';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
 
@@ -11,6 +11,9 @@ import { DataService } from '../services/data.service';
 })
 export class CollectionComponent implements OnInit {
  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+
+ 
+
  allOwnImage = "../assets/images/leftOptionSeg.png";
   public allOrbs = false;
     public loading = true;
@@ -19,41 +22,89 @@ export class CollectionComponent implements OnInit {
   currentScroll:number;
   floatCheck:number;
   cardWidth:string;
+  cardWidthNum:number;
+  cardHeight:string;
   scrollHeight:string;
+  scrollObservable;
+ scrollView;
+
+
+ errorImage = "../assets/images/stoneBack.jpg";
+  defaultImage = "../assets/images/cardback.png";
+
+
  constructor(public dataService:DataService,private httpService:HTTPService) {
  }
+ ngAfterViewInit() {
+    this.scrollView = document.getElementById("scrollView");
+    this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
 
+ 
+  
+
+ }
   ngOnInit() {
     console.log("collection inited");
     this.dataService.collection = this;
     this.currentScroll = 40;
     this.floatCheck = 0;
-   
-    this.cardWidth = "16%";
+    this.setWidths();
+
+    
+        
+  }
+  setWidths(){
+ this.cardWidthNum = 16;
+ var pxWidth = (document.documentElement.clientWidth / 7);
+    this.cardWidth = pxWidth +"px";
+    this.cardHeight =  (pxWidth * 1.8)+"px";
+
+    if(this.dataService.landscape == true){
+      this.cardHeight =  (pxWidth * 0.8)+"px";
+    }
+
     if(this.dataService.isMobile == true){
        this.cardWidth = "29%";
+        this.cardHeight = "38%";
+        this.cardWidthNum = 29;
        this.currentScroll = 40;
+
+
+    if(this.dataService.landscape == true){
+       this.cardWidth = "40%";
+    this.cardHeight = "30%";
     }
- 
-        
+
+
+    }
   }
   imgLoadError(){
     console.log("load error");
   }
   getCollectionHeight(){
-    return (document.documentElement.clientHeight-document.getElementById("collectionScroll").offsetTop-55)+"px"; 
+    if(this.scrollView == null){
+      return "5px";
+    }else{
+      return (document.documentElement.clientHeight-this.scrollView.offsetTop-55)+"px";
+    }
+   
   }
  onScroll() {
+
+
+/*
     let element = this.myScrollContainer.nativeElement
     let atBottom = element.scrollHeight - element.scrollTop === element.clientHeight
      
-   // if(atBottom){
+ 
       if(this.currentScroll < this.dataService.maincontroller.currentOrbsKeys.length){
       this.currentScroll += 1;
        this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
+        }
+       */
     console.log("scroll");
-  //}
-  }
+  
+ 
 }
 
   setCurrentOrbs(env:string){
@@ -103,10 +154,13 @@ if(currentData != null){
 
      if(definition.assetOrientation == "landscape"){
 this.dataService.landscape = true;
+ this.defaultImage = "../assets/images/cardbackLandscape.png";
  }else{
 this.dataService.landscape = false;
- 
+this.defaultImage = "../assets/images/cardback.png";
+
  }
+    this.setWidths();
 
  this.dataService.maincontroller.currentCurrency = definition.MasterCurrency;
   this.dataService.maincontroller.currentAbrev = definition.ticker;
