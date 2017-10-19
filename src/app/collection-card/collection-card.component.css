@@ -1,0 +1,46 @@
+.cardBox { 
+	margin-left:2%;
+  margin-right:2%;
+	margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;  
+  text-align: center; 
+  font-size: 0; 
+  display: inline-block;
+ 
+}
+.card {  
+ 
+
+ background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
+background-size: 100% 100%; 
+width: 100%;
+ margin: 0 auto;
+}
+
+ 
+
+
+.shadowBox { 
+	 
+	background: url('/assets/images/shadowView.png') no-repeat scroll 0 0;
+background-size: 100% 100%; 
+width:60%;
+height:40px;
+    border: 0;
+    margin: 0;
+    display: inline-block;
+
+}
+ 
+
+.cardNum { 
+    color: #ffffd5;
+	text-align: center;
+	width:100%; 
+	top:5px;
+      position: relative;
+    font-family:   merriweather;
+	 display: inline-block; 
+ font-size:12pt;
+}

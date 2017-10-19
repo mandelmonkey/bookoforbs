@@ -1,0 +1,15 @@
+	  
+	  <img class="card"  [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"  onerror="imgLoadError()" (click)="showORB()"/> 
+    <div class="shadowBox">
+    
+	  <span class="cardNum">x{{dataService.maincontroller.getUserBalance(orbKey)}}{{dataService.maincontroller.getUserUnconfBalance(orbKey)}}</span>
+    </div> 
+       
+    <!--
+
+	  <img class="card" [lazyLoad]="getImage(dataService.maincontroller.currentOrbs[orbKey])" onerror="imgLoadError()" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)"/> 
+    <div class="shadowBox">
+    
+	  <span class="cardNum">x{{dataService.maincontroller.getUserBalance(orbKey)}}{{dataService.maincontroller.getUserUnconfBalance(orbKey)}}</span>
+    </div> 
+    	-->
