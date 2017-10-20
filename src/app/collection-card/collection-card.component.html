@@ -1,5 +1,5 @@
 	  
-	  <img id="img" class="card" [errorImage]="dataService.collection.errorImage" [lazyLoad]="orbImage" [src]="dataService.collection.defaultImage" [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]=dataService.collection.scrollView onerror="imgLoadError()" (load)="imageLoaded()" (click)="showORB()"/> 
+	  <img id="img" class="card" [errorImage]="dataService.collection.errorImage" [lazyLoad]="orbImage" [src]="dataService.collection.defaultImage" [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]=dataService.collection.scrollView [style.height]="cardHeight" onerror="imgLoadError()" (load)="imageLoaded()" (click)="showORB()"/> 
     <div class="shadowBox">
     
 	  <span class="cardNum">x{{dataService.maincontroller.getUserBalance(orbKey)}}{{dataService.maincontroller.getUserUnconfBalance(orbKey)}}</span>
