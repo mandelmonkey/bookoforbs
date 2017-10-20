@@ -22,6 +22,17 @@
   font-family:   sling; 
  }
  #qr1{
- 	opacity:0.5;
+ 	opacity:0.7;
 
  }
+.seperator{
+	margin-top: 10px;
+	position: relative;
+	height: 50px;
+	width: 100vw;
+}
+.bottomImg{
+	margin-top: -10px;
+	position: relative;
+	width: 100vw; 
+}

@@ -23,7 +23,9 @@ export class MarketComponent implements OnInit {
 
   ngOnInit() {
 
- 	 
+ 	  this.newOrbs = [];
+     this.randomOrbs = [];
+     this.setMarketData();
 
   }
 getCollectionHeight(){
