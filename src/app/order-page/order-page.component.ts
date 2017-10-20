@@ -255,9 +255,7 @@ getOrderAmount(order:any){
 	return "";
 }
 getOrders(){
-this.dataService.maincontroller.selectedKey = "SARUTOBICARD";
-this.dataService.maincontroller.currentCurrency = "BITCRYSTALS";
-this.dataService.maincontroller.currentAbrev = "BCY";
+ 
 		 this.httpService.getOrders( this.dataService.maincontroller.selectedKey, this.dataService.maincontroller.currentCurrency).subscribe(
      data => { 
           	console.log("got orders"+JSON.stringify(data)+" "+this.dataService.maincontroller.currentCurrency);

@@ -1,0 +1,27 @@
+.topDiv{
+	text-align: center;
+}
+ .background{
+ 	position: absolute;
+ 	top: 55px;
+ 	left: 0;
+ 	width: 100vw;
+ 	height: 100vh;
+ }
+.title1{
+   position: relative;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling; 
+  z-index: 1;
+ }
+ .title2{
+ position: relative;
+  font-size: 0.7em;
+  color: #ffffd5;
+  font-family:   sling; 
+ }
+ #qr1{
+ 	opacity:0.5;
+
+ }
