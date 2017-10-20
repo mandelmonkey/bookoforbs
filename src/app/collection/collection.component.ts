@@ -24,6 +24,7 @@ export class CollectionComponent implements OnInit {
   cardWidth:string;
   cardWidthNum:number;
   cardHeight:string;
+  cardHeightInner:string;
   scrollHeight:string;
   scrollObservable;
  scrollView;
@@ -54,29 +55,46 @@ export class CollectionComponent implements OnInit {
         
   }
   setWidths(){
- this.cardWidthNum = 16;
- var pxWidth = (document.documentElement.clientWidth / 7);
-    this.cardWidth = pxWidth +"px";
-    this.cardHeight =  (pxWidth * 1.8)+"px";
+ 
+   var pxWidth = (document.documentElement.clientWidth / 7);
+   
 
-    if(this.dataService.landscape == true){
-      this.cardHeight =  (pxWidth * 0.8)+"px";
-    }
 
     if(this.dataService.isMobile == true){
-       this.cardWidth = "29%";
-        this.cardHeight = "38%";
-        this.cardWidthNum = 29;
-       this.currentScroll = 40;
+       pxWidth = (document.documentElement.clientWidth / 3.5);
+       
+      if(this.dataService.landscape == true){
+          pxWidth = (document.documentElement.clientWidth / 2.5);
+    
+      }
 
+
+    }else{
+      if(this.dataService.landscape == true){
+          pxWidth = (document.documentElement.clientWidth / 5);
+    
+      }
+    }
+
+
+     this.cardWidth = pxWidth +"px";
+ 
+
+    var heightNum = pxWidth * 1.8;
 
     if(this.dataService.landscape == true){
-       this.cardWidth = "40%";
-    this.cardHeight = "30%";
+      heightNum  =  (pxWidth * 0.9);
     }
 
+    this.cardHeight = heightNum+"px";
 
-    }
+
+
+
+    this.cardHeightInner =  (heightNum * 0.8)+"px";
+
+    
+
   }
   imgLoadError(){
     console.log("load error");
