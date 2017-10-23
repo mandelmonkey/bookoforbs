@@ -5,7 +5,7 @@
      USE_TESTNET = true; 
     
   </script>
-  <script type="text/javascript" src="assets/scripts/instascan.min.js"></script>
+  <script type="text/javascript" src="assets/scripts/qcode-decoder.min.js"></script>
 <script src="assets/scripts/qrious.min.js"></script>
 <script src="https://cdn.indiesquare.me/v1/indiesquare.min.js"></script>
 <script type="text/javascript" src="assets/scripts/async.min.js"></script>
@@ -68,6 +68,11 @@
        
 
     });  
+
+    QCodeDecoder()
+  .decodeFromVideo(video, function(er,res){
+    alert(res);
+  });
      
         
     </script>
