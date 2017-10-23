@@ -15,9 +15,9 @@
    </li>
     <li>
     <div class="customfee">
-    <span> <input  class="textInput"  type="number" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="custom fee btc"  name="customfee">
-    <button (click)="setFee(4)">Set</button>
-    </span> 
+     <input  class="textInput"  type="number" [(ngModel)]="this.dataService.maincontroller.customFee"  placeholder="custom fee btc"  name="customfee" (blur)="setFee(4)">
+   <!-- <button (click)="setFee(4)">Set</button>-->
+  
     </div>
    </li>
   </div>

@@ -75,10 +75,11 @@
 .customfee{
  height:50px;
     line-height:50px; 
+
 }
 .customfee input{
  
-    width:110px;
+  width:80%;
 }
 li
 {

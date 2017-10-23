@@ -103,8 +103,14 @@ rotated = false;
         this.dataService.maincontroller.currentFee = "lowFee";
     }
      else if(index == 4){
+
        var customFee = parseFloat(this.dataService.maincontroller.customFee);
-       if(customFee < 0){
+       if (Number.isNaN(customFee)){
+ this.dataService.maincontroller.showMessage("please enter a valid fee");
+         this.dataService.maincontroller.customFee = "";
+         
+       }
+       else if(customFee < 0){
          this.dataService.maincontroller.showMessage("this fee is too low! please enter a fee greater than 0");
          this.dataService.maincontroller.customFee = "";
        }
