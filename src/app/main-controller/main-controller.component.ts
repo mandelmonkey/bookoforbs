@@ -14,6 +14,7 @@ export class MainControllerComponent implements OnInit {
 public loading = true;
 public showTopBar = true;
 public showSend = false;
+public showQRScan = false;
 public showOrderPage = false;
 public showCollection = true;
 public showSelected = false;
@@ -46,6 +47,7 @@ public customFee:string;
 public currentOwner:any;
 public currentCurrency:string;
 public currentAbrev:string;
+public currentSendAddress:string;
 public currentCurrencyImg:string;
 
   public currentOrbs : Array<any>;

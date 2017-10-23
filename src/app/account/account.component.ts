@@ -3,7 +3,6 @@ import { Component, OnInit, EventEmitter, Directive } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { ClipboardService } from '../services/clipboard.service';
 declare var QRious:any;
-
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -55,6 +54,12 @@ export class AccountComponent implements OnInit {
           value: this.dataService.maincontroller.currentAddress,
           size:this.getQRSize()
         });
+
+
+
+
+
+
   }
 
   getQRSize(){
@@ -85,7 +90,8 @@ export class AccountComponent implements OnInit {
   	}
   }
   send(currency:string){
-
+  	this.dataService.maincontroller.showQRScan = true;
+  		this.dataService.maincontroller.showAccount = false;
   }
 getCurrencyIcon (){
 	if(this.dataService.maincontroller.currentCurrency == "BITCRYSTALS"){
