@@ -44,6 +44,24 @@
   <body>
     <video autoplay muted playsInline id="preview" style="width: 100vw;height: 100vh;"></video>
     <script type="text/javascript">
+
+         var video = document.getElementById('preview');
+    video.style.width = document.width + 'px';
+    video.style.height = document.height + 'px';
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+
+    var constraints = {
+         audio: false,
+         video: {
+             facingMode: 'user'
+         }
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
+        video.srcObject = stream;
+    });
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
         console.log(content);
