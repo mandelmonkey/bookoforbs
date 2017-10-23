@@ -36,3 +36,77 @@
 	position: relative;
 	width: 100vw; 
 }
+.bottomDiv{
+	 background: url('/assets/images/qrbottomback.jpg') no-repeat scroll 0 0;
+background-size: 100% 100%; 
+
+    position: relative;
+    height: 50vh;
+	
+}
+.aCurrency{
+	margin-top: 10px;
+	position: relative;
+	width: 100vw; 
+	 text-align:center;
+	  display: table-cell;
+	   vertical-align: middle;
+	   height:50px; 
+}
+
+.smallCurrency{
+  width: 60px;
+	  display: inline-block;
+	  vertical-align: middle
+
+}
+.middleSection{
+	width: 50vw;
+	  display: inline-block;
+	  margin-left: 10px;
+	  max-width: 200px;
+
+}
+.smallSendButton{
+	 background: url('/assets/images/qrSendBack.png') no-repeat scroll 0 0;
+background-size: 100% 100%; 
+height:40px;
+width:70px;
+	 border: none; 
+	   display: inline-block;
+	   font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling; 
+    margin-left: 10px;
+}
+
+.imageBack{
+	 background: url('/assets/images/textBack.png') no-repeat scroll 0 0;
+background-size: 100% 100%; 
+height: 30px;
+}
+.currencyBack{
+	width:100%;
+}
+.currencyBalance{
+	width:100%;
+	height: 100%;
+	line-height: 30px;
+}
+.currencyBalance{
+font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling; 
+  vertical-align: middle
+}
+.currencyTitle{
+	font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling; 
+}
+.seperatorSmall{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	position: relative;
+	height: 15px; 
+}

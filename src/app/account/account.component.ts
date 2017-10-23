@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
   	var screenWidth= document.documentElement.clientWidth;
 
   	if(screenHeight > screenWidth){
-  		return screenWidth * 0.8;
+  		return screenWidth * 0.6;
   	}else{
   		return screenHeight * 0.5;
   	}
@@ -35,6 +35,53 @@ export class AccountComponent implements OnInit {
   			return "no address";
   	}
   	return this.dataService.maincontroller.currentAddress;
+  }
+
+  getCurrency(){
+  	if(this.dataService.maincontroller.currentOrbs == null){
+  		return "loading...";
+  	}
+  	else{
+
+  		return this.dataService.maincontroller.currentCurrency;
+  	}
+  }
+getCurrencyIcon (){
+	if(this.dataService.maincontroller.currentCurrency == "BITCRYSTALS"){
+		return "../assets/images/bitcrystals.png"
+	}else {
+		return "";
+	}
+}
+ 
+   getBalanceCurrency(){
+   	if(this.dataService.maincontroller.currentCurrency == null){
+   		return "";
+   	}
+    return this.getBalance(this.dataService.maincontroller.currentCurrency);
+  }
+    getBalance(currency:string){
+     
+  	if(this.dataService.maincontroller.userBalance == null){
+  		return "loading...";
+  	}
+  	else{
+var abrev = this.dataService.maincontroller.currentAbrev;
+  		if(currency == "BTC"){
+  			abrev = "BTC";
+  		}
+
+
+
+  		var currentBalance = this.dataService.maincontroller.getUserBalance(currency);
+  	 
+
+  		if(currentBalance == null){
+  			return "0 "+ abrev;
+  		}else{
+  			return currentBalance;
+  		}
+  	}
   }
 
 }

@@ -106,7 +106,7 @@ this.httpService.getEnvironments().subscribe(
       this.httpService.getBalance(this.currentAddress).subscribe(
      data => { 
       this.userBalance = data;
-      console.log(  this.userBalance);
+     // console.log("usre balancre "+  this.userBalance);
       
      tmpData.topbar.setEnvironments(this.orbData.Environements);
         
@@ -261,8 +261,9 @@ this.showingMessage = false;
      this.currentCancel(this.currentOwner);
   }
   getUserBalance(key:string){
-    var userToken = this.userBalance[key];
+   
     for(var i = 0; i <this.userBalance.length;i++ ){
+
       var aUserToken = this.userBalance[i];
       if(aUserToken.token == key){
           return aUserToken.balance;

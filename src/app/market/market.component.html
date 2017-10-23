@@ -3,7 +3,7 @@
 	
 <div > 
 <div class="marketSection">
-	<!--<label class="title">New ORBS</label><label class="titleRight">View All</label>-->
+	<label class="title">New ORBS</label><!--<label class="titleRight">View All</label>-->
 	<br>
 		<div id="new" class="marketSubScroll">
  
@@ -39,13 +39,13 @@
 </div>
 -->
 <div class="marketSection">
-	<!--<label class="title">Trending</label><label class="titleRight">View All</label>-->
+	<label class="title">Trending</label><!--<label class="titleRight">View All</label>-->
 	<br>
 		<div id="trending" class="marketSubScroll">
 
 
 		
-			<div *ngFor="let orbKey of trendingOrbs; let idx = index" class="cardBox" >
+			<div *ngFor="let orbKey of trendingOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
 			<div>
 				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])" />
 				
@@ -77,13 +77,13 @@
  		<img  class="divider" src="../assets/images/feltDivider.png" /> 
 </div>-->
 <div class="marketSection">
-	<!--<label class="title">ORBs you may like</label><label class="titleRight">View All</label>-->
+	<label class="title">ORBs you may like</label><!--<label class="titleRight">View All</label>-->
 	<br>
 		<div id="like" class="marketSubScroll">
 
 
 		
-			<div *ngFor="let orbKey of randomOrbs; let idx = index" class="cardBox" >
+			<div *ngFor="let orbKey of randomOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
 			<div>
 				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"  />
 				

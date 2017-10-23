@@ -9,7 +9,38 @@
 <div class="title2">{{getAddress()}}</div>
 
 <img class="seperator" src="../assets/images/leatherSeperator.jpg"   />
-<div>
-	<img class="bottomImg" src="../assets/images/qrbottomback.jpg"   />
+<div class="bottomDiv">
+<!--	<img class="bottomImg" src="../assets/images/qrbottomback.jpg"   />-->
+
+
+<div class="aCurrency">
+		<img class="smallCurrency" src="../assets/images/asset_bitcoin.png"   />
+		<div class="middleSection">
+			<span class="currencyTitle">Bitcoin</span>
+			<div class="imageBack">
+				<span class="currencyBalance">{{getBalance('BTC')}}</span>
+			</div>
+		</div>
+		<input class="smallSendButton" type="button" value="Send"  (click)="goToCustom2('buy')">
 </div>
+
+
+<img class="seperatorSmall" src="../assets/images/fancySeperator.png"   />
+
+<div class="aCurrency">
+		<img class="smallCurrency" [src]="getCurrencyIcon()"   />
+		<div class="middleSection">
+			<span class="currencyTitle">{{getCurrency()}}</span>
+			<div class="imageBack">
+				<span class="currencyBalance">{{getBalanceCurrency()}}</span>
+			</div>
+		</div>
+		<input class="smallSendButton" type="button" value="Send"  (click)="goToCustom2('buy')">
+</div>
+
+</div>
+
+
+
+
   </div>
