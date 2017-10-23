@@ -42,7 +42,7 @@
     
   </head>
   <body>
-    <video autoplay playsinline id="preview"></video>
+    <video autoplay playsinline id="preview" style="width: 100vw;height: 100vh;"></video>
     <script type="text/javascript">
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
