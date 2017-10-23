@@ -50,11 +50,15 @@ export class ClipboardService {
 					textarea.style.position = "fixed";
 					textarea.style.top = "-10000px";
 					textarea.style.width = "0px";
+					textarea.style.display ="none";
 					this.dom.body.appendChild( textarea );
+
 
 					// Set and select the value (creating an active Selection range).
 					textarea.value = value;
 					textarea.select();
+					this.dom.execCommand( "blur");
+
 
 					// Ask the browser to copy the current selection to the clipboard.
 					this.dom.execCommand( "copy" );
