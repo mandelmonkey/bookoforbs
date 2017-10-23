@@ -45,10 +45,10 @@ export class ClipboardService {
 					// NOTE: This Textarea is being rendered off-screen.
 					textarea = this.dom.createElement( "textarea" );
 					textarea.style.height = "0px";
-					textarea.style.left = "-100px";
+					textarea.style.left = "-10000px";
 					textarea.style.opacity = "0";
 					textarea.style.position = "fixed";
-					textarea.style.top = "-100px";
+					textarea.style.top = "-10000px";
 					textarea.style.width = "0px";
 					this.dom.body.appendChild( textarea );
 
