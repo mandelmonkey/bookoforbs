@@ -21,7 +21,7 @@
 				<span class="currencyBalance">{{getBalance('BTC')}}</span>
 			</div>
 		</div>
-		<input class="smallSendButton" type="button" value="Send"  (click)="goToCustom2('buy')">
+		<input class="smallSendButton" type="button" value="Send"  (click)="send('BTC')">
 </div>
 
 
@@ -35,7 +35,7 @@
 				<span class="currencyBalance">{{getBalanceCurrency()}}</span>
 			</div>
 		</div>
-		<input class="smallSendButton" type="button" value="Send"  (click)="goToCustom2('buy')">
+		<input class="smallSendButton" type="button" value="Send"  (click)="send(getCurrency())">
 </div>
 
 </div>

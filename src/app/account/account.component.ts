@@ -46,6 +46,9 @@ export class AccountComponent implements OnInit {
   		return this.dataService.maincontroller.currentCurrency;
   	}
   }
+  send(currency:string){
+  	
+  }
 getCurrencyIcon (){
 	if(this.dataService.maincontroller.currentCurrency == "BITCRYSTALS"){
 		return "../assets/images/bitcrystals.png"
