@@ -14,9 +14,11 @@
      font-family: slingBold;
     src: url("/assets/fonts/SlingBold.ttf");
 }
-video {
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+.preview
+{
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }
  .messaging{
     color: #ffffd5;
