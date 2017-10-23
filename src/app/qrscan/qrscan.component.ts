@@ -48,7 +48,7 @@ this.qrScanner = QCodeDecoder();
 		tmpthis.qrScanner.stop();
 		tmpthis.qrScanner = null;
     	tmpthis.dataService.maincontroller.currentSendAddress = res;
-    	alert(tmpthis.dataService.maincontroller.currentSendAddress);
+     
     	tmpthis.exit();
     	
     }
@@ -67,7 +67,7 @@ this.qrScanner = QCodeDecoder();
    this.localstream.getTracks()[0].stop();
 
   console.log("Vid off");
-  	this.dataService.maincontroller.showAccount = true;
+  	 
   	this.dataService.maincontroller.showQRScan = false;
   	
   }

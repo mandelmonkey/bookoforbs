@@ -2,16 +2,24 @@
 
 <div class="darkView">
 </div>
-
+<div *ngIf="!dataService.maincontroller.selectedOrb.isCurrency">
 <div class="sendOrbBack2">
-<img class="sendOrbBackImg2" [src]="this.dataService.maincontroller.selectedOrb.image" />
+<img class="float2" [src]="this.dataService.maincontroller.selectedOrb.image" />
  </div>
 <div class="sendOrbBack">
-<img class="sendOrbBackImg" [src]="this.dataService.maincontroller.selectedOrb.image"  />
+<img class="float1" [src]="this.dataService.maincontroller.selectedOrb.image"  />
  </div>
 <div class="sendOrb">
-<img class="sendOrbImg" [src]="this.dataService.maincontroller.selectedOrb.image"  />
+<img class="float" [src]="this.dataService.maincontroller.selectedOrb.image"  />
  </div>
+ 
+</div>
+<div *ngIf="dataService.maincontroller.selectedOrb.isCurrency">
+<div class="sendOrb">
+<img class="float" [src]="this.dataService.maincontroller.selectedOrb.image"  />
+ </div>
+
+  </div> 
  <img class="keypadBack" src="../assets/images/qrbottomback.jpg" />
  
  
@@ -24,14 +32,12 @@
     <label>send</label>
     
   </div>
-   <div *ngIf="!sending" class="scanButton" (click)="scan()">
-    <img class="sendButtonImg" src="../assets/images/filterButtonBackground.png" />
-    <label>scan</label>
-    
-  </div>
+  
+    <input type="button" name="" class="scanButton" (click)="scan()"/>
+ 
    <img id="spinner"  src="../assets/images/spinner.gif" *ngIf="sending" />
   <label class="amountText">{{currentORB}}{{amount}}</label>
- <input type="text" class="addressText" placeholder="enter address" [(ngModel)]="sendAddress" >
+ <input type="text" class="addressText" placeholder="enter address" [(ngModel)]="dataService.maincontroller.currentSendAddress" >
 </div>
 
  

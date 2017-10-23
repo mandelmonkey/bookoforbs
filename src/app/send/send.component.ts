@@ -23,6 +23,7 @@ public sending:boolean;
     public basePath = 'm/0\'/0/';
   public account = null;
   public indiesquare:any;
+  
 
   ngOnInit() {
   	this.amount = "";
@@ -33,6 +34,9 @@ public sending:boolean;
     this.indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
     });
+
+
+
   }
 
   closeSend(){
@@ -142,8 +146,12 @@ currentOwner.sending = true;
   }
 
   scan(){
+
+      this.dataService.maincontroller.showQRScan = true;
+    // this.dataService.maincontroller.showAccount = false; 
+     /*
     var thi = this;
-  // Get Qrcode data via wallet
+ 
   this.indiesquare.getQRcode('ServiceNameHere', function(url, urlScheme, error){
     if( error ){
        thi.sendAddress = "err1"+JSON.stringify(error);
@@ -158,7 +166,7 @@ currentOwner.sending = true;
     }
     console.dir(result); // {data: "READ-STRINGS"}
     thi.sendAddress = JSON.stringify(result);
-  });
+  });*/
   
 }
         

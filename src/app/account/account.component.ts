@@ -90,8 +90,23 @@ export class AccountComponent implements OnInit {
   	}
   }
   send(currency:string){
-  	this.dataService.maincontroller.showQRScan = true;
-  		this.dataService.maincontroller.showAccount = false;
+
+     this.dataService.maincontroller.currentBalance =  this.dataService.maincontroller.getUserBalance(currency);
+
+     var selectedOrb = {
+       image:"",
+       isCurrency:true
+     };
+     if(currency == "BTC"){
+       selectedOrb.image = "../assets/images/bitcoinWingsSmall.png";
+     }else if (currency == "BITCRYSTALS"){
+       selectedOrb.image = "../assets/images/bitcrystals.png";
+     }
+    this.dataService.maincontroller.selectedOrb = selectedOrb;
+    this.dataService.maincontroller.selectedKey = currency; 
+
+    this.dataService.maincontroller.openSend();
+  
   }
 getCurrencyIcon (){
 	if(this.dataService.maincontroller.currentCurrency == "BITCRYSTALS"){
