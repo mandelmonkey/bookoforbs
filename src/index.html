@@ -42,7 +42,9 @@
     
   </head>
   <body>
+     
     <video id="preview"></video>
+     
     <script type="text/javascript">
 
          var video = document.getElementById('preview');
@@ -52,7 +54,7 @@
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
 
-  
+ 
     var constraints = {
          audio: false,
          video: {
@@ -62,17 +64,24 @@
 
     navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
         video.srcObject = stream;
+
+       
+
     });  
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+     
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror:false });
       scanner.addListener('scan', function (content) {
         console.log(content);
         alert(content);
 
       });
-       
+
       Instascan.Camera.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
-          scanner.start(cameras[1]);
+          for(var i = 0;i<cameras.length;i++){
+           alert(JSON.stringify(cameras[i]));
+          }
+          //scanner.start(cameras[0]);
         } else {
          alert('No cameras found.');
         }
