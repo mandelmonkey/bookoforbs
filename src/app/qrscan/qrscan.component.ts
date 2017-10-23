@@ -10,10 +10,11 @@ declare var QCodeDecoder:any;
 export class QrscanComponent implements OnInit {
  localstream:any;
 video:any;
+qrScanner:any;
   constructor(public dataService:DataService) { }
 
   ngOnInit() {
-
+this.qrScanner = QCodeDecoder();
     
   	var tmpthis = this;
         tmpthis.video = document.getElementById('preview') as any
@@ -40,13 +41,16 @@ video:any;
 
     });  
 
-    QCodeDecoder()
-  .decodeFromVideo(  tmpthis.video, function(er,res){
-    
+    this.qrScanner.decodeFromVideo(  tmpthis.video, function(er,res){
+     //if (er) throw er;
     if(typeof res != "undefined"){
-    	 
-    	this.dataService.maincontroller.currentSendAddress = res;
-    	this.exit();
+    	  
+		tmpthis.qrScanner.stop();
+		tmpthis.qrScanner = null;
+    	tmpthis.dataService.maincontroller.currentSendAddress = res;
+    	alert(tmpthis.dataService.maincontroller.currentSendAddress);
+    	tmpthis.exit();
+    	
     }
 
   });
@@ -57,7 +61,7 @@ video:any;
   }
 
    exit(){
- 
+   
          this.video.pause();
   this.video.src = "";
    this.localstream.getTracks()[0].stop();
@@ -65,6 +69,7 @@ video:any;
   console.log("Vid off");
   	this.dataService.maincontroller.showAccount = true;
   	this.dataService.maincontroller.showQRScan = false;
+  	
   }
 
 }
