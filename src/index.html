@@ -41,10 +41,38 @@
 <img src="/assets/images/closeX.png" style="display: none;" />
 <img src="/assets/images/marketButtonCollection.png" style="display: none;" />
 <img src="/assets/images/sendButtonCollection.png" style="display: none;" />
-
+<img src="/assets/images/accountBackground.jpg" style="display: none;" />
 <img src="/assets/images/bookBack2.jpg" style="display: none;" />
-
 <img src="/assets/images/bookLiningFront.png" style="display: none;" />
+<img src="/assets/images/asset_bitcoin.png" style="display: none;" />
+<img src="/assets/images/bottomBar.png" style="display: none;" />
+<img src="/assets/images/bottomBarBlack.png" style="display: none;" />
+
+<img src="/assets/images/bottomBarClear.png" style="display: none;" />
+
+<img src="/assets/images/bottomBarLong.png" style="display: none;" />
+
+<img src="/assets/images/buyPriceButton.png" style="display: none;" />
+<img src="/assets/images/leatherSeperator.png" style="display: none;" />
+<img src="/assets/images/leftBracket.png" style="display: none;" />
+
+<img src="/assets/images/leftOptionSeg.png" style="display: none;" />
+
+<img src="/assets/images/leftTabBracket.png" style="display: none;" />
+
+<img src="/assets/images/littleArrow.png" style="display: none;" />
+
+<img src="/assets/images/qrOverlay.png" style="display: none;" />
+
+
+<img src="/assets/images/rightBracket.png" style="display: none;" />
+
+<img src="/assets/images/rightOptionSeg.png" style="display: none;" />
+
+<img src="/assets/images/rightTabBracket.png" style="display: none;" />
+<img src="/assets/images/sendMiddleBar.png" style="display: none;" />
+<img src="/assets/images/stoneBack.jpg" style="display: none;" />
+<img src="/assets/images/tool_bar_background.jpg" style="display: none;" />
   <app-root><style type="text/css">
             #pre-bootstrap {
                 background-color: black ;
@@ -95,7 +123,9 @@
         </div></app-root> 
   
   <script type="text/javascript">
-    
+    if(window.location.href.indexOf("localhost") == -1 && window.location.href.indexOf("https") == -1){
+      window.location.replace("https://bookoforbs.herokuapp.com/");
+    }
    
 
     var bitcore = require('bitcore');  
