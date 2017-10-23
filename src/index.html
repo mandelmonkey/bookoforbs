@@ -62,6 +62,7 @@
     navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
         video.srcObject = stream;
     });
+    /*
       let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
       scanner.addListener('scan', function (content) {
         console.log(content);
@@ -75,6 +76,7 @@
       }).catch(function (e) {
         console.error(e);
       });
+      */
     </script>
   </body>
 </html>
