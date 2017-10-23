@@ -5,6 +5,7 @@
      USE_TESTNET = true; 
     
   </script>
+  <script type="text/javascript" src="assets/scripts/instascan.min.js"></script>
 <script src="assets/scripts/qrious.min.js"></script>
 <script src="https://cdn.indiesquare.me/v1/indiesquare.min.js"></script>
 <script type="text/javascript" src="assets/scripts/async.min.js"></script>
@@ -34,9 +35,34 @@
  
 </head>
 <body>
+  <!DOCTYPE html>
+<html>
+  <head>
+    <title>Instascan</title>
+    <script type="text/javascript" src="instascan.min.js"></script>
+  </head>
+  <body>
+    <video id="preview"></video>
+    <script type="text/javascript">
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+        console.log(content);
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
+  </body>
+</html>
 <img src="/assets/images/blueFelt.jpg" style="display: none;" />
-  
-  <app-root><style type="text/css">
+
+  <!--<app-root><style type="text/css">
             #pre-bootstrap {
                 background-color: black ;
                 bottom: 0px ;
@@ -83,7 +109,7 @@
 
 
             </div>
-        </div></app-root>
+        </div></app-root>-->
   
   <script type="text/javascript">
     var bitcore = require('bitcore');  
