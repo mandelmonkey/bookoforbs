@@ -56,10 +56,10 @@
 
  
     var constraints = {
-         audio: false,
-         video: {
+         audio: false/* ,
+        video: {
              facingMode: 'environment'
-         }
+         }*/
     }
 
     navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
@@ -81,7 +81,7 @@
           for(var i = 0;i<cameras.length;i++){
            alert(JSON.stringify(cameras[i]));
           }
-          //scanner.start(cameras[0]);
+           scanner.start(cameras[1]);
         } else {
          alert('No cameras found.');
         }
