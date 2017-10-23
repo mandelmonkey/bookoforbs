@@ -303,19 +303,135 @@ text-align: center;
 .button {
   display: inline-block;
 width:32%;
-height:25%;
+height:23%;
 background-color:rgba(0,0,0,0.2);
 font-size: 20pt;
  color: #ffffd5;
     font-family:   merriweather;
 
+
+  
 }
 .button label {
   height: 100%;
 display: flex;
     justify-content: center;
     align-items: center;
+
+
 }
+
+#one{
+
+  background: url('/assets/images/1num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+ background-blend-mode: overlay;
+
+}
+#two{
+
+  background: url('/assets/images/2num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+  background-blend-mode: overlay;
+
+}
+
+#three{
+
+  background: url('/assets/images/3num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+  background-blend-mode: overlay;
+
+}
+#four{
+
+  background: url('/assets/images/4num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+  background-blend-mode: overlay;
+
+}
+#five{
+
+  background: url('/assets/images/5num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+  background-blend-mode: overlay;
+
+}
+#six{
+
+  background: url('/assets/images/6num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none;
+  background-blend-mode: overlay; 
+
+}
+#seven{
+
+  background: url('/assets/images/7num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none;
+  background-blend-mode: overlay; 
+
+}
+#eight{
+
+  background: url('/assets/images/8num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+  background-blend-mode: overlay;
+
+}
+#nine{
+
+  background: url('/assets/images/9num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+  background-blend-mode: overlay;
+
+}
+#zero{
+
+  background: url('/assets/images/0num.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+  background-blend-mode: overlay;
+
+}
+
+#del{
+
+  background: url('/assets/images/delnum.png') no-repeat 0 0;
+   background-size: auto 55%;
+   background-position: center;
+ border:none;  
+
+}
+
+#dot{
+
+  background: url('/assets/images/dotnum.png') no-repeat 0 0;
+   background-size: auto 50%;
+   background-position: center;
+ border:none; 
+  background-blend-mode: overlay;
+
+}
+
 
 #balance{
 pointer-events: none;
