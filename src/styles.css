@@ -14,6 +14,10 @@
      font-family: slingBold;
     src: url("/assets/fonts/SlingBold.ttf");
 }
+video {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
  .messaging{
     color: #ffffd5;
   font-family:   sling;

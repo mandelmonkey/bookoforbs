@@ -51,6 +51,7 @@
      video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
+     
  
     var constraints = {
          audio: false,
@@ -66,6 +67,7 @@
       scanner.addListener('scan', function (content) {
         alert(content);
       });
+      /*
       Instascan.Camera.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
          //scanner.start(cameras[0]);
@@ -74,7 +76,7 @@
         }
       }).catch(function (e) {
         console.error(e);
-      });
+      });*/
     </script>
   </body>
 </html>
