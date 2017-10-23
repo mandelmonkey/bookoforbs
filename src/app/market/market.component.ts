@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-market',
@@ -200,21 +201,28 @@ console.log("ownedKeys "+ownedKeys);
 
     
   }
+getObservable(name:string){
+  return Observable.fromEvent(document.getElementById(name),'scroll'); 
+}
+getTarget(name:string){
 
+ return document.getElementById(name);
+}
 getMarketHeight(){
 	return (document.documentElement.clientHeight-document.getElementById("market").offsetTop-55)+"px"; 
 }
   setMarketData(){
   	 
    
-  	 this.newOrbs = Object.keys(this.dataService.maincontroller.currentOrbs).slice(0,10);
-  	 this.randomOrbs = this.shuffle(Object.keys(this.dataService.maincontroller.currentOrbs)).slice(0,10);
+  	 this.newOrbs = Object.keys(this.dataService.maincontroller.currentOrbs).slice(0,6);
+  	 this.randomOrbs = this.shuffle(Object.keys(this.dataService.maincontroller.currentOrbs)).slice(0,6);
+      this.trendingOrbs = this.shuffle(Object.keys(this.dataService.maincontroller.currentOrbs)).slice(0,6);
 
-  	 for (var i = this.dataService.maincontroller.allOrbsKeys.length - 1; i >= 0; i--) {
+  	/*for (var i = this.dataService.maincontroller.allOrbsKeys.length - 1; i >= 0; i--) {
   	 	var key = this.dataService.maincontroller.allOrbsKeys[i];
   	 	this.getPrice(key);
 
-  	 }
+  	 }*/
 
   	 
   }

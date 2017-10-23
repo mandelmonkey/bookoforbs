@@ -3,15 +3,13 @@
 	
 <div > 
 <div class="marketSection">
-	<label class="title">New ORBS</label><label class="titleRight">View All</label>
+	<!--<label class="title">New ORBS</label><label class="titleRight">View All</label>-->
 	<br>
-		<div class="marketSubScroll">
-
-
-		
+		<div id="new" class="marketSubScroll">
+ 
 			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
 			<div>
-				<img class="card" [lazyLoad]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/>
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"   />
 				
 				<app-order-info  [token]="orbKey"></app-order-info>
 			</div>
@@ -21,6 +19,7 @@
 		<br>
  		<img  class="divider" src="../assets/images/feltDivider.png" /> 
 </div>
+<!--
 <div *ngIf="!dataService.viewMode" class="marketSection">
 	<label class="title">Sell High</label><label class="titleRight">View All</label>
 	<br>
@@ -38,16 +37,17 @@
 		<br>
  		<img  class="divider" src="../assets/images/feltDivider.png" /> 
 </div>
+-->
 <div class="marketSection">
-	<label class="title">Trending</label><label class="titleRight">View All</label>
+	<!--<label class="title">Trending</label><label class="titleRight">View All</label>-->
 	<br>
-		<div class="marketSubScroll">
+		<div id="trending" class="marketSubScroll">
 
 
 		
 			<div *ngFor="let orbKey of trendingOrbs; let idx = index" class="cardBox" >
 			<div>
-				<img class="card" [lazyLoad]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/>
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])" />
 				
 				<app-order-info  [token]="orbKey"></app-order-info>
 			</div>
@@ -57,7 +57,7 @@
 		<br>
  		<img  class="divider" src="../assets/images/feltDivider.png" /> 
 </div>
-<div class="marketSection">
+<!--<div class="marketSection">
 	<label class="title">Buy Low</label><label class="titleRight">View All</label>
 	<br>
 		<div class="marketSubScroll">
@@ -75,17 +75,17 @@
 		</div>
 		<br>
  		<img  class="divider" src="../assets/images/feltDivider.png" /> 
-</div>
+</div>-->
 <div class="marketSection">
-	<label class="title">ORBs you may like</label><label class="titleRight">View All</label>
+	<!--<label class="title">ORBs you may like</label><label class="titleRight">View All</label>-->
 	<br>
-		<div class="marketSubScroll">
+		<div id="like" class="marketSubScroll">
 
 
 		
 			<div *ngFor="let orbKey of randomOrbs; let idx = index" class="cardBox" >
 			<div>
-				<img class="card" [lazyLoad]="getImage(dataService.maincontroller.currentOrbs[orbKey])"/>
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"  />
 				
 				<app-order-info  [token]="orbKey"></app-order-info>
 			</div>
@@ -97,7 +97,7 @@
 </div>
 
 </div>
-	</div>
+ 
 </div>
 
 
