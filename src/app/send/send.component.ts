@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
+import {ActivatedRoute} from '@angular/router';
+
 declare var Mnemonic:any; 
  declare var bitcore:any; 
     declare var IndieSquare:any; 
@@ -12,7 +14,7 @@ declare var Mnemonic:any;
 })
 export class SendComponent implements OnInit {
 
-  constructor(public dataService:DataService,private httpService:HTTPService) { }
+  constructor(public dataService:DataService,private httpService:HTTPService,private route:ActivatedRoute) { }
   public amount:string;
   public currentORB:string;
   public sendAddress:string;
@@ -147,6 +149,10 @@ currentOwner.sending = true;
 
   scan(){
 
+    if(document.location.href.indexOf("https") == -1){
+    alert("please reload with https to use camera");
+
+  }
       this.dataService.maincontroller.showQRScan = true;
     // this.dataService.maincontroller.showAccount = false; 
      /*
@@ -183,7 +189,7 @@ currentOwner.sending = true;
            this.dataService.maincontroller.showMessage("please enter a valid address");
         return;
 
-}
+    }
 
 
 
