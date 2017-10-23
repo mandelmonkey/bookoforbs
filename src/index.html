@@ -55,22 +55,7 @@
     video.setAttribute('playsinline', '');
 
  
-     
-     
-        let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror:false });
-      scanner.addListener('scan', function (content) {
-        console.log(content);
-        alert(content);
-
-      });
-
-      Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-          for(var i = 0;i<cameras.length;i++){
-           alert(JSON.stringify(cameras[i]));
-          }
-           scanner.start(cameras[1]);
-           var constraints = {
+    var constraints = {
          audio: false  ,
         video: {
              facingMode: 'environment'
@@ -82,13 +67,9 @@
 
        
 
-    }); 
-        } else {
-         alert('No cameras found.');
-        }
-      }).catch(function (e) {
-        console.error(e);
-      }); 
+    });  
+     
+        
     </script>
   </body>
 </html>
