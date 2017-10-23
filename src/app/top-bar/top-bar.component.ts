@@ -59,6 +59,8 @@ logout(){
   this.dataService.maincontroller.showOrderPage = false;
   this.dataService.maincontroller.showBottomBar = false;
   this.dataService.maincontroller.showTopBar = false;
+  this.dataService.maincontroller.showAccount = false;
+  this.dataService.maincontroller.showHistory = false;
   this.dataService.viewMode = false;
 
 }

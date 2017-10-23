@@ -12,7 +12,26 @@
   height:60px;
 }
 
-
+ .indielink {
+     cursor: pointer;  
+  width:100%; 
+  overflow: hidden; 
+    text-align: center;
+}
+ .indielink  label {
+    
+   left: 0; 
+   width: 100%; 
+   display: inline-block;
+   padding-top: 10px;
+    height: 60px;
+    color: #ffffd5;
+    font-family:   merriweather;
+}
+.indielogo{
+  width: 100px;
+  height: 100px; 
+}
  .newWalletButton {
      cursor: pointer;  
   width:100%;
@@ -87,7 +106,7 @@ text-align: center;
 }
 }
  .introButtons {
-    padding-top:50px; 
+    padding-top:10px; 
     text-align: center; 
 
    

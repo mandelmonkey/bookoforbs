@@ -10,7 +10,18 @@
 </div>
  <div *ngIf="!isIndiesquare">
   <div  *ngIf="showIntroButtons">
+
+
+     <div class="indielink" (click)="linkIndieSquare()">
+        <img class="indielogo" src="../assets/images/indielogo.jpg" />
+      
+      <label>Sign in with IndieSquare</label>  
+    </div>
+ <br>  
+
+
      <div class="newWalletButton" (click)="createNewAccount()" >
+
         <img class="newWalletImage" src="../assets/images/frontButton.png" />
         <label>Create new wallet</label>
      </div>
@@ -20,18 +31,8 @@
       <img class="newWalletImage" src="../assets/images/frontButton.png"  />
       <label>Enter passphrase</label>  
     </div>
- <br>  
-
-     <div class="newWalletButton" (click)="linkIndieSquare()">
-      <img class="newWalletImage" src="../assets/images/frontButton.png"  />
-      <label>Link IndieSquare</label>  
-    </div>
- <br>  
-   
-      <div class="newWalletButton" (click)="continueNoAddress()">
-      <!--<img class="newWalletImage" src="../assets/images/frontButton.png"  />-->
-      <label>or just view ORBS</label>  
-    </div>
+ 
+ 
   </div>
 
   <div  *ngIf="showPassphraseField">
