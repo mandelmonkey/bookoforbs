@@ -36,7 +36,7 @@
  
    <img id="spinner"  src="../assets/images/spinner.gif" *ngIf="sending" />
   <label class="amountText">{{currentORB}}{{amount}}</label>
- <input type="text" class="addressText" placeholder="enter address" [(ngModel)]="dataService.maincontroller.currentSendAddress" >
+ <input type="text" class="addressText" placeholder="enter address" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()">
 </div>
 
  

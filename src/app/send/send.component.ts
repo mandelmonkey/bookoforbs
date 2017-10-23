@@ -176,7 +176,10 @@ currentOwner.sending = true;
   
 }
         
-     
+     onBlurMethod(){
+
+         
+     }
 
   send(){
     
