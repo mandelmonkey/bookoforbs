@@ -1,6 +1,6 @@
 <div class="collection" *ngIf="dataService.currentTab == 1">
 <br>
-  <div *ngIf="!loading" class="ownAllButton">
+  <div *ngIf="!dataService.maincontroller.loading " class="ownAllButton">
     <img class="ownAllButtonImg" src={{allOwnImage}} (click)="selectAllOwn()" />
     <div class="ownAllButtonLeft">My Orbs</div>  <div class="ownAllButtonRight">All Orbs</div>
   </div>
@@ -9,35 +9,14 @@
 <virtual-scroll id="scrollView" class="scrollable" [items]="dataService.maincontroller.currentOrbsKeys" (update)="viewPortItems = $event"
 [style.height]="getCollectionHeight()">
 
-<label class="status" *ngIf="loading">loading...</label>
+<label class="status" *ngIf="dataService.maincontroller.loading ">loading...</label>
 <label class="status" *ngIf="showNoOrbs() && !allOrbs">You do not have any ORBs</label>
 
     <app-collection-card *ngFor="let item of viewPortItems;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight">
     </app-collection-card>
 
 </virtual-scroll>  
-  <!--
-   <div id="scrollView" class="collectionScroll" [style.height]="getCollectionHeight()">  
-
-
-<label class="status" *ngIf="loading">loading...</label>
-<label class="status" *ngIf="showNoOrbs() && !allOrbs">You do not have any ORBs</label>
-
-<div class="cardBox" *ngFor="let item of dataService.maincontroller.currentOrbsKeys;let i = index" [style.width]="cardWidth">
-  <img class="card" [errorImage]="errorImage" [lazyLoad]="dataService.maincontroller.currentOrbs[item].image" 
-  [src]="defaultImage" [scrollTarget]="scrollView" onerror="imgLoadError()" (click)="showORB()"/> 
-    <div class="shadowBox">
-    
-    <span class="cardNum">x{{dataService.maincontroller.getUserBalance(item)}}{{dataService.maincontroller.getUserUnconfBalance(item)}}</span>
-    </div> 
-</div> 
-
-   <app-collection-card *ngFor="let item of dataService.maincontroller.currentOrbsKeys;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth">
-    </app-collection-card>
-
-
-     </div>
-	-->
+ 
 	 
 
  </div>

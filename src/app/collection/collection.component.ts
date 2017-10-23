@@ -16,8 +16,8 @@ export class CollectionComponent implements OnInit {
 
  allOwnImage = "../assets/images/leftOptionSeg.png";
   public allOrbs = false;
-    public loading = true;
-  scrollOrbsKeys : Array<any>;
+  // public loading = false;
+  
   
   currentScroll:number;
   floatCheck:number;
@@ -45,6 +45,7 @@ export class CollectionComponent implements OnInit {
 
  }
   ngOnInit() {
+
     console.log("collection inited");
     this.dataService.collection = this;
     this.currentScroll = 40;
@@ -112,35 +113,23 @@ export class CollectionComponent implements OnInit {
  onScroll() {
 
 
-/*
-    let element = this.myScrollContainer.nativeElement
-    let atBottom = element.scrollHeight - element.scrollTop === element.clientHeight
-     
  
-      if(this.currentScroll < this.dataService.maincontroller.currentOrbsKeys.length){
-      this.currentScroll += 1;
-       this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
-        }
-       */
-    console.log("scroll");
-  
  
 }
 
   setCurrentOrbs(env:string){
 
 
-this.loading = true;
+this.dataService.maincontroller.loading = true;
 console.log("called here");
 this.dataService.maincontroller.currentOrbs = [];
 this.dataService.maincontroller.currentOrbsKeys = [];
-this.scrollOrbsKeys = [];
-   
+ 
  
  this.httpService.getEnvironment(env).subscribe(
      data => { 
           
-this.loading = false;
+this.dataService.maincontroller.loading = false;
 this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
 this.continueLoad(data);
      
@@ -154,7 +143,7 @@ this.continueLoad(data);
 
        this.continueLoad(envObject);
 console.log("error balance");
- this.loading = false;
+ this.dataService.maincontroller.loading  = false;
       },
      () => {});
  
@@ -166,7 +155,7 @@ console.log("error balance");
   continueLoad(data:any){
 
 
- this.loading = false;
+ this.dataService.maincontroller.loading = false;
 this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
 var currentData = data["Environements"][this.dataService.maincontroller.currentBundleId];
 if(currentData != null){
@@ -211,15 +200,12 @@ this.defaultImage = "../assets/images/cardback.png";
      }
 
 
-          this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
-
-
+          
 
              if(this.dataService.maincontroller.currentAddress == "empty"){
            this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
          
-         this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
-
+          
       this.allOrbs = true;
       this.allOwnImage = "../assets/images/rightOptionSeg.png";
 
@@ -250,11 +236,11 @@ this.defaultImage = "../assets/images/cardback.png";
     
   }
   showNoOrbs(){
-    if(this.loading){
+    if(this.dataService.maincontroller.loading ){
       return false;
     }
-    if(this.scrollOrbsKeys){
-       if(this.scrollOrbsKeys.length == 0){
+    if(this.dataService.maincontroller.currentOrbsKeys){
+       if(this.dataService.maincontroller.currentOrbsKeys.length == 0){
 
 
         return true;
@@ -270,8 +256,7 @@ this.defaultImage = "../assets/images/cardback.png";
   selectAllOwn(){
     if(this.allOrbs == true){
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
-         this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
-
+        
       this.allOrbs = false;
       this.allOwnImage = "../assets/images/leftOptionSeg.png";
     }
@@ -279,8 +264,7 @@ this.defaultImage = "../assets/images/cardback.png";
    
 
        this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
-         this.scrollOrbsKeys = this.dataService.maincontroller.currentOrbsKeys.slice(0,this.currentScroll);
-
+          
       this.allOrbs = true;
       this.allOwnImage = "../assets/images/rightOptionSeg.png";
     }
