@@ -24,7 +24,7 @@ export class AccountComponent implements OnInit {
   	var screenWidth= document.documentElement.clientWidth;
 
   	if(screenHeight > screenWidth){
-  		return screenWidth * 0.6;
+  		return screenWidth * 0.4;
   	}else{
   		return screenHeight * 0.5;
   	}
@@ -47,7 +47,7 @@ export class AccountComponent implements OnInit {
   	}
   }
   send(currency:string){
-  	
+
   }
 getCurrencyIcon (){
 	if(this.dataService.maincontroller.currentCurrency == "BITCRYSTALS"){
