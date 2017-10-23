@@ -1,16 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Directive } from '@angular/core';
 
 import { DataService } from '../services/data.service';
+import { ClipboardService } from '../services/clipboard.service';
 declare var QRious:any;
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
+ 
 export class AccountComponent implements OnInit {
+   public copyEvent: EventEmitter<string>;
+    public errorEvent: EventEmitter<Error>;
+    public value: string;
 
-  constructor(public dataService:DataService) { }
+    private clipboardService: ClipboardService;
 
+
+  constructor(public dataService:DataService, clipboardService: ClipboardService ) {
+
+        this.clipboardService = clipboardService;
+        this.copyEvent = new EventEmitter();
+        this.errorEvent = new EventEmitter();
+        this.value = "";
+
+    }
+    public copyToClipboard() : void {
+
+        this.clipboardService
+            .copy( this.dataService.maincontroller.currentAddress )
+            .then(
+                ( value: string ) : void => {
+
+                    this.copyEvent.emit( value );
+                    alert(this.dataService.maincontroller.currentAddress+" copied to clipboard, make sure to check the address matches on paste!")
+
+                }
+            )
+            .catch(
+                ( error: Error ) : void => {
+
+                    this.errorEvent.emit( error );
+                     alert("error copying to clipboard");
+
+                }
+            )
+        ;
+
+    }
   ngOnInit() {
   	 var qr = new QRious({
           element: document.getElementById('qr1'),
@@ -24,7 +62,7 @@ export class AccountComponent implements OnInit {
   	var screenWidth= document.documentElement.clientWidth;
 
   	if(screenHeight > screenWidth){
-  		return screenWidth * 0.4;
+  		return screenWidth * 0.5;
   	}else{
   		return screenHeight * 0.5;
   	}

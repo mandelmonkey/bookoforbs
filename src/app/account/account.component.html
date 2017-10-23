@@ -5,8 +5,8 @@
   <div class="title1">Receiving address for ORBS, Bitcoin and {{dataService.maincontroller.currentCurrency}}</div>
   	<div class="title2">(tap to copy)</div>
   	<br>
-  <canvas id="qr1"></canvas>
-<div class="title2">{{getAddress()}}</div>
+  <canvas id="qr1" (click)="copyToClipboard()"></canvas>
+<div class="title3">{{getAddress()}}</div>
 
 <img class="seperator" src="../assets/images/leatherSeperator.jpg"   />
 <div class="bottomDiv">

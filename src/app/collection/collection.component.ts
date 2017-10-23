@@ -70,10 +70,12 @@ export class CollectionComponent implements OnInit {
 
 
     }else{
+
       if(this.dataService.landscape == true){
           pxWidth = (document.documentElement.clientWidth / 5);
     
       }
+
     }
 
 
@@ -190,7 +192,7 @@ this.defaultImage = "../assets/images/cardback.png";
 
        if(this.dataService.market != null){
       this.dataService.market.setMarketData();
-    }
+      }
 
         for(var i = 0; i < this.dataService.maincontroller.userBalance.length; i++){
 

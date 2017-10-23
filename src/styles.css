@@ -14,10 +14,13 @@
      font-family: slingBold;
     src: url("/assets/fonts/SlingBold.ttf");
 }
- 
+ .messaging{
+    color: #ffffd5;
+  font-family:   sling;
+ }
 
     html, body {
-      
+
     width: 100%;
     height: 100%;
     margin: 0;

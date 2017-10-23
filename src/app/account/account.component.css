@@ -10,18 +10,26 @@
  }
 .title1{
    position: relative;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #ffffd5;
   font-family:   sling; 
   z-index: 1;
+  top:-10px;
  }
  .title2{
+ position: relative;
+  font-size: 0.6em;
+  color: #ffffd5;
+  font-family:   sling; 
+ }
+  .title3{
  position: relative;
   font-size: 0.7em;
   color: #ffffd5;
   font-family:   sling; 
  }
  #qr1{
+ 	margin-top: -10px;
  	opacity:0.7;
 
  }

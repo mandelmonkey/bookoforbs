@@ -7,6 +7,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { CollectionComponent } from './collection/collection.component';
 import { MainControllerComponent } from './main-controller/main-controller.component';
 import { DataService } from './services/data.service';
+import { ClipboardService } from './services/clipboard.service';
 import { IntroComponent } from './intro/intro.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { RouterModule, Routes }  from '@angular/router';
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [DataService],
+  providers: [DataService,ClipboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
