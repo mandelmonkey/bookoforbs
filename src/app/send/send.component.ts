@@ -185,7 +185,7 @@ currentOwner.sending = true;
       return;
     }
 
-    if( bitcore.Address.isValid(this.sendAddress, 'livenet') == false){
+    if( bitcore.Address.isValid(this.dataService.maincontroller.currentSendAddress, 'livenet') == false){
            this.dataService.maincontroller.showMessage("please enter a valid address");
         return;
 
