@@ -42,12 +42,12 @@
     
   </head>
   <body>
-    <video autoplay muted playsInline id="preview" style="width: 100vw;height: 100vh;"></video>
+    <video id="preview"></video>
     <script type="text/javascript">
 
          var video = document.getElementById('preview');
-    video.style.width = document.width + 'px';
-    video.style.height = document.height + 'px';
+    video.style.width = "100vw";
+    video.style.height = "100vh";
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
