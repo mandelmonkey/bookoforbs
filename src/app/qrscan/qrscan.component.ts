@@ -61,12 +61,15 @@ this.qrScanner = QCodeDecoder();
   }
 
    exit(){
-   
+   if(this.video ){
          this.video.pause();
   this.video.src = "";
+  if( this.localstream ){
    this.localstream.getTracks()[0].stop();
+}
+ }
 
-  console.log("Vid off");
+   
   	 
   	this.dataService.maincontroller.showQRScan = false;
   	
