@@ -31,6 +31,12 @@ app.set('port',port);
 const server = http.createServer(app);
  server.listen(port, () => console.log('Running'));
  */
+
+app.listen(process.env.PORT || 8080, function(){
+  console.log('web starting');
+});
+
+
 app.listen(80, function(){
   console.log('CORS-enabled web server listening on port 80');
 });
