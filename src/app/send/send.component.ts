@@ -241,7 +241,8 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
   
 }
  
-tmpthis.indiesquare.createSend({"source": this.dataService.maincontroller.currentAddress, "token": this.dataService.maincontroller.selectedKey, "destination":this.dataService.maincontroller.currentSendAddress, "quantity": this.amount}, function(data, error){
+tmpthis.indiesquare.createSend({"source": "1LZp3kBtqiTi1szU1pMWWmVhejBdmHNirm", "token": "CNPCOIN", "destination": "1JynF1GgD279DBZxQBubJXz4NuHcTy65k3", "quantity": 1}, function(data, error){
+   
     if( error ){
 console.error("send error " + error);
              tmpthis.dataService.maincontroller.showMessage(error);
