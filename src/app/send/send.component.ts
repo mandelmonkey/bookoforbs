@@ -235,7 +235,6 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
   
 }
  
-console.dir('called this once:');
 tmpthis.indiesquare.createSend({"source": this.dataService.maincontroller.currentAddress, "token": this.dataService.maincontroller.selectedKey, "destination":this.dataService.maincontroller.currentSendAddress, "quantity": this.amount}, function(data, error){
     if( error ){
 
@@ -249,7 +248,7 @@ tmpthis.indiesquare.createSend({"source": this.dataService.maincontroller.curren
     tmpthis.currentSendResponse = data;
 var feeBTC = "0.0001";
 
-      console.dir('called once:');
+      
       console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
 
    if(this.dataService.maincontroller.linkType == "indiesquare"){
