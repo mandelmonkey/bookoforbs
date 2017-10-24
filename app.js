@@ -19,11 +19,11 @@ app.all('*', function(req, res, next) {
 app.use(express.static(path.join(__dirname,'dist'));
  
 
-app.get('*',(req,res) => {
+app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname,'dist/index.html'));
 });
 
-const port = process.env.PORT || '3001';
+const port = process.env.PORT || 8080;
 app.set('port',port);
 
 const server = http.createServer(app);
