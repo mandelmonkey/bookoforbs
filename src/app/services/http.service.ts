@@ -168,7 +168,7 @@ header.append('X-Api-Key', this.apiKey);
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
 
-      return this._http.post(this.indieURL+"/v2/transactions/decode?X-Api-Key=" + this.apiKey,params, {
+      return this._http.post(this.indieURL+"/v2/transactions/decode",params, {
         headers:header
       })
       .map(res => res.json());
@@ -201,7 +201,7 @@ header.append('X-Api-Key', this.apiKey);
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
      //  header.append('Access-Control-Allow-Origin', '*');
- 
+     
       return this._http.post(this.indieURL+"/v2/transactions/send",params, {
         headers:header
       })
