@@ -11,12 +11,12 @@ app.use(express.static(path.join(__dirname,'dist')));
  
 
 
-app.get('*',function(req,res,next){
-  if(req.headers['x-forwarded-proto']!='https')
-    res.redirect(['https://', req.get('Host'), req.url].join(''));
-  else
-    next();
- 
+app.use(function(req,res,next) {
+  if (!/https/.test(req.protocol)){
+     res.redirect("https://" + req.headers.host + req.url);
+  } else {
+     return next();
+  } 
 });
  
 const port = process.env.PORT || 8080;
