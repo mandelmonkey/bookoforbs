@@ -45,7 +45,7 @@ this.qrScanner = QCodeDecoder();
      //if (er) throw er;
     if(typeof res != "undefined"){
 
-        if( bitcore.Address.isValid(res, 'livenet') == false){
+        if( bitcore.Address.isValid(res, 'livenet') == true){
     	  
 		tmpthis.qrScanner.stop();
 		tmpthis.qrScanner = null;
