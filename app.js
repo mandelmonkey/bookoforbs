@@ -1,12 +1,12 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
- 
+ var cors = require('cors')
 const app = express();
 // Run the app by serving the static files
 // in the dist directory
 
-
+app.use(cors());
 app.use(express.static(path.join(__dirname,'dist')));
  
 app.use(function(req, res, next) {
@@ -15,6 +15,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+
+app.get('*', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname,'dist/index.html'));
