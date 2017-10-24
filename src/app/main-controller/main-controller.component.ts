@@ -182,6 +182,13 @@ closeMessage(){
 this.showingMessage = false;
 
 }
+feeIsCustom(fee:string){
+if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "lowFee" ){
+       return true;
+       }else{
+         return false;
+       }
+}
   ngOnInit() {
    
  this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent);
@@ -192,7 +199,19 @@ this.showingMessage = false;
     this.linkType = "";
        var lastFee = this.persistenceService.get('userFee',   StorageType.LOCAL);
     if(typeof lastFee != "undefined"){
+
+
        this.currentFee = lastFee;
+
+       if(this.feeIsCustom(this.currentFee)){
+         this.dataService.maincontroller.customFee =   this.currentFee;
+       }
+       
+     
+     
+       
+
+
     }else{
       this.currentFee = "hourFee";
     }
@@ -210,6 +229,9 @@ this.showingMessage = false;
     }else{
         this.linkType = "";
     }
+
+
+
 
     this.getFees();
 /*

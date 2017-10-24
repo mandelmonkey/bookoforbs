@@ -215,8 +215,8 @@ var tmpThis = this
 
    var fee = -1;
    var feePerKb = -1;
-
-if(this.dataService.maincontroller.currentFee == "custom"){
+ 
+if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)){
 
   fee =  Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
   feePerKb = -1;
