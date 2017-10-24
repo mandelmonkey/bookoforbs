@@ -20,9 +20,7 @@ export class BottomBarComponent implements OnInit {
 
   select1(){
 
-    if(this.dataService.maincontroller.loading){
-      return;
-    }
+     
   		this.dataService.currentTab = 1;
   		this.image1 = this.dataService.getImage('bottomBarBlack');
   		this.image2 = this.dataService.getImage('bottomBarClear');
