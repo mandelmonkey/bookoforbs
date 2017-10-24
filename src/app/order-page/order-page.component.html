@@ -41,7 +41,7 @@
 			<div class="itemTitle">Place a custom order</div>
 			<br>
 				<div class="items1Buttons">
-					<input class="customButtonBuy" type="button" value="Buy" style="float: left; " (click)="goToCustom2('buy')">
+					<input class="customButtonBuy" type="button" value="Buy" style="float: left; " (click)="goToCustom2('buy')" >
 		 			<input class="customButtonSell" type="button" value="Sell" style="float: left;" (click)="goToCustom2('sell')">	 
 				</div>
 		</div>
@@ -52,7 +52,7 @@
 			<div class="items2">
 			<div class="itemTitle">How Many {{dataService.maincontroller.selectedKey}}?</div>
 			<br>
-			<input  class="textInput"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 1"  name="customfee">
+			<input  class="textInput"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 1"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 			<br>
 			<br>
 				<div class="items1Buttons">
@@ -66,7 +66,7 @@
 				<div class="items2">
 			<div class="itemTitle">enter price per card below</div>
 			<br>
-			<input  class="textInput"  type="number" [(ngModel)]="orderPrice"  placeholder="e.g. 1"  name="customfee"><span class="abrev">&nbsp;{{dataService.maincontroller.currentAbrev}}</span>
+			<input  class="textInput"  type="number" [(ngModel)]="orderPrice"  placeholder="e.g. 1"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()"><span class="abrev">&nbsp;{{dataService.maincontroller.currentAbrev}}</span>
 			<br>
 			<br>
 				<div class="items1Buttons">
@@ -129,7 +129,7 @@
  <p>Availability </p>
   	 <p>x{{originalOrderAmount}}</p> 
  <p>Enter order amount </p> 
- <input  class="textInputCenter"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 2"  name="customfee">
+ <input  class="textInputCenter"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 2"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 
  <div  class="placeOrderButtons">
         <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="showConf()">

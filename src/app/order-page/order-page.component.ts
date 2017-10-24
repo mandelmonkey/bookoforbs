@@ -39,6 +39,15 @@ originalOrderAmount:number;
 
 
   }
+     onBlurMethod(){
+       document.body.style.position = "fixed";
+         
+     }
+
+     onFocusMethod(){
+document.body.style.position = "none";
+         
+     }
 closeSelf(){
 
 	this.dataService.maincontroller.showOrderPage = false;

@@ -190,7 +190,7 @@ label{
 .darkView{
   position: absolute;
    width:100%;
-   top: 0%;  
+   top: 0%;   
    background-color: rgba(0,0,0,0.5);
       text-align: center;
 }

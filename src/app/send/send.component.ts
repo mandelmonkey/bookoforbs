@@ -177,7 +177,12 @@ currentOwner.sending = true;
 }
         
      onBlurMethod(){
+       document.body.style.position = "fixed";
+         
+     }
 
+     onFocusMethod(){
+document.body.style.position = "none";
          
      }
 

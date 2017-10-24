@@ -20,8 +20,7 @@
   font-family:   sling;
  }
 
-    html, body {
-position: fixed;
+    html, body { 
     width: 100%;
     height: 100%;
     margin: 0;
@@ -34,4 +33,5 @@ position: fixed;
     background-attachment: fixed;       
 }
 
+ 
  
