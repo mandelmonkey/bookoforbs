@@ -296,8 +296,12 @@ console.log(result.signed_tx);
       },   
       error => {
         tmpthis.sending = false;
-         tmpthis.dataService.maincontroller.showMessage( JSON.parse(error._body).message);
-         //["message"]
+         try{
+                   tmpthis.dataService.maincontroller.showMessage(JSON.parse(error._body).message);
+                }
+                catch(e){
+                   tmpthis.dataService.maincontroller.showMessage("error");
+                }
  
       },
      () => {});
