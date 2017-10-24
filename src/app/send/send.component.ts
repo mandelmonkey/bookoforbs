@@ -237,9 +237,10 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
  
 tmpthis.indiesquare.createSend({"source": this.dataService.maincontroller.currentAddress, "token": this.dataService.maincontroller.selectedKey, "destination":this.dataService.maincontroller.currentSendAddress, "quantity": this.amount}, function(data, error){
     if( error ){
-
+console.error("send error " + error);
              tmpthis.dataService.maincontroller.showMessage(error);
-        console.error(error);
+        
+         tmpthis.sending = false;
         return;
     }
 
