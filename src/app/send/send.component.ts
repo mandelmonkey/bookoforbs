@@ -184,7 +184,12 @@ currentOwner.sending = true;
   send(){
     
     if(parseFloat(this.amount) < 0 || parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
+      if( parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
+ this.dataService.maincontroller.showMessage("you don't have enough "+this.dataService.maincontroller.currentCurrency);
+
+      }else{
       this.dataService.maincontroller.showMessage("please enter a valid amount");
+    }
       return;
     }
 

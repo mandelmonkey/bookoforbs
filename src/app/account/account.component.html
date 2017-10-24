@@ -18,7 +18,7 @@
 		<div class="middleSection">
 			<span class="currencyTitle">Bitcoin</span>
 			<div class="imageBack">
-				<span class="currencyBalance">{{getBalance('BTC')}}</span>
+				<span class="currencyBalance">{{getBalance('BTC')}}<b>BTC</b></span>
 			</div>
 		</div>
 		<input class="smallSendButton" type="button" value="Send"  (click)="send('BTC')">
@@ -32,7 +32,7 @@
 		<div class="middleSection">
 			<span class="currencyTitle">{{getCurrency()}}</span>
 			<div class="imageBack">
-				<span class="currencyBalance">{{getBalanceCurrency()}}</span>
+				<span class="currencyBalance">{{getBalanceCurrency()}}<b>{{dataService.maincontroller.currentAbrev}}</b></span>
 			</div>
 		</div>
 		<input class="smallSendButton" type="button" value="Send"  (click)="send(getCurrency())">
