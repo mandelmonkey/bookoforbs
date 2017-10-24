@@ -199,7 +199,8 @@ header.append('X-Api-Key', this.apiKey);
       console.log(params);
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
-
+       header.append('Access-Control-Allow-Origin', '*');
+ 
       return this._http.post("https://api.indiesquare.me/v2/transactions/send",params, {
         headers:header
       })

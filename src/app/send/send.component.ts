@@ -55,6 +55,13 @@ public sending:boolean;
           return;
         }
       }
+      if(num == "0"){
+        if(this.amount.length == 1){
+          if(this.amount.indexOf("0") != -1){
+              this.amount = this.amount+".";
+          }
+        }
+      }
   		this.amount = this.amount+num;
   	}
   	
