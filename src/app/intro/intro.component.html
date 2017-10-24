@@ -3,7 +3,7 @@
 <br> 
    <br>
    
-  <img class="topImage" src="../assets/images/bookLiningFront.png" />
+  <img class="topImage" [src]="dataService.getImage('bookLiningFront')"/>
  <div class="introButtons">
 <div *ngIf="isIndiesquare">
  <h3 style="color:white;">linking with indieSquare...</h3>
@@ -13,7 +13,7 @@
 
 
      <div class="indielink" (click)="linkIndieSquare()">
-        <img class="indielogo" src="../assets/images/indielogo.jpg" />
+        <img class="indielogo"   [src]="dataService.getImage('indielogo')"/>
       
       <label>Sign in with IndieSquare</label>  
     </div>
@@ -22,13 +22,13 @@
 
      <div class="newWalletButton" (click)="createNewAccount()" >
 
-        <img class="newWalletImage" src="../assets/images/frontButton.png" />
+        <img class="newWalletImage"  [src]="dataService.getImage('frontButton')"/>
         <label>Create new wallet</label>
      </div>
  <br> 
    
     <div class="newWalletButton" (click)="enterPassphrase()">
-      <img class="newWalletImage" src="../assets/images/frontButton.png"  />
+      <img class="newWalletImage"   [src]="dataService.getImage('frontButton')" />
       <label>Enter passphrase</label>  
     </div>
  

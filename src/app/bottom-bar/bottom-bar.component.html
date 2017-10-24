@@ -1,7 +1,7 @@
 <div class="parent">
-  <img class="backbar" src="../assets/images/bottomBar.png" />
- <img class="leftbracket" src="../assets/images/leftTabBracket.png" />
-  <img class="rightbracket" src="../assets/images/rightTabBracket.png" />
+  <img class="backbar" [src]="dataService.getImage('bottomBar')" />
+ <img class="leftbracket"  [src]="dataService.getImage('leftTabBracket')" />
+  <img class="rightbracket"  [src]="dataService.getImage('rightTabBracket')"  />
 
   <img class="firstButton" [src]="image1" (click)="select1()"/>
  <img class="secondButton" [src]="image2" (click)="select2()"/>

@@ -7,10 +7,10 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./bottom-bar.component.css']
 })
 export class BottomBarComponent implements OnInit {
- image1 = "../assets/images/bottomBarBlack.png";
- image2 = "../assets/images/bottomBarClear.png";
- image3 = "../assets/images/bottomBarClear.png";
- image4 = "../assets/images/bottomBarClear.png";
+ image1 = this.dataService.getImage('bottomBarClear');// "../assets/images/bottomBarBlack.png";
+ image2 = this.dataService.getImage('bottomBarClear');
+ image3 = this.dataService.getImage('bottomBarClear');//"../assets/images/bottomBarClear.png";
+ image4 = this.dataService.getImage('bottomBarClear');//"../assets/images/bottomBarClear.png";
 
 
   constructor(public dataService:DataService) { }
@@ -20,10 +20,10 @@ export class BottomBarComponent implements OnInit {
 
   select1(){
   		this.dataService.currentTab = 1;
-  		this.image1 = "../assets/images/bottomBarBlack.png";
-  		this.image2 = "../assets/images/bottomBarClear.png";
-  		this.image3 = "../assets/images/bottomBarClear.png";
-  		this.image4 = "../assets/images/bottomBarClear.png"; 
+  		this.image1 = this.dataService.getImage('bottomBarBlack');
+  		this.image2 = this.dataService.getImage('bottomBarClear');
+  		this.image3 = this.dataService.getImage('bottomBarClear');
+  		this.image4 = this.dataService.getImage('bottomBarClear');
        this.dataService.maincontroller.showAccount = false;
       this.dataService.maincontroller.showCollection = true;
       this.dataService.maincontroller.showMarket= false;
@@ -32,10 +32,10 @@ export class BottomBarComponent implements OnInit {
   }
   select2(){
   		this.dataService.currentTab = 2;
-  		this.image1 = "../assets/images/bottomBarClear.png";
-  		this.image2 = "../assets/images/bottomBarBlack.png";
-  		this.image3 = "../assets/images/bottomBarClear.png";
-  		this.image4 = "../assets/images/bottomBarClear.png";
+  		this.image1 =this.dataService.getImage('bottomBarClear');
+  		this.image2 = this.dataService.getImage('bottomBarBlack');
+  		this.image3 = this.dataService.getImage('bottomBarClear');
+  		this.image4 = this.dataService.getImage('bottomBarClear');
   		console.log("2");
 
   this.dataService.maincontroller.showAccount = false;
@@ -46,10 +46,10 @@ export class BottomBarComponent implements OnInit {
   }
   select3(){
   		 this.dataService.currentTab = 3;
-  		this.image1 = "../assets/images/bottomBarClear.png";
-  		this.image2 = "../assets/images/bottomBarClear.png";
-  		this.image3 = "../assets/images/bottomBarBlack.png";
-  		this.image4 = "../assets/images/bottomBarClear.png";
+  		this.image1 = this.dataService.getImage('bottomBarClear');
+  		this.image2 = this.dataService.getImage('bottomBarClear');
+  		this.image3 =this.dataService.getImage('bottomBarBlack');
+  		this.image4 = this.dataService.getImage('bottomBarClear');
   		console.log("3");
 
        this.dataService.maincontroller.showAccount = false;
@@ -63,10 +63,10 @@ export class BottomBarComponent implements OnInit {
   }
   select4(){
   		this.dataService.currentTab = 4;
-  		this.image1 = "../assets/images/bottomBarClear.png";
-  		this.image2 = "../assets/images/bottomBarClear.png";
-  		this.image3 = "../assets/images/bottomBarClear.png";
-  		this.image4 = "../assets/images/bottomBarBlack.png";
+  		this.image1 = this.dataService.getImage('bottomBarClear');
+  		this.image2 =this.dataService.getImage('bottomBarClear');
+  		this.image3 = this.dataService.getImage('bottomBarClear');
+  		this.image4 = this.dataService.getImage('bottomBarBlack');
      
       this.dataService.maincontroller.showAccount = true;
       this.dataService.maincontroller.showCollection = false;

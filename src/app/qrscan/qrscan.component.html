@@ -2,9 +2,9 @@
     <video id="preview"></video>
     <img style="width:70vw; position: absolute; top:25%;
     left: 50%; 
-    margin-left: -35vw;" src="assets/images/qrOverlay.png">
+    margin-left: -35vw;"   [src]="dataService.getImage('qrOverlay')">
 
      <img style="width:40px; position: absolute; top:5px;
-    left: 5px;" src="assets/images/closeX.png" (click)="exit()">
+    left: 5px;" [src]="dataService.getImage('closeX')" (click)="exit()">
      </div>
  

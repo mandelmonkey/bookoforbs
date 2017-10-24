@@ -1,4 +1,4 @@
- <img class="background" src="../assets/images/accountBackground.jpg"   />
+ <img class="background"  [src]="dataService.getImage('accountBackground')"   />
 <div class="topDiv">  
 
 	<br>
@@ -8,13 +8,13 @@
   <canvas id="qr1" (click)="copyToClipboard()"></canvas>
 <div class="title3">{{getAddress()}}</div>
 
-<img class="seperator" src="../assets/images/leatherSeperator.jpg"   />
+<img class="seperator"  [src]="dataService.getImage('leatherSeperator')" />
 <div class="bottomDiv">
 <!--	<img class="bottomImg" src="../assets/images/qrbottomback.jpg"   />-->
 
 
 <div class="aCurrency">
-		<img class="smallCurrency" src="../assets/images/asset_bitcoin.png"   />
+		<img class="smallCurrency"  [src]="dataService.getImage('asset_bitcoin')" />
 		<div class="middleSection">
 			<span class="currencyTitle">Bitcoin</span>
 			<div class="imageBack">
@@ -25,7 +25,7 @@
 </div>
 
 
-<img class="seperatorSmall" src="../assets/images/fancySeperator.png"   />
+<img class="seperatorSmall"  [src]="dataService.getImage('fancySeperator')"   />
 
 <div class="aCurrency">
 		<img class="smallCurrency" [src]="getCurrencyIcon()"   />

@@ -81,7 +81,7 @@
 }
 
 .messageBack {
-  background: url('/assets/images/thinFrame.png') no-repeat scroll 0 0;
+ /* background: url('/assets/images/thinFrame.png') no-repeat scroll 0 0;*/
     display: inline-block;
   position: absolute;
      background-repeat: no-repeat; 
@@ -133,8 +133,7 @@
 	 text-align: center;
 }
 .largeORBImage {
-	background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
- 
+	 
  
  height:70%;
 
@@ -142,8 +141,7 @@
      background-size: cover;
 }
 .largeORBImageLandscape {
-  background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
- 
+   
 
  height: auto; 
 max-width: 95%;
@@ -164,7 +162,7 @@ max-width: 95%;
    
 }
 #largeButtonSend {
-	 background: url('/assets/images/sendButtonCollection.png');
+	  
      background-repeat: no-repeat;  
 background-size: 100%;
      cursor: pointer;  
@@ -175,7 +173,7 @@ background-size: 100%;
    
 }
 #largeButtonMarket {
-	 background: url('/assets/images/marketButtonCollection.png');
+	  
    
      background-repeat: no-repeat; 
     

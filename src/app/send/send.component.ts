@@ -26,7 +26,20 @@ public sending:boolean;
   public account = null;
   public indiesquare:any;
   
-
+  getBackground(){
+    return {"background": "url("+ this.dataService.getImage("accountBackground")+")"}
+  }
+   getNumImage(image:string){
+      
+      return { 
+        "background":"url("+ this.dataService.getImage(image)+") no-repeat 0 0",
+         "background-size":" auto 50%",
+         "background-position":" center",
+         "border":"none",
+         "background-blend-mode":" overlay"
+      }
+    //return "background: url("+ this.dataService.getImage(image)+") no-repeat 0 0;"
+  }
   ngOnInit() {
   	this.amount = "";
     this.sendAddress = "";
@@ -152,7 +165,23 @@ currentOwner.sending = true;
     currentOwner.sending = false;
 
   }
+  getScanImage(){
+    return {
 
+        "text-align": "center",
+     "cursor":" pointer",
+    "position": "absolute",
+    "top": "12px",
+ "left":" 5px",
+ "width":"32px",
+ "height":"32px",
+    "background":"url("+ this.dataService.getImage('qrcodeSend')+") no-repeat 0 0",
+"background-size": "100% 100%",
+ "border":"none",
+
+
+    }
+  }
   scan(){
 
     if(document.location.href.indexOf("https") == -1){

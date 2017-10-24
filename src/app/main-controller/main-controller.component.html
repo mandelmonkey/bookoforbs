@@ -15,12 +15,11 @@
 <div class="largeORB" *ngIf="showSelected && showCollection"  >
 
 <div class="parent">
-  <img class="backbar" src="../assets/images/tool_bar_background.png" />
-  <img class="leftbracket" src="../assets/images/leftBracket.png" />
-  <img class="rightbracket" src="../assets/images/rightBracket.png" />
-
+  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
+  <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
    <div class="backButton" (click)="closeLarge()">
-    <img class="backButtonImg" src="../assets/images/filterButtonBackground.png" />
+    <img class="backButtonImg"  [src]="dataService.getImage('filterButtonBackground')"/>
     <label>back</label>
     
   </div>
@@ -28,22 +27,22 @@
 
 <div class="container">
  <label class="titleLabel">{{selectedKey}}</label> 
-  <img *ngIf="dataService.landscape" class="largeORBImageLandscape" [src]="selectedOrb.image"  /> 
-   <img *ngIf="!dataService.landscape" class="largeORBImage" [src]="selectedOrb.image"  /> 
+  <img *ngIf="dataService.landscape" class="largeORBImageLandscape" [src]="selectedOrb.image"  [style.background-image]="'url(' +dataService.getImage('cardbackLandscape')+ ')'">
+   <img *ngIf="!dataService.landscape" class="largeORBImage" [src]="selectedOrb.image"  [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'">
    
     <br>
     <div class="largeButtons" >
         
-      <div id="largeButtonSend" (click)="openSend()" *ngIf="dataService.maincontroller.currentBalance > 0">
+      <div id="largeButtonSend" (click)="openSend()" *ngIf="dataService.maincontroller.currentBalance > 0" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
       
         <label class="buttonLabel">Send</label> 
      </div>
  	 
    
-      <div id="largeButtonMarket">
+      <div id="largeButtonMarket" (click)="openMarket()" [style.background-image]="'url(' +dataService.getImage('marketButtonCollection')+ ')'">
 
   
-       <label class="buttonLabel" (click)="openMarket()">Market</label> 
+       <label class="buttonLabel" >Market</label> 
      
       </div>
     </div>
@@ -61,7 +60,7 @@
 <app-send *ngIf="showSend" ></app-send>
 <app-order-page *ngIf="showOrderPage" ></app-order-page>
  <div class="messageDark"  *ngIf="showingMessage">
-   <div class="messageBack"> 
+   <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
   <div class="messageText">{{messageText}}</div> 
        <div class="closeMessageButton" (click)="closeMessage()">
       
@@ -73,7 +72,7 @@
   </div>
 
    <div class="messageDark"  *ngIf="showingConf">
-   <div class="messageBack"> 
+   <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
   <div class="messageText">{{messageText}}</div> 
          <div class="confirmMessageButton" (click)="didConfirm()">
         <label class="buttonLabel">confirm</label> 

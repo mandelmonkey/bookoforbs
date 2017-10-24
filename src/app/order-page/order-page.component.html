@@ -15,7 +15,7 @@
  	<span class="ordersTitle">Sellers</span>
  	<div class="sellOrdersList" *ngFor="let order of sell_orders" >
 
-	<div class="aBuyOrder" (click)="buyOrder(order,'buy')">
+	<div class="aBuyOrder" (click)="buyOrder(order,'buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">
 	  
 		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b><br><b>{{getOrderAmount(order)}}</b></span>
 			 
@@ -24,7 +24,7 @@
 <br>
 <span class="ordersTitle">Buyers</span>
 <div lass="buyOrdersList" *ngFor="let order of buy_orders" >
-<div class="aSellOrder" (click)="buyOrder(order,'sell')">
+<div class="aSellOrder" (click)="buyOrder(order,'sell')" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">
 		 
 		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b><br><b>{{getOrderAmount(order)}}</b></span>
 	</div>
@@ -41,8 +41,8 @@
 			<div class="itemTitle">Place a custom order</div>
 			<br>
 				<div class="items1Buttons">
-					<input class="customButtonBuy" type="button" value="Buy" style="float: left; " (click)="goToCustom2('buy')" >
-		 			<input class="customButtonSell" type="button" value="Sell" style="float: left;" (click)="goToCustom2('sell')">	 
+					<input class="customButtonBuy" type="button" value="Buy" style="float: left; " (click)="goToCustom2('buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">	 
+		 			<input class="customButtonSell" type="button" value="Sell" style="float: left;" (click)="goToCustom2('sell')" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
 				</div>
 		</div>
 
@@ -56,8 +56,8 @@
 			<br>
 			<br>
 				<div class="items1Buttons">
-					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom1()">
-		 			<input class="customButtonBackNext" type="button" value="next" style="float: left;" (click)="goToCustom3()">	 
+					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom1()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+		 			<input class="customButtonBackNext" type="button" value="next" style="float: left;" (click)="goToCustom3()"  [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
 				</div>
 			</div>
 	</div>
@@ -70,8 +70,8 @@
 			<br>
 			<br>
 				<div class="items1Buttons">
-					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom2('na')">
-		 			<input class="customButtonConfirm" type="button" value="confirm" style="float: left;" (click)="showConf()">	 
+					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom2('na')" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+		 			<input class="customButtonConfirm" type="button" value="confirm" style="float: left;" (click)="showConf()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 
 				</div>
 			</div>
 	</div>
@@ -83,16 +83,15 @@
 
 
 <div class="parent">
-  <img class="backbar" src="../assets/images/tool_bar_background.png" />
-  <img class="leftbracket" src="../assets/images/leftBracket.png" />
-  <img class="rightbracket" src="../assets/images/rightBracket.png" />
- 
+  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
+  <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
    <div class="backButton" (click)="closeSelf()">
-    <img class="backButtonImg" src="../assets/images/filterButtonBackground.png" />
- 
+    <img class="backButtonImg"  [src]="dataService.getImage('filterButtonBackground')"/>
     <label>back</label>
-     
+    
   </div>
+ 
 
 <label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> 
 
@@ -103,7 +102,7 @@
 </div>
 
  <div *ngIf="showConfOverlay" class="orderConfOverlay">
-   <div class="messageBack"> 
+   <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">	 	 
    	 	<div  class="loading" *ngIf="loading">
    	 			<p>please wait...</p>
    	 	</div>

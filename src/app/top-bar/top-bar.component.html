@@ -1,11 +1,11 @@
 <div class="parent">
-  <img class="backbar" src="../assets/images/tool_bar_background.jpg" />
-  <img class="leftbracket" src="../assets/images/leftBracket.png" />
-  <img class="rightbracket" src="../assets/images/rightBracket.png" />
+  <img class="backbar"   [src]="dataService.getImage('tool_bar_background')" />
+  <img class="leftbracket"   [src]="dataService.getImage('leftBracket')"/>
+  <img class="rightbracket"    [src]="dataService.getImage('rightBracket')"/>
   <div class="environmentButton">
-    <img class="envbutton" src="../assets/images/selectGameButtonBackground.png" (click)="openEnvironmentList()" />
+    <img class="envbutton" [src]="dataService.getImage('selectGameButtonBackground')" (click)="openEnvironmentList()" />
     <span>{{currentEnvTitle}}</span>
-    <img id="smallarrow" class="smallarrow" src="../assets/images/littleArrow.png" />
+    <img id="smallarrow" class="smallarrow" [src]="dataService.getImage('littleArrow')"  />
   </div>
    <div id="myDropdown" class="dropdown-content">
    <li *ngFor="let environmentKey of environmentKeys;  let i = index">
@@ -14,7 +14,7 @@
    </li>
   </div>
    <div class="loginLogoutButton">
-    <img class="loginLogoutText" src="../assets/images/filterButtonBackground.png" (click)="logout()"/>
+    <img class="loginLogoutText" [src]="dataService.getImage('filterButtonBackground')" (click)="logout()"/>
     <span>{{getSignInText()}}</span>
    
   </div>

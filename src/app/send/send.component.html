@@ -1,4 +1,4 @@
-<div class="backGround">
+<div class="backGround" [ngStyle]= "getBackground()" >
 
 <div class="darkView">
 </div>
@@ -20,21 +20,21 @@
  </div>
 
   </div> 
- <img class="keypadBack" src="../assets/images/qrbottomback.jpg" />
+ <img class="keypadBack"   [src]="dataService.getImage('qrbottomback')"/>
  
  
 <div class="middleBar">
 
-  <img class="middleBarImg" src="../assets/images/sendMiddleBar.png" /> 
+  <img class="middleBarImg"    [src]="dataService.getImage('sendMiddleBar')" /> 
    <div *ngIf="!sending" class="sendButton" (click)="send()">
-    <img class="sendButtonImg" src="../assets/images/filterButtonBackground.png" /> 
+    <img class="sendButtonImg"   [src]="dataService.getImage('filterButtonBackground')" /> 
     <label>send</label>
     
   </div>
   
-    <input type="button" name="" class="scanButton" (click)="scan()"/>
+    <input type="button" name="" class="scanButton" (click)="scan()" [ngStyle]="getScanImage()"/>
  
-   <img id="spinner"  src="../assets/images/spinner.gif" *ngIf="sending" />
+   <img id="spinner"   [src]="dataService.getImage('spinner')" *ngIf="sending" />
   <label class="amountText">{{currentORB}}{{amount}}</label>
  <input type="text" class="addressText" placeholder="enter address" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 </div>
@@ -45,65 +45,65 @@
 
 
 
-<div id="one" class="button" (click)="addKey('1')">
+<div id="one" class="button" (click)="addKey('1')" [ngStyle]= "getNumImage('1num')">
  
 </div>
 
-<div id="two" class="button" (click)="addKey('2')">
+<div id="two" class="button" (click)="addKey('2')" [ngStyle]= "getNumImage('2num')">
  
 </div>
 
-<div id="three" class="button" (click)="addKey('3')">
+<div id="three" class="button" (click)="addKey('3')" [ngStyle]= "getNumImage('3num')">
  
 </div>
 
-<div id="four" class="button" (click)="addKey('4')">
+<div id="four" class="button" (click)="addKey('4')" [ngStyle]= "getNumImage('4num')">
  
 </div>
 
-<div id="five" class="button" (click)="addKey('5')">
+<div id="five" class="button" (click)="addKey('5')" [ngStyle]= "getNumImage('5num')">
  
 </div>
 
-<div id="six" class="button" (click)="addKey('6')">
+<div id="six" class="button" (click)="addKey('6')" [ngStyle]= "getNumImage('6num')">
  
 </div>
 
-<div id="seven" class="button" (click)="addKey('7')">
+<div id="seven" class="button" (click)="addKey('7')" [ngStyle]= "getNumImage('7num')">
  
 </div>
 
-<div id="eight" class="button" (click)="addKey('8')">
+<div id="eight" class="button" (click)="addKey('8')" [ngStyle]= "getNumImage('8num')">
  
 </div>
 
-<div id="nine" class="button" (click)="addKey('9')">
+<div id="nine" class="button" (click)="addKey('9')" [ngStyle]= "getNumImage('9num')">
  
 </div>
 
-<div id="dot" class="button" (click)="addKey('.')">
+<div id="dot" class="button" (click)="addKey('.')" [ngStyle]= "getNumImage('dotnum')">
  
 </div>
 
-<div id="zero" class="button" (click)="addKey('0')">
+<div id="zero" class="button" (click)="addKey('0')" [ngStyle]= "getNumImage('0num')">
  
 </div>
 
-<div id="del" class="button" (click)="addKey('-1')">
+<div id="del" class="button" (click)="addKey('-1')" [ngStyle]= "getNumImage('delnum')">
  
 </div>
 
 </div>
 
 <div class="parent">
-  <img class="backbar" src="../assets/images/tool_bar_background.png" />
-  <img class="leftbracket" src="../assets/images/leftBracket.png" />
-  <img class="rightbracket" src="../assets/images/rightBracket.png" />
+  <img class="backbar"   [src]="dataService.getImage('tool_bar_background')"/>
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')" />
+  <img class="rightbracket"  [src]="dataService.getImage('rightBracket')" />
 
 
 
    <div class="backButton" (click)="closeSend()">
-    <img class="backButtonImg" src="../assets/images/filterButtonBackground.png" />
+    <img class="backButtonImg" [src]="dataService.getImage('filterButtonBackground')"/>
 
 
     <label>back</label>

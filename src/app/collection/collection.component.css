@@ -51,29 +51,6 @@ app-collection-card {
  
 }
 
-.card {  
- 
-
- background: url('/assets/images/cardback.png') no-repeat scroll 0 0;
-background-size: 100% 100%; 
-width: 100%;
- margin: 0 auto;
-}
-
- 
-
-
-.shadowBox { 
-	 
-	background: url('/assets/images/shadowView.png') no-repeat scroll 0 0;
-background-size: 100% 100%; 
-width:60%;
-height:40px;
-    border: 0;
-    margin: 0;
-    display: inline-block;
-
-}
  
  
 .ownAllButton { 

@@ -271,7 +271,7 @@ label{
 .aBuyOrder  {
      width: 100%;
     height: 8vh;
- background: url('/assets/images/sellPriceButton.png'); 
+ 
   background-size:contain;
   background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -279,13 +279,15 @@ label{
 .aSellOrder {
      width: 100%;
     height: 8vh;
- background: url('/assets/images/buyPriceButton.png'); 
+  
  background-size:contain;
   background-repeat: no-repeat;
     background-position: 50% 50%;
 }
 .messageBack {
-  background: url('/assets/images/thinFrame.png') no-repeat scroll 0 0;
+  
+    background-color: Transparent;
+    background-repeat: no-repeat;
     display: inline-block;
   position: absolute;
      background-repeat: no-repeat; 
@@ -317,7 +319,8 @@ label{
 margin-top: 40px;
 }
 .customButtonPlaceOrder{
-  background: url(/assets/images/buyPriceButton.png) no-repeat;
+    background-color: Transparent;
+background-repeat: no-repeat;
   background-size:100% 100%; 
   width:90px; 
   background-position: 50% 50%; 
@@ -329,7 +332,8 @@ margin-top: 40px;
   border: none; 
 }
 .customButtonCancel{
-  background: url(/assets/images/filterButtonBackground.png) no-repeat;
+    background-color: Transparent;
+  background-repeat: no-repeat;
   background-size:100% 100%; 
   width:80px; 
   height:30px; 
@@ -343,7 +347,8 @@ margin-top: 40px;
 }
 
 .customButtonConfirm{
-  background: url(/assets/images/buyPriceButton.png) no-repeat;
+    background-color: Transparent;
+ background-repeat: no-repeat;
   background-size:100% 100%; 
   width:90px; 
   background-position: 50% 50%; 
@@ -356,7 +361,8 @@ margin-top: 40px;
   margin-left: 10px; 
 }
 .customButtonBuy{
-  background: url(/assets/images/buyPriceButton.png) no-repeat;
+    background-color: Transparent;
+ background-repeat: no-repeat;
   background-size:100% 100%; 
   width:80px; 
   background-position: 50% 50%; 
@@ -368,8 +374,9 @@ margin-top: 40px;
   border: none;
   margin-left: 10px; 
 }
-.customButtonSell{
-  background: url(/assets/images/sellPriceButton.png) no-repeat;
+.customButtonSell{ 
+    background-color: Transparent;
+  background-repeat: no-repeat;
   background-size:100% 100%; 
   width:80px; 
   height:30px; 
@@ -382,12 +389,12 @@ margin-top: 40px;
   margin-left: 10px; 
 }
 .customButtonBackNext{
-  background: url(/assets/images/filterButtonBackground.png) no-repeat;
+   background-repeat: no-repeat;
   background-size:100% 100%; 
   width:80px; 
   height:30px; 
   background-position: 50% 50%; 
- 
+  background-color: Transparent;
   font-size: 0.9em;
   color: #ffffd5;
   font-family:   sling;

@@ -5,7 +5,7 @@
   left: 0;
   width:100%;
   height:100%;
-  background: url('/assets/images/accountBackground.jpg') no-repeat scroll 0 0;
+ 
   width:100%;
  
      background-repeat: no-repeat; 
@@ -110,18 +110,6 @@
   height:30px;
 }
 
-.scanButton {
-  text-align: center;
-     cursor: pointer;
-    position: absolute;
-    top: 12px;
-  left: 5px;
-  width:32px;
-  height:32px;
-   background: url('/assets/images/qrcodeSend.png') no-repeat scroll 0 0;
-background-size: 100% 100%; 
- border:none;
-}
  
 
 @keyframes float {
@@ -323,16 +311,15 @@ display: flex;
 
 #one{
 
-  background: url('/assets/images/1num.png') no-repeat 0 0;
-   background-size: auto 50%;
-   background-position: center;
- border:none; 
- background-blend-mode: overlay;
+ /* background: url('/assets/images/1num.png') no-repeat 0 0; */
+  
+  
 
 }
 #two{
 
-  background: url('/assets/images/2num.png') no-repeat 0 0;
+ /* background: url('/assets/images/2num.png') no-repeat 0 0;*/
+ background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none; 
@@ -341,8 +328,7 @@ display: flex;
 }
 
 #three{
-
-  background: url('/assets/images/3num.png') no-repeat 0 0;
+  background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none; 
@@ -350,8 +336,7 @@ display: flex;
 
 }
 #four{
-
-  background: url('/assets/images/4num.png') no-repeat 0 0;
+  background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none; 
@@ -359,8 +344,7 @@ display: flex;
 
 }
 #five{
-
-  background: url('/assets/images/5num.png') no-repeat 0 0;
+  background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none; 
@@ -368,8 +352,7 @@ display: flex;
 
 }
 #six{
-
-  background: url('/assets/images/6num.png') no-repeat 0 0;
+  background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none;
@@ -377,8 +360,7 @@ display: flex;
 
 }
 #seven{
-
-  background: url('/assets/images/7num.png') no-repeat 0 0;
+  background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none;
@@ -386,8 +368,7 @@ display: flex;
 
 }
 #eight{
-
-  background: url('/assets/images/8num.png') no-repeat 0 0;
+  background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none; 
@@ -395,8 +376,7 @@ display: flex;
 
 }
 #nine{
-
-  background: url('/assets/images/9num.png') no-repeat 0 0;
+  background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none; 
@@ -404,8 +384,7 @@ display: flex;
 
 }
 #zero{
-
-  background: url('/assets/images/0num.png') no-repeat 0 0;
+  background-repeat: no-repeat; 
    background-size: auto 50%;
    background-position: center;
  border:none; 
@@ -413,9 +392,8 @@ display: flex;
 
 }
 
-#del{
-
-  background: url('/assets/images/delnum.png') no-repeat 0 0;
+#del{   
+ background-repeat: no-repeat 0 0; 
    background-size: auto 55%;
    background-position: center;
  border:none;  
@@ -423,8 +401,7 @@ display: flex;
 }
 
 #dot{
-
-  background: url('/assets/images/dotnum.png') no-repeat 0 0;
+  background-repeat: no-repeat 0 0; 
    background-size: auto 50%;
    background-position: center;
  border:none; 

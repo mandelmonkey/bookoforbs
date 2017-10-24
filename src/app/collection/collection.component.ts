@@ -14,7 +14,7 @@ export class CollectionComponent implements OnInit {
 
  
 
- allOwnImage = "../assets/images/leftOptionSeg.png";
+ allOwnImage = this.dataService.getImage('leftOptionSeg'); 
   public allOrbs = false;
   // public loading = false;
   
@@ -30,8 +30,8 @@ export class CollectionComponent implements OnInit {
  scrollView;
 
 
- errorImage = "../assets/images/stoneBack.jpg";
-  defaultImage = "../assets/images/cardback.png";
+ errorImage = this.dataService.getImage('cardback');
+  defaultImage = this.dataService.getImage('cardback');
 
 
  constructor(public dataService:DataService,private httpService:HTTPService) {
@@ -163,10 +163,10 @@ if(currentData != null){
 
      if(definition.assetOrientation == "landscape"){
 this.dataService.landscape = true;
- this.defaultImage = "../assets/images/cardbackLandscape.png";
+ this.defaultImage = this.dataService.getImage('cardbackLandscape');
  }else{
 this.dataService.landscape = false;
-this.defaultImage = "../assets/images/cardback.png";
+this.defaultImage = this.dataService.getImage('cardback');
 
  }
     this.setWidths();
@@ -207,7 +207,7 @@ this.defaultImage = "../assets/images/cardback.png";
          
           
       this.allOrbs = true;
-      this.allOwnImage = "../assets/images/rightOptionSeg.png";
+      this.allOwnImage = this.dataService.getImage('rightOptionSeg');
 
     }
 }
@@ -258,7 +258,7 @@ this.defaultImage = "../assets/images/cardback.png";
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
         
       this.allOrbs = false;
-      this.allOwnImage = "../assets/images/leftOptionSeg.png";
+      this.allOwnImage =this.dataService.getImage('leftOptionSeg');
     }
     else{
    
@@ -266,7 +266,7 @@ this.defaultImage = "../assets/images/cardback.png";
        this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
           
       this.allOrbs = true;
-      this.allOwnImage = "../assets/images/rightOptionSeg.png";
+      this.allOwnImage = this.dataService.getImage('rightOptionSeg');
     }
   }
 
