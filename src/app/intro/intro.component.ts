@@ -100,8 +100,9 @@ this.isIndiesquare = true;
   }
   ngOnInit() {
 
- //this.persistenceService.set('userAddress0', "1EewCNrN1oypSYZE81HBiqrjuhkLcz1qXR", {type: StorageType.LOCAL}); 
-   //this.persistenceService.set('linkType', "indiesquare", {type: StorageType.LOCAL}); 
+    
+  this.persistenceService.set('userAddress0', "1EewCNrN1oypSYZE81HBiqrjuhkLcz1qXR", {type: StorageType.LOCAL}); 
+    this.persistenceService.set('linkType', "indiesquare", {type: StorageType.LOCAL}); 
    
     this.isIndiesquare = false; 
     this.shorturl = window.location.href+"?pass=";
