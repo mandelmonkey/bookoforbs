@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 declare var QCodeDecoder:any;
-
+ declare var bitcore:any; 
 @Component({
   selector: 'app-qrscan',
   templateUrl: './qrscan.component.html',
@@ -44,6 +44,8 @@ this.qrScanner = QCodeDecoder();
     this.qrScanner.decodeFromVideo(  tmpthis.video, function(er,res){
      //if (er) throw er;
     if(typeof res != "undefined"){
+
+        if( bitcore.Address.isValid(res, 'livenet') == false){
     	  
 		tmpthis.qrScanner.stop();
 		tmpthis.qrScanner = null;
@@ -52,6 +54,7 @@ this.qrScanner = QCodeDecoder();
     	tmpthis.exit();
     	
     }
+  }
 
   });
      

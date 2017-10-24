@@ -185,7 +185,7 @@ currentOwner.sending = true;
     
     if(parseFloat(this.amount) < 0 || parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
       if( parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
- this.dataService.maincontroller.showMessage("you don't have enough "+this.dataService.maincontroller.currentCurrency);
+ this.dataService.maincontroller.showMessage("you don't have enough "+this.dataService.maincontroller.selectedKey);
 
       }else{
       this.dataService.maincontroller.showMessage("please enter a valid amount");
@@ -224,7 +224,7 @@ if(this.dataService.maincontroller.currentFee == "custom"){
 console.log("fee "+fee);
 console.log("feeperkb "+feePerKb);
 
- this.httpService.createSendTransaction(this.dataService.maincontroller.currentAddress,this.sendAddress,this.dataService.maincontroller.selectedKey,this.amount,feePerKb,fee).subscribe(
+ this.httpService.createSendTransaction(this.dataService.maincontroller.currentAddress,this.dataService.maincontroller.currentSendAddress,this.dataService.maincontroller.selectedKey,this.amount,feePerKb,fee).subscribe(
      data => { 
       console.log(JSON.stringify(data));
         tmpthis.currentSendResponse = data;

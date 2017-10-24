@@ -15,6 +15,7 @@ export class DataService {
   isMobile:boolean;
   viewMode:boolean;
   landscape:boolean;
+  
    constructor(){
     this.currentTab = 1;
 
