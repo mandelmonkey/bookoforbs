@@ -223,18 +223,99 @@ var tmpThis = this
    var fee = -1;
    var feePerKb = -1;
  
+ var sendParams = {"source": this.dataService.maincontroller.currentAddress, "token": this.dataService.maincontroller.selectedKey, "destination":this.dataService.maincontroller.currentSendAddress, "quantity": this.amount};
 if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)){
+ 
 
-  fee =  Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
-  feePerKb = -1;
+  sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
 
 }else{
-  fee = -1;
-  feePerKb = this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
+  sendParams["feePerKb"] =this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
+
+  
+}
+ 
+console.dir('called this once:');
+tmpthis.indiesquare.createSend({"source": this.dataService.maincontroller.currentAddress, "token": this.dataService.maincontroller.selectedKey, "destination":this.dataService.maincontroller.currentSendAddress, "quantity": this.amount}, function(data, error){
+    if( error ){
+
+             tmpthis.dataService.maincontroller.showMessage(error);
+        console.error(error);
+        return;
+    }
+
+    if(data != null){
+
+    tmpthis.currentSendResponse = data;
+var feeBTC = "0.0001";
+
+      console.dir('called once:');
+      console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
+
+   if(this.dataService.maincontroller.linkType == "indiesquare"){
+     
+     tmpthis.indiesquare.signTransaction({'unsigned_tx': tmpthis.currentSendResponse.unsigned_tx}, function(url, urlScheme, error){
+  
+    if( error ){
+      console.error(error);
+             tmpthis.dataService.maincontroller.showMessage(error);
+        tmpthis.sending = false;
+        
+       
+        return;
+    } 
+   
+   
+}, function(result, error){
+ 
+  if(error){
+    console.error(error); 
+             tmpthis.dataService.maincontroller.showMessage(error);
+    tmpthis.sending = false;
+ return;
+  }else{
+     
+console.log(result.signed_tx); 
+
+  
+     tmpthis.indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
+        if( error ){
+            console.error(error);
+             tmpthis.dataService.maincontroller.showMessage(error);
+             tmpthis.sending = false;
+            return;
+        }
+        tmpthis.dataService.maincontroller.showMessage("sent!");
+      }); 
+
+
+
+   }
+   
+
+});
+
+
+
+
+
+
+
+
+      }else{
+
+         tmpthis.dataService.maincontroller.showConf("You are sending\n\n"+tmpthis.amount+ " " +tmpthis.dataService.maincontroller.selectedKey+" to "+tmpthis.sendAddress+"\n\nfee: "+feeBTC+" btc",tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
+
+
+    
+
+      } 
+  
+
 }
 
-console.log("fee "+fee);
-console.log("feeperkb "+feePerKb);
+});
+/*
 
  this.httpService.createSendTransaction(this.dataService.maincontroller.currentAddress,this.dataService.maincontroller.currentSendAddress,this.dataService.maincontroller.selectedKey,this.amount,feePerKb,fee).subscribe(
      data => { 
@@ -313,7 +394,7 @@ console.log(result.signed_tx);
       },
      () => {});
 
-
+*/
   }
 
 }
