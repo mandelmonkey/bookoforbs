@@ -15,9 +15,7 @@ app.options('*', cors()) // include before other routes
   res.json({msg: 'This is CORS-enabled for all origins!'});
 });
  
-app.listen(80, function(){
-  console.log('CORS-enabled web server listening on port 80');
-});
+
 
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https'){
@@ -31,10 +29,13 @@ app.get('*',function(req,res,next){
      next();
  }
 })
+/*
 const port = process.env.PORT || 8080;
 app.set('port',port);
 
 const server = http.createServer(app);
-server.listen(port, () => console.log('Running'));
-//app.listen(process.env.PORT || 8080);
-
+ server.listen(port, () => console.log('Running'));
+ */
+app.listen(80, function(){
+  console.log('CORS-enabled web server listening on port 80');
+});
