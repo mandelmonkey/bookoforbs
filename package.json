@@ -2,19 +2,19 @@
   "name": "bookoforbs",
   "version": "0.0.0",
   "license": "MIT",
-  "main":"app.js",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",  
+    "e2e": "ng e2e",
     "postinstall": "ng build --aot -prod"
   },
   "engines": {
     "node": "8.1.2",
     "npm": "5.0.3"
-  }, 
+  },
   "dependencies": {
     "@angular/cli": "1.0.1",
     "@angular/compiler-cli": "^4.0.0",
