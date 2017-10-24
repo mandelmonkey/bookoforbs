@@ -122,6 +122,14 @@ header.append('X-Api-Key', this.apiKey);
       .map(res => res.json());
        
     };
+      getHistory(address,type){
+      /*
+      return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/balances?X-Api-Key=" + this.apiKey)
+      .map(res=>res.json());*/
+
+       return this._http.get(this.indieURL+"/v2/addresses/" +address + "/history?type="+type+"&length=100")
+      .map(res=>res.json());
+    };
     getBalance(address){
       /*
       return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/balances?X-Api-Key=" + this.apiKey)

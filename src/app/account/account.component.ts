@@ -98,9 +98,15 @@ export class AccountComponent implements OnInit {
        isCurrency:true
      };
      if(currency == "BTC"){
-       selectedOrb.image = "../assets/images/bitcoinWingsSmall.png";
+       selectedOrb.image = this.dataService.getImage('bitcoinWingsSmall');
      }else if (currency == "BITCRYSTALS"){
-       selectedOrb.image = "../assets/images/bitcrystals.png";
+       selectedOrb.image = this.dataService.getImage('bitcrystals');
+     }
+     else if (currency == "PEPECASH"){
+       selectedOrb.image = this.dataService.getImage('pepecash');
+     }
+     else if (currency == "XCP"){
+       selectedOrb.image = this.dataService.getImage('xcp_asset');
      }
     this.dataService.maincontroller.selectedOrb = selectedOrb;
     this.dataService.maincontroller.selectedKey = currency; 
@@ -110,8 +116,14 @@ export class AccountComponent implements OnInit {
   }
 getCurrencyIcon (){
 	if(this.dataService.maincontroller.currentCurrency == "BITCRYSTALS"){
-		return "../assets/images/bitcrystals.png"
-	}else {
+		return this.dataService.getImage('bitcrystals');
+	}else if(this.dataService.maincontroller.currentCurrency == "XCP"){
+    return this.dataService.getImage('xcp_asset');
+  }
+  else if(this.dataService.maincontroller.currentCurrency == "PEPECASH"){
+    return this.dataService.getImage('pepecash');
+  }
+  else {
 		return "";
 	}
 }

@@ -1,0 +1,40 @@
+<div  class="history">
+	<div class="parent">
+  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
+  <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
+ 
+ 
+
+<label id="balance" class="toptitle">History</label> 
+
+
+      
+
+</div>
+
+
+
+<div *ngIf="!dataService.maincontroller.loading " class="ownAllButton">
+    <img class="ownAllButtonImg" src={{allOwnImage}} (click)="selectAllOwn()" />
+    <div class="ownAllButtonLeft">Send/Receive</div>  <div class="ownAllButtonRight">Orders</div>
+  </div>
+
+
+<virtual-scroll id="scrollView" class="scrollable" [items]="dataService.maincontroller.history" (update)="viewPortItems = $event"
+[style.height]="getHistoryHeight()">
+
+<label class="status" *ngIf="loading">loading...</label> 
+ 
+ 
+    <app-history-card *ngFor="let item of viewPortItems;" >
+    </app-history-card>
+ 
+
+</virtual-scroll>  
+ 
+	 
+
+
+
+    </div>

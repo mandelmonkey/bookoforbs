@@ -13,7 +13,7 @@
    
    </li>
   </div>
-   <div class="loginLogoutButton">
+   <div *ngIf="shouldShowSignInOut()" class="loginLogoutButton">
     <img class="loginLogoutText" [src]="dataService.getImage('filterButtonBackground')" (click)="logout()"/>
     <span>{{getSignInText()}}</span>
    

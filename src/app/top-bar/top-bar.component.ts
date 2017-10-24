@@ -122,6 +122,14 @@ this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode);
 
 }
 
+shouldShowSignInOut(){
+  if(this.dataService.maincontroller.showAccount == true){
+    return true;
+  }else if(this.dataService.maincontroller.currentAddress == "empty"){
+    return true;
+  }
+  return false;
+}
 
  
 }

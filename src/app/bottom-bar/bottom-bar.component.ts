@@ -19,6 +19,10 @@ export class BottomBarComponent implements OnInit {
   }
 
   select1(){
+
+    if(this.dataService.maincontroller.loading){
+      return;
+    }
   		this.dataService.currentTab = 1;
   		this.image1 = this.dataService.getImage('bottomBarBlack');
   		this.image2 = this.dataService.getImage('bottomBarClear');
@@ -31,6 +35,9 @@ export class BottomBarComponent implements OnInit {
   	console.log("1");
   }
   select2(){
+    if(this.dataService.maincontroller.loading){
+      return;
+    }
   		this.dataService.currentTab = 2;
   		this.image1 =this.dataService.getImage('bottomBarClear');
   		this.image2 = this.dataService.getImage('bottomBarBlack');
@@ -45,6 +52,9 @@ export class BottomBarComponent implements OnInit {
 
   }
   select3(){
+    if(this.dataService.maincontroller.loading){
+      return;
+    }
   		 this.dataService.currentTab = 3;
   		this.image1 = this.dataService.getImage('bottomBarClear');
   		this.image2 = this.dataService.getImage('bottomBarClear');
@@ -62,6 +72,9 @@ export class BottomBarComponent implements OnInit {
 
   }
   select4(){
+    if(this.dataService.maincontroller.loading){
+      return;
+    }
   		this.dataService.currentTab = 4;
   		this.image1 = this.dataService.getImage('bottomBarClear');
   		this.image2 =this.dataService.getImage('bottomBarClear');

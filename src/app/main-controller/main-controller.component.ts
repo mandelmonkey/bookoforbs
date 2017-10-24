@@ -19,7 +19,7 @@ public showOrderPage = false;
 public showCollection = true;
 public showSelected = false;
 public showMarket = false;
-public showHistory = true;
+public showHistory = false;
 public showBottomBar = true;
 public showAccount = false;
 public showIntro = false;
@@ -49,7 +49,7 @@ public currentCurrency:string;
 public currentAbrev:string;
 public currentSendAddress:string;
 public currentCurrencyImg:string;
-
+public history =[];
   public currentOrbs : Array<any>;
   public currentOrbsKeys : Array<any>;
   public allOrbsKeys : Array<any>;

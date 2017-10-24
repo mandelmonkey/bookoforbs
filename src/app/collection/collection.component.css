@@ -72,7 +72,7 @@ app-collection-card {
 }
 
 .status{
-  top:200px; 
+  top:30vh;
   width:100%;
   left:0;
   position: absolute;

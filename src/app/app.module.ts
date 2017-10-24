@@ -21,7 +21,9 @@ import { PersistenceModule } from 'angular-persistence';
 import { VirtualScrollModule } from 'angular2-virtual-scroll';
 import { CollectionCardComponent } from './collection-card/collection-card.component';
 import { AccountComponent } from './account/account.component';
-import { QrscanComponent } from './qrscan/qrscan.component'; 
+import { QrscanComponent } from './qrscan/qrscan.component';
+import { HistoryComponent } from './history/history.component';
+import { HistoryCardComponent } from './history-card/history-card.component'; 
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -41,7 +43,9 @@ const appRoutes: Routes = [
     FeeSelectorComponent,
     CollectionCardComponent,
     AccountComponent,
-    QrscanComponent
+    QrscanComponent,
+    HistoryComponent,
+    HistoryCardComponent
   ],
   imports: [
     PersistenceModule,

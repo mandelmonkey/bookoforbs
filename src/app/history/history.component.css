@@ -1,0 +1,114 @@
+.history{
+ 
+  
+   width:100%;
+   text-align: center;  
+}
+.ownAllButton { 
+  margin: 0 auto;
+     cursor: pointer; 
+  width:250px;
+  height:46px;  
+  display: inline-block;
+  text-align: center; 
+  margin-top: 10px; 
+}
+.ownAllButtonLeft { 
+  width:100px;
+  top: 12px;
+  display: inline-block;
+     pointer-events: none;
+    position: relative;
+    color: #ffffd5;
+    font-family:   merriweather;  
+    font-size: 0.9em;
+}
+ 
+.ownAllButtonRight { 
+   width:100px;
+   top: 12px;
+     pointer-events: none;
+      position: relative; 
+  display: inline-block;
+    color: #ffffd5;
+    font-family:   merriweather; 
+    font-size: 0.9em;
+}
+
+
+
+.ownAllButtonImg {
+   position: absolute; 
+  margin-left:-125px;
+    left:50%;
+  height:46px;
+   width:250px;
+    outline: 0 !important;
+    border:0 none !important;
+}
+
+
+.parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+
+}
+
+.backbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:55px;
+}
+.leftbracket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:10px;
+  height:55px;
+}
+.rightbracket {
+  position: absolute;
+  top: 0;
+  right: 0;
+   width:10px;
+  height:55px;
+}
+
+ .toptitle { 
+ position: absolute; 
+     top: 16px;
+     left:0px;
+     text-align: center;
+  width:100%;
+  height:60px;
+  color: #ffffd5;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+}
+
+virtual-scroll {
+ width:100vw;
+   text-align: center;  
+    margin-left: auto;
+    margin-right: auto;
+      -webkit-overflow-scrolling: touch;
+ 
+}
+
+.status{
+  top:200px; 
+  width:100%;
+  left:0;
+  position: absolute;
+ color: #ffffd5;
+    font-family:   merriweather; 
+
+}
+  
+

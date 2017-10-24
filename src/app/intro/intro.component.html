@@ -20,14 +20,14 @@
  <br>  
 
 
-     <div class="newWalletButton" (click)="createNewAccount()" >
+     <div *ngIf="!dataService.isMobile" class="newWalletButton" (click)="createNewAccount()" >
 
         <img class="newWalletImage"  [src]="dataService.getImage('frontButton')"/>
         <label>Create new wallet</label>
      </div>
  <br> 
    
-    <div class="newWalletButton" (click)="enterPassphrase()">
+    <div *ngIf="!dataService.isMobile" class="newWalletButton" (click)="enterPassphrase()">
       <img class="newWalletImage"   [src]="dataService.getImage('frontButton')" />
       <label>Enter passphrase</label>  
     </div>
