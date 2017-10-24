@@ -1,18 +1,4 @@
  
-.collectionScroll{
-
- 
-   
-   width:100vw;
-   text-align: center; 
-	 overflow:hidden; overflow-y:scroll;
-    overflow: auto;
-        -webkit-overflow-scrolling: touch;
-
- 
-    margin-left: auto;
-    margin-right: auto;
-}
 .collection{
  
   

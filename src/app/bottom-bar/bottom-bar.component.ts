@@ -7,7 +7,7 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./bottom-bar.component.css']
 })
 export class BottomBarComponent implements OnInit {
- image1 = this.dataService.getImage('bottomBarClear');// "../assets/images/bottomBarBlack.png";
+ image1 = this.dataService.getImage('bottomBarBlack');// "../assets/images/bottomBarBlack.png";
  image2 = this.dataService.getImage('bottomBarClear');
  image3 = this.dataService.getImage('bottomBarClear');//"../assets/images/bottomBarClear.png";
  image4 = this.dataService.getImage('bottomBarClear');//"../assets/images/bottomBarClear.png";
@@ -20,7 +20,9 @@ export class BottomBarComponent implements OnInit {
 
   select1(){
 
-     
+    if(this.dataService.maincontroller.loading){
+      return;
+    }
   		this.dataService.currentTab = 1;
   		this.image1 = this.dataService.getImage('bottomBarBlack');
   		this.image2 = this.dataService.getImage('bottomBarClear');

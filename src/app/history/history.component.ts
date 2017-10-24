@@ -1,10 +1,9 @@
 import { Component, OnInit,ViewChild, ElementRef,ChangeDetectorRef } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { DataService } from '../services/data.service';
-
 import {HTTPService} from "../services/http.service";
-
+import { DataService } from '../services/data.service';
+declare var viewPortItems2:any;
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -12,7 +11,7 @@ import {HTTPService} from "../services/http.service";
 })
 export class HistoryComponent implements OnInit {
 allOwnImage = this.dataService.getImage('leftOptionSeg');
- 
+  viewPortItems2:any;
 loading = false;
  scrollView;
  didInit=false;

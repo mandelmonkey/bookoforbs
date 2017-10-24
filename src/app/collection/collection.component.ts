@@ -15,8 +15,7 @@ export class CollectionComponent implements OnInit {
 
  allOwnImage = this.dataService.getImage('leftOptionSeg'); 
   public allOrbs = false;
-  // public loading = false;
-  
+   
   
   currentScroll:number;
   floatCheck:number;
@@ -45,7 +44,7 @@ export class CollectionComponent implements OnInit {
  }
   ngOnInit() {
 
-    console.log("collection inited");
+   
     this.dataService.collection = this;
     this.currentScroll = 40;
     this.floatCheck = 0;
@@ -109,13 +108,7 @@ export class CollectionComponent implements OnInit {
     }
    
   }
- onScroll() {
-
-
  
- 
-}
-
   setCurrentOrbs(env:string){
 
 

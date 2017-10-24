@@ -20,7 +20,7 @@ constructor(public dataService:DataService) { }
   }
    getHeight(){
   	 var pxWidth = (document.documentElement.clientWidth * 0.9);
-   	var pxHeight = pxWidth * 0.6;
+   	var pxHeight = pxWidth * 0.55;
 
   	return pxHeight+"px";
   
