@@ -37,14 +37,7 @@ public sending:boolean;
     'apikey': this.httpService.apiKey  
     });
 
-    this.indiesquare.createSend({"source": "1LZp3kBtqiTi1szU1pMWWmVhejBdmHNirm", "token": "CNPCOIN", "destination": "1JynF1GgD279DBZxQBubJXz4NuHcTy65k3", "quantity": 1}, function(data, error){
-    if( error ){
-        console.error("sne derror "+error);
-        return;
-    }
-    console.dir('unsigned_tx:' + data.unsigned_tx);
-});
-
+    
   }
 
   closeSend(){
@@ -240,9 +233,8 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
 
   
 }
- 
-tmpthis.indiesquare.createSend({"source": "1LZp3kBtqiTi1szU1pMWWmVhejBdmHNirm", "token": "CNPCOIN", "destination": "1JynF1GgD279DBZxQBubJXz4NuHcTy65k3", "quantity": 1}, function(data, error){
-   
+ console.log(JSON.stringify(sendParams));
+tmpthis.indiesquare.createSend(sendParams, function(data, error){
     if( error ){
 console.error("send error " + error);
              tmpthis.dataService.maincontroller.showMessage(error);
