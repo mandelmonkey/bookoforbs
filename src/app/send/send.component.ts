@@ -37,7 +37,13 @@ public sending:boolean;
     'apikey': this.httpService.apiKey  
     });
 
-
+    this.indiesquare.createSend({"source": "1LZp3kBtqiTi1szU1pMWWmVhejBdmHNirm", "token": "CNPCOIN", "destination": "1JynF1GgD279DBZxQBubJXz4NuHcTy65k3", "quantity": 1}, function(data, error){
+    if( error ){
+        console.error("sne derror "+error);
+        return;
+    }
+    console.dir('unsigned_tx:' + data.unsigned_tx);
+});
 
   }
 
