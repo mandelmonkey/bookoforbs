@@ -15,10 +15,12 @@
 
 
 
-<div *ngIf="!dataService.maincontroller.loading " class="ownAllButton">
+<div *ngIf="!dataService.maincontroller.loading" class="ownAllButton">
     <img class="ownAllButtonImg" src={{allOwnImage}} (click)="selectAllOwn()" />
     <div class="ownAllButtonLeft">Send/Receive</div>  <div class="ownAllButtonRight">Orders</div>
   </div>
+
+
 
 
 <virtual-scroll id="scrollView" class="scrollable" [items]="dataService.maincontroller.history" (update)="viewPortItems = $event"

@@ -10,8 +10,7 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit {
- @ViewChild('scrollMe') private myScrollContainer: ElementRef;
-
+ 
  
 
  allOwnImage = this.dataService.getImage('leftOptionSeg'); 
