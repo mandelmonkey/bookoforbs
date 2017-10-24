@@ -10,6 +10,7 @@ export class HTTPService{
     apiKey = "f29809821767e00b19e887e762e78e01";
        defaultBundleID = "com.spellsofgenesis";
      defaultEnvCode = "eSog";
+     indieURL = "https://api.indiesquare.me";
    baseOrbUrl = "https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center";
   devExt = "&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd";
    
@@ -80,7 +81,7 @@ export class HTTPService{
     getRawTransaction(txid){
         
 
-      return this._http.get("https://api.indiesquare.me/v2/transactions/"+txid+"/raw?X-Api-Key=" + this.apiKey)
+      return this._http.get(this.indieURL+"/v2/transactions/"+txid+"/raw?X-Api-Key=" + this.apiKey)
       .map(res=>res.json());
     };
      
@@ -115,7 +116,7 @@ export class HTTPService{
  header.append('Content-type','Content-Type: application/json; charset=utf-8');
 header.append('X-Api-Key', this.apiKey);
       
-       return this._http.get("https://api.indiesquare.me/v2/orders/"+token+"/book?base_token="+currency+"&X-Api-Key=" + this.apiKey,{
+       return this._http.get(this.indieURL+"/v2/orders/"+token+"/book?base_token="+currency+"&X-Api-Key=" + this.apiKey,{
         headers:header
       })
       .map(res => res.json());
@@ -126,12 +127,12 @@ header.append('X-Api-Key', this.apiKey);
       return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/balances?X-Api-Key=" + this.apiKey)
       .map(res=>res.json());*/
 
-       return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/balances")
+       return this._http.get(this.indieURL+"/v2/addresses/"+address+"/balances")
       .map(res=>res.json());
     };
 
      getFees(){
-      return this._http.get("https://api.indiesquare.me/v2/fees/recommended?X-Api-Key=" + this.apiKey)
+      return this._http.get(this.indieURL+"/v2/fees/recommended?X-Api-Key=" + this.apiKey)
       .map(res=>res.json());
     };
 
@@ -145,14 +146,14 @@ header.append('X-Api-Key', this.apiKey);
       header.append('Content-type', 'Content-Type: application/json');
        header.append('Content-type', 'Content-Type: application/json');
 
-      return this._http.post("https://api.indiesquare.me/v2/transactions/broadcast?X-Api-Key=" + this.apiKey,params, {
+      return this._http.post(this.indieURL+"/v2/transactions/broadcast?X-Api-Key=" + this.apiKey,params, {
         headers:header
       })
       .map(res => res.json());
     };
 
     getRawTransactions(address){
-      return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/rawtransactions?X-Api-Key=" + this.apiKey)
+      return this._http.get(this.indieURL+"/v2/addresses/"+address+"/rawtransactions?X-Api-Key=" + this.apiKey)
       .map(res=>res.json());
     };
 
@@ -167,7 +168,7 @@ header.append('X-Api-Key', this.apiKey);
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
 
-      return this._http.post("https://api.indiesquare.me/v2/transactions/decode?X-Api-Key=" + this.apiKey,params, {
+      return this._http.post(this.indieURL+"/v2/transactions/decode?X-Api-Key=" + this.apiKey,params, {
         headers:header
       })
       .map(res => res.json());
@@ -201,7 +202,7 @@ header.append('X-Api-Key', this.apiKey);
       header.append('Content-type', 'Content-Type: application/json');
      //  header.append('Access-Control-Allow-Origin', '*');
  
-      return this._http.post("https://api.indiesquare.net/v2/transactions/send",params, {
+      return this._http.post(this.indieURL+"/v2/transactions/send",params, {
         headers:header
       })
       .map(res => res.json());
