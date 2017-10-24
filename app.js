@@ -11,6 +11,13 @@ app.use(express.static(path.join(__dirname,'dist')));
  app.use(cors());
 app.options('*', cors()) // include before other routes
  
+ app.get('/products/:id', function(req, res, next){
+  res.json({msg: 'This is CORS-enabled for all origins!'});
+});
+ 
+app.listen(80, function(){
+  console.log('CORS-enabled web server listening on port 80');
+});
 
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https'){
