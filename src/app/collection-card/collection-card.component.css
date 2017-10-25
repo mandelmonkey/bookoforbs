@@ -7,16 +7,21 @@
   text-align: center; 
   font-size: 0; 
   display: inline-block;
+
  
 }
 .card {  
-  
+ 
+    
  
 width: 100%;
-
+  
  margin: 0 auto;
- transition: opacity 1s;
-            opacity: 1;
+  -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+         
 }
 
  
