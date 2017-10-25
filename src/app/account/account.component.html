@@ -1,5 +1,5 @@
  <img class="background"  [src]="dataService.getImage('accountBackground')"   />
-<div class="topDiv">  
+<div class="topDiv" [style.height]="getTopHeight()">  
 
 	<br>
   <div class="title1">Receiving address for ORBS, Bitcoin and {{dataService.maincontroller.currentCurrency}}</div>
@@ -9,7 +9,7 @@
 <div class="title3">{{getAddress()}}</div>
 
   </div>
-<div class="bottomDiv">
+<div class="bottomDiv" [style.height]="getBottomHeight()">
 	<img class="seperator"  [src]="dataService.getImage('leatherSeperator')" />
 <!--	<img class="bottomImg" src="../assets/images/qrbottomback.jpg"   />-->
 

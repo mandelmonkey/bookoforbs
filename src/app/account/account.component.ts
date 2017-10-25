@@ -61,6 +61,12 @@ export class AccountComponent implements OnInit {
 
 
   }
+  getTopHeight(){
+    return "40vh";
+  }
+   getBottomHeight(){
+    return "60vh";
+  }
   getQRHeight(){
     return this.getQRSize()+"px";
   }
