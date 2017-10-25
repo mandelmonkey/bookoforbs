@@ -3,7 +3,7 @@ import { Component, OnInit,ViewChild, ElementRef,ChangeDetectorRef } from '@angu
 import { Observable } from 'rxjs/Observable';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
-declare var viewPortItems2:any;
+ 
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
