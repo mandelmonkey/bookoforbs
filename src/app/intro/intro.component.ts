@@ -150,7 +150,7 @@ this.isIndiesquare = true;
 
    tempDataService.maincontroller.currentAddress =result.address;
    tempDataService.maincontroller.linkType = "indiesquare";
-    tempDataService.maincontroller.loading= true;
+    tempDataService.maincontroller.loading = true;
    tempDataService.maincontroller.currentOrbs =[];
    tempDataService.maincontroller.currentOrbsKeys =[];
    tempThis.continueLogin();
@@ -232,6 +232,7 @@ continueLogin(){
           this.dataService.maincontroller.showTopBar = true;
 this.dataService.maincontroller.showBottomBar = true;
     this.dataService.maincontroller.showCollection = true;
+    this.dataService.currentTab = 1;
           this.dataService.maincontroller.showIntro = false;
 var tmpdata =  this.dataService;
           setTimeout(function() {
