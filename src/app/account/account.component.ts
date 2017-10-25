@@ -49,11 +49,7 @@ export class AccountComponent implements OnInit {
 
     }
 ngAfterViewInit() {
- 
-
-   }
-  ngOnInit() {
-  	
+   
  var tmpthis = this;
     setTimeout(function(){ 
       var qr = new QRious({
@@ -63,7 +59,11 @@ ngAfterViewInit() {
         });
 
 
-     }, 100); 
+     }, 200); 
+
+   }
+  ngOnInit() {
+  
 
 
 
