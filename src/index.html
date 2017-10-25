@@ -97,11 +97,11 @@
   var hash = '#bg';
   if (document.hidden && !window.location.hash) {
     console.log("did this1");
-    window.history.replaceState(null, null, window.location + hash);
+    window.history.replaceState(null, null,"https://bookoforbs.herokuapp.com/" + hash);
   } else if (!document.hidden && window.location.hash == hash) {
     console.log("did this2");
     var l = '' + window.location;
-    window.history.replaceState(null, null, l.substr(0, l.length - hash.length));
+    window.history.replaceState(null, null, "https://bookoforbs.herokuapp.com/");
 
   }
 }
@@ -110,9 +110,9 @@ catch(e){
 }
 };
 if (document.addEventListener) {                // For all major browsers, except IE 8 and earlier
-   document.addEventListener('visibilitychange', visibilityHandler, true);
+   document.addEventListener('visibilitychange', visibilityHandler, false);
 } else if (document.attachEvent) {              // For IE 8 and earlier versions
-    document.attachEvent('visibilitychange', visibilityHandler, true);
+    document.attachEvent('visibilitychange', visibilityHandler, false);
 }
 
  visibilityHandler();
