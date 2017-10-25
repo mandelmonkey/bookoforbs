@@ -21,7 +21,7 @@ public showSelected = false;
 public showMarket = false;
 public showHistory = false;
 public showBottomBar = true;
-public showAccount = false;
+public showAccount = true;
 public showIntro = false;
 public orbData :any;
 public userBalance :Array<any>;

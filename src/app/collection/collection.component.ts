@@ -50,7 +50,7 @@ export class CollectionComponent implements OnInit {
     this.floatCheck = 0;
     this.setWidths();
 
-    
+    this.dataService.maincontroller.showAccount = false;
         
   }
   setWidths(){
