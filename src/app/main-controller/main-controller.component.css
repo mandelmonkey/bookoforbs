@@ -131,8 +131,7 @@
   font-family:   sling;
   padding: 0;
   border: none; 
- cursor: pointer;
-   pointer-events: none;
+ cursor: pointer; 
 
 }
 
