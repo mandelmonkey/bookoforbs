@@ -113,7 +113,7 @@ currentOwner.sending = true;
         
         tmpthis.params["pubkey"] = masterderive.publicKey;
        
-         tmpthis.params["destination"] = tmpthis.sendAddress;
+         tmpthis.params["destination"] =  tmpthis.dataService.maincontroller.currentSendAddress;
         
         var privkey = bitcore.PrivateKey(masterderive.privateKey);
         
@@ -321,7 +321,7 @@ console.log(result.signed_tx);
 
       }else{
 
-         tmpthis.dataService.maincontroller.showConf("You are sending\n\n"+tmpthis.amount+ " " +tmpthis.dataService.maincontroller.selectedKey+" to "+tmpthis.sendAddress+"\n\nfee: "+feeBTC+" btc",tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
+         tmpthis.dataService.maincontroller.showConf("You are sending\n\n"+tmpthis.amount+ " " +tmpthis.dataService.maincontroller.selectedKey+" to "+tmpthis.dataService.maincontroller.currentSendAddress+"\n\nfee: "+feeBTC+" btc",tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
 
 
     
@@ -335,7 +335,7 @@ console.log(result.signed_tx);
 }
 catch(e){
   console.log("unknown error");
-   tmpthis.dataService.maincontroller.showMessage("uknown error");
+   tmpthis.dataService.maincontroller.showMessage("unknown error");
              tmpthis.sending = false;
 }
 /*
