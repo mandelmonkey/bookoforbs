@@ -23,14 +23,14 @@
    left: 0; 
    width: 100%; 
    display: inline-block;
-   padding-top: 10px;
+   margin-top: 15px;
     height: 60px;
     color: #ffffd5;
-    font-family:   merriweather;
+    font-size: 0.9em;
+    font-family:   sling;
 }
 .indielogo{
-  width: 100px;
-  height: 100px; 
+  width: 135px; 
 }
  .newWalletButton {
      cursor: pointer;  
