@@ -262,9 +262,9 @@ console.error("send error " + error);
 var feeBTC = "0.0001";
 
       
-      console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
+      console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx+" "+tmpthis.dataService.maincontroller.linkType);
 
-   if(this.dataService.maincontroller.linkType == "indiesquare"){
+   if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
      
      tmpthis.indiesquare.signTransaction({'unsigned_tx': tmpthis.currentSendResponse.unsigned_tx}, function(url, urlScheme, error){
   
