@@ -189,25 +189,7 @@ currentOwner.sending = true;
 
   }
       this.dataService.maincontroller.showQRScan = true;
-    // this.dataService.maincontroller.showAccount = false; 
-     /*
-    var thi = this;
- 
-  this.indiesquare.getQRcode('ServiceNameHere', function(url, urlScheme, error){
-    if( error ){
-       thi.sendAddress = "err1"+JSON.stringify(error);
-      console.error(error);
-      return;
-    }
     
-  }, function(result, error){
-    if( error ){
-      thi.sendAddress = "err2"+JSON.stringify(error);
-      return;
-    }
-    console.dir(result); // {data: "READ-STRINGS"}
-    thi.sendAddress = JSON.stringify(result);
-  });*/
   
 }
         
@@ -243,7 +225,7 @@ document.body.style.position = "none";
 
            
 var tmpThis = this
-   // if(this.dataService.maincontroller.currentAddress)
+ 
   this.sending = true;
 
    var tmpthis = this;
@@ -263,6 +245,8 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
   
 }
  console.log(JSON.stringify(sendParams));
+
+ try{
 tmpthis.indiesquare.createSend(sendParams, function(data, error){
     if( error ){
 console.error("send error " + error);
@@ -313,6 +297,7 @@ console.log(result.signed_tx);
              tmpthis.sending = false;
             return;
         }
+         tmpthis.sending = false;
         tmpthis.dataService.maincontroller.showMessage("sent!");
       }); 
 
@@ -343,6 +328,12 @@ console.log(result.signed_tx);
 }
 
 });
+}
+catch(e){
+  console.log("unknown error");
+   tmpthis.dataService.maincontroller.showMessage(error);
+             tmpthis.sending = false;
+}
 /*
 
  this.httpService.createSendTransaction(this.dataService.maincontroller.currentAddress,this.dataService.maincontroller.currentSendAddress,this.dataService.maincontroller.selectedKey,this.amount,feePerKb,fee).subscribe(

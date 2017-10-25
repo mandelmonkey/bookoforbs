@@ -311,20 +311,12 @@ display: flex;
 
 #one{
 
- /* background: url('/assets/images/1num.png') no-repeat 0 0; */
   
   
 
 }
 #two{
-
- /* background: url('/assets/images/2num.png') no-repeat 0 0;*/
- background-repeat: no-repeat; 
-   background-size: auto 50%;
-   background-position: center;
- border:none; 
-  background-blend-mode: overlay;
-
+ 
 }
 
 #three{
