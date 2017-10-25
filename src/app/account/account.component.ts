@@ -48,12 +48,16 @@ export class AccountComponent implements OnInit {
         ;
 
     }
-  ngOnInit() {
-  	 var qr = new QRious({
+ngAfterViewInit() {
+     var qr = new QRious({
           element: document.getElementById('qr1'),
           value: this.dataService.maincontroller.currentAddress,
           size:this.getQRSize()
         });
+
+   }
+  ngOnInit() {
+  	
 
 
 
