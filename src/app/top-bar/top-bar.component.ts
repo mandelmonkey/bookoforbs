@@ -51,6 +51,7 @@ getSignInText(){
   }
 }
 logout(){
+  this.dataService.maincontroller.currentOrbsKeys = [];
   this.dataService.maincontroller.showIntro = true;
   this.dataService.maincontroller.showCollection = false;
   this.dataService.maincontroller.showMarket = false;

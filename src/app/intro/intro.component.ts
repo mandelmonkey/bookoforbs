@@ -151,7 +151,7 @@ this.isIndiesquare = true;
    tempDataService.maincontroller.currentAddress =result.address;
    tempDataService.maincontroller.linkType = "indiesquare";
     tempDataService.maincontroller.loading = true;
-   tempDataService.maincontroller.currentOrbs =[];
+   tempDataService.maincontroller.currentOrbs = [];
    tempDataService.maincontroller.currentOrbsKeys =[];
    tempThis.continueLogin();
 
