@@ -41,6 +41,7 @@ app-collection-card {
  
 .ownAllButton { 
   margin: 0 auto;
+  margin-top: 5px;
      cursor: pointer; 
   width:250px;
   height:46px;  
