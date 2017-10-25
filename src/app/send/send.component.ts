@@ -50,6 +50,12 @@ public sending:boolean;
     });
 
     
+    document.body.style.position = "fixed";
+
+  }
+  ngOnDestroy(){
+     document.body.style.position = null;
+     
   }
   disableTouches(){
  //.setdisabled { pointer-events: none; }
@@ -194,16 +200,7 @@ currentOwner.sending = true;
     
   
 }
-        
-     onBlurMethod(){
-       document.body.style.position = "fixed";
-         
-     }
-
-     onFocusMethod(){
-document.body.style.position = "none";
-         
-     }
+     
 
   send(){
     

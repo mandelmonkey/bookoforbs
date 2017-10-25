@@ -179,7 +179,7 @@ if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "l
   
 
 if(this.dataService.isMobile ==false){
-alert("please load this app in iOS safari browser");
+//alert("please load this app in iOS safari browser");
 }
     this.dataService.maincontroller = this;
     this.selectedOrb = null;

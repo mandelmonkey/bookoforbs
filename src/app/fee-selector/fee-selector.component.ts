@@ -88,6 +88,10 @@ rotated = false;
       
 
   }
+  onFocus(){
+  
+
+  }
   setFee(index:number){
     if(index == 0){
 
@@ -103,6 +107,9 @@ rotated = false;
         this.dataService.maincontroller.currentFee = "lowFee";
     }
      else if(index == 4){
+
+ 
+
 
        var customFee = parseFloat(this.dataService.maincontroller.customFee);
        if (Number.isNaN(customFee)){

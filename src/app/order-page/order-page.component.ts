@@ -37,8 +37,13 @@ bottomTop = "0px";
       this.orbWidth = "auto";
       this.getOrders();
 
+      alert(document.body.style.position);
+       document.body.style.position = "fixed";
 
-
+  }
+  ngOnDestroy(){
+     document.body.style.position = null;
+     alert(document.body.style.position);
   }
   getImageSize(){
 
