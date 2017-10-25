@@ -89,10 +89,11 @@
   
   <script type="text/javascript">
     if(window.location.href.indexOf("localhost") == -1 && window.location.href.indexOf("https") == -1){
-    //  window.location.replace("https://bookoforbs.herokuapp.com/");
+      window.location.replace("https://bookoforbs.herokuapp.com/");
     } 
 
     function visibilityHandler() {
+      try{
   var hash = '#bg';
   if (document.hidden && !window.location.hash) {
     window.history.replaceState(null, null, window.location + hash);
@@ -100,6 +101,10 @@
     var l = '' + window.location;
     window.history.replaceState(null, null, l.substr(0, l.length - hash.length));
   }
+}
+catch(e){
+  
+}
 };
 document.addEventListener('visibilitychange', visibilityHandler, false);
 visibilityHandler();
