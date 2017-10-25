@@ -5,10 +5,10 @@
   <div class="title1">Receiving address for ORBS, Bitcoin and {{dataService.maincontroller.currentCurrency}}</div>
   	<div class="title2">(tap to copy)</div>
   	<br>
-  <canvas id="qr1" (click)="copyToClipboard()"></canvas>
+  <canvas id="qr1" (click)="copyToClipboard()" [style.height]="getQRHeight()"></canvas>
 <div class="title3">{{getAddress()}}</div>
 
-
+  </div>
 <div class="bottomDiv">
 	<img class="seperator"  [src]="dataService.getImage('leatherSeperator')" />
 <!--	<img class="bottomImg" src="../assets/images/qrbottomback.jpg"   />-->
@@ -44,4 +44,3 @@
 
 
 
-  </div>

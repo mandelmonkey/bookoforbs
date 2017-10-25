@@ -61,7 +61,9 @@ export class AccountComponent implements OnInit {
 
 
   }
-
+  getQRHeight(){
+    return this.getQRSize()+"px";
+  }
   getQRSize(){
   	var screenHeight = document.documentElement.clientHeight;
   	var screenWidth= document.documentElement.clientWidth;
