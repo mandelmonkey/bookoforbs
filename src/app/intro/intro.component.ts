@@ -100,7 +100,7 @@ this.isIndiesquare = true;
   }
   ngOnInit() {
  
-  this.persistenceService.set('userAddress0', "1Nh4tPtQjHZSoYdToTF7T3xbaKrTNKM3wP", {type: StorageType.LOCAL}); 
+  this.persistenceService.set('userAddress0', "1gg14Fiz7uHoxAbAxkBaD2TYkFmGTu73Z", {type: StorageType.LOCAL}); 
     this.persistenceService.set('linkType', "indiesquare", {type: StorageType.LOCAL}); 
    
     this.isIndiesquare = false; 

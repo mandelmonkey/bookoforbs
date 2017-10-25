@@ -52,7 +52,9 @@ public sending:boolean;
 
     
   }
-
+  disableTouches(){
+ //.setdisabled { pointer-events: none; }
+  }
   closeSend(){
   	this.dataService.maincontroller.showSend = false; 
   }
