@@ -331,7 +331,7 @@ console.log(result.signed_tx);
 }
 catch(e){
   console.log("unknown error");
-   tmpthis.dataService.maincontroller.showMessage(error);
+   tmpthis.dataService.maincontroller.showMessage("uknown error");
              tmpthis.sending = false;
 }
 /*
