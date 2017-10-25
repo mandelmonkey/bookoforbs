@@ -178,6 +178,9 @@ if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "l
  this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent);
   
 
+if(this.dataService.isMobile ==false){
+alert("please load this app in iOS safari browser");
+}
     this.dataService.maincontroller = this;
     this.selectedOrb = null;
     this.linkType = "";
