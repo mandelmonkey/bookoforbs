@@ -84,8 +84,7 @@
   background-repeat: no-repeat;
   background-size:100% 100%; 
      background-color: Transparent;
-  border: none; 
-    pointer-events: none;
+  border: none;  
   color: #ffffd5;
   font-family:   merriweather;
 }
