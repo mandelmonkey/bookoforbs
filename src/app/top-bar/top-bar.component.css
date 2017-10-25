@@ -52,7 +52,8 @@
     position: absolute;
   top: 3px;
   left: 10px;
-  width:250px;
+  width: 65vw;
+  max-width:250px;
   height:42px;
 }
 
@@ -71,35 +72,25 @@
    
 }
 
-
-.loginLogoutButton span {
-    
-     pointer-events: none;
-    position: absolute;
-    text-align: center;
-    right:5px;
-    width: 100%;
-    top: 13px;
-    color: #ffffd5;
-    font-family:   merriweather;
-}
+ 
 .loginLogoutButton {
     position: absolute;
-  top: 3px;
+  top: 6px;
   right: 5px;
-   width:120px;
+   width:25vw;
+   max-width: 200px;
   height:42px;
+  font-size: 0.9em;
+  background-repeat: no-repeat;
+  background-size:100% 100%; 
+     background-color: Transparent;
+  border: none; 
+    pointer-events: none;
+  color: #ffffd5;
+  font-family:   merriweather;
 }
 
-
- .loginLogoutText {
-     cursor: pointer;
-    position: absolute;
-    top: 3px;
-  right: 5px;
-   width:120px;
-  height:42px; 
-}
+ 
  
 .loginLogoutButton :hover, .loginLogoutButton :focus {
    

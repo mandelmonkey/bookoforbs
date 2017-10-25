@@ -62,10 +62,10 @@
  <div class="messageDark"  *ngIf="showingMessage">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
   <div class="messageText">{{messageText}}</div> 
-       <div class="closeMessageButton" (click)="closeMessage()">
-      
-        <label class="buttonLabel">close</label> 
-     </div>
+        
+        <input class="closeMessageButton" type="button" value="close" (click)="closeMessage()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+        
+   
        </div>
 
 

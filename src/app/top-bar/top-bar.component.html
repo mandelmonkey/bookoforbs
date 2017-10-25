@@ -13,9 +13,10 @@
    
    </li>
   </div>
-   <div *ngIf="shouldShowSignInOut()" class="loginLogoutButton">
-    <img class="loginLogoutText" [src]="dataService.getImage('filterButtonBackground')" (click)="logout()"/>
-    <span>{{getSignInText()}}</span>
-   
-  </div>
+
+
+
+        <input *ngIf="shouldShowSignInOut()"  class="loginLogoutButton" type="button" [value]="getSignInText()" (click)="closeMessage()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+
+ 
 </div>

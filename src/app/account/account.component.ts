@@ -75,9 +75,9 @@ export class AccountComponent implements OnInit {
   	var screenWidth= document.documentElement.clientWidth;
 
   	if(screenHeight > screenWidth){
-  		return screenWidth * 0.5;
+  		return -5 + screenWidth * 0.5;
   	}else{
-  		return screenHeight * 0.5;
+  		return -5 + screenHeight * 0.5;
   	}
 
   }

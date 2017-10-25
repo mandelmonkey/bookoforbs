@@ -116,11 +116,24 @@
     font-family:   merriweather;
 }
 .closeMessageButton {
- color: #ffffd5;
-    bottom: 0%; left: 50%;
+  
+ width:90px; 
+  height:40px; 
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   bottom: 40px; left: 50%;
     position: absolute;
   transform: translate(-50%,-10%);
-    font-family:   merriweather;
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+ cursor: pointer;
+   pointer-events: none;
+
 }
 
 .container { 
