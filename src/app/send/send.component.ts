@@ -16,8 +16,7 @@ export class SendComponent implements OnInit {
 
   constructor(public dataService:DataService,private httpService:HTTPService,private route:ActivatedRoute) { }
   public amount:string;
-  public currentORB:string;
-  public sendAddress:string;
+  public currentORB:string; 
   public status:string;
 public params:any;
 public currentSendResponse:any;
@@ -42,7 +41,7 @@ public sending:boolean;
   }
   ngOnInit() {
   	this.amount = "";
-    this.sendAddress = "";
+    this.dataService.maincontroller.currentSendAddress="";
     this.status = "";
     this.sending = false;
 
@@ -56,6 +55,7 @@ public sending:boolean;
  //.setdisabled { pointer-events: none; }
   }
   closeSend(){
+    this.dataService.maincontroller.currentSendAddress="";
   	this.dataService.maincontroller.showSend = false; 
   }
   addKey(num:string){
@@ -305,7 +305,7 @@ console.log(result.signed_tx);
         tmpthis.dataService.maincontroller.showMessage("sent!");
       }); */
 
-
+      tmpthis.closeSend();
 
    }
    
