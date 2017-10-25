@@ -40,6 +40,13 @@ bottomTop = "0px";
 
 
   }
+  getImageSize(){
+
+    if(this.dataService.landscape == true){
+      return {width:"100%"};
+    }
+    return  {height:"45vh"};
+  }
   ngAfterViewInit() {
    
   }
@@ -68,6 +75,7 @@ getTotalPrice(){
 }
 closeConf(){
 	this.showConfOverlay = false;
+  this.showOrderText = false;
 }
 showConf(){
 	if(this.orderPrice > 0){
@@ -114,8 +122,10 @@ if(currentFee == "custom"){
 	console.log(JSON.stringify(params));
 
     indiesquare.createOrder(params, function(data, error){
+
     if( error ){
-    	tmpthis.showConfOverlay = false;
+    	tmpthis.closeConf();
+      tmpthis.loading = false;
     	if(error.message != null){
     		tmpthis.dataService.maincontroller.showMessage(error.message);
     	}
@@ -135,6 +145,14 @@ if(currentFee == "custom"){
     if(tmpthis.dataService.maincontroller.linkType == "indiesquare" || 1==1){
     indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){
     if( error ){
+          tmpthis.closeConf();
+      tmpthis.loading = false;
+      if(error.message != null){
+        tmpthis.dataService.maincontroller.showMessage(error.message);
+      }
+      else{
+        tmpthis.dataService.maincontroller.showMessage("error");
+      }
         console.error(error);
         return;
     }
@@ -159,7 +177,7 @@ if(currentFee == "custom"){
     }
 
         console.log(data.signed_tx);
-
+        /*
     indiesquare.broadcast({"tx": data.signed_tx}, function(data, error){
     	 tmpthis.loading = false;
     if( error ){
@@ -178,7 +196,14 @@ if(currentFee == "custom"){
      tmpthis.showConfOverlay = false;
 		 
     console.dir('txid:' + data.txid);
-});
+});*/
+
+ tmpthis.loading = false;
+ tmpthis.closeConf();
+ tmpthis.dataService.maincontroller.showMessage("order placed!");
+     tmpthis.showConfOverlay = false;
+
+
 
 });
 }
@@ -213,9 +238,9 @@ this.orderPrice = null;
 
 
        if(orderType == "buy"){
-       	 this.buySellText = "you are buying";
+       	 this.buySellText = "You are buying";
        }else if(orderType == "sell"){
-       	this.buySellText = "you are selling";
+       	this.buySellText = "You are selling";
        }
 
 	this.orderType = orderType;
@@ -242,9 +267,9 @@ this.orderPrice = null;
 	if(order.amount == 1){
 this.selectAmount = false;
   if(type == "buy"){
-       	 this.buySellText = "you are buying";
+       	 this.buySellText = "You are buying";
        }else{
-       	this.buySellText = "you are selling";
+       	this.buySellText = "You are selling";
        }
 
 
@@ -269,13 +294,13 @@ this.selectAmount = false;
 	}
 }
 getOrderAmount(order:any){
-	if(order.amount > 1){
+	if(order.amount != 1){
 		return "x"+order.amount;
 	}
 	return "";
 }
 getOrders(){
- 
+
 		 this.httpService.getOrders( this.dataService.maincontroller.selectedKey, this.dataService.maincontroller.currentCurrency).subscribe(
      data => { 
           	console.log("got orders"+JSON.stringify(data)+" "+this.dataService.maincontroller.currentCurrency);

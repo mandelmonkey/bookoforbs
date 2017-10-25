@@ -44,32 +44,33 @@ app-collection-card {
   margin-top: 5px;
      cursor: pointer; 
   width:250px;
-  height:46px;  
+  height: 8vh;
+  max-height:46px;  
   display: inline-block;
   text-align: center;  
 }
+.ownAllButtonImg {
+   position: absolute; 
+  margin-left:-125px;
+    left:50%;
+  height: 8vh;
+  max-height:46px;  
+   width:250px;
+    outline: 0 !important;
+    border:0 none !important;
+}
 .ownAllButtonLeft { 
   width:100px;
-  top: 12px;
+  top: 1.8vh;
   display: inline-block;
      pointer-events: none;
     position: relative;
     color: #ffffd5;
     font-family:   merriweather;  
 }
-
-.status{
-  top:30vh;
-  width:100%;
-  left:0;
-  position: absolute;
- color: #ffffd5;
-    font-family:   merriweather; 
-
-}
 .ownAllButtonRight { 
    width:100px;
-   top: 12px;
+     top: 1.8vh;
      pointer-events: none;
       position: relative; 
   display: inline-block;
@@ -79,15 +80,17 @@ app-collection-card {
 
 
 
-.ownAllButtonImg {
-   position: absolute; 
-  margin-left:-125px;
-    left:50%;
-  height:46px;
-   width:250px;
-    outline: 0 !important;
-    border:0 none !important;
+
+.status{
+  top:25vh;
+  width:100%;
+  left:0;
+  position: absolute;
+ color: #ffffd5;
+    font-family:   merriweather; 
+
 }
+
 
 
 

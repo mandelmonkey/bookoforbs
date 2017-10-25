@@ -8,25 +8,28 @@
 	<div class="topSection">
 	<div class="sendOrbImgBox">
 	<span class="orbImgTitle">{{dataService.maincontroller.selectedKey}}<b><br>{{getOrbInfo()}}</b><span>&nbsp;{{getOrbLock()}}</span></span>
-<img class="sendOrbImg" [src]="this.dataService.maincontroller.selectedOrb.image"  />
+<img class="sendOrbImg" [errorImage]="dataService.collection.errorImage" [src]="dataService.collection.defaultImage" [lazyLoad]="this.dataService.maincontroller.selectedOrb.image"  [ngStyle]="getImageSize()"/>
  </div>
 
  <div class="ordersList">
  	<span class="ordersTitle">Sellers</span>
  	<div class="sellOrdersList" *ngFor="let order of sell_orders" >
 
-	<div class="aBuyOrder" (click)="buyOrder(order,'buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">
-	  
-		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b><br><b>{{getOrderAmount(order)}}</b></span>
-			 
+	<div class="aSellBuyOrder" (click)="buyOrder(order,'buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">
+	   <div class="orderBox">
+		<div class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
+		<div class="orderPriceDetails">{{getOrderAmount(order)}}</div>
+			 </div>
 	</div>
 </div> 
 <br>
 <span class="ordersTitle">Buyers</span>
 <div lass="buyOrdersList" *ngFor="let order of buy_orders" >
-<div class="aSellOrder" (click)="buyOrder(order,'sell')" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">
-		 
-		<span class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b><br><b>{{getOrderAmount(order)}}</b></span>
+<div class="aSellBuyOrder" (click)="buyOrder(order,'sell')" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">
+		 <div class="orderBox">
+		<div class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
+		<div class="orderPriceDetails">{{getOrderAmount(order)}}</div>
+		</div>
 	</div>
 </div> 
 
@@ -112,9 +115,9 @@
    	<div  *ngIf="!loading">
   <div *ngIf="showOrderText" class="messageText">
   	<p>{{buySellText}}</p>
-  	<p> {{orderAmount}}&nbsp; {{dataService.maincontroller.selectedKey}}</p>
+  	<p style="font-style: italic;"> {{orderAmount}}&nbsp; {{dataService.maincontroller.selectedKey}}</p>
   	<p>at</p>
-  	<p>{{orderPrice}}&nbsp;  {{dataService.maincontroller.currentAbrev}} each</p>
+  	<p style="font-style: italic;">{{orderPrice}}&nbsp;  {{dataService.maincontroller.currentAbrev}} each</p>
   	<p>Total: {{getTotalPrice()}}&nbsp; {{dataService.maincontroller.currentAbrev}}</p>
   </div> 
 
@@ -125,28 +128,28 @@
   </div> 
 
      <div *ngIf="selectAmount" class="messageText" > 
-  	<p>Order details</p>
+  	<p style="font-size: 1.4em;">Order details</p>
   	 <p>Price</p>
-  	 <p>{{orderPrice}}  {{dataService.maincontroller.currentAbrev}}</p>
+  	 <p style="font-style: italic;">{{orderPrice}}  {{dataService.maincontroller.currentAbrev}}</p>
  <p>Availability </p>
-  	 <p>x{{originalOrderAmount}}</p> 
+  	 <p style="font-style: italic;">x{{originalOrderAmount}}</p> 
  <p>Enter order amount </p> 
- <input  class="textInputCenter"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 2"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()">
+ <input  style="text-align: center;"class="textInputCenter"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 2"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 
  <div  class="placeOrderButtons">
-        <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="showConf()">
+        <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="showConf()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
         <br> <br>
      
-		<input class="customButtonCancel" type="button" value="cancel"  (click)="closeConf()">
+		<input class="customButtonCancel" type="button" value="cancel"  (click)="closeConf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
        </div>
  
   </div> 
 
        <div *ngIf="!selectAmount" class="placeOrderButtons">
-        <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="createOrder()">
+        <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="createOrder()"[style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
         <br> <br>
      
-		<input class="customButtonCancel" type="button" value="cancel"  (click)="closeConf()">
+		<input class="customButtonCancel" type="button" value="cancel"  (click)="closeConf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
        </div>
      </div>
       </div>
