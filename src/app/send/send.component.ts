@@ -200,7 +200,16 @@ currentOwner.sending = true;
     
   
 }
-     
+        
+     onBlurMethod(){
+      
+         
+     }
+
+     onFocusMethod(){
+
+         
+     }
 
   send(){
     
