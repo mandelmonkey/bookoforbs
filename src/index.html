@@ -96,14 +96,17 @@
       try{
   var hash = '#bg';
   if (document.hidden && !window.location.hash) {
+    console.log("did this1");
     window.history.replaceState(null, null, window.location + hash);
   } else if (!document.hidden && window.location.hash == hash) {
+    console.log("did this2");
     var l = '' + window.location;
     window.history.replaceState(null, null, l.substr(0, l.length - hash.length));
+
   }
 }
 catch(e){
-  
+
 }
 };
 document.addEventListener('visibilitychange', visibilityHandler, false);
