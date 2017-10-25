@@ -109,7 +109,12 @@ catch(e){
 
 }
 };
- document.addEventListener('visibilitychange', visibilityHandler, true);
+if (document.addEventListener) {                // For all major browsers, except IE 8 and earlier
+   document.addEventListener('visibilitychange', visibilityHandler, true);
+} else if (document.attachEvent) {              // For IE 8 and earlier versions
+    document.attachEvent('visibilitychange', visibilityHandler, true);
+}
+
  visibilityHandler();
    
 
