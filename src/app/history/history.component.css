@@ -106,7 +106,7 @@ virtual-scroll {
 }
 
 .status{
-  top:200px; 
+  top:20vh; 
   width:100%;
   left:0;
   position: absolute;

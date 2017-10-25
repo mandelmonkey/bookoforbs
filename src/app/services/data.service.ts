@@ -4,11 +4,13 @@ import {TopBarComponent} from '../top-bar/top-bar.component';
 import {CollectionComponent} from '../collection/collection.component';
 import {MarketComponent} from '../market/market.component';
 import { MainControllerComponent} from '../main-controller/main-controller.component';
+import { HistoryComponent } from '../history/history.component';
  declare var UI:any; 
 
 @Injectable()
 export class DataService {
  
+  history:HistoryComponent;
   topbar:TopBarComponent;
   collection:CollectionComponent;
   maincontroller: MainControllerComponent;

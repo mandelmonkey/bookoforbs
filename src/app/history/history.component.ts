@@ -15,6 +15,7 @@ allOwnImage = this.dataService.getImage('leftOptionSeg');
 loading = false;
  scrollView;
  didInit=false;
+  cardHeightInner = "100%";
    scrollObservable;
   constructor(public dataService:DataService,private httpService:HTTPService) { }
  ngAfterViewInit() {
@@ -26,14 +27,16 @@ loading = false;
   
 
  }
+
   ngOnInit() {
+  	this.dataService.history = this;
   	var tmpthis = this;
   	if(this.dataService.maincontroller.currentAddress != "empty" && tmpthis.dataService.maincontroller.history.length == 0){
   		this.loading = true;
   	this.httpService.getHistory(this.dataService.maincontroller.currentAddress,"send").subscribe(
      data => { 
       tmpthis.dataService.maincontroller.history = data;
-      console.log("hsitory"+ JSON.stringify(tmpthis.dataService.maincontroller.history ));
+      console.log("hsitory:"+ JSON.stringify(tmpthis.dataService.maincontroller.history ));
        tmpthis.loading = false;
       
       },   

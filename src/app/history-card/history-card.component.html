@@ -1,5 +1,17 @@
 <div class="outer">
 <div class="background" [style.width]="getWidth
 ()" [style.height]="getHeight()" [style.background-image]="'url(' +dataService.getImage('historyBoxBack')+ ')'">
+
+<div class="contents">
+<img class="tokenImage"   [lazyLoad]="getImage()"  [scrollObservable]="dataService.history.scrollObservable" [scrollTarget]=dataService.history.scrollView   onerror="imgLoadError()" (load)="imageLoaded()" />
+<div class="infoText">
+<p class="titleline">{{getInfo()}}<p>
+
+<p class="infoline" style="font-size: 0.6em;">{{getAddress()}}<p>
+
+<p class="titleline">Date<p>
+<p class="infoline">{{getDate()}}<p>
+</div>
+</div>
 </div>
 </div>

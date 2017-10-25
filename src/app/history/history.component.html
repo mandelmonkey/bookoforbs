@@ -15,6 +15,7 @@
 
 
 
+
 <div *ngIf="!dataService.maincontroller.loading" class="ownAllButton">
     <img class="ownAllButtonImg" src={{allOwnImage}} (click)="selectAllOwn()" />
     <div class="ownAllButtonLeft">Send/Receive</div>  <div class="ownAllButtonRight">Orders</div>
@@ -24,12 +25,14 @@
 
 
 <virtual-scroll id="scrollView" class="scrollable" [items]="dataService.maincontroller.history" (update)="viewPortItems2 = $event"
-[style.height]="getHistoryHeight()">
+[style.height]="getHistoryHeight()" >
 
 <label class="status" *ngIf="loading">loading...</label> 
  
+ <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >please sign in</label> 
  
-    <app-history-card *ngFor="let item of viewPortItems2" >
+ 
+    <app-history-card *ngFor="let item of viewPortItems2" [data]="item">
     </app-history-card>
  
 

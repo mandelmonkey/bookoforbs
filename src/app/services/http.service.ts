@@ -127,7 +127,7 @@ header.append('X-Api-Key', this.apiKey);
       return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/balances?X-Api-Key=" + this.apiKey)
       .map(res=>res.json());*/
 
-       return this._http.get(this.indieURL+"/v2/addresses/" +address + "/history?type="+type+"&length=100")
+       return this._http.get(this.indieURL+"/v2/addresses/" +address + "/history?type="+type+"&length=10")
       .map(res=>res.json());
     };
     getBalance(address){

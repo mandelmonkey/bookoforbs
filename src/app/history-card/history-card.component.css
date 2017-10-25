@@ -4,8 +4,45 @@
  background-size:100% 100%;
   background-repeat: no-repeat;
  margin: 0 auto;
+ position: relative;
 }
 .outer{
 	width: 100vw;
 	text-align: center;
+
+}
+.tokenImage{
+	 display: inline-block;
+	width: 25%;
+	height: auto; 
+  
+
+}
+.infoText{
+	margin-left: 5px;
+	 display: inline-block;
+	 text-align: center;
+	 word-wrap: break-word;
+   max-width: 45vw;
+ 
+}
+ 
+.titleline{
+	 color: #fadf99;
+    font-size: 0.7em;
+    font-family:   Sling;
+}
+
+.infoline{
+
+	 color: white;
+    font-size: 0.7em;
+    font-family:   Sling;
+ 
+}
+.contents{
+
+	 position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
