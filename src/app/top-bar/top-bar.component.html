@@ -16,7 +16,7 @@
 
 
 
-        <input *ngIf="shouldShowSignInOut()"  class="loginLogoutButton" type="button" [value]="getSignInText()" (click)="closeMessage()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+        <input *ngIf="shouldShowSignInOut()"  class="loginLogoutButton" type="button" [value]="getSignInText()" (click)="logout()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
 
  
 </div>
