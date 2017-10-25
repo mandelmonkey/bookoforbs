@@ -1,5 +1,5 @@
 <div class="market" id="market" *ngIf="dataService.currentTab == 2" [style.height]="getMarketHeight()">
-	<div class="marketScroll" *ngIf="newOrbs.length > 0" [style.height]="getMarketHeight()">
+	<div class="marketScroll" *ngIf="dataService.maincontroller.newOrbs.length > 0" [style.height]="getMarketHeight()">
 	
 <div > 
 <div class="marketSection">
@@ -7,7 +7,7 @@
 	<br>
 		<div id="new" class="marketSubScroll">
  
-			<div *ngFor="let orbKey of newOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
+			<div *ngFor="let orbKey of dataService.maincontroller.newOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
 			<div>
 				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"  [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'">
 				
@@ -45,7 +45,7 @@
 
 
 		
-			<div *ngFor="let orbKey of trendingOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
+			<div *ngFor="let orbKey of dataService.maincontroller.trendingOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
 			<div>
 				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'">
 				
@@ -83,7 +83,7 @@
 
 
 		
-			<div *ngFor="let orbKey of randomOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
+			<div *ngFor="let orbKey of dataService.maincontroller.randomOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)">
 			<div>
 				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'">
 				

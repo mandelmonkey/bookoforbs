@@ -9,54 +9,59 @@
   top: 0;
   left: 0;
   width:100%;
-  height:55px;
+   height: 9vh;
+  max-height:55px;
 }
 .leftbracket {
   position: absolute;
   top: 0;
   left: 0;
   width:10px;
-  height:55px;
+   height: 9vh;
+  max-height:55px;
 }
 .rightbracket {
   position: absolute;
   top: 0;
   right: 0;
    width:10px;
-  height:55px;
+   height: 9vh;
+  max-height:55px;
 }
   
-
-.backButtonImg {
-    position: absolute;
-  top: 3px;
-  left: 10px;
-  width:100px;
-  height:42px;
-}
-
+ 
 
  .backButton {
-  text-align: center;
-     cursor: pointer;
-    position: absolute;
-    top: 3px;
-  left: 10px;
-  width:100px;
-  height:42px;
-}
- .backButton label {
-     position: absolute;
-  left: 10px;
-  top: 12px;
-  width:100px;
-  height:42px;
-  z-index: 0;
-  color: #ffffd5;
-    font-family:   merriweather;
-}
-  
 
+
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+ 
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:90px; 
+   height: 7vh;
+  max-height:42px;
+  top:10%;
+  left:5px;
+
+
+
+
+
+
+}
+ 
 
 .largeORB {
    position: absolute;
@@ -164,7 +169,10 @@ max-width: 95%;
 }
 .largeButtons {
 	 
-   width:400px; 
+   width:100vw;
+   max-width: 400px;
+   height: 10vh;
+   max-height: 80px;
    margin: auto;
     top: 0;
     left: 0;
@@ -173,28 +181,24 @@ max-width: 95%;
     display: inline-block;
    
 }
-#largeButtonSend {
-	  
-     background-repeat: no-repeat;  
-background-size: 100%;
-     cursor: pointer;  
-   width:40%;
-  overflow: hidden; 
-    text-align: center;
-    display: inline-block;
-   
-}
-#largeButtonMarket {
-	  
+ 
+.largeButtonMarketSend {
+ 
+
    
      background-repeat: no-repeat; 
-    
-background-size: 100%;
+background-size:100% 100%; 
+ background-position: 50% 50%; 
      cursor: pointer;  
-    width:40%;
   overflow: hidden; 
-    text-align: center;
-    display: inline-block;
+    font-size:1em;
+  color: #ffffd5;
+  font-family:   sling;
+   background-color: Transparent;
+  border: none; 
+   width:40%;
+    height: 100%;
+   
    
 }
 

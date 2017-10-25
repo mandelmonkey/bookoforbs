@@ -15,6 +15,10 @@
     src: url("/assets/fonts/SlingBold.ttf");
 }
  
+ @font-face {
+     font-family: fontawesome;
+    src: url("/assets/fonts/FontAwesome.otf");
+}
  .messaging{
     color: #ffffd5;
   font-family:   sling;

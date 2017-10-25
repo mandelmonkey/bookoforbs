@@ -1,4 +1,4 @@
- <img class="background"  [src]="dataService.getImage('accountBackground')"   />
+ <img class="background"  [src]="dataService.getImage('accountBackground')" [style.top]="getTopBackground()"  />
 <div class="topDiv" [style.height]="getTopHeight()">  
 
 	<br>
@@ -24,9 +24,9 @@
 		</div>
 		<input class="smallSendButton" type="button" value="Send"  (click)="send('BTC')">
 </div>
-
-
-<img class="seperatorSmall"  [src]="dataService.getImage('fancySeperator')"   />
+<hr style="height:3pt; visibility:hidden;"  *ngIf="!showSeperator()"/>
+ 
+<img class="seperatorSmall"  *ngIf="showSeperator()" [src]="dataService.getImage('fancySeperator')"   />
 
 <div class="aCurrency">
 		<img class="smallCurrency" [src]="getCurrencyIcon()"   />

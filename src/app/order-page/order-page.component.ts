@@ -31,6 +31,7 @@ showConfOverlay = false;
  buySellText = "you are buying";
 selectAmount = false;
 originalOrderAmount:number;
+bottomTop = "0px";
   ngOnInit() {
   	 this.orbHeight =  "80%";
       this.orbWidth = "auto";
@@ -38,6 +39,16 @@ originalOrderAmount:number;
 
 
 
+  }
+  ngAfterViewInit() {
+   
+  }
+  getBottomTop(){
+
+   var clientHeight = document.documentElement.clientHeight / 2;
+      var top = document.getElementById("sendOrb");
+    this.bottomTop =  (top.clientHeight+top.clientTop+90)+"px";
+   return this.bottomTop;
   }
      onBlurMethod(){
        document.body.style.position = "fixed";

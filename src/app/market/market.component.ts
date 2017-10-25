@@ -23,9 +23,9 @@ export class MarketComponent implements OnInit {
  }
 
   ngOnInit() {
-
- 	  this.newOrbs = [];
-     this.randomOrbs = [];
+ this.dataService.maincontroller.trendingOrbs = [];
+ 	  this.dataService.maincontroller.newOrbs = [];
+     this.dataService.maincontroller.randomOrbs = [];
      this.setMarketData();
 
   }
@@ -209,14 +209,18 @@ getTarget(name:string){
  return document.getElementById(name);
 }
 getMarketHeight(){
-	return (document.documentElement.clientHeight-document.getElementById("market").offsetTop-55)+"px"; 
+
+   var bottombar = document.getElementById("bottomBarBottom");
+ 
+    
+	return (document.documentElement.clientHeight-document.getElementById("market").offsetTop-bottombar.clientHeight+7)+"px"; 
 }
   setMarketData(){
   	 
    
-  	 this.newOrbs = Object.keys(this.dataService.maincontroller.currentOrbs).slice(0,6);
-  	 this.randomOrbs = this.shuffle(Object.keys(this.dataService.maincontroller.currentOrbs)).slice(0,6);
-      this.trendingOrbs = this.shuffle(Object.keys(this.dataService.maincontroller.currentOrbs)).slice(0,6);
+  	this.dataService.maincontroller.newOrbs = Object.keys(this.dataService.maincontroller.currentOrbs).slice(0,6);
+  	this.dataService.maincontroller.randomOrbs = this.shuffle(Object.keys(this.dataService.maincontroller.currentOrbs)).slice(0,6);
+    this.dataService.maincontroller.trendingOrbs = this.shuffle(Object.keys(this.dataService.maincontroller.currentOrbs)).slice(0,6);
 
   	/*for (var i = this.dataService.maincontroller.allOrbsKeys.length - 1; i >= 0; i--) {
   	 	var key = this.dataService.maincontroller.allOrbsKeys[i];

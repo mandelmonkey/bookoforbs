@@ -48,6 +48,18 @@ export class AccountComponent implements OnInit {
         ;
 
     }
+
+showSeperator(){
+  if(document.documentElement.clientHeight > 600){
+    return true;
+  }
+  return false;
+}
+    getTopBackground(){
+  var topbar = document.getElementById("topBarTop");
+ 
+      return topbar.clientHeight+"px";
+    }
   ngOnInit() {
   	 var qr = new QRious({
           element: document.getElementById('qr1'),
@@ -75,7 +87,12 @@ export class AccountComponent implements OnInit {
   	var screenWidth= document.documentElement.clientWidth;
 
   	if(screenHeight > screenWidth){
+      if(document.documentElement.clientHeight > 600){
   		return -5 + screenWidth * 0.5;
+      }
+      else{
+          return -20 + screenWidth * 0.5;
+      }
   	}else{
   		return -5 + screenHeight * 0.5;
   	}

@@ -2,7 +2,7 @@
    
  <app-top-bar *ngIf="showTopBar"></app-top-bar>
   
- 
+
    <app-collection  class="scrollable" *ngIf="showCollection" ></app-collection>
    <app-market  *ngIf="showMarket" ></app-market>  
 <app-history  *ngIf="showHistory"></app-history>
@@ -19,11 +19,8 @@
   <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
   <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
   <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
-   <div class="backButton" (click)="closeLarge()">
-    <img class="backButtonImg"  [src]="dataService.getImage('filterButtonBackground')"/>
-    <label>back</label>
-    
-  </div>
+    <input class="backButton" type="button" value="back" (click)="closeLarge()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+  
 </div>
 
 <div class="container">
@@ -34,18 +31,15 @@
     <br>
     <div class="largeButtons" >
         
-      <div id="largeButtonSend" (click)="openSend()" *ngIf="dataService.maincontroller.currentBalance > 0" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
-      
-        <label class="buttonLabel">Send</label> 
-     </div>
- 	 
-   
-      <div id="largeButtonMarket" (click)="openMarket()" [style.background-image]="'url(' +dataService.getImage('marketButtonCollection')+ ')'">
 
-  
-       <label class="buttonLabel" >Market</label> 
-     
-      </div>
+  <input  class="largeButtonMarketSend" type="button" value="Send" (click)="openSend()" *ngIf="dataService.maincontroller.currentBalance > 0" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
+
+   <input class="largeButtonMarketSend"  type="button" value="Market" (click)="openMarket()" [style.background-image]="'url(' +dataService.getImage('marketButtonCollection')+ ')'">
+
+      
+    
+
+
     </div>
 
 

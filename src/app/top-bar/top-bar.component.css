@@ -4,7 +4,8 @@
   position: relative;
   top: 0;
   left: 0; 
-  height:55px;
+   height: 8vh;
+  max-height:55px;
   box-shadow: 0px 10px 5px rgba(0,0,0,0.2);
 }
 .backbar {
@@ -12,26 +13,29 @@
   top: 0;
   left: 0;
   width:100%;
-  height:55px;
+  height: 8vh;
+  max-height:55px;
 }
 .leftbracket {
   position: absolute;
   top: 0;
   left: 0;
   width:10px;
-  height:55px;
+  height: 8vh;
+  max-height:55px;
 }
 .rightbracket {
   position: absolute;
   top: 0;
   right: 0;
    width:10px;
-  height:55px;
+  height: 8vh;
+  max-height:55px;
 }
 
 .smallarrow {
   position: absolute;
-  top: 19px;
+   top: 50%;
   left: 25px;
    width:16px;
   height:10px;
@@ -43,28 +47,30 @@
      pointer-events: none;
     position: absolute;
     left: 60px;
-    top: 13px;
+    top: 30%;
     color: #ffffd5;
     font-family:   merriweather;
 }
 
 .envbutton {
     position: absolute;
-  top: 3px;
+  top: 7%;
   left: 10px;
   width: 65vw;
   max-width:250px;
-  height:42px;
+  height: 6vh;
+  max-height:42px;
 }
 
 
  .environmentButton {
      cursor: pointer;
     position: absolute;
-    top: 3px;
+    top: 7%;
   left: 3px;
   width:250px;
-  height:42px;
+   height: 6vh;
+  max-height:42px;
 }
 
 /* Dropdown button on hover & focus */
@@ -79,7 +85,8 @@
   right: 5px;
    width:25vw;
    max-width: 100px;
-  height:42px;
+   height: 6vh;
+  max-height:42px;
   font-size: 0.9em;
   background-repeat: no-repeat;
   background-size:100% 100%; 
@@ -101,7 +108,7 @@
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
-    top:52px;
+    height: 8vh;
     left:5px;
     position: absolute;
     background-color: #442117;

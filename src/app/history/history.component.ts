@@ -51,7 +51,10 @@ console.log("error history");
     if(this.scrollView == null){
       return "5px";
     }else{
-      return (document.documentElement.clientHeight-this.scrollView.offsetTop-55)+"px";
+
+   var bottombar = document.getElementById("bottomBarBottom");
+ 
+      return (document.documentElement.clientHeight-this.scrollView.offsetTop-bottombar.clientHeight+5)+"px";
     }
    
   }

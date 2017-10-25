@@ -5,28 +5,32 @@
   bottom: 0;
   left: 0;
   width:100%;
-  height:60px; 
+  height: 9vh;
+  max-height:60px; 
 }
 .backbar { 
   position: absolute;
   bottom: 0;
   left: 0;
   width:100%;
-  height:60px;
+   height: 9vh;
+  max-height:60px; 
 }
 .leftbracket {
   position: absolute;
   bottom: 0;
   left: 0;
   width:10px;
-  height:60px;
+   height: 9vh;
+  max-height:60px; 
 }
 .rightbracket {
   position: absolute;
   bottom: 0;
   right: 0;
    width:10px;
-  height:60px;
+  height: 9vh;
+  max-height:60px; 
 }
 
 
@@ -35,80 +39,51 @@ position: absolute;
   bottom: 0;
   left:0;
    width:25%;
-  height:60px;
+   height: 9vh;
+  max-height:60px; 
 }
 .secondButton {
 position: absolute;  
 left:25%;
   bottom: 0;
    width:25%;
-  height:60px;
+ height: 9vh;
+  max-height:60px; 
 }
 .thirdButton { 
 position: absolute; 
   bottom: 0;
   right:25%;
    width:25%;
-  height:60px;
+   height: 9vh;
+  max-height:60px; 
 }
 .forthButton { 
 position: absolute; 
   bottom: 0;
   right:0;
    width:25%;
-  height:60px;
+   height: 9vh;
+  max-height:60px; 
 }
 
-.firstLabel { 
-  top: 25px;
-position: absolute; 
-  bottom: 0;
-  left:0;
-   width:25%;
-  height:35px;
-   font-size: 10pt;
+.labels label { 
+  
+   display:inline-block;
+   width: 24vw;
+ 
+   
+   font-size: 0.8em;
     font-family:   merriweather;
     color: #ffffd5;
     pointer-events: none;
 }
-.secondLabel {
-   top: 25px;
-position: absolute;  
-left:25%;
-  bottom: 0;
-   width:25%;
-   height:35px;
-    font-size: 10pt;
-    font-family:   merriweather;
-    color: #ffffd5;
-    pointer-events: none;
-}
-.thirdLabel { 
-    top: 25px;
-position: absolute; 
-  bottom: 0;
-  right:25%;
-   width:25%;
-   height:35px;
-   font-size: 10pt;
-    font-family:   merriweather;
-    color: #ffffd5;
-    pointer-events: none;
-}
-.forthLabel { 
-    top: 25px;
-position: absolute; 
-  bottom: 0;
-  right:0;
-   width:25%;
-  height:35px;
- font-size: 10pt;
-    font-family:   merriweather;
-    color: #ffffd5;
-  pointer-events: none;
-}
+ 
 
 .labels{
+  position: absolute; 
   text-align: center;
-
+  top:3.5vh;
+   pointer-events: none;
+ 
 }

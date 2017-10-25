@@ -104,7 +104,9 @@ export class CollectionComponent implements OnInit {
     if(this.scrollView == null){
       return "5px";
     }else{
-      return (document.documentElement.clientHeight-this.scrollView.offsetTop-55)+"px";
+     var bottombar = document.getElementById("bottomBarBottom");
+ 
+      return (document.documentElement.clientHeight-this.scrollView.offsetTop-bottombar.clientHeight+7 )+"px";
     }
    
   }

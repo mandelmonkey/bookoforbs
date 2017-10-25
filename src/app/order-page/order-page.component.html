@@ -4,7 +4,7 @@
 </div>
 
  
-<div class="sendOrb">
+<div class="sendOrb" id="sendOrb">
 	<div class="topSection">
 	<div class="sendOrbImgBox">
 	<span class="orbImgTitle">{{dataService.maincontroller.selectedKey}}<b><br>{{getOrbInfo()}}</b><span>&nbsp;{{getOrbLock()}}</span></span>
@@ -33,7 +33,12 @@
 
 </div>
 </div>
-<div class="bottomSection">
+
+
+ </div>
+
+
+ <div class="bottomSection" [style.top]="getBottomTop()">
 	
 	<div class="customOrder1" [style.left]="customOrder1Left">
 		
@@ -77,8 +82,6 @@
 	</div>
 
 </div>
-
- </div>
 
 
 

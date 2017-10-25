@@ -53,41 +53,20 @@ public history =[];
   public currentOrbs : Array<any>;
   public currentOrbsKeys : Array<any>;
   public allOrbsKeys : Array<any>;
+
+
+  public newOrbs : Array<any>;
+  public trendingOrbs : Array<any>;
+  public sellHighOrbs : Array<any>;
+  public buyLowOrbs : Array<any>;
+  public randomOrbs  : Array<any>;
+
+
 currentConfirm;
 currentCancel;
   loadEnvironments(){
   
-    /*
-    var envRes = "{\"Environements\":{\"com.spellsofgenesis\":{\"Title\":\"Spells of Genesis\",\"MasterCurrency\":\"BITCRYSTALS\",\"ticker\":\"BCY\",\"envCode\":\"eSog\",\"bundleId\":\"com.spellsofgenesis\",\"bannerImage\":\"http:\\\/\\\/sandra.everdreamsoft.com\\\/images\\\/orbcenter\\\/eSog\\\/banner.png\"},\"com.forceofwill\":{\"Title\":\"Force of Will\",\"MasterCurrency\":\"XCP\",\"ticker\":\"XCP\",\"envCode\":\"eFow\",\"bundleId\":\"com.forceofwill\",\"bannerImage\":\"http:\\\/\\\/sandra.everdreamsoft.com\\\/images\\\/orbcenter\\\/eFow\\\/banner.png\"},\"com.diecast-club\":{\"Title\":\"Diecast\",\"MasterCurrency\":\"BITCRYSTALS\",\"ticker\":\"BCY\",\"envCode\":\"eDie\",\"bundleId\":\"com.diecast-club\",\"bannerImage\":\"http:\\\/\\\/sandra.everdreamsoft.com\\\/images\\\/orbcenter\\\/eDie\\\/banner.png\"},\"com.bitgirls\":{\"Title\":\"BitGirls\",\"MasterCurrency\":\"XCP\",\"ticker\":\"XCP\",\"envCode\":\"eBtg\",\"bundleId\":\"com.bitgirls\",\"bannerImage\":\"http:\\\/\\\/sandra.everdreamsoft.com\\\/images\\\/orbcenter\\\/eBtg\\\/banner.png\"},\"com.memorychain\":{\"Title\":\"Memorychain\",\"MasterCurrency\":\"PEPECASH\",\"ticker\":\"PCSH\",\"envCode\":\"eMyc\",\"bundleId\":\"com.memorychain\",\"bannerImage\":\"http:\\\/\\\/sandra.everdreamsoft.com\\\/images\\\/orbcenter\\\/eMyc\\\/banner.png\"},\"com.ageofchains\":{\"Title\":\"Age of Chains\",\"MasterCurrency\":\"XCP\",\"ticker\":\"XCP\",\"envCode\":\"eAoc\",\"bundleId\":\"com.ageofchains\",\"bannerImage\":\"http:\\\/\\\/sandra.everdreamsoft.com\\\/images\\\/orbcenter\\\/eAoc\\\/banner.png\"},\"com.rarepepe\":{\"Title\":\"Rarepepe\",\"MasterCurrency\":\"PEPECASH\",\"ticker\":\"PCSH\",\"envCode\":\"eRar\",\"bundleId\":\"com.rarepepe\",\"bannerImage\":\"http:\\\/\\\/sandra.everdreamsoft.com\\\/images\\\/orbcenter\\\/eRar\\\/banner.png\"},\"com.bookoforbs\":{\"Title\":\"ORBexchange\",\"MasterCurrency\":\"XCP\",\"ticker\":\"XCP\",\"envCode\":\"eOex\",\"bundleId\":\"com.bookoforbs\",\"bannerImage\":\"http:\\\/\\\/sandra.everdreamsoft.com\\\/images\\\/orbcenter\\\/eOex\\\/banner.jpg\"}}}";
-   
-this.orbData = JSON.parse(envRes);
-if(this.currentAddress == "empty"){
-
-  this.userBalance = [];
-  
- this.dataService.topbar.setEnvironments(this.orbData.Environements);
  
-}else{
-
- this.httpService.getBalance(this.currentAddress).subscribe(
-     data => { 
-      this.userBalance = data;
-      console.log(  this.userBalance);
-      
-      this.dataService.topbar.setEnvironments(this.orbData.Environements);
-
-      },   
-      error => {
-       
-console.log("error balance");
- this.loading = false;
-      },
-     () => {});
-
-}
-
-
-     */
 
 
  
@@ -239,7 +218,7 @@ if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "l
 
 
     this.getFees();
-/*
+ 
     this.showOrderPage = true;
     var tempORB = {
       image:"http://api.moonga.com/RCT/cp/cards/view/normal/large/en/1456.jpg",
@@ -249,7 +228,7 @@ if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "l
     this.dataService.maincontroller.currentBalance = 1;
      this.dataService.maincontroller.selectedKey = "SARUTOBICARD";
     this.dataService.maincontroller.selectedOrb = tempORB;
-*/
+ 
 
   this.loadEnvironments();
     
