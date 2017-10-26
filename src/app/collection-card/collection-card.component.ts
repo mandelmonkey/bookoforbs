@@ -91,7 +91,7 @@ imageLoaded(){
 	}
 	} 
 
-	  if(this.loadNum2 == 1){
+	  if(this.loadNum2 == 99){
 	 	this.canvas = document.createElement("canvas");
    
 	//this.canvas.setAttribute('crossOrigin', 'anonymous');
@@ -122,7 +122,7 @@ handlerFunction() {
   }
  getImage(obj:any){
 
- 
+ /*
 	 var cachedImg = this.persistenceService.get(obj+"v6",   StorageType.LOCAL);
 	 
  console.log("cahceh is "+cachedImg);
@@ -131,7 +131,7 @@ if(typeof cachedImg!="undefined"){
  console.log(this.i+" Getting base "+ obj);
 return "data:image/png;base64,"+cachedImg;
 
-}
+}*/
 
  console.log(this.i+" Getting image "+ obj);
     return obj;
