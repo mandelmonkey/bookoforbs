@@ -267,7 +267,7 @@ console.error("send error " + error);
     if(data != null){
 
     tmpthis.currentSendResponse = data;
-var feeBTC = "0.0001";
+var feeBTC = data.fee * 100000000;
 
       
       console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx+" "+tmpthis.dataService.maincontroller.linkType);

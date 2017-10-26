@@ -144,7 +144,7 @@ if(currentFee == "custom"){
     	 tmpthis.selectAmount = false; 
 		 tmpthis.showOrderText = false;
    tmpthis.showConfText = true;
-   
+    tmpthis.currentTransactionFee =  data.fee * 100000000;
     console.dir('unsigned_tx:' + data.unsigned_tx);
 
     if(tmpthis.dataService.maincontroller.linkType == "indiesquare" || 1==1){
@@ -215,7 +215,7 @@ if(currentFee == "custom"){
 
 
 
-    tmpthis.currentTransactionFee = 0.0001;
+   
 	});
 
 
