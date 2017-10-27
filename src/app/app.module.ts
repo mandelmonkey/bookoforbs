@@ -24,6 +24,8 @@ import { AccountComponent } from './account/account.component';
 import { QrscanComponent } from './qrscan/qrscan.component';
 import { HistoryComponent } from './history/history.component';
 import { HistoryCardComponent } from './history-card/history-card.component'; 
+import { ImgCacheModule } from 'ng-imgcache';
+
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];
@@ -52,6 +54,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule, 
+    ImgCacheModule,
     VirtualScrollModule,
     LazyLoadImageModule,
    RouterModule.forRoot(appRoutes) 

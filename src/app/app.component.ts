@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { ImgCacheService } from 'ng-imgcache';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

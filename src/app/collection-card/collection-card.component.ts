@@ -1,7 +1,7 @@
 import { Component, OnInit , Input} from '@angular/core';
 
 import { DataService } from '../services/data.service';
-
+import { ImgCacheService } from 'ng-imgcache';
 import { PersistenceService, StorageType } from 'angular-persistence';
 export interface OrbItem {
     orbKey?: number;
@@ -43,7 +43,13 @@ export class CollectionCardComponent implements OnInit {
  ctx;
 	loadNum = 0;
 		loadNum2 = 0;
-  constructor(public dataService:DataService,private persistenceService: PersistenceService) { }
+  constructor(public dataService:DataService,private persistenceService: PersistenceService,imgCache: ImgCacheService) { 
+
+
+imgCache.init({
+        // Pass any options here...
+      });
+  }
 imgLoadError(){
 	console.error("load error "+this.orbKey);
 }
@@ -91,18 +97,18 @@ imageLoaded(){
 	}
 	} 
 
-	  if(this.loadNum2 == 99){
+	  if(this.loadNum2 > 99){
 	 	this.canvas = document.createElement("canvas");
    
-	//this.canvas.setAttribute('crossOrigin', 'anonymous');
+	 //this.canvas.setAttribute('crossOrigin', 'anonymous');
     // Copy the image contents to the canvas
     this.ctx = this.canvas.getContext("2d");
 var img = document.getElementById("img"); 
 	var base64 = this.getBase64Image(img);
-
+this.canvas = null;
 		  console.log(base64);
 
- this.persistenceService.set( this.orbImage+"v6",base64, {type: StorageType.LOCAL}); 
+ this.persistenceService.set( this.orbImage+"v8",base64, {type: StorageType.LOCAL}); 
 
  }
  this.loadNum2++;
@@ -122,8 +128,8 @@ handlerFunction() {
   }
  getImage(obj:any){
 
- /*
-	 var cachedImg = this.persistenceService.get(obj+"v6",   StorageType.LOCAL);
+  
+	 var cachedImg = this.persistenceService.get(obj+"v8",   StorageType.LOCAL);
 	 
  console.log("cahceh is "+cachedImg);
 if(typeof cachedImg!="undefined"){
@@ -131,7 +137,7 @@ if(typeof cachedImg!="undefined"){
  console.log(this.i+" Getting base "+ obj);
 return "data:image/png;base64,"+cachedImg;
 
-}*/
+} 
 
  console.log(this.i+" Getting image "+ obj);
     return obj;
