@@ -1,8 +1,12 @@
 	  
-	  <img id="img"   class="card" img-cache img-cache-src="{{orbImage}}" [style.height]="getHeight()" src="../assets/images/blank.png" (click)="showORB()" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" (load)="imageLoaded()"/>
+	 <!-- <img id="img"   class="card" img-cache img-cache-src="{{orbImage}}" [style.height]="getHeight()" src="../assets/images/blank.png" (click)="showORB()" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" (load)="imageLoaded()"/>-->
+
+<img id="img"   class="card"  src="../assets/images/blank.png" [errorImage]="dataService.collection.errorImage" [lazyLoad]="orbImage"  [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]="dataService.collection.scrollView" onerror="imgLoadError()" (load)="imageLoaded()" [style.height]="getHeight()" (click)="showORB()" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" (load)="imageLoaded()"/>
+ 
+
     <div class="shadowBox">
     
 	  <span class="cardNum">x{{dataService.maincontroller.getUserBalance(orbKey)}}{{dataService.maincontroller.getUserUnconfBalance(orbKey)}}</span>
     </div> 
        
-   <!--  [errorImage]="dataService.collection.errorImage" [lazyLoad]="orbImage"  [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]="dataService.collection.scrollView" onerror="imgLoadError()" (load)="imageLoaded()"  -->
+  
