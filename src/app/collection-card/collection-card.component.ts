@@ -121,9 +121,14 @@ this.canvas = null;
 handlerFunction() {
 	console.log("hello");
 }
+ngAfterViewInit(){
+	 
+}
   ngOnInit() {
-
-  	 
+ 
+var img = document.getElementById("img"); 
+img.setAttribute('img-cache-src', this.orbImage);
+  
   
   }
  getImage(obj:any){

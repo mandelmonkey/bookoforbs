@@ -1,8 +1,8 @@
 	  
-	  <img id="img" class="card" img-cache [img-cache-src]="orbImage" [errorImage]="dataService.collection.errorImage" [lazyLoad]="orbImage"  [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]=dataService.collection.scrollView [style.height]="dataService.collection.cardHeightInner" onerror="imgLoadError()" (load)="imageLoaded()" (click)="showORB()"/> 
+	  <img id="img" class="card" img-cache [img-cache-src]="orbImage" [style.height]="dataService.collection.cardHeightInner"  (click)="showORB()"/> 
     <div class="shadowBox">
     
 	  <span class="cardNum">x{{dataService.maincontroller.getUserBalance(orbKey)}}{{dataService.maincontroller.getUserUnconfBalance(orbKey)}}</span>
     </div> 
        
-   
+   <!--  [errorImage]="dataService.collection.errorImage" [lazyLoad]="orbImage"  [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]="dataService.collection.scrollView" onerror="imgLoadError()" (load)="imageLoaded()"  -->
