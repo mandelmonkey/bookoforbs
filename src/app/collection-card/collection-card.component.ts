@@ -70,7 +70,8 @@ imgLoadError(){
 }
 imageLoaded(){
 
-
+var img = document.getElementById("img");
+img.style.background = "none";
 
 
 	if(this.i == 1){
@@ -92,11 +93,11 @@ imageLoaded(){
 			//this.dataService.collection.cardHeight = (20+(width * aspect))+"px";
 		}
 		
-		console.log("ch "+this.dataService.collection.cardWidthNum +" as"+aspect );
+	 
 			this.loadNum++;
 	}
 	} 
-
+/*
 	  if(this.loadNum2 > 99){
 	 	this.canvas = document.createElement("canvas");
    
@@ -113,21 +114,21 @@ this.canvas = null;
  }
  this.loadNum2++;
 	  
+	*/
+}
+ 
+getHeight(){
 	
+	 return this.dataService.collection.cardHeightInner;
 }
   showORB(){
  	this.dataService.collection.showORB(this.dataService.maincontroller.currentOrbs[this.orbKey],this.orbKey);
   }
-handlerFunction() {
-	console.log("hello");
-}
-ngAfterViewInit(){
-	 
-}
-  ngOnInit() {
  
+  ngOnInit() {
+ /*
 var img = document.getElementById("img"); 
-img.setAttribute('img-cache-src', this.orbImage);
+img.setAttribute('src', this.orbImage);*/
   
   
   }

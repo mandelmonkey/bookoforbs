@@ -11,17 +11,21 @@
  
 }
 .card {  
- 
+ height: 0;
+ width: 0; 
      background-repeat: no-repeat; 
      background-size: cover;
- 
+ border:0;
 width: 100%;
-  opacity: 0;
+  border:none;
  margin: 0 auto;
+ text-indent: -999px;
+  border: none !important;
+ /*
   -webkit-transition: opacity 1s ease-in-out;
     -moz-transition: opacity 1s ease-in-out;
     -o-transition: opacity 1s ease-in-out;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;*/
          
 }
 
