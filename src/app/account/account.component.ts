@@ -33,7 +33,7 @@ export class AccountComponent implements OnInit {
                 ( value: string ) : void => {
 
                     this.copyEvent.emit( value );
-                    alert(this.dataService.maincontroller.currentAddress+" copied to clipboard, make sure to check the address matches on paste!")
+                    alert(value+" copied to clipboard, make sure to check the address matches on paste!")
 
                 }
             )

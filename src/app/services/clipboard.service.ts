@@ -49,8 +49,7 @@ export class ClipboardService {
 					textarea.style.opacity = "0";
 					textarea.style.position = "fixed";
 					textarea.style.top = "-10000px";
-					textarea.style.width = "0px";
-					textarea.style.display ="none";
+					textarea.style.width = "0px"; 
 					this.dom.body.appendChild( textarea );
 
 
