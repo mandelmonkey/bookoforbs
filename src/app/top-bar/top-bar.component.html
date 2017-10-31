@@ -7,16 +7,22 @@
     <span>{{currentEnvTitle}}</span>
     <img id="smallarrow" class="smallarrow" [src]="dataService.getImage('littleArrow')"  />
   </div>
-   <div id="myDropdown" class="dropdown-content">
+   
+    <ul id="myDropdown" class="dropdown-content">
    <li *ngFor="let environmentKey of environmentKeys;  let i = index">
     <span class="envtitle" (click)="setEnvironment(environmentKeys[i])">{{environments[environmentKey].Title}}</span>
    
    </li>
-  </div>
+ </ul>
+  
 
 
 
         <input *ngIf="shouldShowSignInOut()"  class="loginLogoutButton" type="button" [value]="getSignInText()" (click)="logout()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
 
+        <div *ngIf="shouldShowSearch()" id="demo-2">
+  <input type="search"  style="text-transform:uppercase" (input)="updateSearch($event.target.value)">
+  
+</div>
  
 </div>

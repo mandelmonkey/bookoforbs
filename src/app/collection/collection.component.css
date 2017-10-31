@@ -48,9 +48,14 @@ app-collection-card {
   max-height:46px;  
   display: inline-block;
   text-align: center;  
+
+   display:flex;
+  justify-content:center;
+  align-items:center;
 }
 .ownAllButtonImg {
    position: absolute; 
+        pointer-events: none;
   margin-left:-125px;
     left:50%;
   height: 8vh;
@@ -59,24 +64,15 @@ app-collection-card {
     outline: 0 !important;
     border:0 none !important;
 }
-.ownAllButtonLeft { 
-  width:100px;
-  top: 1.8vh;
+.ownAllButtonText{ 
+  width:100px; 
   display: inline-block;
-     pointer-events: none;
+    vertical-align: middle;
     position: relative;
     color: #ffffd5;
     font-family:   merriweather;  
 }
-.ownAllButtonRight { 
-   width:100px;
-     top: 1.8vh;
-     pointer-events: none;
-      position: relative; 
-  display: inline-block;
-    color: #ffffd5;
-    font-family:   merriweather; 
-}
+ 
 
 
 

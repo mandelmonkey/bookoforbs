@@ -39,7 +39,14 @@ rotated = false;
   }
   
     }
-
+    shouldShowSearch(){
+       if(this.dataService.maincontroller.showCollection == true){
+           if(this.dataService.maincontroller.loading == false){
+             return true;
+           }
+       }
+      return false;
+    }
   ngOnInit() {
       this.dataService.topbar = this;
   }
@@ -88,6 +95,37 @@ if(this.environmentKeys.length > 0){
 
 }
 
+}
+
+
+updateSearch(val:string){
+  this.dataService.maincontroller.currentSearch = val.toUpperCase();
+  
+  if(this.dataService.maincontroller.currentSearch != ""){
+
+this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
+var tmpthis = this;
+//if you only want to match id- as prefix 
+var matches =  this.dataService.maincontroller.currentOrbsKeys.filter(function(returnValue){
+  if(returnValue) {
+      return (returnValue.substring(0,  tmpthis.dataService.maincontroller.currentSearch.length) ===  tmpthis.dataService.maincontroller.currentSearch);
+  }
+}); //["id-3-text"]
+/*
+//if you want to match id- string exists at any position
+var matches = windowArray.filter(function(windowValue){
+  if(windowValue) {
+      return windowValue.indexOf(this.dataService.maincontroller.currentSearch) >= 0;
+  }
+});*/
+
+this.dataService.maincontroller.currentOrbsKeys = matches;
+ 
+
+    
+  }else{
+    this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
+  }
 }
 openEnvironmentList() {
  if(this.environmentKeys.length > 0){

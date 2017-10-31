@@ -10,6 +10,7 @@ import { HistoryComponent } from '../history/history.component';
 @Injectable()
 export class DataService {
  
+
   history:HistoryComponent;
   topbar:TopBarComponent;
   collection:CollectionComponent;
@@ -20,6 +21,7 @@ export class DataService {
   viewMode:boolean;
   landscape:boolean;
   uiclass:any;
+  dev:boolean;
    constructor(){
     this.currentTab = 1;
 
@@ -32,5 +34,6 @@ this.uiclass = new UI();
 
   }
   
+
 
 }

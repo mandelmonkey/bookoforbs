@@ -1,8 +1,8 @@
 <div class="collection" *ngIf="dataService.currentTab == 1">
  
   <div *ngIf="!dataService.maincontroller.loading " class="ownAllButton">
-    <img class="ownAllButtonImg" src={{allOwnImage}} (click)="selectAllOwn()" />
-    <div class="ownAllButtonLeft">My Orbs</div>  <div class="ownAllButtonRight">All Orbs</div>
+    <img class="ownAllButtonImg" [src]=allOwnImage  />
+    <div class="ownAllButtonText" (click)="selectOwn()" >My Orbs</div>  <div class="ownAllButtonText" (click)="selectAll()">All Orbs</div>
   </div>
  
  

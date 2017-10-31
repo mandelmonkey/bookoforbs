@@ -283,10 +283,14 @@ label{
 .keypad {
 text-align: center;
   width:100%;
+  max-width: 900px;
   height: 40%;
   bottom: 0;
   position: absolute; 
   z-index: 1;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 .button {
   display: inline-block;

@@ -12,11 +12,56 @@ export class HistoryCardComponent implements OnInit {
  @Input()
 	data:any;
 
+ @Input()
+  order:boolean;
+
 constructor(public dataService:DataService,private httpService:HTTPService) { }
   ngOnInit() {
   	//console.log(JSON.stringify(this.data));
   }
 getImage(){
+
+  if(this.order == true){
+
+    if(this.data.type == "sell"){
+
+      var theToken = this.data.give_token;
+
+        }
+        else{
+          theToken = this.data.get_token;
+        }
+
+    if(theToken == "BTC"){
+      return this.dataService.getImage("asset_bitcoin");
+    }else if(theToken == "XCP"){
+      return this.dataService.getImage("xcp_asset");
+    }
+    else{
+    
+  
+        for(var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++){
+
+          var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
+          if(aKey == theToken){
+
+            return  this.dataService.maincontroller.currentOrbs[aKey].image;
+          }
+        }
+
+        return "https://api.indiesquare.me/v2/tokens/"+ theToken +"/image?width=200&X-Api-Key=" + this.httpService.apiKey;
+
+    }
+
+
+   
+  
+
+
+
+  }
+  else{
+
 	if(this.data.token != null){
 		if(this.data.token == "BTC"){
 			return this.dataService.getImage("asset_bitcoin");
@@ -43,22 +88,103 @@ getImage(){
 	return "";
 }
 
- getInfo(){
- 	if(this.data.type == "send"){
- 		return "Sent "+this.data.quantity+" "+this.data.token+" to";
- 	}
- 	else if(this.data.type == "receive"){
- 		return "Received "+this.data.quantity+" "+this.data.token+" from";
- 	}
+
+
+}
+
+canCancel(){
+
+  /*if(this.data.status == "open"){
+    return true;
+  }else{
+    return false;
+  }*/
+    return true;
+}
+cancelOrder(){
+
+}
+getOrderTitle1(){
+
+if(this.data.type == "sell"){
+  if(this.data.status == "filled"){
+    return "Sold";
+  }
+  else if(this.data.status == "expired"){
+    return "Couldn't Sell";
+  }
+     return "Selling";
+   }
+   else if(this.data.type == "buy"){
+       if(this.data.status == "filled"){
+    return "Bought";
+  }
+  else if(this.data.status == "expired"){
+    return "Couldn't Buy";
+  }
+     return "Buying";
+   }
+    
+}
+
+ getOrderInfo(){
+ if(this.data.type == "sell"){
+     return this.data.give_quantity + " " + this.data.give_token + " at "+this.data.price +" "+this.data.get_token +  " each, status: "+this.getOrderStatus();
+   }
+   else if(this.data.type == "buy"){
+      return this.data.get_quantity + " " + this.data.get_token + " at "+ this.data.price +" "+ this.data.give_token + " each, status: "+this.getOrderStatus();
+   }
  }
 
+ getOrderTitle2(){
+
+return "Status";
+    
+}
+
+
+
+ getOrderStatus(){
+
+return this.data.status;
+    
+ }
+
+ getOrderTitle3(){
+
+return "Date";
+    
+}
+
+
+
+ getInfo(){
+
+   
+ 	if(this.data.category== "Send"){
+ 		return "Sent "+this.data.quantity+" "+this.data.token+" to";
+ 	}
+ 	else if(this.data.category == "Receive"){
+ 		return "Received "+this.data.quantity+" "+this.data.token+" from";
+ 	}
+
+ 
+ }
+
+
+
  getAddress(){
-if(this.data.type == "send"){
- 		return this.data.destination;
- 	}
- 	else if(this.data.type == "receive"){
- 		return this.data.source;
- 	}
+
+ 
+
+if(this.data.category== "Send"){
+     return this.data.destination;
+   }
+  else if(this.data.category == "Receive"){
+     return this.data.source;
+   }
+ 
+
  }
 
  
@@ -71,7 +197,14 @@ if(this.data.type == "send"){
   
  		var dateString=this.data.time.replace('T', ' ');
  		 dateString= dateString.replace('-', '/')
- 	let date = new Date();
+ 	let date = new Date(dateString);
+
+ var hourOffset = date.getTimezoneOffset() / 60;
+
+        date.setHours( date.getHours() + hourOffset ); 
+
+
+
  	var day = date.getDate();
 var monthIndex = date.getMonth();
 var year = date.getFullYear();
@@ -93,18 +226,34 @@ var myFormattedDate = day+"-"+(monthIndex+1)+"-"+year+" "+ hours+":"+minutes+":"
 imageLoaded(){
 }
   getWidth(){
+    if(this.dataService.isMobile){
   	 var pxWidth = (document.documentElement.clientWidth * 0.9);
-   
-
+     
   	return pxWidth+"px";
+    }
+    else{
+       var pxWidth = (document.documentElement.clientWidth * 0.4);
+     
+    return pxWidth+"px";
+
+    }
   }
    getHeight(){
+if(this.dataService.isMobile){
+       var pxWidth = (document.documentElement.clientWidth * 0.9);
+     var pxHeight = pxWidth * 0.55;
 
+    return pxHeight+"px";
+    }
+    else{
+       var pxWidth = (document.documentElement.clientWidth * 0.4);
+     var pxHeight = pxWidth * 0.55;
 
-  	 var pxWidth = (document.documentElement.clientWidth * 0.9);
-   	var pxHeight = pxWidth * 0.55;
+    return pxHeight+"px";
 
-  	return pxHeight+"px";
+    }
+
+  
   
   }
 

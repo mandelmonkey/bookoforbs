@@ -5,6 +5,12 @@
    text-align: center;  
 }
 .ownAllButton { 
+     -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   margin: 0 auto;
      cursor: pointer; 
   width:250px;
@@ -13,11 +19,17 @@
   text-align: center; 
   margin-top: 5px; 
 }
-.ownAllButtonLeft { 
+.ownAllButtonLeft {   -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
   width:100px;
   top: 12px;
   display: inline-block;
-     pointer-events: none;
+     cursor: pointer;
     position: relative;
     color: #ffffd5;
     font-family:   merriweather;  
@@ -25,9 +37,16 @@
 }
  
 .ownAllButtonRight { 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
    width:100px;
    top: 12px;
-     pointer-events: none;
+  cursor: pointer;
       position: relative; 
   display: inline-block;
     color: #ffffd5;
@@ -38,6 +57,7 @@
 
 
 .ownAllButtonImg {
+   pointer-events: none;
    position: absolute; 
   margin-left:-125px;
     left:50%;
@@ -46,6 +66,113 @@
     outline: 0 !important;
     border:0 none !important;
 }
+
+
+
+
+
+
+
+
+.ordersButton { 
+     -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  margin: 0 auto;
+     cursor: pointer; 
+ 
+   width: 320px;
+  height:46px;  
+  display: inline-block;
+  text-align: center; 
+  margin-top: 5px; 
+  position:relative
+}
+
+
+
+.ordersButtonImg {
+   pointer-events: none;
+   position: absolute; 
+ 
+  width: 320px;
+  height:46px;  ; 
+    outline: 0 !important;
+    border:0 none !important;
+    margin-left:-160px;
+    left:50%;
+}
+
+
+
+
+
+.ordersButtonSeg {   -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+  width:24%;
+  top: 12px;
+  display: inline-block;
+     cursor: pointer;
+    position: relative;
+    color: #ffffd5;
+    font-family:   merriweather;  
+    font-size: 0.8em;
+}
+ 
+.ordersButtonSegLeft {   -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  padding-left: 10px;
+  width:20%;
+  top: 12px;
+  display: inline-block;
+     cursor: pointer;
+    position: relative;
+    color: #ffffd5;
+    font-family:   merriweather;  
+    font-size: 0.8em;
+}
+ 
+ .ordersButtonSegRight {   -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+ padding-right: 10px;
+  width:20%;
+   
+  top: 12px;
+  display: inline-block;
+     cursor: pointer;
+    position: relative;
+    color: #ffffd5;
+    font-family:   merriweather;  
+    font-size: 0.8em;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
 .parent {

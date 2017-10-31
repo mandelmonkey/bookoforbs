@@ -29,6 +29,7 @@ public currentAddress = "";
 public recoveryPhrase = "";
 public selectedOrb:any;
 public selectedKey:string;
+public currentSearch = "";
 public currentBundleId:string;
 public currentBalance:number;
 public currentImage:string;
@@ -50,6 +51,7 @@ public currentAbrev:string;
 public currentSendAddress:string;
 public currentCurrencyImg:string;
 public history =[];
+public orders =[];
   public currentOrbs : Array<any>;
   public currentOrbsKeys : Array<any>;
   public allOrbsKeys : Array<any>;
@@ -130,7 +132,7 @@ var tmpthis = this;
       error => {
        
 console.log("error fees"); 
-      },
+       },
      () => {});
 
 
@@ -174,6 +176,10 @@ if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "l
        }
 }
   ngOnInit() {
+
+    if(window.location.href.indexOf("localhost") != -1 ){
+this.dataService.dev = true;
+    }
    
  this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent);
   

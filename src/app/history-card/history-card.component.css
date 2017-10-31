@@ -10,6 +10,8 @@
 	width: 100vw;
 	text-align: center;
 
+
+
 }
 .tokenImage{
 	 display: inline-block;
@@ -18,12 +20,27 @@
   
 
 }
+.customButton{
+    background-color: Transparent;
+  background-repeat: no-repeat;
+  background-size:100% 100%; 
+  width:75px; 
+  height:30px; 
+  background-position: 50% 50%; 
+ 
+  font-size: 0.7em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+}
 .infoText{
 	margin-left: 5px;
 	 display: inline-block;
 	 text-align: center;
 	 word-wrap: break-word;
    max-width: 45vw;
+   vertical-align:top;
  
 }
  

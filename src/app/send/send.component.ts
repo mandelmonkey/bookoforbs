@@ -297,9 +297,8 @@ var feeBTC = data.fee * 100000000;
      
 console.log(result.signed_tx); 
 
-   tmpthis.sending = false;
-        tmpthis.dataService.maincontroller.showMessage("sent!");
-        /*
+   
+        
      tmpthis.indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
         if( error ){
             console.error(error);
@@ -307,11 +306,12 @@ console.log(result.signed_tx);
              tmpthis.sending = false;
             return;
         }
-         tmpthis.sending = false;
+        tmpthis.sending = false;
         tmpthis.dataService.maincontroller.showMessage("sent!");
-      }); */
+          tmpthis.closeSend();
+      });  
 
-      tmpthis.closeSend();
+    
 
    }
    

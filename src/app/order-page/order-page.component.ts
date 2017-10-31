@@ -182,7 +182,7 @@ if(currentFee == "custom"){
     }
 
         console.log(data.signed_tx);
-        /*
+        
     indiesquare.broadcast({"tx": data.signed_tx}, function(data, error){
     	 tmpthis.loading = false;
     if( error ){
@@ -195,18 +195,18 @@ if(currentFee == "custom"){
     	else{
     		tmpthis.dataService.maincontroller.showMessage("error");
     	}
+       tmpthis.closeConf();
+
         return;
     }
-    tmpthis.dataService.maincontroller.showMessage("order placed!");
-     tmpthis.showConfOverlay = false;
-		 
-    console.dir('txid:' + data.txid);
-});*/
-
- tmpthis.loading = false;
+ 
  tmpthis.closeConf();
  tmpthis.dataService.maincontroller.showMessage("order placed!");
-     tmpthis.showConfOverlay = false;
+     
+
+    //console.dir('txid:' + data.txid);
+}); 
+
 
 
 

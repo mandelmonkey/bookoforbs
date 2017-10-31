@@ -2,9 +2,10 @@
 <div class="background" [style.width]="getWidth
 ()" [style.height]="getHeight()" [style.background-image]="'url(' +dataService.getImage('historyBoxBack')+ ')'">
 
-<div class="contents">
+<div  class="contents">
 <img class="tokenImage"   [lazyLoad]="getImage()"  [scrollObservable]="dataService.history.scrollObservable" [scrollTarget]=dataService.history.scrollView   onerror="imgLoadError()" (load)="imageLoaded()" />
-<div class="infoText">
+
+<div *ngIf="!order" class="infoText">
 <p class="titleline">{{getInfo()}}<p>
 
 <p class="infoline" style="font-size: 0.6em;">{{getAddress()}}<p>
@@ -12,6 +13,25 @@
 <p class="titleline">Date<p>
 <p class="infoline">{{getDate()}}<p>
 </div>
+
+
+<div *ngIf="order" class="infoText">
+<p class="titleline">{{getOrderTitle1()}}<p>
+
+<p class="infoline" style="font-size: 0.6em;">{{getOrderInfo()}}<p>
+
+ <div class="cancelButton" *ngIf="canCancel()">
+ 	<input class="customButton" type="button" value="Cancel"   (click)="cancelOrder()" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">	
+
+ </div>
+
+	<p class="titleline">{{getOrderTitle3()}}<p>
+<p class="infoline">{{getDate()}}<p>
 </div>
+
+
+</div>
+
+
 </div>
 </div>

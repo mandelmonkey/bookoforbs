@@ -108,15 +108,18 @@
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
-    height: 8vh;
+    max-height: 80vh;
+    float:left;
+margin: 0px;  overflow: scroll;  
     left:5px;
     position: absolute;
     background-color: #442117;
     min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    list-style: none outside none; margin:0; padding: 0;
 }
-
+ 
  
 .envtitle {
   display: table-cell;
@@ -128,13 +131,13 @@
 }
 li
 {
-  
+     margin: 0 10px; display: inline;
     background-color: #442117;
     display: table;
     min-width: 200px;
     list-style-type:none;
-    padding-left:15px;
-    margin:0px;
+    padding-left:5px;
+    left: 0; 
     height:50px;
 }
 /* Change color of dropdown links on hover */
@@ -142,3 +145,86 @@ li:hover {background-color: #654137}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+
+
+
+
+
+input {
+  outline: none;
+}
+input[type=search] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+  display: none; 
+}
+
+
+input[type=search] {
+  background: #ffffff url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  border: solid 1px #ffffff;
+  padding: 9px 10px 9px 32px;
+  width: 55px;
+  
+  -webkit-border-radius: 10em;
+  -moz-border-radius: 10em;
+  border-radius: 10em;
+  
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+
+  font-family: sling;
+}
+input[type=search]:focus {
+  width: 15vw;
+  background-color:#ffffff;
+  
+  /*
+  -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+  -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+  box-shadow: 0 0 5px rgba(109,207,246,.5);*/
+}
+
+
+input:-moz-placeholder {
+  color: #ffd700;
+}
+input::-webkit-input-placeholder {
+  color: #ffd700;
+}
+#demo-2{
+  float: right;
+  position: absolute;
+  top: 1vh;
+  right: 10px;
+}
+/* Demo 2 */
+#demo-2 input[type=search] {
+  width: 15px;
+  padding-left: 10px;
+  color: transparent;
+  cursor: pointer;
+}
+#demo-2 input[type=search]:hover {
+  background-color: #ffffff;
+}
+#demo-2 input[type=search]:focus {
+  width: 15vw;
+  padding-left: 32px;
+  color: #000;
+  background-color: #ffffff;
+  cursor: auto;
+}
+#demo-2 input:-moz-placeholder {
+  color: transparent;
+}
+#demo-2 input::-webkit-input-placeholder {
+  color: transparent;
+}

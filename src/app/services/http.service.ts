@@ -32,17 +32,17 @@ export class HTTPService{
       var params = json;
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json'); 
-      /*
+    
       return this._http.get(url, {
         headers:header
       })
       .map(res => res.json());
-      */
+     /*
  return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
         headers:header
       })
       .map(res => res.json());
-
+*/
 
     };
  
@@ -63,16 +63,17 @@ export class HTTPService{
       header.append('Content-type', 'Content-Type: application/json');
        header.append('Content-type', 'Content-Type: application/json');
 
-     /*
+    
       return this._http.get(url, {
         headers:header
       })
       .map(res => res.json());
-      */
+       /*
  return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
         headers:header
       })
       .map(res => res.json());
+      */
 
     };
 
@@ -122,18 +123,33 @@ header.append('X-Api-Key', this.apiKey);
       .map(res => res.json());
        
     };
-      getHistory(address,type){
-      /*
-      return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/balances?X-Api-Key=" + this.apiKey)
-      .map(res=>res.json());*/
+       getOrderHistory(address,type,currency){
+        if(type == "all"){
 
-       return this._http.get(this.indieURL+"/v2/addresses/" +address + "/history?type="+type+"&length=10")
+        return this._http.get(this.indieURL+"/v2/addresses/" +address + '/orderhistory?base_token='+currency+'&length=100').map(res=>res.json());
+      }else if(type == "buy"){
+
+        return this._http.get(this.indieURL+"/v2/addresses/" +address + '/orderhistory?base_token='+currency+'&type='+type+'&status=filled&length=100').map(res=>res.json());
+  
+      } else if(type == "sell"){
+
+        return this._http.get(this.indieURL+"/v2/addresses/" +address + '/orderhistory?base_token='+currency+'&type='+type+'&status=filled&length=100').map(res=>res.json());
+  
+      } 
+      else if(type == "open"){
+
+        return this._http.get(this.indieURL+"/v2/addresses/" +address + '/orderhistory?base_token='+currency+'&status=open&length=100').map(res=>res.json());
+  
+      } 
+    };
+      getHistory(address){
+      
+
+       return this._http.get(this.indieURL+"/v2/addresses/" +address + "/history?type=send,cancel&length=10")
       .map(res=>res.json());
     };
     getBalance(address){
-      /*
-      return this._http.get("https://api.indiesquare.me/v2/addresses/"+address+"/balances?X-Api-Key=" + this.apiKey)
-      .map(res=>res.json());*/
+      
 
        return this._http.get(this.indieURL+"/v2/addresses/"+address+"/balances")
       .map(res=>res.json());

@@ -54,7 +54,7 @@ imgLoadError(){
 }
  
 imageLoaded(){
-
+/*
 if(typeof this.orbImage != "undefined"){
 	 var cachedImg = localStorage.getItem(this.orbKey+"v9");
 	 
@@ -97,7 +97,7 @@ localStorage.setItem(tmpthis.orbKey+"v9", base64String);
 xhr.send();
 
 }
-}
+}*/
 
  
 var img = document.getElementById("img");
@@ -108,7 +108,7 @@ img.style.background = "none";
 		 
 
 	 if(this.loadNum == 1){
-		var img = document.getElementById("img");
+		 
 
 	 
 		var height = img.offsetHeight;
@@ -165,19 +165,9 @@ img.setAttribute('src', this.orbImage);*/
  getImage(){
 
   
-	 var cachedImg = localStorage.getItem(this.orbKey+"v9");
-	 
- 
- 
- //console.log("cahceh is "+cachedImg);
-if(cachedImg!=null){
-
-  //console.log("loade dfrom cache "+ this.orbImage);
-return "data:image/png;base64,"+cachedImg;
-
-} 
-
- //console.log(this.i+" Getting image "+ obj);
+	  
     return this.orbImage;
-  }
+
+}
+   
 }

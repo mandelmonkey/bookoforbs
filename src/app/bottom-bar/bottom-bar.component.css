@@ -41,6 +41,7 @@ position: absolute;
    width:25%;
    height: 9vh;
   max-height:60px; 
+
 }
 .secondButton {
 position: absolute;  
@@ -83,7 +84,7 @@ position: absolute;
 .labels{
   position: absolute; 
   text-align: center;
-  top:3.5vh;
+  top:25px;
    pointer-events: none;
  
 }

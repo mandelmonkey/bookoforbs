@@ -247,6 +247,18 @@ this.defaultImage = this.dataService.getImage('cardback');
       return true;
     }
   }
+  selectOwn(){
+ this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
+        
+      this.allOrbs = false;
+      this.allOwnImage =this.dataService.getImage('leftOptionSeg');
+  }
+  selectAll(){
+      this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
+          
+      this.allOrbs = true;
+      this.allOwnImage = this.dataService.getImage('rightOptionSeg');
+  }
   selectAllOwn(){
     if(this.allOrbs == true){
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
