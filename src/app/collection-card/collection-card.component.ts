@@ -42,8 +42,7 @@ export class CollectionCardComponent implements OnInit {
 	@Input()
 	scrollEvent:any;
 
- canvas;
- ctx;
+ 
 	loadNum = 0;
 		loadNum2 = 0;
   constructor(public dataService:DataService,private persistenceService: PersistenceService,imgCache: ImgCacheService) { 
@@ -53,24 +52,26 @@ export class CollectionCardComponent implements OnInit {
 imgLoadError(){
 	console.error("load error "+this.orbKey);
 }
-
-	 getBase64Image(img) {
-    // Create an empty canvas element
-  this.canvas.width = img.width;
-    this.canvas.height = img.height;
-    this.ctx.drawImage(img, 0, 0);
-
-    // Get the data-URL formatted image
-    // Firefox supports PNG and JPEG. You could check img.src to
-    // guess the original format, but be aware the using "image/jpg"
-    // will re-encode the image.
-    var dataURL = this.canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
+ 
 imageLoaded(){
 
-
+if(typeof this.orbImage != "undefined"){
+	 var cachedImg = localStorage.getItem(this.orbKey+"v9");
+	 
+ 
+if(cachedImg == null){
+ console.log("caching "+ cachedImg+" "+this.orbKey);
+	 
+var tmpthis = this;
+var blobToBase64 = function(blob, cb) {
+    var reader = new FileReader();
+    reader.onload = function() {
+    var dataUrl = reader.result;
+    var base64 = dataUrl.split(',')[1];
+    cb(base64);
+    };
+    reader.readAsDataURL(blob);
+};
 var xhr = new XMLHttpRequest();
 xhr.open('GET', this.orbImage, true);
 xhr.responseType = 'blob';
@@ -78,18 +79,32 @@ xhr.responseType = 'blob';
 xhr.onload = function(e) {
    if (this.status !== 200) return;
    var blob = new Blob([this.response], {type: this.response.type});
-   console.log("the blob is"+blob);
+ 	 blobToBase64(blob, function(base64String) {
+ 	 	if(tmpthis.orbKey == "PEPEBRIEFS"){
+ console.log(base64String);
+}
+
+localStorage.setItem(tmpthis.orbKey+"v9", base64String);
+//tmpthis.persistenceService.set( tmpthis.orbKey+"v9",base64String, {type: StorageType.LOCAL}); 
+ console.log("saved "+tmpthis.orbImage);
+
+   }); 
+ 
+
    //rest of the code that uses the blob goes here
 };
 
 xhr.send();
 
+}
+}
 
+ 
 var img = document.getElementById("img");
 img.style.background = "none";
 
 
-	if(this.i == 1){
+	if(this.i == 2){
 		 
 
 	 if(this.loadNum == 1){
@@ -147,20 +162,22 @@ img.setAttribute('src', this.orbImage);*/
   
   
   }
- getImage(obj:any){
+ getImage(){
 
   
-	 var cachedImg = this.persistenceService.get(obj+"v8",   StorageType.LOCAL);
+	 var cachedImg = localStorage.getItem(this.orbKey+"v9");
 	 
- console.log("cahceh is "+cachedImg);
-if(typeof cachedImg!="undefined"){
+ 
+ 
+ //console.log("cahceh is "+cachedImg);
+if(cachedImg!=null){
 
- console.log(this.i+" Getting base "+ obj);
+  //console.log("loade dfrom cache "+ this.orbImage);
 return "data:image/png;base64,"+cachedImg;
 
 } 
 
- console.log(this.i+" Getting image "+ obj);
-    return obj;
+ //console.log(this.i+" Getting image "+ obj);
+    return this.orbImage;
   }
 }
