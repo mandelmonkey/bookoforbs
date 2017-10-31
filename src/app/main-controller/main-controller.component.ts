@@ -176,7 +176,7 @@ if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "l
        }
 }
   ngOnInit() {
-
+ 
     if(window.location.href.indexOf("localhost") != -1 ){
 this.dataService.dev = true;
     }
