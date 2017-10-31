@@ -3,6 +3,7 @@ import { Component, OnInit , Input} from '@angular/core';
 import { DataService } from '../services/data.service';
 import { ImgCacheService } from 'ng-imgcache';
 import { PersistenceService, StorageType } from 'angular-persistence';
+declare var XMLHttpRequest:any;
 export interface OrbItem {
     orbKey?: number;
     cardWidth?: string;
@@ -19,7 +20,9 @@ export interface OrbItem {
   templateUrl: './collection-card.component.html',
   styleUrls: ['./collection-card.component.css']
 })
+
 export class CollectionCardComponent implements OnInit {
+
 	  @Input()
     item:  OrbItem;
 
@@ -45,10 +48,7 @@ export class CollectionCardComponent implements OnInit {
 		loadNum2 = 0;
   constructor(public dataService:DataService,private persistenceService: PersistenceService,imgCache: ImgCacheService) { 
 
-
-imgCache.init({
-        // Pass any options here...
-      });
+ 
   }
 imgLoadError(){
 	console.error("load error "+this.orbKey);
@@ -69,6 +69,21 @@ imgLoadError(){
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 imageLoaded(){
+
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', this.orbImage, true);
+xhr.responseType = 'blob';
+
+xhr.onload = function(e) {
+   if (this.status !== 200) return;
+   var blob = new Blob([this.response], {type: this.response.type});
+   console.log("the blob is"+blob);
+   //rest of the code that uses the blob goes here
+};
+
+xhr.send();
+
 
 var img = document.getElementById("img");
 img.style.background = "none";
