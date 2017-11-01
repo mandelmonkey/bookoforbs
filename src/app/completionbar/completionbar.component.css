@@ -1,0 +1,65 @@
+.outer{
+	width:100vw;
+	text-align: center;
+	margin-top: 5px;
+}
+.inner{
+	margin: 0 auto;
+	display: inline-block;
+}
+.barouter{
+	border-radius:7px;
+	width: 55vw;
+	max-width: 290px;
+	height: 14px;
+	background-color: transparent;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+.bar{
+	position: absolute;
+	left:0;
+	top:0;
+	border-radius:7px; 
+		height: 100%;
+	background-color: green;
+	display: inline-block;
+	vertical-align: middle;
+}
+.barinner{
+	left:0;
+	top:0;
+	position: absolute;
+	border-radius:7px;
+	width: 100%; 
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	display: inline-block;
+	vertical-align: middle;
+}
+.score{
+	font-family:   sling;
+ 
+	 color: #ffffd5;
+		display: inline-block;
+	vertical-align: middle;
+
+}
+.rankingsButton{
+	vertical-align: middle;
+display: inline-block;
+    background-color: Transparent;
+  background-repeat: no-repeat;
+  background-size:100% 100%; 
+  width:90px; 
+  height:45px; 
+  background-position: 50% 50%; 
+ 
+  font-size: 0.7em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+ 
+}

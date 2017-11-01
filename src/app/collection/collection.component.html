@@ -1,11 +1,11 @@
 <div class="collection" *ngIf="dataService.currentTab == 1">
  
-  <div *ngIf="!dataService.maincontroller.loading " class="ownAllButton">
+  <div *ngIf="!dataService.maincontroller.loading" class="ownAllButton">
     <img class="ownAllButtonImg" [src]=allOwnImage  />
     <div class="ownAllButtonText" (click)="selectOwn()" >My Orbs</div>  <div class="ownAllButtonText" (click)="selectAll()">All Orbs</div>
   </div>
  
- 
+ <app-completionbar  *ngIf="!dataService.maincontroller.loading"></app-completionbar > 
 <virtual-scroll id="scrollView" class="scrollable" [items]="dataService.maincontroller.currentOrbsKeys" (update)="viewPortItems = $event"
 [style.height]="getCollectionHeight()">
 

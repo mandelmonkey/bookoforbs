@@ -145,7 +145,7 @@ header.append('X-Api-Key', this.apiKey);
       getHistory(address){
       
 
-       return this._http.get(this.indieURL+"/v2/addresses/" +address + "/history?type=send,cancel&length=10")
+       return this._http.get(this.indieURL+"/v2/addresses/" +address + "/history?type=send,cancel&length=20")
       .map(res=>res.json());
     };
     getBalance(address){

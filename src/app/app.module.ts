@@ -25,6 +25,8 @@ import { QrscanComponent } from './qrscan/qrscan.component';
 import { HistoryComponent } from './history/history.component';
 import { HistoryCardComponent } from './history-card/history-card.component'; 
 import { ImgCacheModule } from 'ng-imgcache';
+import { RankingsComponent } from './rankings/rankings.component';
+import { CompletionbarComponent } from './completionbar/completionbar.component';
 
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
@@ -47,7 +49,9 @@ const appRoutes: Routes = [
     AccountComponent,
     QrscanComponent,
     HistoryComponent,
-    HistoryCardComponent
+    HistoryCardComponent,
+    RankingsComponent,
+    CompletionbarComponent
   ],
   imports: [
     PersistenceModule,

@@ -1,0 +1,114 @@
+ .background{
+ 	position: absolute;
+ 	background-repeat: no-repeat;
+ 	left: 0;
+ 	width: 100vw;
+ 	height: 100vh;
+ }
+
+#rankings{
+pointer-events: none;
+font-size: 10pt;
+}
+.topPartOuter{
+	position: absolute;
+	top:70px;
+	width: 100vw;
+	margin: 0 auto;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	
+}
+.topPart{
+	
+display: inline-block;
+vertical-align: middle;
+}
+.embelish{
+	display: inline-block;
+	vertical-align: middle;
+width: 10px;
+height: 15px;
+}
+ 
+ .titleText { 
+ 	text-align: center;
+ 	display: inline-block;
+  color: #ffffd5;
+   font-family:   sling; 
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle;
+   padding-left: 10px;
+}
+ .title { 
+ position: absolute; 
+     top: 16px;
+     text-align: center;
+  width:100%;
+  height:60px;
+  color: #ffffd5;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+}
+.parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+
+}
+.backbar {
+   position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:55px;
+}
+.leftbracket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:10px;
+  height:55px;
+}
+.rightbracket {
+  position: absolute;
+  top: 0;
+  right: 0;
+   width:10px;
+  height:55px;
+}
+
+ 
+
+ .backButton {
+
+
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+ 
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:90px; 
+   height: 7vh;
+  max-height:42px;
+  top:1vh;
+  left:5px;
+
+
+}

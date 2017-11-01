@@ -162,7 +162,7 @@ this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode);
 }
 
 shouldShowSignInOut(){
-  console.log("ca "+this.dataService.maincontroller.currentAddress);
+  
   if(this.dataService.maincontroller.showAccount == true){
     return true;
   } 

@@ -1,0 +1,17 @@
+<img class="background"  [src]="dataService.getImage('greenFelt')" [style.top]="getTopBackground()"  />
+
+<div class="topPartOuter">
+<div class="topPart"> <img class="embelish" [src]="dataService.getImage('embelishLeft')" /> <div class="titleText">3 Collectors</div>　<img class="embelish" [src]="dataService.getImage('embelishRight')" /> </div></div>
+
+<div class="parent">
+  <img class="backbar"   [src]="dataService.getImage('tool_bar_background')"/>
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')" />
+  <img class="rightbracket"  [src]="dataService.getImage('rightBracket')" />
+
+ <input class="backButton" type="button" value="back" (click)="closeSelf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+ 
+
+<label id="rankings" class="title">Rankings</label> 
+ 
+
+</div>
