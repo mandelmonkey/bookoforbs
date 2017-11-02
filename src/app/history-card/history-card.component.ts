@@ -168,7 +168,7 @@ indiesquare.createCancel(sendParams, function(data, error){
      
 console.log(result.signed_tx); 
 
-   
+   /*
         
   indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
         if( error ){
@@ -178,12 +178,12 @@ console.log(result.signed_tx);
              
             return;
         }
-       tmpthis.dataService.maincontroller.showingLoading = false;
-        tmpthis.dataService.maincontroller.showMessage("Cancel order placed!");
+      
            
-      });  
+      });  */
 
-    
+     tmpthis.dataService.maincontroller.showingLoading = false;
+        tmpthis.dataService.maincontroller.showMessage("Cancel order placed!");
 
    }
    
