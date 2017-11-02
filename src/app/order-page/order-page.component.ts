@@ -299,10 +299,12 @@ this.selectAmount = false;
 	}
 }
 getOrderAmount(order:any){
+
+  var fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.maincontroller.currentCurrency,order.price);
 	if(order.amount != 1){
-		return "x"+order.amount;
+		return "x"+order.amount+" "+fiatPrice;
 	}
-	return "";
+	return ""+fiatPrice;
 }
 getOrders(){
 

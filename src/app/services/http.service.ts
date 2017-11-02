@@ -63,6 +63,32 @@ export class HTTPService{
       })
       .map(res => res.json());
    }
+
+   getPriceForToken(theToken:string){
+   
+     var url = this.indieURL+"/v2/market/"+theToken+"/price?X-Api-Key=" + this.apiKey
+
+       var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.get(url, {
+        headers:header
+      })
+      .map(res => res.json());
+   }
+    getMarkets(){
+     var url = this.indieURL+"/v2/market/ticker?X-Api-Key=" + this.apiKey
+
+       var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.get(url, {
+        headers:header
+      })
+      .map(res => res.json());
+   }
    getRankings(env:string){
      var url = this.baseOrbUrl+"&action=getRanks&env="+env+"&responseType=JSON"+this.devExt+this.getAddressUrl();
 

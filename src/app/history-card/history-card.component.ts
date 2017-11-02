@@ -168,22 +168,22 @@ indiesquare.createCancel(sendParams, function(data, error){
      
 console.log(result.signed_tx); 
 
-   /*
-        
+    
   indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
+  	
+     tmpthis.dataService.maincontroller.showingLoading = false;
         if( error ){
-        	tmpthis.dataService.maincontroller.showingLoading = false;
+        	 
             console.error(error);
              tmpthis.dataService.maincontroller.showMessage(error);
              
             return;
         }
-      
-           
-      });  */
-      tmpthis.dataService.history.reloadOrders();
-     tmpthis.dataService.maincontroller.showingLoading = false;
+        tmpthis.dataService.history.reloadOrders();
         tmpthis.dataService.maincontroller.showMessage("Cancel order placed!");
+           
+      });   
+    
 
    }
    

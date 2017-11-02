@@ -127,6 +127,7 @@ this.dataService.maincontroller.loading = false;
 this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
 this.continueLoad(data);
      
+
       
 
       },   
@@ -166,6 +167,8 @@ this.defaultImage = this.dataService.getImage('cardback');
     this.setWidths();
 
  this.dataService.maincontroller.currentCurrency = definition.MasterCurrency;
+
+ this.dataService.maincontroller.getPriceForCurrency(this.dataService.maincontroller.currentCurrency);
   this.dataService.maincontroller.currentAbrev = definition.ticker;
    this.dataService.maincontroller.currentCurrencyImg = "";
  

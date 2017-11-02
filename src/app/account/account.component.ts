@@ -178,9 +178,31 @@ var abrev = this.dataService.maincontroller.currentAbrev;
   		if(currentBalance == null){
   			return "0 "+ abrev;
   		}else{
-  			return currentBalance;
+  			return currentBalance.toFixed(4);
   		}
   	}
+  }
+
+  getBalanceFiat(currency:string){
+     
+    if(this.dataService.maincontroller.userBalance == null){
+      return "loading...";
+    }
+    else{
+var abrev = this.dataService.maincontroller.currentAbrev;
+      if(currency == "BTC"){
+        abrev = "BTC";
+      }
+ 
+      var currentBalance = this.dataService.maincontroller.getUserBalance(currency);
+     
+
+      if(currentBalance == null){
+        return "0 "+ abrev;
+      }else{
+        return this.dataService.maincontroller.getFiatForToken(currency,currentBalance);
+      }
+    }
   }
 
 }

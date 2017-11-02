@@ -1,7 +1,8 @@
-import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { Inject,LOCALE_ID, Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
 import { PersistenceService, StorageType } from 'angular-persistence';
+
 @Component({
   selector: 'app-main-controller',
   templateUrl: './main-controller.component.html',
@@ -10,7 +11,10 @@ import { PersistenceService, StorageType } from 'angular-persistence';
 })
 export class MainControllerComponent implements OnInit {
 
-  constructor(public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef,private persistenceService: PersistenceService){}
+  constructor(@Inject(LOCALE_ID) locale: string, public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef,private persistenceService: PersistenceService){
+    this.locale = locale;
+  }
+  public locale = "";
 public loading = true;
 public showTopBar = true;
 public showSend = false;
@@ -36,6 +40,7 @@ public selectedKey:string;
 public currentSearch = "";
 public currentBundleId:string;
 public currentBalance:number;
+public currentCurrencyPrice:number;
 public currentImage:string;
 public currentIndex = 0;
 public showingMessage = false;
@@ -56,6 +61,8 @@ public currentSendAddress:string;
 public currentCurrencyImg:string;
 public history =[];
 public orders =[];
+public markets = [];
+
   public currentOrbs : Array<any>;
   public currentOrbsKeys : Array<any>;
   public allOrbsKeys : Array<any>;
@@ -71,14 +78,7 @@ public orders =[];
 currentConfirm;
 currentCancel;
   loadEnvironments(){
-  
- 
-
-
- 
- 
-
- 
+   
      var tmpData = this.dataService;
 this.httpService.getEnvironments().subscribe(
      data => { 
@@ -142,6 +142,77 @@ console.log("error fees");
 
 
 }
+
+getFiatForToken(token:string,quantity:number,fixed = 2){
+
+ if(quantity == 0){
+   return "";
+ }
+  var currency = "USD";
+  //if(this.locale == "ja-JP"){
+    //currency = "JPY";
+  //}
+
+  var fiatValue = this.markets[currency];
+console.log("token "+token+" "+quantity+" "+fiatValue.last);
+  if(token == "BTC"){
+
+    return fiatValue.symbol+""+(quantity * fiatValue.last).toFixed(fixed);
+
+  }else{
+    var btcVal = this.markets[token];
+    if(btcVal != null){
+  
+      return fiatValue.symbol+""+(((btcVal.last *  quantity) * fiatValue.last)).toFixed(fixed);
+   
+    } else{
+       
+      if(this.currentCurrencyPrice != 0){
+        var XCPPrice = this.markets["XCP"].last;
+
+      var XCPFiatPrice = XCPPrice *  fiatValue.last
+
+        var xcpTotal = XCPFiatPrice * this.currentCurrencyPrice;
+         console.log("xcp" + xcpTotal +" "+ XCPPrice);
+        return fiatValue.symbol+""+( xcpTotal * quantity).toFixed(fixed);
+      }
+    }
+  }
+  return "";
+
+}
+ getPriceForCurrency(currency:string){
+   var tmpthis = this;
+tmpthis.currentCurrencyPrice =0;
+ this.httpService.getPriceForToken(currency).subscribe(
+     data => { 
+      tmpthis.currentCurrencyPrice = data["XCP"].price;
+     
+
+      },   
+      error => {
+       
+console.log("error price"); 
+       },
+     () => {});
+ }
+getMarkets(){
+  var tmpthis = this;
+
+ this.httpService.getMarkets().subscribe(
+     data => { 
+      tmpthis.markets = data;
+       
+
+      },   
+      error => {
+       
+console.log("error markets"); 
+       },
+     () => {});
+
+}
+
  getCurrentFee(){
 if(this.currentFee == "fastestFee"){
   return  this.fees[this.currentFee];
@@ -168,6 +239,7 @@ openSend(){
    this.showSelected = false;
 
  }
+
 closeMessage(){
 this.showingMessage = false;
 
@@ -229,7 +301,7 @@ if(this.dataService.isMobile ==false){
 
 
 
-
+  this.getMarkets();
     this.getFees();
  
  /*
