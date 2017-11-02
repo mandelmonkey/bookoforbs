@@ -15,6 +15,7 @@ allOwnImage = this.dataService.getImage('leftOptionSeg');
 loading = false;
  scrollView;
  didInit=false;
+ lastType="";
  mode="history";
   cardHeightInner = "100%";
    scrollObservable;
@@ -87,6 +88,7 @@ getOrders(type:string){
   if( this.currentRequest != null){
     this.currentRequest.unsubscribe();
   }
+  this.lastType = type;
   this.dataService.maincontroller.orders=[];
   var tmpthis = this;
     if(this.dataService.maincontroller.currentAddress != "empty" && tmpthis.dataService.maincontroller.orders.length == 0){
@@ -107,6 +109,9 @@ console.log("error history");
 }
 
 
+}
+reloadOrders(){
+	this.getOrders(this.lastType);
 }
   ngOnInit() {
 

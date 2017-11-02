@@ -181,7 +181,7 @@ console.log(result.signed_tx);
       
            
       });  */
-
+      tmpthis.dataService.history.reloadOrders();
      tmpthis.dataService.maincontroller.showingLoading = false;
         tmpthis.dataService.maincontroller.showMessage("Cancel order placed!");
 
