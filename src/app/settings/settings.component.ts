@@ -64,7 +64,22 @@ this.fiatPickerTop =  document.documentElement.clientHeight+"";
 
  
  }
-	 
+	 logout(){
+  this.dataService.maincontroller.currentOrbsKeys = [];
+  this.dataService.maincontroller.showIntro = true;
+  this.dataService.maincontroller.showCollection = false;
+  this.dataService.maincontroller.showMarket = false;
+  this.dataService.maincontroller.showSend = false;
+  this.dataService.maincontroller.showSelected = false;
+  this.dataService.maincontroller.showOrderPage = false;
+  this.dataService.maincontroller.showBottomBar = false;
+  this.dataService.maincontroller.showTopBar = false;
+  this.dataService.maincontroller.showAccount = false;
+  this.dataService.maincontroller.showHistory = false;
+  this.dataService.maincontroller.showSettings = false;
+  this.dataService.viewMode = false;
+
+}
   ngOnInit() {
 
   //	 this.rankings = JSON.parse("{\"1\":{\"score\":\"75\",\"userId\":434481,\"userName\":\"Test\",\"xcpAddress\":\"1Nh4tPtQjHZSoYdToTF7T3xbaKrTNKM3wP\"},\"2\":{\"score\":\"58\",\"userId\":434734,\"userName\":\"kojitest\",\"xcpAddress\":\"1BG5Kra4EhAaJwkaGX2LQWWbqpGXv6f7dj\"},\"3\":{\"score\":\"0\",\"userId\":434484,\"userName\":\"Test\",\"xcpAddress\":\"1DVQiPGJYoA8RNfJxe6AeNgwdjvUHGZC6F\"}}");

@@ -59,21 +59,7 @@ rotated = false;
  showSettings(){
    return this.dataService.maincontroller.showSettings = true;;
  }
-logout(){
-  this.dataService.maincontroller.currentOrbsKeys = [];
-  this.dataService.maincontroller.showIntro = true;
-  this.dataService.maincontroller.showCollection = false;
-  this.dataService.maincontroller.showMarket = false;
-  this.dataService.maincontroller.showSend = false;
-  this.dataService.maincontroller.showSelected = false;
-  this.dataService.maincontroller.showOrderPage = false;
-  this.dataService.maincontroller.showBottomBar = false;
-  this.dataService.maincontroller.showTopBar = false;
-  this.dataService.maincontroller.showAccount = false;
-  this.dataService.maincontroller.showHistory = false;
-  this.dataService.viewMode = false;
 
-}
 setEnvironments(environmentData:Array<any> ){
 
   this.environments = environmentData;
