@@ -97,13 +97,13 @@ getImage(){
 }
 
 canCancel(){
-	/*
+	 
 	if(this.data.status == "open"){
 return true;
 	}
 	return false;
-  */
-    return true;
+  
+    //return true;
 }
 cancelOrder(){
 var tmpthis = this;
