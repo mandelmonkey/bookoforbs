@@ -9,7 +9,7 @@ import {HTTPService} from "../services/http.service";
   styleUrls: ['./history-card.component.css']
 })
 export class HistoryCardComponent implements OnInit {
-
+ unsigned_tx = "";
  @Input()
 	data:any;
 
@@ -97,11 +97,17 @@ getImage(){
 }
 
 canCancel(){
-
-  
+	/*
+	if(this.data.status == "open"){
+return true;
+	}
+	return false;
+  */
     return true;
 }
 cancelOrder(){
+var tmpthis = this;
+	this.dataService.maincontroller.showLoading("Please wait...");
 	console.log("Data "+JSON.stringify(this.data));
 	  var indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
@@ -120,19 +126,83 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
 
 
 indiesquare.createCancel(sendParams, function(data, error){
+
+
+	
     if( error ){
+    	tmpthis.dataService.maincontroller.showingLoading = false;
         console.error(error);
         if(typeof error.message != "undefined"){
-        		 alert(error.message);
+        			tmpthis.dataService.maincontroller.showMessage(error.message);
         }else{
-       	 alert("error canceling order");
+       	 	tmpthis.dataService.maincontroller.showMessage("error canceling order");
    		 }
         return;
     }
-    console.dir('unsigned_tx:' + data.unsigned_tx);
+
+ tmpthis.unsigned_tx=data.unsigned_tx;
+    	  if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
+     
+  indiesquare.signTransaction({'unsigned_tx': tmpthis.unsigned_tx}, function(url, urlScheme, error){
+  
+    if( error ){
+    	tmpthis.dataService.maincontroller.showingLoading = false;
+      console.error(error);
+             tmpthis.dataService.maincontroller.showMessage(error);
+        
+        
+       
+        return;
+    } 
+   
+   
+}, function(result, error){
+ 
+  if(error){
+  	tmpthis.dataService.maincontroller.showingLoading = false;
+    console.error(error); 
+             tmpthis.dataService.maincontroller.showMessage(error);
+     
+ return;
+  }else{
+     
+console.log(result.signed_tx); 
+
+   
+        
+  indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
+        if( error ){
+        	tmpthis.dataService.maincontroller.showingLoading = false;
+            console.error(error);
+             tmpthis.dataService.maincontroller.showMessage(error);
+             
+            return;
+        }
+       tmpthis.dataService.maincontroller.showingLoading = false;
+        tmpthis.dataService.maincontroller.showMessage("Cancel order placed!");
+           
+      });  
+
+    
+
+   }
+   
+
 });
 
 
+
+
+
+}
+
+
+
+
+
+});
+
+ 
 
 }
 getOrderTitle1(){
@@ -239,7 +309,12 @@ return "Date";
  	else if (this.data.time != null){
   
  		var dateString=this.data.time.replace('T', ' ');
- 		 dateString= dateString.replace('-', '/')
+ 		 dateString= dateString.replace('-', '/');
+ 		  dateString= dateString.replace('-', '/');
+ 		   dateString= dateString.replace('-', '/');
+ 		// console.log("ds"+dateString);
+ 	//	 dateString = "2015/12/31 00:00:00";
+ 	//2017/10/17T09:31:12+0000
  	let date = new Date(dateString);
 
  var hourOffset = date.getTimezoneOffset() / 60;

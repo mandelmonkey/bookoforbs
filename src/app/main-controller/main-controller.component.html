@@ -82,5 +82,15 @@
 
 
   </div>
+
+     <div class="messageDark"  *ngIf="showingLoading">
+   <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
+  <div class="messageText">{{messageText}}</div> 
+         
+     
+       </div>
+
+
+  </div>
    <app-qrscan  *ngIf="showQRScan"></app-qrscan>
  

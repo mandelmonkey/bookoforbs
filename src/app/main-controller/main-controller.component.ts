@@ -25,6 +25,7 @@ public showRankings = false;
 public showAccount = true;
 public showIntro = false;
 public rankings = false;
+public showingLoading = false;
 public orbData :any;
 public userBalance :Array<any>;
 public currentAddress = "";
@@ -263,7 +264,10 @@ if(this.dataService.isMobile ==false){
    
 
   }
-
+showLoading(message:string){
+    this.messageText = message;
+    this.showingLoading = true; 
+  }
    showConf(message:string,confirm,cancel,owner:any){
     this.messageText = message;
     this.showingConf = true;
