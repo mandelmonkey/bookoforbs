@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import { DataService } from '../services/data.service';
 
 import {HTTPService} from "../services/http.service";
+   declare var IndieSquare:any; 
 @Component({
   selector: 'app-history-card',
   templateUrl: './history-card.component.html',
@@ -102,6 +103,32 @@ canCancel(){
     return true;
 }
 cancelOrder(){
+	console.log("Data "+JSON.stringify(this.data));
+	  var indiesquare = new IndieSquare({
+    'apikey': this.httpService.apiKey  
+  });
+       var sendParams = {"source": this.dataService.maincontroller.currentAddress, "offer_hash":this.data.offer_hash};
+if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)){
+ 
+
+  sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
+
+}else{
+  sendParams["feePerKb"] =this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
+
+  
+}
+
+
+indiesquare.createCancel(sendParams, function(data, error){
+    if( error ){
+        console.error(error);
+        return;
+    }
+    console.dir('unsigned_tx:' + data.unsigned_tx);
+});
+
+
 
 }
 getOrderTitle1(){

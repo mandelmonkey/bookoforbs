@@ -14,6 +14,7 @@ export class RankingsComponent implements OnInit {
     private virtualScroll: VirtualScrollComponent;
 	rankings = [];
 	rankingsKeys = [];
+	username = "";
 	 scrollView;
 	 loadingUsername:boolean;
 	loading:boolean;
@@ -35,7 +36,7 @@ this.loadingUsername = true;
 
       },   
       error => {
-      	
+
        this.loadingUsername = false;
        alert("error setting username");
  
