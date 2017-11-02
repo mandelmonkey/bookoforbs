@@ -123,6 +123,14 @@ console.log("error history");
      data => { 
       tmpthis.dataService.maincontroller.history = data;
       console.log("hsitory:"+ JSON.stringify(tmpthis.dataService.maincontroller.history ));
+      for (var i = tmpthis.dataService.maincontroller.history.length - 1; i >= 0; i--) {
+      	var aHist = tmpthis.dataService.maincontroller.history[i];
+      	if(aHist.type == "order"){
+      	if(typeof aHist.unconfirm == "undefined"){
+      		tmpthis.dataService.maincontroller.history.splice(i,1);
+      	}
+     	 }
+      }
        tmpthis.loading = false;
       
       },   

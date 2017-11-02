@@ -22,6 +22,7 @@ constructor(public dataService:DataService,private httpService:HTTPService) { }
   }
 getImage(){
 
+
   if(this.order == true){
 
     if(this.data.type == "sell"){
@@ -63,6 +64,8 @@ getImage(){
   }
   else{
 
+
+
 	if(this.data.token != null){
 		if(this.data.token == "BTC"){
 			return this.dataService.getImage("asset_bitcoin");
@@ -84,8 +87,8 @@ getImage(){
         return "https://api.indiesquare.me/v2/tokens/"+ this.data.token +"/image?width=200&X-Api-Key=" + this.httpService.apiKey;
 
     }
+	 }
 	 
-	}
 	return "";
 }
 
@@ -95,11 +98,7 @@ getImage(){
 
 canCancel(){
 
-  /*if(this.data.status == "open"){
-    return true;
-  }else{
-    return false;
-  }*/
+  
     return true;
 }
 cancelOrder(){
@@ -192,13 +191,16 @@ return "Date";
 
  getInfo(){
 
-   
+   	if(this.data.type == "order"){
+  		return "Pending order";
+  	}else{
  	if(this.data.category== "Send"){
  		return "Sent "+this.data.quantity+" "+this.data.token+" to";
  	}
  	else if(this.data.category == "Receive"){
  		return "Received "+this.data.quantity+" "+this.data.token+" from";
  	}
+ }
 
  
  }
@@ -206,7 +208,9 @@ return "Date";
 
 
  getAddress(){
-
+if(this.data.type == "order"){
+  		return this.data.get_quantity+" " +this.data.get_asset+" for " + this.data.give_quantity+" " +this.data.give_asset;
+  	}else{
  
 
 if(this.data.category== "Send"){
@@ -215,13 +219,20 @@ if(this.data.category== "Send"){
   else if(this.data.category == "Receive"){
      return this.data.source;
    }
+}
  
 
  }
 
- 
+ getDateTitle(){
+ 	if(this.data.type == "order"){
+  		return "Status";
+  	}else{
+return "Date";
+  	}
+ }
  getDate(){
-
+	 
  	if(this.data.unconfirm){
  		return "unconfirmed";
  	}
@@ -247,6 +258,7 @@ var myFormattedDate = day+"-"+(monthIndex+1)+"-"+year+" "+ hours+":"+minutes+":"
 
  	return myFormattedDate;
  }
+ 
  return "";
  }
 
