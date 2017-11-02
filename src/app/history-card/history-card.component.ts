@@ -107,7 +107,7 @@ cancelOrder(){
 	  var indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
   });
-       var sendParams = {"source": this.dataService.maincontroller.currentAddress, "offer_hash":this.data.offer_hash};
+       var sendParams = {"source": this.dataService.maincontroller.currentAddress, "offer_hash":this.data.tx_hash};
 if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)){
  
 
@@ -123,6 +123,11 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
 indiesquare.createCancel(sendParams, function(data, error){
     if( error ){
         console.error(error);
+        if(typeof error.message != "undefined"){
+        		 alert(error.message);
+        }else{
+       	 alert("error canceling order");
+   		 }
         return;
     }
     console.dir('unsigned_tx:' + data.unsigned_tx);
