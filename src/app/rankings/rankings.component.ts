@@ -16,6 +16,7 @@ export class RankingsComponent implements OnInit {
 	rankingsKeys = [];
 	username = "";
 	 scrollView;
+	 viewPortItems:any;
 	 loadingUsername:boolean;
 	loading:boolean;
   constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService) { }
