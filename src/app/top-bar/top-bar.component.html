@@ -18,7 +18,9 @@
 
 
 
-        <input *ngIf="shouldShowSignInOut()"  class="loginLogoutButton" type="button" [value]="getSignInText()" (click)="logout()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+        <input *ngIf="shouldShowSignIn()"  class="loginLogoutButton" type="button" [value]="getSign()" (click)="logout()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+         
+         <input *ngIf="shouldShowSettings()"  class="loginLogoutButton" type="button" [value]="getSettings()" (click)="showSettings()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
 
         <div *ngIf="shouldShowSearch()" id="demo-2">
   <input type="search"  style="text-transform:uppercase" (input)="updateSearch($event.target.value)">

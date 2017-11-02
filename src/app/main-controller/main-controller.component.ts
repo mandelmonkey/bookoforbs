@@ -29,11 +29,13 @@ public showRankings = false;
 public showAccount = true;
 public showIntro = false;
 public rankings = false;
+public showSettings = false;
 public showingLoading = false;
 public orbData :any;
 public userBalance :Array<any>;
 public currentAddress = "";
 public recoveryPhrase = "";
+public  currentFiatCurreny = "";
 public currentEnv = "";
 public selectedOrb:any;
 public selectedKey:string;
@@ -148,22 +150,20 @@ getFiatForToken(token:string,quantity:number,fixed = 2){
  if(quantity == 0){
    return "";
  }
-  var currency = "USD";
-  //if(this.locale == "ja-JP"){
-    //currency = "JPY";
-  //}
-
+  var currency = this.currentFiatCurreny;
+  
   var fiatValue = this.markets[currency];
-console.log("token "+token+" "+quantity+" "+fiatValue.last);
+  
   if(token == "BTC"){
 
-    return fiatValue.symbol+""+(quantity * fiatValue.last).toFixed(fixed);
+    return  (quantity * fiatValue.last).toLocaleString(this.locale, { style: 'currency', currency: currency,maximumSignificantDigits: fixed });
 
   }else{
     var btcVal = this.markets[token];
     if(btcVal != null){
   
-      return fiatValue.symbol+""+(((btcVal.last *  quantity) * fiatValue.last)).toFixed(fixed);
+
+      return  ((btcVal.last *  quantity) * fiatValue.last).toLocaleString(this.locale, { style: 'currency', currency: currency ,maximumSignificantDigits: fixed });
    
     } else{
        
@@ -173,8 +173,8 @@ console.log("token "+token+" "+quantity+" "+fiatValue.last);
       var XCPFiatPrice = XCPPrice *  fiatValue.last
 
         var xcpTotal = XCPFiatPrice * this.currentCurrencyPrice;
-         console.log("xcp" + xcpTotal +" "+ XCPPrice);
-        return fiatValue.symbol+""+( xcpTotal * quantity).toFixed(fixed);
+         
+        return  ( xcpTotal * quantity).toLocaleString(this.locale, { style: 'currency', currency: currency,maximumSignificantDigits: fixed });
       }
     }
   }
@@ -251,7 +251,16 @@ if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "l
          return false;
        }
 }
+
+setPersistance(key:string,value:string){
+this.persistenceService.set(key, value, {type: StorageType.LOCAL}); 
+}
   ngOnInit() {
+
+    this.currentFiatCurreny = this.persistenceService.get('userFiat',   StorageType.LOCAL);
+    if(typeof this.currentFiatCurreny  == "undefined"){
+      this.currentFiatCurreny = "USD";
+    }
  
     if(window.location.href.indexOf("localhost") != -1 ){
 this.dataService.dev = true;

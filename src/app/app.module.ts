@@ -27,6 +27,7 @@ import { HistoryCardComponent } from './history-card/history-card.component';
 import { ImgCacheModule } from 'ng-imgcache';
 import { RankingsComponent } from './rankings/rankings.component';
 import { CompletionbarComponent } from './completionbar/completionbar.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     HistoryComponent,
     HistoryCardComponent,
     RankingsComponent,
-    CompletionbarComponent
+    CompletionbarComponent,
+    SettingsComponent
   ],
   imports: [
     PersistenceModule,

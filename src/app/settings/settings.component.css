@@ -1,0 +1,318 @@
+ .background{
+ 	position: absolute;
+ 	background-repeat: no-repeat;
+ 	left: 0;
+ 	width: 100vw;
+ 	height: 100vh;
+ }
+
+#rankings{
+pointer-events: none;
+font-size: 10pt;
+}
+ .settingsOptions{
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+  top:100px;
+ }
+ .fiatPicker{
+  position: absolute;
+  height: 400px;
+  width: 100vw;
+  background-color: #655e4f;
+ -webkit-transition: top 0.5s, bottom 0.5s;
+ }
+ .currencyList {
+      top:50px;
+      position: absolute;
+     
+ overflow: scroll;   
+    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  
+    list-style: none outside none; margin:0; padding: 0;
+
+}
+
+.closeButton {
+
+text-align: center;
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em; 
+  font-family:   sling;
+   color: #ffffd5;
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:90px; 
+   height: 7vh;
+  max-height:42px;
+  top:2px;
+  right:5px;
+
+
+}
+.pickerBarOuter{
+   position: absolute;
+  top: 0;
+  left: 0;
+}
+.pickerbar {
+   position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:45px;
+}
+li
+{
+     margin: 0 10px; display: inline;
+   width: 100vw;
+    display: table;
+    min-width: 200px;
+    list-style-type:none;
+    padding-left:5px;
+    left: 0; 
+    height:50px;
+    color: #ffffd5;
+  font-family:   sling;
+}
+ 
+
+ 
+.someSettings {
+ 
+position: relative;
+
+   
+     background-repeat: no-repeat; 
+background-size:100% 100%; 
+ background-position: 50% 50%; 
+     cursor: pointer;  
+  overflow: hidden; 
+    font-size:1em;
+  color: #ffffd5;
+  font-family:   sling;
+   background-color: Transparent;
+  border: none; 
+  width:90vw;
+  max-width: 300px;
+  height: 45px;
+   
+   
+}
+.subtext{
+   font-size:0.7em;
+  color: #332509;
+  font-family:   sling;
+}
+.embelish{
+	display: inline-block;
+	vertical-align: middle;
+width: 10px;
+height: 15px;
+}
+.middlePart{
+		position: absolute;
+ 	top:110px;
+	width: 100vw;
+	text-align: center;
+}
+virtual-scroll {
+	margin-top: 20px;
+ width:100vw;
+   text-align: center;  
+    margin-left: auto;
+    margin-right: auto;
+      -webkit-overflow-scrolling: touch;
+
+
+ 
+}
+.rankingCell{
+
+   
+}
+.cellInfo{
+	   display: table-cell;
+    vertical-align: middle;
+	   
+}
+.num{
+text-align: center; 
+  color: #f6dfa2;
+   font-family:   sling; 
+   font-size: 2em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+ 
+   margin-left: 30px;
+}
+.leftInfo{
+	float: left;
+
+}
+.username{
+ text-align: center; 
+  color: #fdf3df;
+   font-family:   sling; 
+   font-size: 1em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+
+}
+.score{
+ text-align: center; 
+  color: #fdf3df;
+   font-family:   sling; 
+   font-size: 1em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+   float: right;
+   margin-right: 30px;
+
+}
+ .textInput{
+ 	height: 20px;
+ border-radius: 10px;
+ width: 170px;
+ border-color: transparent;
+ text-align: center;
+ }
+  .loading { 
+ 	text-align: center; 
+  color: #ffffd5;
+   font-family:   sling; 
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle;
+  margin-top: 20px;
+}
+ .titleText { 
+ 	text-align: center;
+ 	display: inline-block;
+  color: #ffffd5;
+  width:70vw;
+   font-family:   sling; 
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle;
+   padding-left: 10px;
+}
+ .title { 
+ position: absolute; 
+     top: 16px;
+     text-align: center;
+  width:100%;
+  height:60px;
+  color: #ffffd5;
+   font-family:   merriweather; 
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+}
+.parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+
+}
+.backbar {
+   position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:55px;
+}
+.leftbracket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:10px;
+  height:55px;
+}
+.rightbracket {
+  position: absolute;
+  top: 0;
+  right: 0;
+   width:10px;
+  height:55px;
+}
+
+ .usernameLoading{
+ 	 color: #ffffd5;
+  font-family:   sling;
+ }
+ .jumpButton {
+
+
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+ 
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:100px; 
+   height: 8vh;
+  max-height:50px;
+  top:0.4vh;
+  right:5px;
+
+
+}
+ 
+ .backButton {
+
+
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+ 
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:90px; 
+   height: 7vh;
+  max-height:42px;
+  top:1vh;
+  left:5px;
+
+
+}

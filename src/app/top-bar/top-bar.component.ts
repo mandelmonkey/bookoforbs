@@ -50,13 +50,15 @@ rotated = false;
   ngOnInit() {
       this.dataService.topbar = this;
   }
-getSignInText(){
-  if(this.dataService.maincontroller.currentAddress == "empty"){
-    return "Sign In";
-  }else{
-    return "Log Out";
-  }
-}
+ getSettings(){
+   return "Settings";
+ }
+ getSignIn(){
+   return "Sign In";
+ }
+ showSettings(){
+   return this.dataService.maincontroller.showSettings = true;;
+ }
 logout(){
   this.dataService.maincontroller.currentOrbsKeys = [];
   this.dataService.maincontroller.showIntro = true;
@@ -159,11 +161,17 @@ this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode);
  this.persistenceService.set('selectedEnv', key, {type: StorageType.LOCAL}); 
 this.dataService.maincontroller.currentEnv = this.currentEnv.envCode;
 
-}
 
-shouldShowSignInOut(){
+}
+shouldShowSettings(){
+  if(this.dataService.maincontroller.showAccount == true && this.dataService.maincontroller.currentAddress != "empty"){
+    return true;
+  } 
+  return false;
+}
+shouldShowSignIn(){
   
-  if(this.dataService.maincontroller.showAccount == true){
+  if(this.dataService.maincontroller.showAccount == true && this.dataService.maincontroller.currentAddress == "empty"){
     return true;
   } 
   return false;

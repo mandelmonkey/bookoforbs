@@ -132,7 +132,7 @@ this.isIndiesquare = true;
      
       indiesquare.getAddress('Book of Orbs', function(url, urlScheme, error){
     if( error ){
-      alert("er"+error);
+      alert("er "+error);
         console.log("error"+error);
        
         return;
@@ -146,7 +146,7 @@ this.isIndiesquare = true;
 }, function(result, error){
  
   if(error){
-      alert("er"+error);
+      alert("er "+error);
     console.error(error);
  return;
   }else{
