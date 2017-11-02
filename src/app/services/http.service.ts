@@ -3,6 +3,7 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import { DataService } from '../services/data.service';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -13,9 +14,13 @@ export class HTTPService{
      indieURL = "https://api.indiesquare.me";
    baseOrbUrl = "https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center";
   devExt = "&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd";
-   
-  constructor(private _http:Http){}
+ //  addressExt =     "&mainAddress="+this.dataService+"&targetAddress="+_requires["cache"].data.address;
+    
+  constructor(public dataService:DataService,private _http:Http){}
  
+ getAddressUrl(){
+   return  "&mainAddress="+this.dataService.maincontroller.currentAddress+"&targetAddress="+this.dataService.maincontroller.currentAddress;
+ }
     
     getEnvironments(){
          var header = new Headers();
@@ -45,8 +50,31 @@ export class HTTPService{
 */
 
     };
- 
+    
+    getHandshake(){
+     var url = this.baseOrbUrl+"&action=getHandshake&responseType=JSON"+this.devExt+this.getAddressUrl();
 
+       var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.get(url, {
+        headers:header
+      })
+      .map(res => res.json());
+   }
+   getRankings(env:string){
+     var url = this.baseOrbUrl+"&action=getRanks&env="+env+"&responseType=JSON"+this.devExt+this.getAddressUrl();
+
+       var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.get(url, {
+        headers:header
+      })
+      .map(res => res.json());
+   }
     getEnvironment(env:string){
          var header = new Headers();
  

@@ -31,7 +31,92 @@ vertical-align: middle;
 width: 10px;
 height: 15px;
 }
+.middlePart{
+		position: absolute;
+ 	top:110px;
+	width: 100vw;
+	text-align: center;
+}
+virtual-scroll {
+	margin-top: 20px;
+ width:100vw;
+   text-align: center;  
+    margin-left: auto;
+    margin-right: auto;
+      -webkit-overflow-scrolling: touch;
+
+
  
+}
+.rankingCell{
+
+   
+}
+.cellInfo{
+	   display: table-cell;
+    vertical-align: middle;
+	   
+}
+.num{
+text-align: center; 
+  color: #f6dfa2;
+   font-family:   sling; 
+   font-size: 2em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+ 
+   margin-left: 30px;
+}
+.leftInfo{
+	float: left;
+
+}
+.username{
+ text-align: center; 
+  color: #fdf3df;
+   font-family:   sling; 
+   font-size: 1em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+
+}
+.score{
+ text-align: center; 
+  color: #fdf3df;
+   font-family:   sling; 
+   font-size: 1em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+   float: right;
+   margin-right: 30px;
+
+}
+ .textInput{
+ 	height: 20px;
+ border-radius: 10px;
+ width: 170px;
+ border-color: transparent;
+ text-align: center;
+ }
+  .loading { 
+ 	text-align: center; 
+  color: #ffffd5;
+   font-family:   sling; 
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle;
+  margin-top: 20px;
+}
  .titleText { 
  	text-align: center;
  	display: inline-block;
@@ -84,7 +169,36 @@ height: 15px;
   height:55px;
 }
 
+ .usernameLoading{
+ 	 color: #ffffd5;
+  font-family:   sling;
+ }
+ .jumpButton {
+
+
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
  
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:100px; 
+   height: 8vh;
+  max-height:50px;
+  top:0.4vh;
+  right:5px;
+
+
+}
 
  .backButton {
 

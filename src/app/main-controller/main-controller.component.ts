@@ -29,6 +29,7 @@ public orbData :any;
 public userBalance :Array<any>;
 public currentAddress = "";
 public recoveryPhrase = "";
+public currentEnv = "";
 public selectedOrb:any;
 public selectedKey:string;
 public currentSearch = "";

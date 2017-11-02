@@ -157,7 +157,7 @@ this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode);
    
 
  this.persistenceService.set('selectedEnv', key, {type: StorageType.LOCAL}); 
-
+this.dataService.maincontroller.currentEnv = this.currentEnv.envCode;
 
 }
 
