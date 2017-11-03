@@ -58,7 +58,7 @@ export class HTTPService{
       var params = json;
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
-       header.append('Content-type', 'Content-Type: application/json');
+    
        var theurl=this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl();
        console.log(theurl)
       return this._http.post( theurl,params, {
@@ -70,10 +70,10 @@ export class HTTPService{
     getHandshake(){
      var url = this.baseOrbUrl+"&action=getHandshake&responseType=JSON"+this.devExt+this.getAddressUrl();
 
+        console.log(url)
        var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
-       header.append('Content-type', 'Content-Type: application/json');
-
+      
       return this._http.get(url, {
         headers:header
       })
