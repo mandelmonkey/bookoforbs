@@ -22,7 +22,7 @@ constructor(public dataService:DataService,private httpService:HTTPService) { }
   }
 getImage(){
 
-
+if(this.data != null){
   if(this.order == true){
 
     if(this.data.type == "sell"){
@@ -92,7 +92,7 @@ getImage(){
 	return "";
 }
 
-
+}
 
 }
 
@@ -170,7 +170,7 @@ console.log(result.signed_tx);
 
     
   indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
-  	
+
      tmpthis.dataService.maincontroller.showingLoading = false;
         if( error ){
         	 
@@ -206,7 +206,7 @@ console.log(result.signed_tx);
 
 }
 getOrderTitle1(){
-
+if(this.data != null){
 if(this.data.type == "sell"){
   if(this.data.status == "filled"){
     return "Sold";
@@ -225,16 +225,19 @@ if(this.data.type == "sell"){
   }
      return "Buying";
    }
+}
     
 }
 
  getOrderInfo(){
+ 	if(this.data != null){
  if(this.data.type == "sell"){
      return this.data.give_quantity + " " + this.data.give_token + " at "+this.data.price +" "+this.data.get_token +  " each, status: "+this.getOrderStatus();
    }
    else if(this.data.type == "buy"){
       return this.data.get_quantity + " " + this.data.get_token + " at "+ this.data.price +" "+ this.data.give_token + " each, status: "+this.getOrderStatus();
    }
+}
  }
 
  getOrderTitle2(){
@@ -246,8 +249,9 @@ return "Status";
 
 
  getOrderStatus(){
-
+if(this.data != null){
 return this.data.status;
+}
     
  }
 
@@ -260,8 +264,9 @@ return "Date";
 
 
  getInfo(){
+if(this.data != null){
 
-   	if(this.data.type == "order"){
+	if(this.data.type == "order"){
   		return "Pending order";
   	}else{
  	if(this.data.category== "Send"){
@@ -271,13 +276,14 @@ return "Date";
  		return "Received "+this.data.quantity+" "+this.data.token+" from";
  	}
  }
-
+}
  
  }
 
 
 
  getAddress(){
+ 	if(this.data != null){
 if(this.data.type == "order"){
   		return this.data.get_quantity+" " +this.data.get_asset+" for " + this.data.give_quantity+" " +this.data.give_asset;
   	}else{
@@ -291,18 +297,20 @@ if(this.data.category== "Send"){
    }
 }
  
-
+}
  }
 
  getDateTitle(){
+ 	if(this.data != null){
  	if(this.data.type == "order"){
   		return "Status";
   	}else{
 return "Date";
   	}
+  }
  }
  getDate(){
-	 
+	 if(this.data != null){
  	if(this.data.unconfirm){
  		return "unconfirmed";
  	}
@@ -335,6 +343,7 @@ var myFormattedDate = day+"-"+(monthIndex+1)+"-"+year+" "+ hours+":"+minutes+":"
  }
  
  return "";
+}
  }
 
 

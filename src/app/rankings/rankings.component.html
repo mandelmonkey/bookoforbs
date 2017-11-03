@@ -9,24 +9,13 @@
  <input  class="textInput"  type="text" [(ngModel)]="username"  placeholder="set username"  name="customfee" (blur)="setUsername()" (focus)="onFocus()">
   <p class="usernameLoading" *ngIf="loadingUsername">please wait...</p>
 
-<virtual-scroll id="scrollView" class="scrollable" [items]="rankingsKeys" (update)="viewPortItems = $event"
-[style.height]="getCollectionHeight()">
+<virtual-scroll id="scrollView" class="scrollable" [items]="rankingsKeys" (update)="viewPortItems3 = $event"
+[style.height]="getCollectionHeight()" >
 
-    <div class="rankingCell" *ngFor="let item of viewPortItems;let i = index"  [ngStyle]="getBackground(item)">
-    	<div class="cellInfo" >
-    		<div class="leftInfo">
-    	<div class="num">
-    	#{{item}}  
-    	</div>
-    	<div class="username">
-    	{{rankings[item].userName}}
-    	</div>
-    	</div>
-    	<div class="score">
-    	{{rankings[item].score}}/{{dataService.maincontroller.allOrbsKeys.length}} ORBS
-    	</div>
-    	</div>
-    </div>
+   
+    <app-rankings-cell  *ngFor="let item of viewPortItems3;let i = index"  [item]="item" [rankings]="rankings">
+    	 
+    </app-rankings-cell>
 
 </virtual-scroll>  
 

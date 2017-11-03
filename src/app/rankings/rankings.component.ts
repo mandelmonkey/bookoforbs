@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { VirtualScrollComponent } from 'angular2-virtual-scroll';
-
+import { Observable } from 'rxjs/Observable';
 import { DataService } from '../services/data.service';
 import {HTTPService} from "../services/http.service";
  declare var IndieSquare:any; 
@@ -20,11 +20,14 @@ export class RankingsComponent implements OnInit {
 	 scrollView;
 	 viewPortItems:any;
 	 loadingUsername:boolean;
+	   scrollObservable;
 	loading:boolean;
 indiesquare;
   constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef) { }
 ngAfterViewInit() {
     this.scrollView = document.getElementById("scrollView");
+    this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
+ 
 
 }
 onFocus(){
@@ -83,28 +86,7 @@ if(this.loading){
 	return this.rankingsKeys.length + " Collectors";
 }
 	}
-	getBackground(index:string){
-		 
- 
-		if(this.rankings[index].xcpAddress == this.dataService.maincontroller.currentAddress){
 
-			return {
-				"width": "100vw",
-				"height": "100px",
-				
- "display":"table",
-				"background-color":"rgba(0,0,0,0.5)"
-			}
-			 
-			//return  this._sanitizer.bypassSecurityTrustStyle('rgba(0,0,0,0.5);');
-		}else{
-			return {
-				"width": "100vw",
-				"height": "100px", 
-				 "display":"table",
-			}
-		}
-	}
 jumpToMe(){
 	for (var i = this.rankingsKeys.length - 1; i >= 0; i--) {
 		var anAddress = this.rankings[i].xcpAddress;
@@ -130,7 +112,8 @@ this.loading = true;
      	tmpthis.rankings = data;
      	tmpthis.rankingsKeys = Object.keys(tmpthis.rankings);
      	console.log(tmpthis.rankings.length+" env "+JSON.stringify(tmpthis.rankings));
-     	this.ref.markForCheck();
+     	
+
       },   
       error => {
        this.loading = false;
@@ -149,16 +132,15 @@ console.log("error rankings");
     }
 
      getCollectionHeight(){
-     	return "400px";
-     	/*
+
     if(this.scrollView == null){
       return "5px";
     }else{
-     var bottombar = document.getElementById("bottomBarBottom");
+     
  
       return (document.documentElement.clientHeight-this.scrollView.offsetTop )+"px";
     }
-   */
+   
   }
  
 }
