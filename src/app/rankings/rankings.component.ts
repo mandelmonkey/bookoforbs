@@ -40,14 +40,14 @@ setUsername(){
 this.loadingUsername = true;
 	 this.httpService.getHandshake().subscribe(
      data => { 
-     	this.loadingUsername = false;
+     
      	var hashToSign = data["handshake"];
      	
 
  this.indiesquare.signMessage({"message": hashToSign,"xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
     if( error ){
         console.log("error"+error);
-       
+       	this.loadingUsername = false;
         return;
     }else{
       console.log("went here"+url);
@@ -60,6 +60,7 @@ this.loadingUsername = true;
 }, function(result, error){
  
   if(error){
+  		this.loadingUsername = false;
     console.error(error);
  return;
   }else{
@@ -72,7 +73,7 @@ this.loadingUsername = true;
 
       },   
       error => {
-
+	this.loadingUsername = false;
        this.loadingUsername = false;
        alert("error setting username");
  
@@ -139,7 +140,7 @@ console.log("error rankings");
     }else{
      
  
-      return (document.documentElement.clientHeight-this.scrollView.offsetTop )+"px";
+      return (document.documentElement.clientHeight-this.scrollView.offsetTop + 20 )+"px";
     }
    
   }
