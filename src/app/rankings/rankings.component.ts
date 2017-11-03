@@ -35,7 +35,16 @@ onFocus(){
 }
 setUsername(){
 
- this.indiesquare.signMessage({"message": "hello world","xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
+     
+ 
+this.loadingUsername = true;
+	 this.httpService.getHandshake().subscribe(
+     data => { 
+     	this.loadingUsername = false;
+     	var hashToSign = data["handshake"];
+     	
+     	
+ this.indiesquare.signMessage({"message": hashToSign,"xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
     if( error ){
         console.log("error"+error);
        
@@ -60,14 +69,6 @@ setUsername(){
    
 
 });
-     
-/*
-this.loadingUsername = true;
-	 this.httpService.getHandshake().subscribe(
-     data => { 
-     	this.loadingUsername = false;
-     	var hashToSign = data["handshake"];
-     	//console.log("handshakw "+hashToSign);
 
       },   
       error => {
@@ -77,7 +78,7 @@ this.loadingUsername = true;
  
        },
      () => {});
-     */
+     
 }
 getStatusText(){
 if(this.loading){
