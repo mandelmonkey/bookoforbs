@@ -257,7 +257,7 @@ this.persistenceService.set(key, value, {type: StorageType.LOCAL});
 }
 getPersistance(key:string,){
  var val = this.persistenceService.get(key,   StorageType.LOCAL);
-    if(typeof val != "undefined"){
+    if(typeof val == "undefined"){
       return "";
     }
     return val;
