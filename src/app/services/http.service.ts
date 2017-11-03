@@ -50,7 +50,22 @@ export class HTTPService{
 */
 
     };
-    
+    setUsername(sig:string,username:string){
+       var json = JSON.stringify({
+            signature: sig,
+        });
+
+      var params = json;
+      var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.post( this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl(), {
+        headers:header
+      })
+      .map(res => res.json());
+      
+    }
     getHandshake(){
      var url = this.baseOrbUrl+"&action=getHandshake&responseType=JSON"+this.devExt+this.getAddressUrl();
 

@@ -64,8 +64,23 @@ this.loadingUsername = true;
     console.error(error);
  return;
   }else{
-      
- alert(JSON.stringify(result));
+ 
+  	this.httpService.setUsername().subscribe(
+     data => { 
+     	
+     this.loadingUsername = false; 
+       alert("username set!");
+     	 
+     },
+         error => {
+	this.loadingUsername = false; 
+       alert("error setting username");
+ 
+       },
+     () => {});
+
+
+ 
    }
    
 
