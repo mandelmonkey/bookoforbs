@@ -149,6 +149,7 @@ console.log("error rankings");
     }
 
      getCollectionHeight(){
+     	return "400px";
     if(this.scrollView == null){
       return "5px";
     }else{

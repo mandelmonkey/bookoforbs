@@ -10,7 +10,7 @@
   <p class="usernameLoading" *ngIf="loadingUsername">please wait...</p>
 
 <virtual-scroll id="scrollView" class="scrollable" [items]="rankingsKeys" (update)="viewPortItems = $event"
-[style.height]="300px">
+[style.height]="getCollectionHeight()">
 
     <div class="rankingCell" *ngFor="let item of viewPortItems;let i = index"  [ngStyle]="getBackground(item)">
     	<div class="cellInfo" >
