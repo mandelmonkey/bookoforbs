@@ -255,6 +255,13 @@ if( fee != "fastestFee" && fee != "halfHourFee" && fee != "hourFee" && fee != "l
 setPersistance(key:string,value:string){
 this.persistenceService.set(key, value, {type: StorageType.LOCAL}); 
 }
+getPersistance(key:string,){
+ var val = this.persistenceService.get(key,   StorageType.LOCAL);
+    if(typeof val != "undefined"){
+      return "";
+    }
+    return val;
+}
   ngOnInit() {
 
     this.currentFiatCurreny = this.persistenceService.get('userFiat',   StorageType.LOCAL);

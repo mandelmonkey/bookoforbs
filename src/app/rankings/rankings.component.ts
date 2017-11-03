@@ -35,6 +35,11 @@ onFocus(){
 }
 setUsername(){
 
+	if(this.dataService.maincontroller.currentAddress == "empty"){
+		alert("please sign in to set a username");
+		return;
+	}
+
      var tmpthis = this;
  
 this.loadingUsername = true;
@@ -48,7 +53,8 @@ this.loadingUsername = true;
     if( error ){
         console.log("error"+error);
        	   tmpthis.loadingUsername = false;
-        return;
+         alert("error");
+     		return;
     }else{
       console.log("went here"+url);
       
@@ -62,14 +68,29 @@ this.loadingUsername = true;
   if(error){
   		this.loadingUsername = false;
     console.error("Link error");
- return;
+     alert("error");
+     		return;
+ 
   }else{
  
   	   tmpthis.httpService.setUsername(result.signature,tmpthis.username).subscribe(
      data => { 
 console.log("set"+JSON.stringify(data));
      tmpthis.loadingUsername = false; 
+     if(typeof data.error != undefined){
+
+     	if(data.error != null){
+     		  tmpthis.loadingUsername = false;
+     		  alert("error");
+     		return;
+     	}else{
+     		 console.log("error null"+data.username);
+     	}
+     }
+     console.log("data username "+data.username);
        alert("username set!");
+       tmpthis.getRankings();
+       tmpthis.dataService.maincontroller.setPersistance("username:"+tmpthis.dataService.maincontroller.currentAddress,data.username);
      	 
      },
          error => {
@@ -121,7 +142,18 @@ jumpToMe(){
   //	 this.rankings = JSON.parse("{\"1\":{\"score\":\"75\",\"userId\":434481,\"userName\":\"Test\",\"xcpAddress\":\"1Nh4tPtQjHZSoYdToTF7T3xbaKrTNKM3wP\"},\"2\":{\"score\":\"58\",\"userId\":434734,\"userName\":\"kojitest\",\"xcpAddress\":\"1BG5Kra4EhAaJwkaGX2LQWWbqpGXv6f7dj\"},\"3\":{\"score\":\"0\",\"userId\":434484,\"userName\":\"Test\",\"xcpAddress\":\"1DVQiPGJYoA8RNfJxe6AeNgwdjvUHGZC6F\"}}");
   	// this.rankingsKeys = Object.keys(this.rankings);
 
-this.loading = true;
+
+this.getRankings();
+
+
+this.username =  this.dataService.maincontroller.getPersistance("username:"+this.dataService.maincontroller.currentAddress);
+
+     
+
+  }
+  getRankings(){
+
+  	this.loading = true;
   	var tmpthis = this;
  this.httpService.getRankings(this.dataService.maincontroller.currentEnv).subscribe(
      data => { 
@@ -138,8 +170,6 @@ this.loading = true;
 console.log("error rankings"); 
        },
      () => {});
-     
-
   }
  getTopBackground(){
   return 0;
