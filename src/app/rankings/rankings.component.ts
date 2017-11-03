@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { VirtualScrollComponent } from 'angular2-virtual-scroll';
 
@@ -22,7 +22,7 @@ export class RankingsComponent implements OnInit {
 	 loadingUsername:boolean;
 	loading:boolean;
 indiesquare;
-  constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService) { }
+  constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef) { }
 ngAfterViewInit() {
     this.scrollView = document.getElementById("scrollView");
 
@@ -130,7 +130,7 @@ this.loading = true;
      	tmpthis.rankings = data;
      	tmpthis.rankingsKeys = Object.keys(tmpthis.rankings);
      	console.log(tmpthis.rankings.length+" env "+JSON.stringify(tmpthis.rankings));
-
+     	this.ref.markForCheck();
       },   
       error => {
        this.loading = false;
