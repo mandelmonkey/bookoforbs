@@ -27,7 +27,7 @@ export class HTTPService{
    
  
 
-     var url = this.baseOrbUrl+"&action=getEnvironments&responseType=JSON"+this.devExt;
+     var url = this.baseOrbUrl+"&action=getEnvironments&responseType=JSON"+this.devExt+this.getAddressUrl();
        console.log( url);
       
  var json = JSON.stringify({
@@ -120,7 +120,7 @@ export class HTTPService{
          var header = new Headers();
  
 
-     var url = this.baseOrbUrl+"&action=getEnvironment&env="+env+"&responseType=JSON"+this.devExt;
+     var url = this.baseOrbUrl+"&action=getEnvironment&env="+env+"&responseType=JSON"+this.devExt+this.getAddressUrl();
        console.log(url);
       
  var json = JSON.stringify({
