@@ -35,7 +35,7 @@ onFocus(){
 }
 setUsername(){
 
-     
+     var tmpthis = this;
  
 this.loadingUsername = true;
 	 this.httpService.getHandshake().subscribe(
@@ -65,9 +65,9 @@ this.loadingUsername = true;
  return;
   }else{
  
-  	this.httpService.setUsername().subscribe(
+  	this.httpService.setUsername(result.signature,tmpthis.username).subscribe(
      data => { 
-     	
+
      this.loadingUsername = false; 
        alert("username set!");
      	 
