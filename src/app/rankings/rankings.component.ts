@@ -150,6 +150,7 @@ console.log("error rankings");
 
      getCollectionHeight(){
      	return "400px";
+     	/*
     if(this.scrollView == null){
       return "5px";
     }else{
@@ -157,7 +158,7 @@ console.log("error rankings");
  
       return (document.documentElement.clientHeight-this.scrollView.offsetTop )+"px";
     }
-   
+   */
   }
  
 }
