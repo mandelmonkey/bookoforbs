@@ -18,15 +18,25 @@
   overflow: hidden; 
     text-align: center;
 }
- .indielink  label {
+ .indieLinkLabel{
     
    left: 0; 
    width: 100%; 
    display: inline-block;
    margin-top: 15px;
-    height: 60px;
+   
     color: #ffffd5;
     font-size: 0.9em;
+    font-family:   Sling;
+}
+.install{
+   left: 0; 
+   width: 100%; 
+   display: inline-block; 
+    font-style: italic;
+    color:white;
+    font-size: 0.7em;
+    margin-top: 10px;
     font-family:   Sling;
 }
 .indielogo{

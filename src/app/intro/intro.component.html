@@ -11,10 +11,11 @@
   <div  *ngIf="showIntroButtons">
 
 
-     <div class="indielink" (click)="linkIndieSquare()">
-        <img class="indielogo"   [src]="dataService.getImage('indielogo')"/>
+     <div class="indielink" >
+        <img class="indielogo"   [src]="dataService.getImage('indielogo')" (click)="linkIndieSquare()"/>
       
-      <label>Sign in with IndieSquare</label>  
+      <label class="indieLinkLabel">Sign in with IndieSquare</label>  
+       <label class="install" (click)="goToIndieSquare()">Don't have IndieSquare Wallet? install here</label>  
     </div>
  <br>  
 

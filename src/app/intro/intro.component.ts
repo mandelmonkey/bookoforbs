@@ -195,6 +195,22 @@ this.passphrase = userAgent;
 }
 }
 
+goToIndieSquare(){
+  alert(window.navigator.userAgent);
+ var isIphone = /iPhone/i.test(window.navigator.userAgent);
+  var isAndroid= /Android/i.test(window.navigator.userAgent);
+  if(isIphone){
+ window.location.href="https://itunes.apple.com/app/kauntao-cai-bu/id977972108";
+  }
+  else if(isAndroid){
+   window.location.href="https://play.google.com/store/apps/details?id=inc.lireneosoft.counterparty";
+  
+  }
+  else{
+     window.location.href="https://wallet.indiesquare.me/";
+  }
+  
+}
  backToStart(){
    this.passphrase = "";
  this.showNewPassphrase = false;
