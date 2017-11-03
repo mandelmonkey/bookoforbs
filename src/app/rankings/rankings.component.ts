@@ -4,11 +4,13 @@ import { VirtualScrollComponent } from 'angular2-virtual-scroll';
 
 import { DataService } from '../services/data.service';
 import {HTTPService} from "../services/http.service";
+ declare var IndieSquare:any; 
 @Component({
   selector: 'app-rankings',
   templateUrl: './rankings.component.html',
   styleUrls: ['./rankings.component.css']
 })
+
 export class RankingsComponent implements OnInit {
 	    @ViewChild(VirtualScrollComponent)
     private virtualScroll: VirtualScrollComponent;
@@ -19,6 +21,7 @@ export class RankingsComponent implements OnInit {
 	 viewPortItems:any;
 	 loadingUsername:boolean;
 	loading:boolean;
+indiesquare;
   constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService) { }
 ngAfterViewInit() {
     this.scrollView = document.getElementById("scrollView");
@@ -28,6 +31,34 @@ onFocus(){
 
 }
 setUsername(){
+
+ this.indiesquare.signMessage({"message": "hello world"}, function(url, urlScheme, error){
+    if( error ){
+        console.log("error"+error);
+       
+        return;
+    }else{
+      console.log("went here"+url);
+      
+    }
+
+
+   
+   
+}, function(result, error){
+ 
+  if(error){
+    console.error(error);
+ return;
+  }else{
+      
+ alert(JSON.stringify(result));
+   }
+   
+
+});
+     
+/*
 this.loadingUsername = true;
 	 this.httpService.getHandshake().subscribe(
      data => { 
@@ -43,6 +74,7 @@ this.loadingUsername = true;
  
        },
      () => {});
+     */
 }
 getStatusText(){
 if(this.loading){
@@ -84,7 +116,9 @@ jumpToMe(){
 	
 }
   ngOnInit() {
-
+	 this.indiesquare = new IndieSquare({
+    'apikey': this.httpService.apiKey  
+  });
   //	 this.rankings = JSON.parse("{\"1\":{\"score\":\"75\",\"userId\":434481,\"userName\":\"Test\",\"xcpAddress\":\"1Nh4tPtQjHZSoYdToTF7T3xbaKrTNKM3wP\"},\"2\":{\"score\":\"58\",\"userId\":434734,\"userName\":\"kojitest\",\"xcpAddress\":\"1BG5Kra4EhAaJwkaGX2LQWWbqpGXv6f7dj\"},\"3\":{\"score\":\"0\",\"userId\":434484,\"userName\":\"Test\",\"xcpAddress\":\"1DVQiPGJYoA8RNfJxe6AeNgwdjvUHGZC6F\"}}");
   	// this.rankingsKeys = Object.keys(this.rankings);
 

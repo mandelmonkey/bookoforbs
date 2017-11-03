@@ -196,7 +196,7 @@ this.passphrase = userAgent;
 }
 
 goToIndieSquare(){
-  alert(window.navigator.userAgent);
+ 
  var isIphone = /iPhone/i.test(window.navigator.userAgent);
   var isAndroid= /Android/i.test(window.navigator.userAgent);
   if(isIphone){
