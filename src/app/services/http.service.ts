@@ -59,8 +59,9 @@ export class HTTPService{
       var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
        header.append('Content-type', 'Content-Type: application/json');
-
-      return this._http.post( this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl(), {
+       var theurl=this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl();
+       console.log(theurl)
+      return this._http.post( theurl,params, {
         headers:header
       })
       .map(res => res.json());
