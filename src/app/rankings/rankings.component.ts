@@ -18,7 +18,7 @@ export class RankingsComponent implements OnInit {
 	rankingsKeys = [];
 	username = "";
 	 scrollView;
-	 viewPortItems:any;
+	 viewPortItems3:any;
 	 loadingUsername:boolean;
 	   scrollObservable;
 	loading:boolean;
@@ -43,7 +43,7 @@ this.loadingUsername = true;
      	this.loadingUsername = false;
      	var hashToSign = data["handshake"];
      	
-     	
+
  this.indiesquare.signMessage({"message": hashToSign,"xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
     if( error ){
         console.log("error"+error);
