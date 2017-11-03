@@ -60,7 +60,7 @@ export class HTTPService{
       header.append('Content-type', 'Content-Type: application/json');
     
        var theurl=this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl();
-       console.log(theurl)
+       console.log("sig:"+sig+" "+theurl)
       return this._http.post( theurl,params, {
         headers:header
       })
