@@ -1,0 +1,17 @@
+ 
+<div class="rankingCell"   [ngStyle]="getBackground(item)"  >
+    	<div class="cellInfo" >
+    		<div class="leftInfo">
+    	<div class="num">
+    	#{{item}}  
+    	</div>
+    	<div class="username">
+    	{{rankings[item].userName}}
+    	</div>
+    	</div>
+    	<div class="score">
+    	{{rankings[item].score}}/{{dataService.maincontroller.allOrbsKeys.length}} ORBS
+    	</div>
+    	</div>
+    		</div>
+    		 

@@ -1,0 +1,52 @@
+.rankingCell{
+ 
+}
+ 
+.cellInfo{
+	   display: table-cell;
+    vertical-align: middle;
+	   
+}
+.num{
+text-align: center; 
+  color: #f6dfa2;
+   font-family:   sling; 
+   font-size: 2em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+ 
+   margin-left: 30px;
+}
+.leftInfo{
+	float: left;
+
+}
+.username{
+ text-align: center; 
+  color: #fdf3df;
+   font-family:   sling; 
+   font-size: 1em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+
+}
+.score{
+ text-align: center; 
+  color: #fdf3df;
+   font-family:   sling; 
+   font-size: 1em;
+   background-color: transparent;
+   border-color: transparent;
+   pointer-events: none;
+   vertical-align: middle; 
+   display: inline-block;
+   float: right;
+   margin-right: 30px;
+
+}
