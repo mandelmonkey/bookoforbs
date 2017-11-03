@@ -47,7 +47,7 @@ this.loadingUsername = true;
  this.indiesquare.signMessage({"message": hashToSign,"xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
     if( error ){
         console.log("error"+error);
-       	this.loadingUsername = false;
+       	   tmpthis.loadingUsername = false;
         return;
     }else{
       console.log("went here"+url);
@@ -61,19 +61,19 @@ this.loadingUsername = true;
  
   if(error){
   		this.loadingUsername = false;
-    console.error(error);
+    console.error("Link error");
  return;
   }else{
  
-  	this.httpService.setUsername(result.signature,tmpthis.username).subscribe(
+  	   tmpthis.httpService.setUsername(result.signature,tmpthis.username).subscribe(
      data => { 
 
-     this.loadingUsername = false; 
+     tmpthis.loadingUsername = false; 
        alert("username set!");
      	 
      },
          error => {
-	this.loadingUsername = false; 
+	tmpthis.loadingUsername = false; 
        alert("error setting username");
  
        },
