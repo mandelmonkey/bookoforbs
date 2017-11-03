@@ -1,4 +1,4 @@
-<div class="market" id="market" *ngIf="dataService.currentTab == 2" [style.height]="getMarketHeight()">
+<div class="market" id="market" *ngIf="dataService.currentTab == 2" [style.height]="getMarketHeight()"[style.background-image]="'url(' +dataService.getImage('blueFelt')+ ')'">
 	<div class="marketScroll" *ngIf="dataService.maincontroller.newOrbs.length > 0" [style.height]="getMarketHeight()">
 	
 <div > 

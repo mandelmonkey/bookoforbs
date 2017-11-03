@@ -1,16 +1,9 @@
- <div class="outer"> 
-<div class="apage" [style.background-image]="'url(' +dataService.getImage('greenFelt')+ ')'">
+ 
+
+<div class="apage" [style.left]="page1Left" [style.background-image]="'url(' +dataService.getImage('greenFelt')+ ')'">
  <div class="topSection">
-
-
-
 <img class="float" [src]="dataService.getImage('orbImage')"  />
- 
-
-
-</div>
- 
-
+ </div>
  <div class="bottomSection" [style.background-image]="'url(' +dataService.getImage('introTextBack')+ ')'">
  	<div class="texts">
 <p class="title1">Welcome to Book of Orbs</p>
@@ -19,13 +12,69 @@
 </div>
 <div class="bottomBottom">
   <input  class="nextButton" type="button" value="NEXT"  (click)="slide2()"   [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'">
-  <div>
-  <img class="scrollIndicator" [src]="dataService.getImage('scrollIndicator1')"  />
+  
+</div>
+</div>
+</div>
+
+
+<div class="apage" [style.left]="page2Left" [style.background-image]="'url(' +dataService.getImage('blueFelt')+ ')'">
+ <div class="topSection">
+<img class="screenshot" [src]="dataService.getImage('screenShot1')"  />
+ </div>
+ <div class="bottomSection" [style.background-image]="'url(' +dataService.getImage('introTextBack')+ ')'">
+ 	<div class="texts">
+<p class="title2">Collect and P2P trade game items and collectables as ORBs on the blockchain</p> 
+<p class="title3">Enjoy interoperability if ORBS between multiple games</p>
+</div>
+<div class="bottomBottom">
+  <input  class="nextButton" type="button" value="NEXT"  (click)="slide3()"   [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'">
+ 
+</div>
+</div>
+</div>
+
+
+<div class="apage" [style.left]="page3Left" [style.background-image]="'url(' +dataService.getImage('redFelt')+ ')'">
+ <div class="topSection">
+<img class="screenshot" [src]="dataService.getImage('screenShot2')"  />
+ </div>
+ <div class="bottomSection" [style.background-image]="'url(' +dataService.getImage('introTextBack')+ ')'">
+ 	<div class="texts">
+<p class="title2">ORBs are registered securely on the Bitcoin Blockchain</p>
+<p class="title2">"Proveably Rare"</p>
+<p class="title3">Cryptographically Secure"</p>
+<p class="title3">Private Ownership"</p>
+
+</div>
+ 
+  <input  class="nextButton" type="button" value="NEXT"  (click)="slide4()"   [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'">
+ 
+ 
+</div>
+</div>
+
+
+
+
+<div class="apage" [style.left]="page4Left" [style.background-image]="'url(' +dataService.getImage('purpleFelt')+ ')'">
+ <div class="topSection">
+<img class="screenshot4" [src]="dataService.getImage('tutorialCards')"  />
+ </div>
+ <div class="bottomSection" [style.background-image]="'url(' +dataService.getImage('introTextBack')+ ')'">
+ 	<div class="texts">
+<p class="title1">Book of Orbs currently features</p>
+<p class="title2">"Spells of Genesis, SaruTobi, RarePepe and more!"</p>
+<p class="title3">With new titles added reguarly</p>
+</div>
+<div class="bottomBottom">
+  <input  class="nextButton" type="button" value="Get Started!"  (click)="start()"   [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'">
+ 
+</div>
+</div>
+</div>
+ 
+ 
+ <div class="scrollBottom"   >
+  <img class="scrollIndicator" [src]="scrollImage"  />
   </div>
-</div>
-</div>
- 
- 
- 
-</div>
-</div>

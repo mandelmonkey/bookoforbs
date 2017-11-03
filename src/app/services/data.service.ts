@@ -21,11 +21,13 @@ export class DataService {
   viewMode:boolean;
   landscape:boolean;
   uiclass:any;
+  showIntroScreen:boolean;
   dev:boolean;
    constructor(){
     this.currentTab = 1;
 
 this.uiclass = new UI();
+this.showIntroScreen = true;
   }
 
   getImage(image:string){
