@@ -29,6 +29,7 @@ import { RankingsComponent } from './rankings/rankings.component';
 import { CompletionbarComponent } from './completionbar/completionbar.component';
 import { SettingsComponent } from './settings/settings.component';
 import { RankingsCellComponent } from './rankings-cell/rankings-cell.component';
+import { IntroscreensComponent } from './introscreens/introscreens.component';
 
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     RankingsComponent,
     CompletionbarComponent,
     SettingsComponent,
-    RankingsCellComponent
+    RankingsCellComponent,
+    IntroscreensComponent
   ],
   imports: [
     PersistenceModule,

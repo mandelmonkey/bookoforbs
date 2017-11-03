@@ -90,7 +90,7 @@ console.log("set"+JSON.stringify(data));
      console.log("data username "+data.username);
        alert("username set!");
        tmpthis.getRankings();
-       tmpthis.dataService.maincontroller.setPersistance("username:"+tmpthis.dataService.maincontroller.currentAddress,data.username);
+       tmpthis.dataService.maincontroller.setPersistance("username:"+tmpthis.dataService.maincontroller.currentAddress,data.username+":"+tmpthis.dataService.maincontroller.currentEnv);
      	 
      },
          error => {
@@ -146,7 +146,7 @@ jumpToMe(){
 this.getRankings();
 
 
-this.username =  this.dataService.maincontroller.getPersistance("username:"+this.dataService.maincontroller.currentAddress);
+this.username =  this.dataService.maincontroller.getPersistance("username:"+this.dataService.maincontroller.currentAddress+":"+this.dataService.maincontroller.currentEnv);
 
      
 
