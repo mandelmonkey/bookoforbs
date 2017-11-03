@@ -32,7 +32,7 @@ onFocus(){
 }
 setUsername(){
 
- this.indiesquare.signMessage({"message": "hello world"}, function(url, urlScheme, error){
+ this.indiesquare.signMessage({"message": "hello world","xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
     if( error ){
         console.log("error"+error);
        
