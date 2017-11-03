@@ -1,16 +1,31 @@
-<div class="scrollView" id="scrollView" (scroll)="onScroll($event)">
-	<div class="apage">
-<img class="background"  src="../assets/images/introScreenGreen.jpg" />
-</div>
-<div class="apage">
-<img class="background"  src="../assets/images/introScreenBlue.jpg" />
-</div>
-<div class="apage">
-<img class="background"  src="../assets/images/introScreenBlue.jpg" />
-</div>
-<div class="apage">
-<img class="background"  src="../assets/images/introScreenBlue.jpg" />
+ <div class="outer"> 
+<div class="apage" [style.background-image]="'url(' +dataService.getImage('greenFelt')+ ')'">
+ <div class="topSection">
+
+
+
+<img class="float" [src]="dataService.getImage('orbImage')"  />
+ 
+
+
 </div>
  
 
+ <div class="bottomSection" [style.background-image]="'url(' +dataService.getImage('introTextBack')+ ')'">
+ 	<div class="texts">
+<p class="title1">Welcome to Book of Orbs</p>
+<p class="title2">"Ownership Revolution on the Blockchain"</p>
+<p class="title3">True digital ownership for game players</p>
+</div>
+<div class="bottomBottom">
+  <input  class="nextButton" type="button" value="NEXT"  (click)="slide2()"   [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'">
+  <div>
+  <img class="scrollIndicator" [src]="dataService.getImage('scrollIndicator1')"  />
+  </div>
+</div>
+</div>
+ 
+ 
+ 
+</div>
 </div>

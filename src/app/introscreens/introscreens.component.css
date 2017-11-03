@@ -1,24 +1,118 @@
-.scrollView{
-	width: 100vw;
-	height: 100vh;
-	position: absolute;
-	top: 0;
-	left: 0; 
-	  white-space:nowrap;
-
- font-size:0;
-	   text-align: center; 
-   overflow:hidden; overflow-x:scroll;
  
-        -webkit-overflow-scrolling: touch;
 
+.outer{
+	 position: absolute;
+	top: 0;
+	left: 0;
+		width: 100vw;
+	height: 100vh;
  
 }
 .apage{
 	width: 100vw;
 	height: 100vh;
-	 
+	  background-repeat: no-repeat; 
+     background-size: 100% 100%;
 	display: inline-block;
+}
+.topSection{
+	width: 100vw;
+	height: 50vh;
+	top:0;
+	position: absolute;
+	  text-align: center;
+	 
+}
+@keyframes float {
+  0% {
+     -webkit-filter: drop-shadow(5px 15px 5px #222);
+  filter: drop-shadow(5px 15px 5px rgba(0,0,0,0.6));
+
+    
+    transform: translatey(0px);
+  }
+  50% {
+         -webkit-filter: drop-shadow(25px 15px 5px #222);
+  filter: drop-shadow(5px 35px 5px rgba(0,0,0,0.2));
+    
+    transform: translatey(-20px);
+  }
+  100% {
+         -webkit-filter: drop-shadow(5px 15px 5px #222);
+  filter: drop-shadow(5px 15px 5px rgba(0,0,0,0.6));
+    
+    transform: translatey(0px);
+  }
+}
+ .scrollIndicator{
+  width: 70px;
+    position: relative;
+}
+.bottomBottom{
+ position: absolute;
+ width: 100vw;
+ bottom:10px;
+ margin:auto;
+ display: block;
+ text-align: center;
+}
+.nextButton {
+ margin-bottom: 15px;
+   position: relative;
+     background-repeat: no-repeat; 
+background-size:100% 100%; 
+ background-position: 50% 50%; 
+     cursor: pointer;  
+  overflow: hidden; 
+    font-size:10pt;
+  color: #ffffd5;
+  font-family:   sling;
+   background-color: Transparent;
+  border: none; 
+   width:140px;
+    height: 45px;
+   
+   
+}
+.texts{
+  width: 100vw;
+  text-align: center;
+}
+.title1{
+  position: relative; 
+    font-size:1.8em;
+  color: #ffffd5;
+  font-family:   sling;
+}
+.title2{
+  position: relative; 
+    font-size:1.2em;
+  color: #ffffd5;
+  font-family:   sling;
+}
+.title3{
+  position: relative; 
+    font-size:1.2em;
+  color: #ffffd5;
+  font-family:   sling;
+}
+.float {
+   width:60%;   
+   margin-top: 30px;
+ -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+  transform: translatey(0px);
+  animation: float 6s ease-in-out infinite;
+  img { width: 100%; height: auto; }
+}
+.bottomSection{
+	width: 100vw;
+	height: 50%;
+bottom:0;
+	position: absolute;
+	  background-repeat: no-repeat; 
+     background-size: 100% 100%;
+	 
 }
 .background{
 	width: 100%;
