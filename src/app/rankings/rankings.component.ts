@@ -67,7 +67,7 @@ this.loadingUsername = true;
  
   	   tmpthis.httpService.setUsername(result.signature,tmpthis.username).subscribe(
      data => { 
-
+console.log("set"+JSON.stringify(data));
      tmpthis.loadingUsername = false; 
        alert("username set!");
      	 
