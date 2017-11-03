@@ -51,13 +51,13 @@ export class HTTPService{
 
     };
     setUsername(sig:string,username:string){
-       var json = JSON.stringify({
+       var json =  {
             signature: sig,
-        });
+        };
 
       var params = json;
       var header = new Headers();
-      header.append('Content-type', 'Content-Type: application/json');
+     // header.append('Content-type', 'Content-Type: application/json');
     
        var theurl=this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl();
        console.log("sig:"+sig+" "+theurl)
@@ -107,7 +107,7 @@ export class HTTPService{
    }
    getRankings(env:string){
      var url = this.baseOrbUrl+"&action=getRanks&env="+env+"&responseType=JSON"+this.devExt+this.getAddressUrl();
-
+     console.log(url);
        var header = new Headers();
       header.append('Content-type', 'Content-Type: application/json');
        header.append('Content-type', 'Content-Type: application/json');
