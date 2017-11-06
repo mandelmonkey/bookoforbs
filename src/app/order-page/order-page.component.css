@@ -12,6 +12,18 @@
      background-size: cover;
 
 }
+.container{
+  position: absolute;
+   top: 65px; 
+  width: 100vw;
+  height: 100%;
+  max-width: 600px;
+  text-align: center;
+   left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
 .darkView{
   position: absolute;
    width:100%;

@@ -9,13 +9,20 @@
      position: absolute;
      top: 0;
       transition:left 0.2s linear;
+      text-align: center;
 }
 .topSection{
 	width: 100vw;
+    max-width: 600px;
 	height: 50vh;
 	top:0;
 	position: absolute;
+   left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
 	  text-align: center;
+
 	 
 }
 
@@ -124,7 +131,7 @@ margin-top: 20px;
   img { width: 100%; height: auto; }
 }
 .bottomSection{
-	width: 100vw;
+	width: 100vw; 
 	height: 50vh;
 top:50vh;
 text-align: center;

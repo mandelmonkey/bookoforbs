@@ -74,10 +74,19 @@ showSeperator(){
 
   }
   getTopHeight(){
-    return "40vh";
+      if(document.documentElement.clientHeight < document.documentElement.clientWidth){
+         return "60vh";
+     }else{
+      return "40vh";
+    }
+     
   }
    getBottomHeight(){
-    return "60vh";
+     if(document.documentElement.clientHeight < document.documentElement.clientWidth){
+         return "40vh";
+     }else{
+      return "60vh";
+    }
   }
   getQRHeight(){
     return this.getQRSize()+"px";
@@ -94,7 +103,7 @@ showSeperator(){
           return -20 + screenWidth * 0.5;
       }
   	}else{
-  		return -5 + screenHeight * 0.5;
+  		return -5 + screenHeight * 0.4;
   	}
 
   }

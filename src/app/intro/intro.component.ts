@@ -7,6 +7,7 @@ import { PersistenceService, StorageType } from 'angular-persistence';
   declare var Mnemonic:any; 
    declare var bitcore:any; 
     declare var IndieSquare:any; 
+    declare var QRious:any;
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.component.html',
@@ -28,6 +29,7 @@ export class IntroComponent implements OnInit {
      cipherText = "";
      userAgent = "";
      testObj:any;
+     linkText = "";
      isIndiesquare = false;
      
  constructor(public dataService:DataService, private httpService:HTTPService, private route: ActivatedRoute,private persistenceService: PersistenceService) { 
@@ -39,7 +41,7 @@ export class IntroComponent implements OnInit {
 }
 linkIndieSquare(){
 
- 
+ this.linkText = "linking with IndieSquare...";
     var tempThis = this;
  
 this.isIndiesquare = true;
@@ -53,9 +55,17 @@ this.isIndiesquare = true;
        
         return;
     }else{
-      console.log("went here"+url);
+     
       if(tempThis.dataService.isMobile == false){
+       tempThis.linkText = "please scan the qrcode with your indieSquare wallet";
+         console.log("went here"+url);
         //show qrcode here;
+         var qr = new QRious({
+          element: document.getElementById('qr1'),
+          value: url,
+          size:250
+        });
+
       }
     }
 

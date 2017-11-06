@@ -1,6 +1,12 @@
 .topDiv{
 	text-align: center;
+  width: 100vw;
+  vertical-align: middle;
+  display: table-cell;
 }
+ .topStuff{
+  display: inline-block;
+ }
  .background{
  	position: absolute;
  	background-repeat: no-repeat;
@@ -35,6 +41,7 @@
  	opacity: 0.7;
 
  }
+
 .seperator{
 
 	position: relative;

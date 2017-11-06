@@ -3,6 +3,7 @@
 <div class="darkView">
 </div>
 
+<div class="container">
  
 <div class="sendOrb" id="sendOrb">
 	<div class="topSection">
@@ -88,23 +89,6 @@
 
 
 
-<div class="parent">
-  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
-  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
-  <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
-   <div class="backButton" (click)="closeSelf()">
-    <img class="backButtonImg"  [src]="dataService.getImage('filterButtonBackground')"/>
-    <label>back</label>
-    
-  </div>
- 
-
-<label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> 
-
-
-      <app-fee-selector></app-fee-selector>
-
-</div>
 </div>
 
  <div *ngIf="showConfOverlay" class="orderConfOverlay">
@@ -153,4 +137,24 @@
        </div>
      </div>
       </div>
+       </div>
+
+       
+<div class="parent">
+  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
+  <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
+   <div class="backButton" (click)="closeSelf()">
+    <img class="backButtonImg"  [src]="dataService.getImage('filterButtonBackground')"/>
+    <label>back</label>
+    
+  </div>
+ 
+
+<label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> 
+
+
+      <app-fee-selector></app-fee-selector>
+
+</div>
  </div>

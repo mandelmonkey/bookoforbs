@@ -237,40 +237,74 @@ label{
 .sendOrb{
   position: absolute;
    width:100%;
+   max-width: 600px;
    top: 10%;   
       text-align: center;
+         left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
 }
 .sendOrbImg { 
    width:60%; 
+    max-width: 600px;
   
 }
 .sendOrbBack{
   position: absolute;
    width:100%;
+    max-width: 600px;
    right:5px;
    top: 9.5%;  
 
       text-align: center;
+
+                left: 0; 
+  right: 10px; 
+  margin-left: auto; 
+  margin-right: auto; 
+  
 }
 .sendOrbBackImg{ 
   opacity: 0.5;
     filter: alpha(opacity=50);
    width:60%; 
+    max-width: 600px;
+
+           left: 0; 
+  right: 10px; 
+  margin-left: auto; 
+  margin-right: auto; 
   
 }
+.orbContainer{
+  width: 100vw;
 
+}
 .sendOrbBack2{
   position: absolute;
    width:100%;
+    max-width: 600px;
    right:10px;
    top: 9%;  
 
       text-align: center;
+
+             left: 0; 
+ right: 15px; 
+  margin-left: auto; 
+  margin-right: auto; 
 }
 .sendOrbBackImg2{ 
   opacity: 0.5;
+   max-width: 600px;
     filter: alpha(opacity=50);
    width:60%; 
+
+          left: 0; 
+  right: 15px; 
+  margin-left: auto; 
+  margin-right: auto; 
   
 }
  .keypadBack {

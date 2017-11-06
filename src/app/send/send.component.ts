@@ -25,9 +25,7 @@ public sending:boolean;
   public account = null;
   public indiesquare:any;
   
-  getBackground(){
-    return {"background": "url("+ this.dataService.getImage("accountBackground")+")"}
-  }
+  
    getNumImage(image:string){
       
       return { 

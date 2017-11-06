@@ -273,7 +273,7 @@ getPersistance(key:string,){
 this.dataService.dev = true;
     }
    
- this.dataService.isMobile = /Android|iPhone/i.test(window.navigator.userAgent);
+ this.dataService.isMobile = /Android|iPhone|IndieSquare|indieSquare|indiesquare/i.test(window.navigator.userAgent);
   
 
 if(this.dataService.isMobile ==false){

@@ -4,8 +4,9 @@
    
   <img class="topImage" [src]="dataService.getImage('bookLiningFront')"/>
  <div class="introButtons">
-<div *ngIf="isIndiesquare">
- <h3 class="title">linking with indieSquare...</h3>
+<div *ngIf="isIndiesquare" class="linkOptions">
+   <canvas id="qr1" ></canvas>
+ <h3 class="title">{{linkText}}</h3>
 </div>
  <div *ngIf="!isIndiesquare">
   <div  *ngIf="showIntroButtons">
@@ -19,7 +20,7 @@
     </div>
  <br>  
 
-
+<!--
      <div *ngIf="!dataService.isMobile" class="newWalletButton" (click)="createNewAccount()" >
 
         <img class="newWalletImage"  [src]="dataService.getImage('frontButton')"/>
@@ -31,7 +32,7 @@
       <img class="newWalletImage"   [src]="dataService.getImage('frontButton')" />
       <label>Enter passphrase</label>  
     </div>
- 
+ -->
  
   </div>
 

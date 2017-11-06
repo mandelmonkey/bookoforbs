@@ -18,6 +18,9 @@
   overflow: hidden; 
     text-align: center;
 }
+.linkOptions{
+display: inline-block;
+  }
  .indieLinkLabel{
     
    left: 0; 
@@ -29,6 +32,7 @@
     font-size: 0.9em;
     font-family:   Sling;
 }
+
 .install{
    left: 0; 
    width: 100%; 

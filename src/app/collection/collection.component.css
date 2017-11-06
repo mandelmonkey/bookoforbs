@@ -13,7 +13,14 @@ virtual-scroll {
       -webkit-overflow-scrolling: touch;
  
 }
-
+.scrollView {
+ width:100vw;
+   text-align: center;  
+    margin-left: auto;
+    margin-right: auto;
+      overflow-y: scroll;
+ 
+}
 app-collection-card {
     margin-left:2%;
   margin-right:2%;

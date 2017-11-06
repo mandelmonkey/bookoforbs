@@ -6,7 +6,8 @@
   </div>
  
  <app-completionbar  *ngIf="!dataService.maincontroller.loading"></app-completionbar > 
-<virtual-scroll id="scrollView" class="scrollable" [items]="dataService.maincontroller.currentOrbsKeys" (update)="viewPortItems = $event"
+
+<virtual-scroll *ngIf="dataService.isMobile" id="scrollView" class="scrollable" [items]="dataService.maincontroller.currentOrbsKeys" (update)="viewPortItems = $event"
 [style.height]="getCollectionHeight()">
 
 <label class="status" *ngIf="dataService.maincontroller.loading ">loading...</label>
@@ -16,6 +17,17 @@
     </app-collection-card>
 
 </virtual-scroll>  
+
+<div *ngIf="!dataService.isMobile" id="scrollView" class="scrollView"
+[style.height]="getCollectionHeight()">
+
+<label class="status" *ngIf="dataService.maincontroller.loading ">loading...</label>
+<label class="status" *ngIf="showNoOrbs() && !allOrbs">You do not have any ORBs</label>
+
+    <app-collection-card *ngFor="let item of dataService.maincontroller.currentOrbsKeys;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight">
+    </app-collection-card>
+
+</div>  
  
 	 
 

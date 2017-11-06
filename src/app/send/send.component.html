@@ -1,8 +1,8 @@
-<div class="backGround" [ngStyle]= "getBackground()" >
+<div class="backGround"  [style.background-image]="'url(' +dataService.getImage('accountBackground')+ ')'">
 
 <div class="darkView">
 </div>
-<div *ngIf="!dataService.maincontroller.selectedOrb.isCurrency">
+<div *ngIf="!dataService.maincontroller.selectedOrb.isCurrency" class="orbContainer">
 <div class="sendOrbBack2">
 <img class="float2" [src]="this.dataService.maincontroller.selectedOrb.image" />
  </div>
@@ -14,7 +14,7 @@
  </div>
  
 </div>
-<div *ngIf="dataService.maincontroller.selectedOrb.isCurrency">
+<div *ngIf="dataService.maincontroller.selectedOrb.isCurrency" class="orbContainer">
 <div class="sendOrb">
 <img class="float" [src]="this.dataService.maincontroller.selectedOrb.image"  />
  </div>
