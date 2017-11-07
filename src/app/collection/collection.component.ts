@@ -94,7 +94,7 @@ list.addEventListener("touchend", function (e) {
  
 list.addEventListener("touchmove", function (e) {
     if (isTouched) {
-        if (e.changedTouches[0].clientY > prevY) {
+        if (e.changedTouches[0].clientY - prevY > 400) {
             //on touchmove, we add the exact amount fingers moved to the top of the list
             var change = e.changedTouches[0].clientY - prevY;
             //and add it to the style
@@ -102,41 +102,10 @@ list.addEventListener("touchmove", function (e) {
             isMoved = true;
         }
     }
-   // e.preventDefault();
+ 
 }, false);
 
-/*
-//binding mouse events to make this work in desktop browsers as well
-list.addEventListener("mousedown", function (e) {
-    isTouched = true;
-    prevY = e.clientY;
-    list.style.transition = "";
-    e.preventDefault();
-}, false);
-list.addEventListener("mouseup", function (e) {
-    isTouched = false;
-
-    list.style.transition = "top 1s";
-    if (isMoved) {
-        loader.style.display = "block";
-        loadNewData();
-    }
-    list.style.top = cssY + 'px';
-    isMoved = false;
-
-    e.preventDefault();
-}, false);
-list.addEventListener("mousemove", function (e) {
-    if (isTouched) {
-        if (e.clientY > prevY) {
-            var change = e.clientY - prevY;
-            list.style.top = cssY + change + 'px';
-            isMoved = true;
-        }
-    }
-    e.preventDefault();
-}, false);*/
-
+ 
  
 
  }
