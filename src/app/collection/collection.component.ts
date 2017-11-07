@@ -26,6 +26,7 @@ export class CollectionComponent implements OnInit {
   scrollHeight:string;
   scrollObservable;
  scrollView;
+ env="";
 
 
  errorImage = this.dataService.getImage('cardback');
@@ -45,11 +46,12 @@ export class CollectionComponent implements OnInit {
 
  addPull(){
 
-
+var tmpthis = this;
     //grab the list
 var list = document.getElementById("scrollView");
 //grab the loading div
 var loader = document.getElementById("touchloader");
+ loader.style.display = "none";
 //keep the state whether the fingers are touched
 var isTouched = false;
 //keep the state whether a PULL actually went out
@@ -77,11 +79,11 @@ list.addEventListener("touchend", function (e) {
     //on touchup we cancel the touch event
     isTouched = false;
     //now if the list has moved downwards, it should come up but in a transition
-    list.style.transition = "top 1s";
+   // list.style.transition = "top 1s";
     if (isMoved) {
         //show the loader div
-        loader.style.display = "block";
-        loadNewData();
+       // loader.style.display = "block";
+       tmpthis.setCurrentOrbs(tmpthis.env);
     }
    // alert(cssY);
     list.style.top ='0px';
@@ -136,16 +138,7 @@ list.addEventListener("mousemove", function (e) {
     e.preventDefault();
 }, false);*/
 
-function loadNewData() {
-    setTimeout(function () {
-       
-        loader.style.display = "none";
-    }, 1000);
-    /**
-     * do what ever to get data here
-     */
-
-}
+ 
 
  }
   ngOnInit() {
@@ -226,7 +219,7 @@ function loadNewData() {
  
   setCurrentOrbs(env:string){
 
-
+this.env=env;
 this.dataService.maincontroller.loading = true;
 console.log("called here");
 this.dataService.maincontroller.currentOrbs = [];
