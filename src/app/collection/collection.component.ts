@@ -16,7 +16,7 @@ export class CollectionComponent implements OnInit {
  allOwnImage = this.dataService.getImage('leftOptionSeg'); 
   public allOrbs = false;
    
-  
+  loading= false;
   currentScroll:number;
   floatCheck:number;
   cardWidth:string;
@@ -50,8 +50,7 @@ var tmpthis = this;
     //grab the list
 var list = document.getElementById("scrollView");
 //grab the loading div
-var loader = document.getElementById("touchloader");
- loader.style.display = "none";
+ 
 //keep the state whether the fingers are touched
 var isTouched = false;
 //keep the state whether a PULL actually went out
@@ -83,7 +82,7 @@ list.addEventListener("touchend", function (e) {
     if (isMoved) {
         //show the loader div
        // loader.style.display = "block";
-       tmpthis.setCurrentOrbs(tmpthis.env);
+       tmpthis.setCurrentOrbs(tmpthis.env,true);
     }
    // alert(cssY);
     list.style.top ='0px';
@@ -217,10 +216,14 @@ list.addEventListener("mousemove", function (e) {
    
   }
  
-  setCurrentOrbs(env:string){
+  setCurrentOrbs(env:string, localLoad = false){
 
 this.env=env;
+if(localLoad == false){
 this.dataService.maincontroller.loading = true;
+}else{
+  this.loading = true;
+}
 console.log("called here");
 this.dataService.maincontroller.currentOrbs = [];
 this.dataService.maincontroller.currentOrbsKeys = [];
@@ -245,6 +248,7 @@ this.continueLoad(data);
        this.continueLoad(envObject);
 console.log("error balance");
  this.dataService.maincontroller.loading  = false;
+ this.loading = false;
       },
      () => {});
  
@@ -257,6 +261,7 @@ console.log("error balance");
 
 
  this.dataService.maincontroller.loading = false;
+  this.loading = false;
 this.dataService.maincontroller.ownedOrbsEnv = new Array<any>();
 var currentData = data["Environements"][this.dataService.maincontroller.currentBundleId];
 if(currentData != null){

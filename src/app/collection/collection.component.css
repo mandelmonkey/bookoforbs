@@ -82,7 +82,10 @@ app-collection-card {
  
 
 
-
+.title{
+  color: #ffffd5;
+    font-family:   sling; 
+}
 
 .status{
   top:25vh;
