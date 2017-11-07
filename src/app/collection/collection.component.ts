@@ -63,6 +63,7 @@ cssY =  cssY.substring(0, cssY.length - 2);
 //alert(cssY);
 
 //Add the start of the touching
+ 
 list.addEventListener("touchstart", function (e) {
     //touch started ? YES
     isTouched = true;
@@ -70,7 +71,7 @@ list.addEventListener("touchstart", function (e) {
     prevY = e.changedTouches[0].clientY;
     //we use css3 transitions when available for smooth sliding
     list.style.transition = "";
-    e.preventDefault();
+   // e.preventDefault();
 }, false);
 list.addEventListener("touchend", function (e) {
     //on touchup we cancel the touch event
@@ -86,8 +87,10 @@ list.addEventListener("touchend", function (e) {
     list.style.top ='0px';
     isMoved = false;
 
-    e.preventDefault();
+   // e.preventDefault();
 }, false);
+
+ 
 list.addEventListener("touchmove", function (e) {
     if (isTouched) {
         if (e.changedTouches[0].clientY > prevY) {
@@ -98,7 +101,7 @@ list.addEventListener("touchmove", function (e) {
             isMoved = true;
         }
     }
-    e.preventDefault();
+   // e.preventDefault();
 }, false);
 
 /*
