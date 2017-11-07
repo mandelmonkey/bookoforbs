@@ -3,7 +3,7 @@ import { Component, OnInit,ViewChild, ElementRef,ChangeDetectorRef } from '@angu
 import { Observable } from 'rxjs/Observable';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
-
+ 
 @Component({
   selector: 'app-collection',
   templateUrl: './collection.component.html',
@@ -39,10 +39,64 @@ export class CollectionComponent implements OnInit {
     this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
 
  
+
+    var list = document.getElementById("scrollView");
+       //grab the loading div
+       var loader = document.getElementById("touchloader");
+       //keep the state whether the fingers are touched
+       var isTouched = false;
+       //keep the state whether a PULL actually went out
+       var isMoved = false;
+       //This has the original Top offset (relative to screen) position of the list
+       var prevY = list.offsetTop     
+       //This has the original Top CSS position of the list
+       var cssY = list.style.top;
+       cssY =  cssY.substring(0,cssY.length - 2);
+       
+       //Add the start of the touching
+       list.addEventListener("touchstart",function(e){
+           //touch started ? YES
+           isTouched = true;
+           //initialize the touched point
+           prevY = e.changedTouches[0].clientY;
+           //we use css3 transitions when available for smooth sliding
+           list.style.transition = "";
+ 
+           e.preventDefault();
+       },false);
+       list.addEventListener("touchend",function(e){
+           //on touchup we cancel the touch event
+           isTouched = false;
+           //now if the list has moved downwards, it should come up but in a transition
+           list.style.transition = "top 1s";
+           if(isMoved){
+               //show the loader div
+               loader.style.display = "block";
+             //  loadNewData();
+           }
+           list.style.top = cssY + 'px';                            
+           isMoved = false;
+           
+           e.preventDefault();
+       },false);
+       list.addEventListener("touchmove",function(e){
+           if(isTouched){
+               if(e.changedTouches[0].clientY > prevY){
+                //on touchmove, we add the exact amount fingers moved to the top of the list
+                var change = e.changedTouches[0].clientY - prevY;                  
+                //and add it to the style
+                list.style.top = cssY + change + 'px';
+                isMoved = true;
+               }
+           }
+           e.preventDefault();
+       },false);
+
   
 
  }
   ngOnInit() {
+      
 
    
     this.dataService.collection = this;
@@ -51,6 +105,12 @@ export class CollectionComponent implements OnInit {
     this.setWidths();
 
     this.dataService.maincontroller.showAccount = false;
+
+
+
+
+
+
         
   }
   setWidths(){

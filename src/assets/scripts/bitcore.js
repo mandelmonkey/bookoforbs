@@ -3157,28 +3157,28 @@ var traverseRoot = function(parent, errorsDefinition) {
 };
 
 
-var bitcore = {};
-bitcore.Error = function() {
+var bitcoreBoo = {};
+bitcoreBoo.Error = function() {
   this.message = 'Internal error';
   this.stack = this.message + '\n' + (new Error()).stack;
 };
-bitcore.Error.prototype = Object.create(Error.prototype);
-bitcore.Error.prototype.name = 'bitcore.Error';
+bitcoreBoo.Error.prototype = Object.create(Error.prototype);
+bitcoreBoo.Error.prototype.name = 'bitcoreBoo.Error';
 
 
 var data = require('./spec');
-traverseRoot(bitcore.Error, data);
+traverseRoot(bitcoreBoo.Error, data);
 
-module.exports = bitcore.Error;
+module.exports = bitcoreBoo.Error;
 
 module.exports.extend = function(spec) {
-  return traverseNode(bitcore.Error, spec);
+  return traverseNode(bitcoreBoo.Error, spec);
 };
 
 },{"./spec":18,"lodash":235}],18:[function(require,module,exports){
 'use strict';
 
-var docsURL = 'http://bitcore.io/';
+var docsURL = 'http://bitcoreBoo.io/';
 
 module.exports = [{
   name: 'InvalidB58Char',
@@ -3997,9 +3997,9 @@ var Network = require('./networks');
 var Point = require('./crypto/point');
 var PublicKey = require('./publickey');
 
-var bitcoreErrors = require('./errors');
-var errors = bitcoreErrors;
-var hdErrors = bitcoreErrors.HDPublicKey;
+var bitcoreBooErrors = require('./errors');
+var errors = bitcoreBooErrors;
+var hdErrors = bitcoreBooErrors.HDPublicKey;
 var assert = require('assert');
 
 var JSUtil = require('./util/js');
@@ -8780,7 +8780,7 @@ Transaction.prototype.checkedSerialize = function(opts) {
   var serializationError = this.getSerializationError(opts);
   if (serializationError) {
     serializationError.message += ' Use Transaction#uncheckedSerialize if you want to skip security checks. ' +
-      'See http://bitcore.io/guide/transaction.html#Serialization for more info.';
+      'See http://bitcoreBoo.io/guide/transaction.html#Serialization for more info.';
     throw serializationError;
   }
   return this.uncheckedSerialize();
@@ -8790,7 +8790,7 @@ Transaction.prototype.checkedSerialize = function(opts) {
  * Retrieve a possible error that could appear when trying to serialize and broadcast this transaction
  *
  * @param {Object} opts allows to skip certain tests. {@see Transaction#serialize}
- * @return {bitcore.Error}
+ * @return {bitcoreBoo.Error}
  */
 Transaction.prototype.getSerializationError = function(opts) {
   opts = opts || {};
@@ -9057,7 +9057,7 @@ Transaction.prototype._newTransaction = function() {
  * to add an input, for more control, use @{link Transaction#addInput}.
  *
  * Can receive, as output information, the output of bitcoind's `listunspent` command,
- * and a slightly fancier format recognized by bitcore:
+ * and a slightly fancier format recognized by bitcoreBoo:
  *
  * ```
  * {
@@ -9068,8 +9068,8 @@ Transaction.prototype._newTransaction = function() {
  *  satoshis: 1020000
  * }
  * ```
- * Where `address` can be either a string or a bitcore Address object. The
- * same is true for `script`, which can be a string or a bitcore Script.
+ * Where `address` can be either a string or a bitcoreBoo Address object. The
+ * same is true for `script`, which can be a string or a bitcoreBoo Script.
  *
  * Beware that this resets all the signatures for inputs (in further versions,
  * SIGHASH_SINGLE or SIGHASH_NONE signatures will not be reset).
@@ -10042,7 +10042,7 @@ var Unit = require('./unit');
 var JSUtil = require('./util/js');
 
 /**
- * Bitcore URI
+ * bitcoreBoo URI
  *
  * Instantiate an URI from a bitcoin URI String or an Object. An URI instance
  * can be created with a bitcoin uri string or an object. All instances of
@@ -22921,47 +22921,47 @@ var createECDH = require('crypto').createECDH;
 module.exports = createECDH || require('./browser');
 },{"./browser":115,"crypto":50}],117:[function(require,module,exports){
 module.exports=require(72)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":72}],118:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":72}],118:[function(require,module,exports){
 arguments[4][74][0].apply(exports,arguments)
-},{"../package.json":138,"./elliptic/curve":121,"./elliptic/curves":124,"./elliptic/ec":125,"./elliptic/hmac-drbg":128,"./elliptic/utils":130,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic.js":74,"brorand":131}],119:[function(require,module,exports){
+},{"../package.json":138,"./elliptic/curve":121,"./elliptic/curves":124,"./elliptic/ec":125,"./elliptic/hmac-drbg":128,"./elliptic/utils":130,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic.js":74,"brorand":131}],119:[function(require,module,exports){
 arguments[4][75][0].apply(exports,arguments)
-},{"../../elliptic":118,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/base.js":75,"bn.js":117}],120:[function(require,module,exports){
+},{"../../elliptic":118,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/base.js":75,"bn.js":117}],120:[function(require,module,exports){
 arguments[4][76][0].apply(exports,arguments)
-},{"../../elliptic":118,"../curve":121,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/edwards.js":76,"bn.js":117,"inherits":234}],121:[function(require,module,exports){
+},{"../../elliptic":118,"../curve":121,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/edwards.js":76,"bn.js":117,"inherits":234}],121:[function(require,module,exports){
 module.exports=require(77)
-},{"./base":119,"./edwards":120,"./mont":122,"./short":123,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/index.js":77}],122:[function(require,module,exports){
+},{"./base":119,"./edwards":120,"./mont":122,"./short":123,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/index.js":77}],122:[function(require,module,exports){
 module.exports=require(78)
-},{"../curve":121,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/mont.js":78,"bn.js":117,"inherits":234}],123:[function(require,module,exports){
+},{"../curve":121,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/mont.js":78,"bn.js":117,"inherits":234}],123:[function(require,module,exports){
 arguments[4][79][0].apply(exports,arguments)
-},{"../../elliptic":118,"../curve":121,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/short.js":79,"bn.js":117,"inherits":234}],124:[function(require,module,exports){
+},{"../../elliptic":118,"../curve":121,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/short.js":79,"bn.js":117,"inherits":234}],124:[function(require,module,exports){
 arguments[4][80][0].apply(exports,arguments)
-},{"../elliptic":118,"./precomputed/secp256k1":129,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curves.js":80,"hash.js":132}],125:[function(require,module,exports){
+},{"../elliptic":118,"./precomputed/secp256k1":129,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curves.js":80,"hash.js":132}],125:[function(require,module,exports){
 arguments[4][81][0].apply(exports,arguments)
-},{"../../elliptic":118,"./key":126,"./signature":127,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/index.js":81,"bn.js":117}],126:[function(require,module,exports){
+},{"../../elliptic":118,"./key":126,"./signature":127,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/index.js":81,"bn.js":117}],126:[function(require,module,exports){
 arguments[4][82][0].apply(exports,arguments)
-},{"../../elliptic":118,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/key.js":82,"bn.js":117}],127:[function(require,module,exports){
+},{"../../elliptic":118,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/key.js":82,"bn.js":117}],127:[function(require,module,exports){
 arguments[4][83][0].apply(exports,arguments)
-},{"../../elliptic":118,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/signature.js":83,"bn.js":117}],128:[function(require,module,exports){
+},{"../../elliptic":118,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/signature.js":83,"bn.js":117}],128:[function(require,module,exports){
 arguments[4][84][0].apply(exports,arguments)
-},{"../elliptic":118,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/hmac-drbg.js":84,"hash.js":132}],129:[function(require,module,exports){
+},{"../elliptic":118,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/hmac-drbg.js":84,"hash.js":132}],129:[function(require,module,exports){
 module.exports=require(85)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/precomputed/secp256k1.js":85}],130:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/precomputed/secp256k1.js":85}],130:[function(require,module,exports){
 module.exports=require(86)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/utils.js":86}],131:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/utils.js":86}],131:[function(require,module,exports){
 module.exports=require(87)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":87}],132:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":87}],132:[function(require,module,exports){
 module.exports=require(88)
-},{"./hash/common":133,"./hash/hmac":134,"./hash/ripemd":135,"./hash/sha":136,"./hash/utils":137,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash.js":88}],133:[function(require,module,exports){
+},{"./hash/common":133,"./hash/hmac":134,"./hash/ripemd":135,"./hash/sha":136,"./hash/utils":137,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash.js":88}],133:[function(require,module,exports){
 module.exports=require(89)
-},{"../hash":132,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/common.js":89}],134:[function(require,module,exports){
+},{"../hash":132,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/common.js":89}],134:[function(require,module,exports){
 module.exports=require(90)
-},{"../hash":132,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/hmac.js":90}],135:[function(require,module,exports){
+},{"../hash":132,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/hmac.js":90}],135:[function(require,module,exports){
 module.exports=require(91)
-},{"../hash":132,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/ripemd.js":91}],136:[function(require,module,exports){
+},{"../hash":132,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/ripemd.js":91}],136:[function(require,module,exports){
 module.exports=require(92)
-},{"../hash":132,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/sha.js":92}],137:[function(require,module,exports){
+},{"../hash":132,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/sha.js":92}],137:[function(require,module,exports){
 module.exports=require(93)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/utils.js":93,"inherits":234}],138:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/utils.js":93,"inherits":234}],138:[function(require,module,exports){
 module.exports={
   "name": "elliptic",
   "version": "3.1.0",
@@ -24793,7 +24793,7 @@ module.exports={
 }
 },{}],156:[function(require,module,exports){
 module.exports=require(72)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":72}],157:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":72}],157:[function(require,module,exports){
 var bn = require('bn.js');
 var brorand = require('brorand');
 
@@ -24910,7 +24910,7 @@ MillerRabin.prototype.getDivisor = function getDivisor(n, k) {
 
 },{"bn.js":156,"brorand":158}],158:[function(require,module,exports){
 module.exports=require(87)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":87}],159:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":87}],159:[function(require,module,exports){
 (function (Buffer){
 var createHmac = require('create-hmac')
 var MAX_ALLOC = Math.pow(2, 30) - 1 // default in iojs
@@ -25026,45 +25026,45 @@ function i2ops(c) {
 }).call(this,require("buffer").Buffer)
 },{"buffer":46,"create-hash":139}],162:[function(require,module,exports){
 module.exports=require(72)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":72}],163:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":72}],163:[function(require,module,exports){
 module.exports=require(73)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/browserify-rsa/index.js":73,"bn.js":162,"buffer":46,"randombytes":186}],164:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/browserify-rsa/index.js":73,"bn.js":162,"buffer":46,"randombytes":186}],164:[function(require,module,exports){
 module.exports=require(95)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/EVP_BytesToKey.js":95,"buffer":46,"create-hash":139}],165:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/EVP_BytesToKey.js":95,"buffer":46,"create-hash":139}],165:[function(require,module,exports){
 module.exports=require(96)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/aesid.json":96}],166:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/aesid.json":96}],166:[function(require,module,exports){
 module.exports=require(97)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/asn1.js":97,"asn1.js":169}],167:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/asn1.js":97,"asn1.js":169}],167:[function(require,module,exports){
 module.exports=require(98)
-},{"./EVP_BytesToKey":164,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/fixProc.js":98,"browserify-aes":54,"buffer":46}],168:[function(require,module,exports){
+},{"./EVP_BytesToKey":164,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/fixProc.js":98,"browserify-aes":54,"buffer":46}],168:[function(require,module,exports){
 module.exports=require(99)
-},{"./aesid.json":165,"./asn1":166,"./fixProc":167,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/index.js":99,"browserify-aes":54,"buffer":46,"pbkdf2":159}],169:[function(require,module,exports){
+},{"./aesid.json":165,"./asn1":166,"./fixProc":167,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/index.js":99,"browserify-aes":54,"buffer":46,"pbkdf2":159}],169:[function(require,module,exports){
 module.exports=require(100)
-},{"./asn1/api":170,"./asn1/base":172,"./asn1/constants":176,"./asn1/decoders":178,"./asn1/encoders":180,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1.js":100,"bn.js":162}],170:[function(require,module,exports){
+},{"./asn1/api":170,"./asn1/base":172,"./asn1/constants":176,"./asn1/decoders":178,"./asn1/encoders":180,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1.js":100,"bn.js":162}],170:[function(require,module,exports){
 module.exports=require(101)
-},{"../asn1":169,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/api.js":101,"inherits":234,"vm":210}],171:[function(require,module,exports){
+},{"../asn1":169,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/api.js":101,"inherits":234,"vm":210}],171:[function(require,module,exports){
 module.exports=require(102)
-},{"../base":172,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/base/buffer.js":102,"buffer":46,"inherits":234}],172:[function(require,module,exports){
+},{"../base":172,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/base/buffer.js":102,"buffer":46,"inherits":234}],172:[function(require,module,exports){
 module.exports=require(103)
-},{"./buffer":171,"./node":173,"./reporter":174,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/base/index.js":103}],173:[function(require,module,exports){
+},{"./buffer":171,"./node":173,"./reporter":174,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/base/index.js":103}],173:[function(require,module,exports){
 module.exports=require(104)
-},{"../base":172,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/base/node.js":104,"minimalistic-assert":181}],174:[function(require,module,exports){
+},{"../base":172,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/base/node.js":104,"minimalistic-assert":181}],174:[function(require,module,exports){
 module.exports=require(105)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/base/reporter.js":105,"inherits":234}],175:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/base/reporter.js":105,"inherits":234}],175:[function(require,module,exports){
 module.exports=require(106)
-},{"../constants":176,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/constants/der.js":106}],176:[function(require,module,exports){
+},{"../constants":176,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/constants/der.js":106}],176:[function(require,module,exports){
 module.exports=require(107)
-},{"./der":175,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/constants/index.js":107}],177:[function(require,module,exports){
+},{"./der":175,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/constants/index.js":107}],177:[function(require,module,exports){
 module.exports=require(108)
-},{"../../asn1":169,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/decoders/der.js":108,"inherits":234}],178:[function(require,module,exports){
+},{"../../asn1":169,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/decoders/der.js":108,"inherits":234}],178:[function(require,module,exports){
 module.exports=require(109)
-},{"./der":177,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/decoders/index.js":109}],179:[function(require,module,exports){
+},{"./der":177,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/decoders/index.js":109}],179:[function(require,module,exports){
 module.exports=require(110)
-},{"../../asn1":169,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/encoders/der.js":110,"buffer":46,"inherits":234}],180:[function(require,module,exports){
+},{"../../asn1":169,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/encoders/der.js":110,"buffer":46,"inherits":234}],180:[function(require,module,exports){
 module.exports=require(111)
-},{"./der":179,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/encoders/index.js":111}],181:[function(require,module,exports){
+},{"./der":179,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/lib/asn1/encoders/index.js":111}],181:[function(require,module,exports){
 module.exports=require(112)
-},{"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/node_modules/minimalistic-assert/index.js":112}],182:[function(require,module,exports){
+},{"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/node_modules/minimalistic-assert/index.js":112}],182:[function(require,module,exports){
 (function (Buffer){
 var parseKeys = require('parse-asn1');
 var mgf = require('./mgf');
@@ -35652,7 +35652,7 @@ BlockHash.prototype._pad = function pad() {
 
 },{"../hash":228}],230:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"../hash":228,"/Users/YutaHoshino/Documents/bitcore/bitcore-titanium/bitcore-patched/bitcore/node_modules/bitcore-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/hmac.js":90}],231:[function(require,module,exports){
+},{"../hash":228,"/Users/YutaHoshino/Documents/bitcoreBoo/bitcoreBoo-titanium/bitcoreBoo-patched/bitcoreBoo/node_modules/bitcoreBoo-build/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/hmac.js":90}],231:[function(require,module,exports){
 var hash = require('../hash');
 var utils = hash.utils;
 
@@ -43821,7 +43821,7 @@ module.exports.WordArray = X64WordArray
 
 },{"./word-array":240}],242:[function(require,module,exports){
 module.exports={
-  "name": "bitcore",
+  "name": "bitcoreBoo",
   "version": "0.12.0",
   "description": "A pure and powerful JavaScript Bitcoin library.",
   "author": "BitPay <dev@bitpay.com>",
@@ -43895,7 +43895,7 @@ module.exports={
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitpay/bitcore.git"
+    "url": "https://github.com/bitpay/bitcoreBoo.git"
   },
   "browser": {
     "request": "browser-request"
@@ -43910,7 +43910,7 @@ module.exports={
     "sha512": "=0.0.1"
   },
   "devDependencies": {
-    "bitcore-build": "bitpay/bitcore-build",
+    "bitcoreBoo-build": "bitpay/bitcoreBoo-build",
     "brfs": "^1.2.0",
     "chai": "^1.10.0",
     "gulp": "^3.8.10",
@@ -43919,21 +43919,21 @@ module.exports={
   "license": "MIT"
 }
 
-},{}],"bitcore":[function(require,module,exports){
+},{}],"bitcoreBoo":[function(require,module,exports){
 (function (process,global,Buffer){
-	var bitcore = module.exports;
+	var bitcoreBoo = module.exports;
 	
 	// module information
-	bitcore.version = 'v' + require('./package.json').version;
+	bitcoreBoo.version = 'v' + require('./package.json').version;
 	
 	var inBrowser = typeof process === 'undefined' || typeof process.versions === 'undefined';
 	// Detect if in a Titanium environment.
 	inBrowser &= typeof Ti === 'undefined';
-	if (typeof Ti === 'undefined' && ((inBrowser && window._bitcore) || (!inBrowser && global._bitcore))) {
-	  var versions = bitcore.version + ' and ' + (inBrowser ? window._bitcore : global._bitcore);
-	  var message = 'More than one instance of bitcore found with different versions: ' + versions;
+	if (typeof Ti === 'undefined' && ((inBrowser && window._bitcoreBoo) || (!inBrowser && global._bitcoreBoo))) {
+	  var versions = bitcoreBoo.version + ' and ' + (inBrowser ? window._bitcoreBoo : global._bitcoreBoo);
+	  var message = 'More than one instance of bitcoreBoo found with different versions: ' + versions;
 	  if (inBrowser) {
-	    message += '. Make sure any scripts included don\'t contain their own bitcore bundle.';
+	    message += '. Make sure any scripts included don\'t contain their own bitcoreBoo bundle.';
 	  } else {
 	    message += '. Make sure there are no version conflicts between package.json files of your ' +
 	      'dependencies. This could also happen when a package depends on a git repository.';
@@ -43942,64 +43942,64 @@ module.exports={
 	  throw new Error(message);
 	}
 	if (inBrowser) {
-	  window._bitcore = bitcore.version;
+	  window._bitcoreBoo = bitcoreBoo.version;
 	} else {
-	  global._bitcore = bitcore.version;
+	  global._bitcoreBoo = bitcoreBoo.version;
 	}
 	
 	// crypto 
-	bitcore.crypto = {};
-	bitcore.crypto.BN = require('./lib/crypto/bn');
-	bitcore.crypto.ECDSA = require('./lib/crypto/ecdsa');
-	bitcore.crypto.Hash = require('./lib/crypto/hash');
-	bitcore.crypto.Random = require('./lib/crypto/random');
-	bitcore.crypto.Point = require('./lib/crypto/point');
-	bitcore.crypto.Signature = require('./lib/crypto/signature');
+	bitcoreBoo.crypto = {};
+	bitcoreBoo.crypto.BN = require('./lib/crypto/bn');
+	bitcoreBoo.crypto.ECDSA = require('./lib/crypto/ecdsa');
+	bitcoreBoo.crypto.Hash = require('./lib/crypto/hash');
+	bitcoreBoo.crypto.Random = require('./lib/crypto/random');
+	bitcoreBoo.crypto.Point = require('./lib/crypto/point');
+	bitcoreBoo.crypto.Signature = require('./lib/crypto/signature');
 	
 	// encoding
-	bitcore.encoding = {};
-	bitcore.encoding.Base58 = require('./lib/encoding/base58');
-	bitcore.encoding.Base58Check = require('./lib/encoding/base58check');
-	bitcore.encoding.BufferReader = require('./lib/encoding/bufferreader');
-	bitcore.encoding.BufferWriter = require('./lib/encoding/bufferwriter');
-	bitcore.encoding.Varint = require('./lib/encoding/varint');
+	bitcoreBoo.encoding = {};
+	bitcoreBoo.encoding.Base58 = require('./lib/encoding/base58');
+	bitcoreBoo.encoding.Base58Check = require('./lib/encoding/base58check');
+	bitcoreBoo.encoding.BufferReader = require('./lib/encoding/bufferreader');
+	bitcoreBoo.encoding.BufferWriter = require('./lib/encoding/bufferwriter');
+	bitcoreBoo.encoding.Varint = require('./lib/encoding/varint');
 	
 	// utilities
-	bitcore.util = {};
-	bitcore.util.buffer = require('./lib/util/buffer');
-	bitcore.util.js = require('./lib/util/js');
-	bitcore.util.preconditions = require('./lib/util/preconditions');
+	bitcoreBoo.util = {};
+	bitcoreBoo.util.buffer = require('./lib/util/buffer');
+	bitcoreBoo.util.js = require('./lib/util/js');
+	bitcoreBoo.util.preconditions = require('./lib/util/preconditions');
 	
 	// errors thrown by the library
-	bitcore.errors = require('./lib/errors');
+	bitcoreBoo.errors = require('./lib/errors');
 	
 	// main bitcoin library
-	bitcore.Address = require('./lib/address');
-	bitcore.Block = require('./lib/block');
-	bitcore.MerkleBlock = require('./lib/block/merkleblock');
-	bitcore.BlockHeader = require('./lib/block/blockheader');
-	bitcore.HDPrivateKey = require('./lib/hdprivatekey.js');
-	bitcore.HDPublicKey = require('./lib/hdpublickey.js');
-	bitcore.Networks = require('./lib/networks');
-	bitcore.Opcode = require('./lib/opcode');
-	bitcore.PrivateKey = require('./lib/privatekey');
-	bitcore.PublicKey = require('./lib/publickey');
-	bitcore.Script = require('./lib/script');
-	bitcore.Transaction = require('./lib/transaction');
-	bitcore.URI = require('./lib/uri');
-	bitcore.Unit = require('./lib/unit');
+	bitcoreBoo.Address = require('./lib/address');
+	bitcoreBoo.Block = require('./lib/block');
+	bitcoreBoo.MerkleBlock = require('./lib/block/merkleblock');
+	bitcoreBoo.BlockHeader = require('./lib/block/blockheader');
+	bitcoreBoo.HDPrivateKey = require('./lib/hdprivatekey.js');
+	bitcoreBoo.HDPublicKey = require('./lib/hdpublickey.js');
+	bitcoreBoo.Networks = require('./lib/networks');
+	bitcoreBoo.Opcode = require('./lib/opcode');
+	bitcoreBoo.PrivateKey = require('./lib/privatekey');
+	bitcoreBoo.PublicKey = require('./lib/publickey');
+	bitcoreBoo.Script = require('./lib/script');
+	bitcoreBoo.Transaction = require('./lib/transaction');
+	bitcoreBoo.URI = require('./lib/uri');
+	bitcoreBoo.Unit = require('./lib/unit');
 	
 	// dependencies, subject to change
-	bitcore.deps = {};
-	bitcore.deps.bnjs = require('bn.js');
-	bitcore.deps.bs58 = require('bs58');
-	bitcore.deps.Buffer = Buffer;
-	bitcore.deps.elliptic = require('elliptic');
-	bitcore.deps._ = require('lodash');
+	bitcoreBoo.deps = {};
+	bitcoreBoo.deps.bnjs = require('bn.js');
+	bitcoreBoo.deps.bs58 = require('bs58');
+	bitcoreBoo.deps.Buffer = Buffer;
+	bitcoreBoo.deps.elliptic = require('elliptic');
+	bitcoreBoo.deps._ = require('lodash');
 	
 	// Internal usage, exposed for testing/advanced tweaking
-	bitcore._HDKeyCache = require('./lib/hdkeycache');
-	bitcore.Transaction.sighash = require('./lib/transaction/sighash');
+	bitcoreBoo._HDKeyCache = require('./lib/hdkeycache');
+	bitcoreBoo.Transaction.sighash = require('./lib/transaction/sighash');
 	
 	/**
 	 * Fetch JSON data from remote host.
@@ -44024,16 +44024,16 @@ module.exports={
 		xhr.send();
 	};
 	
-	var _ = bitcore.deps._;
-var PrivateKey = bitcore.PrivateKey;
-var PublicKey = bitcore.PublicKey;
-var Address = bitcore.Address;
-var BufferWriter = bitcore.encoding.BufferWriter;
-var ECDSA = bitcore.crypto.ECDSA;
-var Signature = bitcore.crypto.Signature;
-var sha256sha256 = bitcore.crypto.Hash.sha256sha256;
-var JSUtil = bitcore.util.js;
-var $ = bitcore.util.preconditions;
+	var _ = bitcoreBoo.deps._;
+var PrivateKey = bitcoreBoo.PrivateKey;
+var PublicKey = bitcoreBoo.PublicKey;
+var Address = bitcoreBoo.Address;
+var BufferWriter = bitcoreBoo.encoding.BufferWriter;
+var ECDSA = bitcoreBoo.crypto.ECDSA;
+var Signature = bitcoreBoo.crypto.Signature;
+var sha256sha256 = bitcoreBoo.crypto.Hash.sha256sha256;
+var JSUtil = bitcoreBoo.util.js;
+var $ = bitcoreBoo.util.preconditions;
 
 /**
  * constructs a new message to sign and verify.
@@ -44188,20 +44188,20 @@ Message.prototype.inspect = function() {
   return '<Message: ' + this.toString() + '>';
 };
 
-	bitcore.verifyMessage = function(message,signature,address){
+	bitcoreBoo.verifyMessage = function(message,signature,address){
 		
 		return Message(message).verify(address, signature);
 		
 	};
 	
-	bitcore.signMessage = function(message,privkey){
+	bitcoreBoo.signMessage = function(message,privkey){
 		
 		var signature = Message(message).sign(privkey);
 		
 		return signature;
 	
 	};
-	bitcore.signrawtransaction = function(raw_tx, privkey, params, api_key){
+	bitcoreBoo.signrawtransaction = function(raw_tx, privkey, params, api_key){
  
  
  function onerror(params, e, error){
@@ -44272,7 +44272,7 @@ Message.prototype.inspect = function() {
 							}
 						}
 					}
-					var tx = new bitcore.Transaction().from(utxos);
+					var tx = new bitcoreBoo.Transaction().from(utxos);
 					
 					tx.version = decoded_tx.version;
 					tx.nLockTime = decoded_tx.locktime;
@@ -44309,19 +44309,19 @@ Message.prototype.inspect = function() {
 						var hex = vout.scriptPubKey.hex;
 						
 						if( type === 'pubkeyhash' ){
-							tx.addOutput(new bitcore.Transaction().createOutput({satoshis: value, script: new bitcore.Script.buildPublicKeyHashOut(addresses[0])}));
+							tx.addOutput(new bitcoreBoo.Transaction().createOutput({satoshis: value, script: new bitcoreBoo.Script.buildPublicKeyHashOut(addresses[0])}));
 						}
 						else if( type === 'multisig' ){
 							var asm = vout.scriptPubKey.asm.split(' ');
 							
 							var pubkeys = new Array();
 							for( var j = 1; j < asm.length; j++ ){
-								if( bitcore.PublicKey.isValid(asm[j]) ){
-									pubkeys.push(new bitcore.PublicKey(asm[j]));
+								if( bitcoreBoo.PublicKey.isValid(asm[j]) ){
+									pubkeys.push(new bitcoreBoo.PublicKey(asm[j]));
 								}
 							}
-							var s = new bitcore.Script.buildMultisigOut(pubkeys, parseInt(asm[0]), {noSorting: true});
-							tx.addOutput(new bitcore.Transaction().createOutput({satoshis: value, script: s }));
+							var s = new bitcoreBoo.Script.buildMultisigOut(pubkeys, parseInt(asm[0]), {noSorting: true});
+							tx.addOutput(new bitcoreBoo.Transaction().createOutput({satoshis: value, script: s }));
 						}
 						else{
 							var asm = vout.scriptPubKey.asm.split(' ');

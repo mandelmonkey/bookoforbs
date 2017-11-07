@@ -29,7 +29,11 @@
   max-height:55px;
 }
   
- 
+ .qrtitle{
+   font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+ }
 
  .backButton {
 

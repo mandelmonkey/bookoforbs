@@ -7,6 +7,8 @@
 <div *ngIf="isIndiesquare" class="linkOptions">
    <canvas id="qr1" ></canvas>
  <h3 class="title">{{linkText}}</h3>
+ <br>
+ <img *ngIf="showLinkageIcon()" style="height: 30px;" src="../assets/images/linkageIcon.png"/>
 </div>
  <div *ngIf="!isIndiesquare">
   <div  *ngIf="showIntroButtons">

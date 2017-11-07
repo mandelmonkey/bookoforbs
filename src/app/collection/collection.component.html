@@ -16,8 +16,11 @@
     <app-collection-card *ngFor="let item of viewPortItems;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight">
     </app-collection-card>
 
-</virtual-scroll>  
 
+</virtual-scroll>  
+<div id="touchloader" style="text-align: center;display: none;">
+        Loading.....
+    </div>
 <div *ngIf="!dataService.isMobile" id="scrollView" class="scrollView"
 [style.height]="getCollectionHeight()">
 

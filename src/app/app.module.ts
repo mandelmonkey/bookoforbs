@@ -31,6 +31,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { RankingsCellComponent } from './rankings-cell/rankings-cell.component';
 import { IntroscreensComponent } from './introscreens/introscreens.component';
 
+
 const appRoutes: Routes = [
   { path: 'pass', component: IntroComponent } 
 ];

@@ -81,6 +81,9 @@ getTotalPrice(){
 closeConf(){
 	this.showConfOverlay = false;
   this.showOrderText = false;
+  this.loading = false;
+
+
 }
 showConf(){
 	if(this.orderPrice > 0){
@@ -161,16 +164,16 @@ if(currentFee == "custom"){
         console.error(error);
         return;
     }
-    /*
-    new QRCode(document.getElementById('qrcode'), {
-        text: url,
-        width: 128, height: 128,
-        correctLevel : QRCode.CorrectLevel.L
-    });*/
+
+    if(tmpthis.dataService.isMobile == false){
+      tmpthis.dataService.maincontroller.showQR(url);
+    }
+   
 }, function(data, error){
     if( error ){
     	 tmpthis.loading = false;
         console.error(error);
+         tmpthis.dataService.maincontroller.closeQR();
         tmpthis.showConfOverlay = false;
     	if(error.message != null){
     		tmpthis.dataService.maincontroller.showMessage(error.message);
@@ -181,8 +184,8 @@ if(currentFee == "custom"){
         return;
     }
 
-        console.log(data.signed_tx);
-        
+    
+       
     indiesquare.broadcast({"tx": data.signed_tx}, function(data, error){
     	 tmpthis.loading = false;
     if( error ){
@@ -196,16 +199,16 @@ if(currentFee == "custom"){
     		tmpthis.dataService.maincontroller.showMessage("error");
     	}
        tmpthis.closeConf();
-
+    tmpthis.dataService.maincontroller.closeQR();
         return;
     }
  
  tmpthis.closeConf();
+ tmpthis.dataService.maincontroller.closeQR();
  tmpthis.dataService.maincontroller.showMessage("order placed!");
      
-
-    //console.dir('txid:' + data.txid);
-}); 
+ 
+});  
 
 
 
@@ -335,7 +338,6 @@ getOrders(){
 						} 
 								}
 
-						//this.dataService.maincontroller.currentOrbs[this.dataService.maincontroller.selectedKey]["openOrders"] = this.sell_orders.length + this.buy_orders.length;
 						 
 
       },   

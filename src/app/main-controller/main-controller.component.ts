@@ -2,7 +2,7 @@ import { Inject,LOCALE_ID, Component, OnInit,ChangeDetectorRef } from '@angular/
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
 import { PersistenceService, StorageType } from 'angular-persistence';
-
+   declare var QRious:any;
 @Component({
   selector: 'app-main-controller',
   templateUrl: './main-controller.component.html',
@@ -15,6 +15,7 @@ export class MainControllerComponent implements OnInit {
     this.locale = locale;
   }
   public locale = "";
+
 public loading = true;
 public showTopBar = true;
 public showSend = false;
@@ -64,6 +65,9 @@ public currentCurrencyImg:string;
 public history =[];
 public orders =[];
 public markets = [];
+
+public showingQR = false;
+public qrUrl = "";
 
   public currentOrbs : Array<any>;
   public currentOrbsKeys : Array<any>;
@@ -315,7 +319,8 @@ if(this.dataService.isMobile ==false){
         this.linkType = "";
     }
 
-
+    
+ 
 
   this.getMarkets();
     this.getFees();
@@ -349,6 +354,37 @@ if(this.dataService.isMobile ==false){
   showMessage(message:string){
     this.messageText = message;
     this.showingMessage = true;
+   
+
+  }
+
+    showQR(url:string){
+      var tmpthis = this;
+    this.qrUrl = url;
+    this.showingQR = true;
+
+
+       setTimeout(function(){ 
+ var qrBack = document.getElementById("qrBack");
+    
+            var qr = new QRious({
+          element: document.getElementById('qr2'),
+          value:  tmpthis.qrUrl,
+          size:qrBack.clientWidth-20
+        });
+
+
+        }, 100);
+
+      
+   
+
+  }
+  closeQR(){
+    this.qrUrl = "";
+    this.showingQR = false;
+
+    
    
 
   }

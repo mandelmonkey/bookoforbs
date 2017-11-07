@@ -31,12 +31,25 @@ export class IntroComponent implements OnInit {
      testObj:any;
      linkText = "";
      isIndiesquare = false;
+     qrUrl = "";
+
      
  constructor(public dataService:DataService, private httpService:HTTPService, private route: ActivatedRoute,private persistenceService: PersistenceService) { 
     route.queryParams.subscribe(
       data =>  this.loadShortUrl(data['pass']));
 
    
+
+}
+showLinkageIcon(){
+  if(this.dataService.isMobile == true){
+    return false;
+  }
+
+  if(this.qrUrl != ""){
+    return true;
+  }
+  return false;
 
 }
 linkIndieSquare(){
@@ -57,12 +70,13 @@ this.isIndiesquare = true;
     }else{
      
       if(tempThis.dataService.isMobile == false){
-       tempThis.linkText = "please scan the qrcode with your indieSquare wallet";
+       tempThis.linkText = "scan the qrcode with your IndieSquare Wallet's linking button";
          console.log("went here"+url);
+         tempThis.qrUrl = url;
         //show qrcode here;
          var qr = new QRious({
           element: document.getElementById('qr1'),
-          value: url,
+          value: tempThis.qrUrl,
           size:250
         });
 
@@ -73,9 +87,11 @@ this.isIndiesquare = true;
    
    
 }, function(result, error){
- 
+ tempThis.qrUrl="";
   if(error){
+    tempThis.isIndiesquare = false;
     console.error(error);
+    alert("error please try again");
  return;
   }else{
       

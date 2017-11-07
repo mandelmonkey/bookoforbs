@@ -1,6 +1,6 @@
 /* globals async */ // async binds itself to window
 
-var bitcore = require('bitcore');
+var bitcore = require('bitcoreBoo');
 //var bitcoreMessage = require('bitcore-message'); // this also binds itself to bitcore.Message as soon as it's require'd
 
 // this 'global' is overwritten by tests!
