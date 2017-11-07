@@ -6,7 +6,7 @@
   </div>
  
  <app-completionbar  *ngIf="!dataService.maincontroller.loading"></app-completionbar > 
-
+<div>
 <virtual-scroll *ngIf="dataService.isMobile" id="scrollView" class="scrollable" [items]="dataService.maincontroller.currentOrbsKeys" (update)="viewPortItems = $event"
 [style.height]="getCollectionHeight()">
 
@@ -18,10 +18,12 @@
 
 
 </virtual-scroll>  
+
+</div>
 <div id="touchloader" style="text-align: center;display: none;">
         Loading.....
     </div>
-<div *ngIf="!dataService.isMobile" id="scrollView" class="scrollView"
+<ul *ngIf="!dataService.isMobile" id="scrollView" class="scrollView"
 [style.height]="getCollectionHeight()">
 
 <label class="status" *ngIf="dataService.maincontroller.loading ">loading...</label>
@@ -30,7 +32,7 @@
     <app-collection-card *ngFor="let item of dataService.maincontroller.currentOrbsKeys;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight">
     </app-collection-card>
 
-</div>  
+</ul>  
  
 	 
 
