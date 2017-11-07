@@ -38,7 +38,13 @@ export class CollectionComponent implements OnInit {
     this.scrollView = document.getElementById("scrollView");
     this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
 
- 
+
+  
+
+ }
+
+ addPull(){
+
 
     //grab the list
 var list = document.getElementById("scrollView");
@@ -51,8 +57,10 @@ var isMoved = false;
 //This has the original Top offset (relative to screen) position of the list
 var prevY =  list.offsetTop;
 //This has the original Top CSS position of the list
-var cssY = list.style.top;
+var cssY = list.style.top+"";
+ 
 cssY =  cssY.substring(0, cssY.length - 2);
+//alert(cssY);
 
 //Add the start of the touching
 list.addEventListener("touchstart", function (e) {
@@ -74,7 +82,8 @@ list.addEventListener("touchend", function (e) {
         loader.style.display = "block";
         loadNewData();
     }
-    list.style.top = cssY + 'px';
+   // alert(cssY);
+    list.style.top ='0px';
     isMoved = false;
 
     e.preventDefault();
@@ -92,7 +101,7 @@ list.addEventListener("touchmove", function (e) {
     e.preventDefault();
 }, false);
 
-
+/*
 //binding mouse events to make this work in desktop browsers as well
 list.addEventListener("mousedown", function (e) {
     isTouched = true;
@@ -122,7 +131,7 @@ list.addEventListener("mousemove", function (e) {
         }
     }
     e.preventDefault();
-}, false);
+}, false);*/
 
 function loadNewData() {
     setTimeout(function () {
@@ -134,8 +143,6 @@ function loadNewData() {
      */
 
 }
-
-  
 
  }
   ngOnInit() {
@@ -311,8 +318,10 @@ this.defaultImage = this.dataService.getImage('cardback');
 
     }
 }
-
-
+var tmpthis = this;
+ setTimeout(function () {
+tmpthis.addPull();
+}, 1000);
 
   }
   getImgSource(img:string){
