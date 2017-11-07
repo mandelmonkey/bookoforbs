@@ -22,7 +22,7 @@
   <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
   <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
   <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
-    <input class="backButton" type="button" value="back" (click)="closeLarge()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+    <input class="backButton" type="button" [value]="dataService.getLang('back')" (click)="closeLarge()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
   
 </div>
 
@@ -35,9 +35,9 @@
     <div class="largeButtons" >
         
 
-  <input  class="largeButtonMarketSend" type="button" value="Send" (click)="openSend()" *ngIf="dataService.maincontroller.currentBalance > 0" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
+  <input  class="largeButtonMarketSend" type="button" [value]="dataService.getLang('send')" (click)="openSend()" *ngIf="dataService.maincontroller.currentBalance > 0" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
 
-   <input class="largeButtonMarketSend"  type="button" value="Market" (click)="openMarket()" [style.background-image]="'url(' +dataService.getImage('marketButtonCollection')+ ')'">
+   <input class="largeButtonMarketSend"  type="button" [value]="dataService.getLang('market')" (click)="openMarket()" [style.background-image]="'url(' +dataService.getImage('marketButtonCollection')+ ')'">
 
       
     
@@ -61,7 +61,7 @@
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
   <div class="messageText">{{messageText}}</div> 
         
-        <input class="closeMessageButton" type="button" value="close" (click)="closeMessage()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+        <input class="closeMessageButton" type="button" [value]="dataService.getLang('close')" (click)="closeMessage()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
         
    
        </div>
@@ -74,7 +74,7 @@
    <div class="messageBack" id="qrBack" >
    
                <canvas id="qr2" ></canvas>
-       <h3 class="qrtitle">Scan with your IndieSquare wallet using the Linking button</h3>
+       <h3 class="qrtitle">{{dataService.getLang('scaninstruc')}}</h3>
  <br>
  <img  style="height: 30px;" src="../assets/images/linkageIcon.png"/>
  
@@ -88,11 +88,11 @@
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
   <div class="messageText">{{messageText}}</div> 
          <div class="confirmMessageButton" (click)="didConfirm()">
-        <label class="buttonLabel">confirm</label> 
+        <label class="buttonLabel">{{dataService.getLang('confirm')}}</label> 
        </div>
        <br>
        <div class="closeMessageButton" (click)="didCancel()">
-        <label class="buttonLabel">cancel</label> 
+        <label class="buttonLabel">{{dataService.getLang('cancel')}}</label> 
        </div>
        </div>
 

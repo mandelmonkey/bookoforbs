@@ -15,7 +15,7 @@ export class TopBarComponent implements OnInit {
 
 public currentEnv:any;
 public currentEnvKey:string;
-currentEnvTitle = "loading...";
+currentEnvTitle = "";
 public orbsData: Array<any>;
 environmentKeys: Array<any>;
 environments: Array<any>;
@@ -49,6 +49,7 @@ rotated = false;
     }
   ngOnInit() {
       this.dataService.topbar = this;
+       this.currentEnvTitle = this.dataService.getLang("loading");
   }
  getSettings(){
    return "Settings";

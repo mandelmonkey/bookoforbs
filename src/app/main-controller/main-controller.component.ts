@@ -112,7 +112,7 @@ this.httpService.getEnvironments().subscribe(
       error => {
        
 console.log("error balance");
-this.showMessage("error loading balance");
+this.showMessage(this.dataService.getLang("errorloading"));
  this.loading = false;
       },
      () => {});
@@ -121,7 +121,7 @@ this.showMessage("error loading balance");
           
      },   
       error => {
-       this.showMessage("error loading");
+       this.showMessage(this.dataService.getLang("errorloading"));
 console.log("error gamecenter");
  this.loading = false;
       },
@@ -325,18 +325,7 @@ if(this.dataService.isMobile ==false){
   this.getMarkets();
     this.getFees();
  
- /*
-    this.showOrderPage = true;
-    var tempORB = {
-      image:"http://api.moonga.com/RCT/cp/cards/view/normal/large/en/1456.jpg",
-
-    };
-   
-    this.dataService.maincontroller.currentBalance = 1;
-     this.dataService.maincontroller.selectedKey = "SATOSHICARD";
-    this.dataService.maincontroller.selectedOrb = tempORB;
- this.dataService.maincontroller.currentCurrency = "BITCRYSTALS"; 
-*/
+  
   this.loadEnvironments();
     
   }

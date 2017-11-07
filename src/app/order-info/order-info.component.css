@@ -6,8 +6,8 @@
  
   float: left;
   color: #ffffd5;
-    font-family:   merriweather;
-     font-size: 2vw;
+    font-family:   sling;
+     font-size: 1em;
 }
 .priceSell{ 
 
@@ -18,5 +18,5 @@
   float: right;
   color: #ffffd5;
     font-family:   merriweather;
-     font-size: 2vw;
+     font-size: 10pt;
 }

@@ -28,17 +28,43 @@ customOrder3Left = "200vw";
 showConfOverlay = false;
  showConfText = false;
   showOrderText = false;
- buySellText = "you are buying";
+ buySellText = "";
 selectAmount = false;
 originalOrderAmount:number;
 bottomTop = "0px";
+  supply = " ";
+  locked =" ";
   ngOnInit() {
+     
   	 this.orbHeight =  "80%";
       this.orbWidth = "auto";
       this.getOrders();
 
-    
+    this.buySellText = this.dataService.getLang("you_are_buying");
        document.body.style.position = "fixed";
+
+
+  this.httpService.getAssetInfo( this.dataService.maincontroller.selectedKey).subscribe(
+     data => { 
+         console.log("asset info  "+JSON.stringify(data));
+         if(typeof data.correctedSupply != "undefined"){
+           
+           this.supply = this.dataService.getLang("supply",data.correctedSupply);
+         }else{
+            this.supply = this.dataService.getLang("supply",data.supply);
+        }
+         if(data.divisible == 0){
+           this.locked = "";
+           
+         }else{
+             this.locked = "";
+         }
+  },   
+      error => {
+        console.log("asset info error"+JSON.stringify(error));
+        
+      },
+     () => {});
 
   }
   ngOnDestroy(){
@@ -92,7 +118,7 @@ showConf(){
 		this.showConfText = false;
 		  this.showOrderText = true;
 	}else{
-		alert("please enter a valid price");
+		alert(this.dataService.getLang("enter_valid_price"));
 		 
 	}
 	
@@ -159,7 +185,7 @@ if(currentFee == "custom"){
         tmpthis.dataService.maincontroller.showMessage(error.message);
       }
       else{
-        tmpthis.dataService.maincontroller.showMessage("error");
+        tmpthis.dataService.maincontroller.showMessage(this.dataService.getLang("error"));
       }
         console.error(error);
         return;
@@ -179,7 +205,7 @@ if(currentFee == "custom"){
     		tmpthis.dataService.maincontroller.showMessage(error.message);
     	}
     	else{
-    		tmpthis.dataService.maincontroller.showMessage("error");
+    		tmpthis.dataService.maincontroller.showMessage(this.dataService.getLang("error"));
     	}
         return;
     }
@@ -196,7 +222,7 @@ if(currentFee == "custom"){
     		tmpthis.dataService.maincontroller.showMessage(error.message);
     	}
     	else{
-    		tmpthis.dataService.maincontroller.showMessage("error");
+    		tmpthis.dataService.maincontroller.showMessage(this.dataService.getLang("error"));
     	}
        tmpthis.closeConf();
     tmpthis.dataService.maincontroller.closeQR();
@@ -205,7 +231,7 @@ if(currentFee == "custom"){
  
  tmpthis.closeConf();
  tmpthis.dataService.maincontroller.closeQR();
- tmpthis.dataService.maincontroller.showMessage("order placed!");
+ tmpthis.dataService.maincontroller.showMessage(this.dataService.getLang("order_placed"));
      
  
 });  
@@ -228,12 +254,8 @@ getSellPrice(){
 
 
 }
-getOrbInfo(){
-return  "availability 199";
-}
-getOrbLock(){
-	return "";
-}
+
+ 
 goToCustom1(){
 
 	 this.customOrder1Left = "0";
@@ -246,9 +268,9 @@ this.orderPrice = null;
 
 
        if(orderType == "buy"){
-       	 this.buySellText = "You are buying";
+       	 this.buySellText = this.dataService.getLang("you_are_buying");
        }else if(orderType == "sell"){
-       	this.buySellText = "You are selling";
+       	this.buySellText = this.dataService.getLang("you_are_selling");
        }
 
 	this.orderType = orderType;
@@ -264,8 +286,21 @@ goToCustom3(){
 
 	}else{
 	 
-	   alert("please enter a valid amount");
+	   alert(this.dataService.getLang("enter_valid_amount"));
 	}
+}
+formatNum(num:number){
+  if(num > 1){
+return num.toFixed(2);
+}
+else if(num > 0.1){
+return num.toFixed(4);
+}
+else if(num > 0.01){
+return num.toFixed(6);
+}else{
+  return num.toFixed(8);
+}
 }
 buyOrder(order:any,type:string){
 	this.goToCustom1();
@@ -275,9 +310,9 @@ this.orderPrice = null;
 	if(order.amount == 1){
 this.selectAmount = false;
   if(type == "buy"){
-       	 this.buySellText = "You are buying";
+       	 this.buySellText = this.dataService.getLang("you_are_buying");
        }else{
-       	this.buySellText = "You are selling";
+       	this.buySellText = this.dataService.getLang("you_are_selling");
        }
 
 
@@ -305,7 +340,7 @@ getOrderAmount(order:any){
 
   var fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.maincontroller.currentCurrency,order.price);
 	if(order.amount != 1){
-		return "x"+order.amount+" "+fiatPrice;
+		return "x"+this.formatNum(order.amount)+" "+fiatPrice;
 	}
 	return ""+fiatPrice;
 }

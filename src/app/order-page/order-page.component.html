@@ -8,7 +8,7 @@
 <div class="sendOrb" id="sendOrb">
 	<div class="topSection">
 	<div class="sendOrbImgBox">
-	<span class="orbImgTitle">{{dataService.maincontroller.selectedKey}}<b><br>{{getOrbInfo()}}</b><span>&nbsp;{{getOrbLock()}}</span></span>
+	<span class="orbImgTitle">{{dataService.maincontroller.selectedKey}}<b><br>{{supply}}</b><span>&nbsp;{{locked}}</span></span>
 <img class="sendOrbImg" [errorImage]="dataService.collection.errorImage" [src]="dataService.collection.defaultImage" [lazyLoad]="this.dataService.maincontroller.selectedOrb.image"  [ngStyle]="getImageSize()"/>
  </div>
 
@@ -18,7 +18,7 @@
 
 	<div class="aSellBuyOrder" (click)="buyOrder(order,'buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">
 	   <div class="orderBox">
-		<div class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
+		<div class="orderPrice">{{formatNum(order.price)}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
 		<div class="orderPriceDetails">{{getOrderAmount(order)}}</div>
 			 </div>
 	</div>
@@ -28,7 +28,7 @@
 <div lass="buyOrdersList" *ngFor="let order of buy_orders" >
 <div class="aSellBuyOrder" (click)="buyOrder(order,'sell')" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">
 		 <div class="orderBox">
-		<div class="orderPrice">{{order.price}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
+		<div class="orderPrice">{{formatNum(order.price)}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
 		<div class="orderPriceDetails">{{getOrderAmount(order)}}</div>
 		</div>
 	</div>
@@ -50,8 +50,8 @@
 			<div class="itemTitle">Place a custom order</div>
 			<br>
 				<div class="items1Buttons">
-					<input class="customButtonBuy" type="button" value="Buy" style="float: left; " (click)="goToCustom2('buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">	 
-		 			<input class="customButtonSell" type="button" value="Sell" style="float: left;" (click)="goToCustom2('sell')" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
+					<input class="customButtonBuy" type="button" [value]="dataService.getLang('buy')" style="float: left; " (click)="goToCustom2('buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">	 
+		 			<input class="customButtonSell" type="button" [value]="dataService.getLang('sell')" style="float: left;" (click)="goToCustom2('sell')" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
 				</div>
 		</div>
 
@@ -65,22 +65,22 @@
 			<br>
 			<br>
 				<div class="items1Buttons">
-					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom1()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
-		 			<input class="customButtonBackNext" type="button" value="next" style="float: left;" (click)="goToCustom3()"  [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
+					<input class="customButtonBackNext" type="button" [value]="dataService.getLang('back')" style="float: left; " (click)="goToCustom1()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+		 			<input class="customButtonBackNext" type="button" [value]="dataService.getLang('next')" style="float: left;" (click)="goToCustom3()"  [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
 				</div>
 			</div>
 	</div>
 
 	<div class="customOrder3" [style.left]="customOrder3Left">
 				<div class="items2">
-			<div class="itemTitle">enter price per card below</div>
+			<div class="itemTitle">{{dataService.getLang('enter_price_per_orb')}}</div>
 			<br>
 			<input  class="textInput"  type="number" [(ngModel)]="orderPrice"  placeholder="e.g. 1"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()"><span class="abrev">&nbsp;{{dataService.maincontroller.currentAbrev}}</span>
 			<br>
 			<br>
 				<div class="items1Buttons">
-					<input class="customButtonBackNext" type="button" value="back" style="float: left; " (click)="goToCustom2('na')" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
-		 			<input class="customButtonConfirm" type="button" value="confirm" style="float: left;" (click)="showConf()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 
+					<input class="customButtonBackNext" type="button" [value]="dataService.getLang('back')" style="float: left; " (click)="goToCustom2('na')" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+		 			<input class="customButtonConfirm" type="button" [value]="dataService.getLang('confirm')" style="float: left;" (click)="showConf()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 
 				</div>
 			</div>
 	</div>
@@ -94,15 +94,14 @@
  <div *ngIf="showConfOverlay" class="orderConfOverlay">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">	 	 
    	 	<div  class="loading" *ngIf="loading">
-   	 			<p>please wait...</p>
+   	 			<p>{{dataService.getLang('please_wait')}}</p>
    	 	</div>
    	<div  *ngIf="!loading">
   <div *ngIf="showOrderText" class="messageText">
   	<p>{{buySellText}}</p>
-  	<p style="font-style: italic;"> {{orderAmount}}&nbsp; {{dataService.maincontroller.selectedKey}}</p>
-  	<p>at</p>
-  	<p style="font-style: italic;">{{orderPrice}}&nbsp;  {{dataService.maincontroller.currentAbrev}} each</p>
-  	<p>Total: {{getTotalPrice()}}&nbsp; {{dataService.maincontroller.currentAbrev}}</p>
+  	<p style="white-space: pre-wrap; font-style: italic;">{{dataService.getLang('order_conf',orderAmount,dataService.maincontroller.selectedKey,orderPrice,dataService.maincontroller.currentAbrev)}} </p>
+  	 
+  	<p>{{dataService.getLang('order_total',getTotalPrice(),dataService.maincontroller.currentAbrev)}}</p>
   </div> 
 
 
@@ -112,28 +111,28 @@
   </div> 
 
      <div *ngIf="selectAmount" class="messageText" > 
-  	<p style="font-size: 1.4em;">Order details</p>
-  	 <p>Price</p>
+  	<p style="font-size: 1.4em;">{{dataService.getLang('order_details')}}</p>
+  	 <p>{{dataService.getLang('price')}}</p>
   	 <p style="font-style: italic;">{{orderPrice}}  {{dataService.maincontroller.currentAbrev}}</p>
- <p>Availability </p>
+ <p>{{dataService.getLang('availability')}} </p>
   	 <p style="font-style: italic;">x{{originalOrderAmount}}</p> 
- <p>Enter order amount </p> 
+ <p>{{dataService.getLang('enter_order_amount')}} </p> 
  <input  style="text-align: center;"class="textInputCenter"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 2"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 
  <div  class="placeOrderButtons">
-        <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="showConf()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
+        <input class="customButtonPlaceOrder" type="button" [value]="dataService.getLang('place_order')"  (click)="showConf()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
         <br> <br>
      
-		<input class="customButtonCancel" type="button" value="cancel"  (click)="closeConf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
+		<input class="customButtonCancel" type="button" [value]="dataService.getLang('cancel')"  (click)="closeConf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
        </div>
  
   </div> 
 
        <div *ngIf="!selectAmount" class="placeOrderButtons">
-        <input class="customButtonPlaceOrder" type="button" value="place order"  (click)="createOrder()"[style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
+        <input class="customButtonPlaceOrder" type="button"  [value]="dataService.getLang('place_order')"   (click)="createOrder()"[style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
         <br> <br>
      
-		<input class="customButtonCancel" type="button" value="cancel"  (click)="closeConf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
+		<input class="customButtonCancel" type="button" [value]="dataService.getLang('cancel')"  (click)="closeConf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">	 
        </div>
      </div>
       </div>

@@ -10,5 +10,5 @@
 <div class="score">
 {{getScore()}}
 </div>
-<input class="rankingsButton" type="button" value="Rankings"   (click)="showRankings()" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">	
+<input class="rankingsButton" type="button" [value]="dataService.getLang('rankings')"   (click)="showRankings()" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">	
 </div>

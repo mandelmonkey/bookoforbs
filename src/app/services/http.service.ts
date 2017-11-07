@@ -14,12 +14,37 @@ export class HTTPService{
      indieURL = "https://api.indiesquare.me";
    baseOrbUrl = "https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center";
   devExt = "&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd";
+
+
  //  addressExt =     "&mainAddress="+this.dataService+"&targetAddress="+_requires["cache"].data.address;
     
   constructor(public dataService:DataService,private _http:Http){}
  
  getAddressUrl(){
    return  "&mainAddress="+this.dataService.maincontroller.currentAddress+"&targetAddress="+this.dataService.maincontroller.currentAddress;
+ }
+
+ getAssetInfo(asset:string){
+     var header = new Headers();
+   
+ 
+
+     var url = this.baseOrbUrl+"&action=getAssetInfo&asset="+asset+this.devExt+this.getAddressUrl();
+       console.log( url);
+      
+ var json = JSON.stringify({
+             url: url,
+        });
+
+      var params = json;
+      var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json'); 
+    
+      return this._http.get(url, {
+        headers:header
+      })
+      .map(res => res.json());
+ 
  }
     
     getEnvironments(){

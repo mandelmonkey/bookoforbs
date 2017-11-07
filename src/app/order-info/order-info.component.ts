@@ -20,12 +20,12 @@ getPrice(){
 		var price =this.dataService.maincontroller.currentOrbs[this.token]["bestBuyPrice"];
 		var fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.maincontroller.currentCurrency,price);
 	
-this.buyPrice = "sell\n"+price + " "+this.dataService.maincontroller.currentAbrev+"\n"+fiatPrice;
+this.buyPrice = this.dataService.getLang("sell")+"\n"+price + " "+this.dataService.maincontroller.currentAbrev+"\n"+fiatPrice;
 		 if(typeof this.dataService.maincontroller.currentOrbs[this.token]["bestSellPrice"] != "undefined" ){
 price = this.dataService.maincontroller.currentOrbs[this.token]["bestSellPrice"];
 fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.maincontroller.currentCurrency,price);
 
-			this.sellPrice = "buy\n"+price + " "+this.dataService.maincontroller.currentAbrev+"\n"+fiatPrice;
+			this.sellPrice = this.dataService.getLang("buy")+"\n"+price + " "+this.dataService.maincontroller.currentAbrev+"\n"+fiatPrice;
 		}else{
 			this.sellPrice = "-";
 		}
@@ -42,7 +42,7 @@ fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.mai
 						 	var price = buy_orders[0].price;
 							 fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.maincontroller.currentCurrency,price);
 
-							this.buyPrice = "sell\n"+price + " "+this.dataService.maincontroller.currentAbrev+"\n"+fiatPrice;
+							this.buyPrice = this.dataService.getLang("sell")+"\n"+price + " "+this.dataService.maincontroller.currentAbrev+"\n"+fiatPrice;
 								
 								this.dataService.maincontroller.currentOrbs[this.token]["bestBuyPrice"] = price;
 							
@@ -59,7 +59,7 @@ fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.mai
 						 	var price = sell_orders[0].price;
 							 fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.maincontroller.currentCurrency,price);
 
-									this.sellPrice = "buy\n"+price + " "+this.dataService.maincontroller.currentAbrev+"\n"+fiatPrice;
+									this.sellPrice = this.dataService.getLang("buy")+"\n"+price + " "+this.dataService.maincontroller.currentAbrev+"\n"+fiatPrice;
 								this.dataService.maincontroller.currentOrbs[this.token]["bestSellPrice"] = price;
 							
 							 

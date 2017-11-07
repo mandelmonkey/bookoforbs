@@ -8,9 +8,9 @@
   <img class="thirdButton" [src]="image3"  (click)="select3()"/>
    <img class="forthButton" [src]="image4" (click)="select4()"/>
 <div class="labels"> 
-    <label class="firstLabel">Collection</label>
-     <label class="secondLabel">Market</label>
-      <label class="thirdLabel">History</label>
-       <label class="forthLabel">Account</label>
+    <label class="firstLabel">{{dataService.getLang('collection')}}</label>
+     <label class="secondLabel">{{dataService.getLang('market')}}</label>
+      <label class="thirdLabel">{{dataService.getLang('history')}}</label>
+       <label class="forthLabel">{{dataService.getLang('account')}}</label>
 </div>
 </div>

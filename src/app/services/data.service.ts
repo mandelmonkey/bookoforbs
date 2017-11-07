@@ -6,7 +6,8 @@ import {MarketComponent} from '../market/market.component';
 import { MainControllerComponent} from '../main-controller/main-controller.component';
 import { HistoryComponent } from '../history/history.component';
  declare var UI:any; 
-
+declare var en:any; 
+declare var ja:any;
 @Injectable()
 export class DataService {
  
@@ -21,18 +22,32 @@ export class DataService {
   viewMode:boolean;
   landscape:boolean;
   uiclass:any;
+  langclass:any;
   showIntroScreen:boolean;
   dev:boolean;
    constructor(){
     this.currentTab = 1;
 
 this.uiclass = new UI();
+
+this.langclass = new en();
 this.showIntroScreen = true;
   }
 
   getImage(image:string){
 
     return this.uiclass.getImage(image);
+
+  }
+
+
+  getLang(trans:string,param1 = "",param2 = "",param3 = "",param4 = ""){
+     var val = this.langclass.getTrans(trans);
+         val = val.replace('$1$', param1);
+         val = val.replace('$2$', param2);
+         val = val.replace('$3$', param3);
+         val = val.replace('$4$', param4);
+    return val;
 
   }
   
