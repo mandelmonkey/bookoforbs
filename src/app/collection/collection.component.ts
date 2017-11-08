@@ -14,7 +14,7 @@ export class CollectionComponent implements OnInit {
  
 
  allOwnImage = this.dataService.getImage('leftOptionSeg'); 
-  public allOrbs = false;
+   
    
   loading= false;
   currentScroll:number;
@@ -121,6 +121,11 @@ list.addEventListener("touchmove", function (e) {
     this.dataService.maincontroller.showAccount = false;
 
 
+    if( this.dataService.maincontroller.allOrbs == true){
+      this.allOwnImage = this.dataService.getImage('rightOptionSeg');
+    }else{
+      this.allOwnImage = this.dataService.getImage('leftOptionSeg');
+    }
 
 
 
@@ -269,7 +274,7 @@ this.defaultImage = this.dataService.getImage('cardback');
           
       }
      
-     if(this.allOrbs == false){
+     if( this.dataService.maincontroller.allOrbs == false){
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
 
      }else{
@@ -282,8 +287,8 @@ this.defaultImage = this.dataService.getImage('cardback');
              if(this.dataService.maincontroller.currentAddress == "empty"){
            this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
          
-          
-      this.allOrbs = true;
+         
+      this.dataService.maincontroller.allOrbs = true;
       this.allOwnImage = this.dataService.getImage('rightOptionSeg');
 
     }
@@ -335,20 +340,20 @@ tmpthis.addPull();
   selectOwn(){
  this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
         
-      this.allOrbs = false;
+      this.dataService.maincontroller.allOrbs = false;
       this.allOwnImage =this.dataService.getImage('leftOptionSeg');
   }
   selectAll(){
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
           
-      this.allOrbs = true;
+       this.dataService.maincontroller.allOrbs = true;
       this.allOwnImage = this.dataService.getImage('rightOptionSeg');
   }
   selectAllOwn(){
-    if(this.allOrbs == true){
+    if( this.dataService.maincontroller.allOrbs == true){
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
         
-      this.allOrbs = false;
+       this.dataService.maincontroller.allOrbs = false;
       this.allOwnImage =this.dataService.getImage('leftOptionSeg');
     }
     else{
@@ -356,7 +361,7 @@ tmpthis.addPull();
 
        this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
           
-      this.allOrbs = true;
+      this.dataService.maincontroller.allOrbs = true;
       this.allOwnImage = this.dataService.getImage('rightOptionSeg');
     }
   }

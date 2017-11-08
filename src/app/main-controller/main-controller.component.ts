@@ -37,7 +37,7 @@ public orbData :any;
 public userBalance :Array<any>;
 public currentAddress = "";
 public recoveryPhrase = "";
-public  currentFiatCurreny = "";
+public currentFiatCurreny = "";
 public currentEnv = "";
 public selectedOrb:any;
 public selectedKey:string;
@@ -66,6 +66,7 @@ public currentCurrencyImg:string;
 public history =[];
 public orders =[];
 public markets = [];
+public allOrbs = false;
 
 public showingQR = false;
 public qrUrl = "";
