@@ -36,7 +36,7 @@ this.showIntroScreen = true;
 
   setLang(locale:string){
 
-    console.log("locale"+locale);
+    alert("locale"+locale);
     if(locale == "ja-JP"){
       this.langclass = new ja();
     }else{
