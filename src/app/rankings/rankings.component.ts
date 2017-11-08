@@ -36,7 +36,7 @@ onFocus(){
 setUsername(){
 
 	if(this.dataService.maincontroller.currentAddress == "empty"){
-		alert("please sign in to set a username");
+		alert(this.dataService.getLang('please_sign_in_username'));
 		return;
 	}
 
@@ -53,7 +53,7 @@ this.loadingUsername = true;
     if( error ){
         console.log("error"+error);
        	   tmpthis.loadingUsername = false;
-         alert("error");
+         alert(tmpthis.dataService.getLang("error"));
      		return;
     }else{
       console.log("went here"+url);
@@ -68,7 +68,7 @@ this.loadingUsername = true;
   if(error){
   		this.loadingUsername = false;
     console.error("Link error");
-     alert("error");
+     alert(tmpthis.dataService.getLang("error"));
      		return;
  
   }else{
@@ -81,21 +81,21 @@ console.log("set"+JSON.stringify(data));
 
      	if(data.error != null){
      		  tmpthis.loadingUsername = false;
-     		  alert("error");
+     		  alert(tmpthis.dataService.getLang("error"));
      		return;
      	}else{
      		 console.log("error null"+data.username);
      	}
      }
      console.log("data username "+data.username);
-       alert("username set!");
+       alert(tmpthis.dataService.getLang("username_set"));
        tmpthis.getRankings();
        tmpthis.dataService.maincontroller.setPersistance("username:"+tmpthis.dataService.maincontroller.currentAddress,data.username+":"+tmpthis.dataService.maincontroller.currentEnv);
      	 
      },
          error => {
 	tmpthis.loadingUsername = false; 
-       alert("error setting username");
+       alert(tmpthis.dataService.getLang("error"));
  
        },
      () => {});
@@ -111,7 +111,7 @@ console.log("set"+JSON.stringify(data));
       error => {
 	this.loadingUsername = false;
        this.loadingUsername = false;
-       alert("error setting username");
+       alert(tmpthis.dataService.getLang("error"));
  
        },
      () => {});
@@ -119,9 +119,9 @@ console.log("set"+JSON.stringify(data));
 }
 getStatusText(){
 if(this.loading){
-	return "loading...";
+	return  this.dataService.getLang("loading");
 }else{
-	return this.rankingsKeys.length + " Collectors";
+	return this.dataService.getLang("collectors",this.rankingsKeys.length+"");
 }
 	}
 
@@ -166,7 +166,7 @@ this.username =  this.dataService.maincontroller.getPersistance("username:"+this
       },   
       error => {
        this.loading = false;
-       alert("error getting rankings");
+       alert(tmpthis.dataService.getLang("error"));
 console.log("error rankings"); 
        },
      () => {});

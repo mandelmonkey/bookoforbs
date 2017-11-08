@@ -6,8 +6,8 @@
 
 </div>
 <div class="middlePart">
- <input  class="textInput"  type="text" [(ngModel)]="username"  placeholder="set username"  name="customfee" (blur)="setUsername()" (focus)="onFocus()">
-  <p class="usernameLoading" *ngIf="loadingUsername">please wait...</p>
+ <input  class="textInput"  type="text" [(ngModel)]="username"  [placeholder]="dataService.getLang('set_username')"  name="customfee" (blur)="setUsername()" (focus)="onFocus()">
+  <p class="usernameLoading" *ngIf="loadingUsername">{{dataService.getLang('please_wait')}}</p>
 
 <virtual-scroll id="scrollView" class="scrollable" [items]="rankingsKeys" (update)="viewPortItems3 = $event"
 [style.height]="getCollectionHeight()" >
@@ -28,11 +28,11 @@
   <img class="leftbracket"  [src]="dataService.getImage('leftBracket')" />
   <img class="rightbracket"  [src]="dataService.getImage('rightBracket')" />
 
- <input class="backButton" type="button" value="BACK" (click)="closeSelf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
- <input class="jumpButton" type="button" value="Me" (click)="jumpToMe()" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
+ <input class="backButton" type="button" [value]="dataService.getLang('back')" (click)="closeSelf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+ <input class="jumpButton" type="button" [value]="dataService.getLang('jump_me')"  (click)="jumpToMe()" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
  
 
-<label id="rankings" class="title">Rankings</label> 
+<label id="rankings" class="title">{{dataService.getLang('rankings')}}</label> 
  
 
 

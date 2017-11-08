@@ -52,10 +52,10 @@ rotated = false;
        this.currentEnvTitle = this.dataService.getLang("loading");
   }
  getSettings(){
-   return "Settings";
+   return this.dataService.getLang("settings");
  }
  getSignIn(){
-   return "Sign In";
+    return this.dataService.getLang("signin");
  }
  showSettings(){
    return this.dataService.maincontroller.showSettings = true;;

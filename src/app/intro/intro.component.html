@@ -17,8 +17,8 @@
      <div class="indielink" >
         <img class="indielogo"   [src]="dataService.getImage('indielogo')" (click)="linkIndieSquare()"/>
       
-      <label class="indieLinkLabel">Sign in with IndieSquare</label>  
-       <label class="install" (click)="goToIndieSquare()">Don't have IndieSquare Wallet? install here</label>  
+      <label class="indieLinkLabel">{{dataService.getLang('sign_in_indiesquare')}}</label>  
+       <label class="install" (click)="goToIndieSquare()">{{dataService.getLang('dont_have_indiesquare')}}</label>  
     </div>
  <br>  
 

@@ -6,7 +6,7 @@
  
  
 
-<label id="balance" class="toptitle">History</label> 
+<label id="balance" class="toptitle">{{dataService.getLang('history')}}</label> 
 
 
       
@@ -18,7 +18,7 @@
 
 <div *ngIf="!dataService.maincontroller.loading" class="ownAllButton">
     <img class="ownAllButtonImg" src={{allOwnImage}} />
-    <div class="ownAllButtonLeft"  (click)="selectHistory()">Send/Receive</div>  <div class="ownAllButtonRight"  (click)="selectOrders()">Orders</div>
+    <div class="ownAllButtonLeft"  (click)="selectHistory()">{{dataService.getLang('send_receive')}}</div>  <div class="ownAllButtonRight"  (click)="selectOrders()">{{dataService.getLang('orders')}}</div>
   </div>
 
 
@@ -27,9 +27,9 @@
 <virtual-scroll *ngIf="mode=='history'" id="scrollView" class="scrollable" [items]="dataService.maincontroller.history" (update)="viewPortItems2 = $event"
 [style.height]="getHistoryHeight()" >
 
-<label class="status" *ngIf="loading">loading...</label> 
+<label class="status" *ngIf="loading">{{dataService.getLang('loading')}}</label> 
  
- <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >please sign in</label> 
+ <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >{{dataService.getLang('please_signin')}}</label> 
  
  
     <app-history-card *ngFor="let item of viewPortItems2" [data]="item">
@@ -41,7 +41,7 @@
 <div  *ngIf="mode=='order'">
 <div class="ordersButton">
     <img class="ordersButtonImg" src={{orderSelectImage}} />
-    <div class="ordersButtonSegLeft"  (click)="selectOrdersAll()">All</div>  <div class="ordersButtonSeg"  (click)="selectOrdersBought()">Bought</div><div class="ordersButtonSeg"  (click)="selectOrdersSold()">Sold</div>  <div class="ordersButtonSegRight"  (click)="selectOrdersOpen()">Open</div>
+    <div class="ordersButtonSegLeft"  (click)="selectOrdersAll()">{{dataService.getLang('all')}}</div>  <div class="ordersButtonSeg"  (click)="selectOrdersBought()">{{dataService.getLang('bought')}}</div><div class="ordersButtonSeg"  (click)="selectOrdersSold()">{{dataService.getLang('sold')}}</div>  <div class="ordersButtonSegRight"  (click)="selectOrdersOpen()">{{dataService.getLang('open')}}</div>
   </div>
 
 <virtual-scroll id="scrollView" class="scrollable" [items]="dataService.maincontroller.orders" (update)="viewPortItems2 = $event"
@@ -50,9 +50,9 @@
 
 
 
-<label class="status" *ngIf="loading">loading...</label> 
+<label class="status" *ngIf="loading">{{dataService.getLang('loading')}}</label> 
  
- <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >please sign in</label> 
+ <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >{{dataService.getLang('please_signin')}}</label> 
  
  
     <app-history-card *ngFor="let item of viewPortItems2" [data]="item" [order]=true>

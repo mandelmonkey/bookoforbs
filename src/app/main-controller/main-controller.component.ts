@@ -157,6 +157,10 @@ getFiatForToken(token:string,quantity:number,fixed = 2){
   var currency = this.currentFiatCurreny;
   
   var fiatValue = this.markets[currency];
+
+  if(typeof fiatValue == "undefined"){
+    return "";
+  }
   
   if(token == "BTC"){
 
@@ -172,6 +176,9 @@ getFiatForToken(token:string,quantity:number,fixed = 2){
     } else{
        
       if(this.currentCurrencyPrice != 0){
+
+         if(typeof this.markets["XCP"] != "undefined" && typeof fiatValue.last != "undefined"){
+
         var XCPPrice = this.markets["XCP"].last;
 
       var XCPFiatPrice = XCPPrice *  fiatValue.last
@@ -181,10 +188,12 @@ getFiatForToken(token:string,quantity:number,fixed = 2){
         return  ( xcpTotal * quantity).toLocaleString(this.locale, { style: 'currency', currency: currency,maximumSignificantDigits: fixed });
       }
     }
+    }
   }
   return "";
 
 }
+
  getPriceForCurrency(currency:string){
    var tmpthis = this;
 tmpthis.currentCurrencyPrice =0;

@@ -3,8 +3,8 @@
 
 	<br>
 	<div class="topStuff">
-  <div class="title1">Receiving address for ORBS, Bitcoin and {{dataService.maincontroller.currentCurrency}}</div>
-  	<div class="title2">(tap to copy)</div>
+  <div class="title1">{{dataService.getLang('receiving_send_info',dataService.maincontroller.currentCurrency)}}</div>
+  	<div class="title2">{{dataService.getLang('tap_to_copy')}}</div>
   	<br>
   <canvas id="qr1" (click)="copyToClipboard()" [style.height]="getQRHeight()"></canvas>
 <div class="title3">{{getAddress()}}</div>
@@ -12,19 +12,19 @@
   </div>
 <div class="bottomDiv" [style.height]="getBottomHeight()">
 	<img class="seperator"  [src]="dataService.getImage('leatherSeperator')" />
-<!--	<img class="bottomImg" src="../assets/images/qrbottomback.jpg"   />-->
+ 
 
 
 <div class="aCurrency">
 		<img class="smallCurrency"  [src]="dataService.getImage('asset_bitcoin')" />
 		<div class="middleSection">
-			<span class="currencyTitle">Bitcoin</span>
+			<span class="currencyTitle">{{dataService.getLang('bitcoin')}}</span>
 			<div class="imageBack">
 				<span class="currencyBalance">{{getBalance('BTC')}}<b>BTC</b></span>
 				<span class="currencyBalanceFiat">{{getBalanceFiat('BTC')}}</span>
 			</div>
 		</div>
-		<input class="smallSendButton" type="button" value="Send"  (click)="send('BTC')">
+		<input class="smallSendButton" type="button" [value]="dataService.getLang('send')"  (click)="send('BTC')">
 </div>
 <hr style="height:3pt; visibility:hidden;"  *ngIf="!showSeperator()"/>
  
@@ -39,7 +39,7 @@
 				<span class="currencyBalanceFiat">{{getBalanceFiat(getCurrency())}}</span>
 			</div>
 		</div>
-		<input class="smallSendButton" type="button" value="Send"  (click)="send(getCurrency())">
+		<input class="smallSendButton" type="button" [value]="dataService.getLang('send')"  (click)="send(getCurrency())">
 </div>
 
 </div>

@@ -25,19 +25,19 @@ rotated = false;
 
  if(this.dataService.maincontroller.currentFee == "fastestFee"){
 
-      return "fee: high";
+      return this.dataService.getLang('fee_high');
     }
     else if(this.dataService.maincontroller.currentFee == "lowFee"){
 
-      return "fee: low";
+      return this.dataService.getLang('fee_low');
     }
     else if(this.dataService.maincontroller.currentFee == "hourFee"){
 
-      return "fee: mid";
+      return this.dataService.getLang('fee_mid');
     }
     else{
 
-      return  this.dataService.maincontroller.currentFee+" btc";
+      return  this.dataService.maincontroller.currentFee+" BTC";
     }
  
 
@@ -71,19 +71,19 @@ rotated = false;
 
     if(index == 0){
 
-      return "High";
+      return this.dataService.getLang("fee_high_label");
     }
     else if(index == 1){
 
-      return "High";
+      return this.dataService.getLang("fee_high_label");
     }
     else if(index == 2){
 
-     return "Mid";
+     return this.dataService.getLang("fee_mid_label");
     }
     else if(index == 3){
 
-        return "Low";
+        return this.dataService.getLang("fee_low_label");
     }
       
 
@@ -113,16 +113,16 @@ rotated = false;
 
        var customFee = parseFloat(this.dataService.maincontroller.customFee);
        if (Number.isNaN(customFee)){
- this.dataService.maincontroller.showMessage("please enter a valid fee");
+ this.dataService.maincontroller.showMessage(this.dataService.getLang("valid_fee"));
          this.dataService.maincontroller.customFee = "";
          
        }
        else if(customFee < 0){
-         this.dataService.maincontroller.showMessage("this fee is too low! please enter a fee greater than 0");
+         this.dataService.maincontroller.showMessage(this.dataService.getLang("fee_too_low"));
          this.dataService.maincontroller.customFee = "";
        }
        else if(customFee > 0.01){
-         this.dataService.maincontroller.showMessage("this fee is too high! please enter a fee less than 0.01");
+         this.dataService.maincontroller.showMessage("fee_too_high");
          this.dataService.maincontroller.customFee = "";
        }
        else{

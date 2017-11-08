@@ -30,7 +30,7 @@ export class DataService {
 
 this.uiclass = new UI();
 
-this.langclass = new en();
+this.langclass = new ja();
 this.showIntroScreen = true;
   }
 
@@ -41,12 +41,15 @@ this.showIntroScreen = true;
   }
 
 
-  getLang(trans:string,param1 = "",param2 = "",param3 = "",param4 = ""){
+  getLang(trans:string,param1 = "",param2 = "",param3 = "",param4 = "", param5 = ""){
+
      var val = this.langclass.getTrans(trans);
          val = val.replace('$1$', param1);
          val = val.replace('$2$', param2);
          val = val.replace('$3$', param3);
          val = val.replace('$4$', param4);
+         val = val.replace('$5$', param5);
+         
     return val;
 
   }

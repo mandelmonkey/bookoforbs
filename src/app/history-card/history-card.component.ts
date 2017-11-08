@@ -107,7 +107,7 @@ return true;
 }
 cancelOrder(){
 var tmpthis = this;
-	this.dataService.maincontroller.showLoading("Please wait...");
+	this.dataService.maincontroller.showLoading(this.dataService.getLang("please_wait"));
 	console.log("Data "+JSON.stringify(this.data));
 	  var indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
@@ -135,7 +135,7 @@ indiesquare.createCancel(sendParams, function(data, error){
         if(typeof error.message != "undefined"){
         			tmpthis.dataService.maincontroller.showMessage(error.message);
         }else{
-       	 	tmpthis.dataService.maincontroller.showMessage("error canceling order");
+       	 	tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
    		 }
         return;
     }
@@ -180,7 +180,7 @@ console.log(result.signed_tx);
             return;
         }
         tmpthis.dataService.history.reloadOrders();
-        tmpthis.dataService.maincontroller.showMessage("Cancel order placed!");
+        tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
            
       });   
     
@@ -209,21 +209,21 @@ getOrderTitle1(){
 if(this.data != null){
 if(this.data.type == "sell"){
   if(this.data.status == "filled"){
-    return "Sold";
+    return this.dataService.getLang("status_sold");
   }
   else if(this.data.status == "expired"){
-    return "Couldn't Sell";
+    return this.dataService.getLang("status_couldnt_sell");
   }
-     return "Selling";
+     return this.dataService.getLang("status_selling");
    }
    else if(this.data.type == "buy"){
        if(this.data.status == "filled"){
-    return "Bought";
+    return this.dataService.getLang("status_bought");
   }
   else if(this.data.status == "expired"){
-    return "Couldn't Buy";
+    return this.dataService.getLang("status_couldnt_buy");
   }
-     return "Buying";
+     return this.dataService.getLang("status_buying");
    }
 }
     
@@ -232,17 +232,19 @@ if(this.data.type == "sell"){
  getOrderInfo(){
  	if(this.data != null){
  if(this.data.type == "sell"){
-     return this.data.give_quantity + " " + this.data.give_token + " at "+this.data.price +" "+this.data.get_token +  " each, status: "+this.getOrderStatus();
+     return this.dataService.getLang("order_sell_info", this.data.give_quantity,this.data.give_token,this.data.price,this.data.get_token,this.getOrderStatus()); 
    }
    else if(this.data.type == "buy"){
-      return this.data.get_quantity + " " + this.data.get_token + " at "+ this.data.price +" "+ this.data.give_token + " each, status: "+this.getOrderStatus();
+    
+     return this.dataService.getLang("order_buy_info", this.data.give_quantity,this.data.give_token,this.data.price,this.data.get_token,this.getOrderStatus()); 
+  
    }
 }
  }
 
  getOrderTitle2(){
 
-return "Status";
+return this.dataService.getLang("order_status");
     
 }
 
@@ -257,7 +259,7 @@ return this.data.status;
 
  getOrderTitle3(){
 
-return "Date";
+return this.dataService.getLang("order_date");
     
 }
 
@@ -267,13 +269,16 @@ return "Date";
 if(this.data != null){
 
 	if(this.data.type == "order"){
-  		return "Pending order";
+  	return this.dataService.getLang("order_pending");
   	}else{
  	if(this.data.category== "Send"){
- 		return "Sent "+this.data.quantity+" "+this.data.token+" to";
+
+     return this.dataService.getLang("order_info_sent",this.data.quantity,this.data.token);
+ 	 
  	}
  	else if(this.data.category == "Receive"){
- 		return "Received "+this.data.quantity+" "+this.data.token+" from";
+     return this.dataService.getLang("order_info_receive",this.data.quantity,this.data.token);
+ 	 
  	}
  }
 }
@@ -285,7 +290,8 @@ if(this.data != null){
  getAddress(){
  	if(this.data != null){
 if(this.data.type == "order"){
-  		return this.data.get_quantity+" " +this.data.get_asset+" for " + this.data.give_quantity+" " +this.data.give_asset;
+  return this.dataService.getLang("order_order_info",this.data.quantity,this.data.get_asset,this.data.give_quantity,this.data.give_asset);
+  		
   	}else{
  
 
@@ -303,16 +309,16 @@ if(this.data.category== "Send"){
  getDateTitle(){
  	if(this.data != null){
  	if(this.data.type == "order"){
-  		return "Status";
+  		return this.dataService.getLang("order_status");
   	}else{
-return "Date";
+return this.dataService.getLang("order_date");
   	}
   }
  }
  getDate(){
 	 if(this.data != null){
  	if(this.data.unconfirm){
- 		return "unconfirmed";
+ 		return this.dataService.getLang("order_unconfirmed");
  	}
  	else if (this.data.time != null){
   

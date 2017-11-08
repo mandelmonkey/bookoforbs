@@ -26,14 +26,14 @@ export class AccountComponent implements OnInit {
 
     }
     public copyToClipboard() : void {
-
+var tmpthis = this;
         this.clipboardService
             .copy( this.dataService.maincontroller.currentAddress )
             .then(
                 ( value: string ) : void => {
 
                     this.copyEvent.emit( value );
-                    alert(value+" copied to clipboard, make sure to check the address matches on paste!")
+                    alert(value+tmpthis.dataService.getLang("copied_info"))
 
                 }
             )
@@ -41,7 +41,7 @@ export class AccountComponent implements OnInit {
                 ( error: Error ) : void => {
 
                     this.errorEvent.emit( error );
-                     alert("error copying to clipboard");
+                     alert(tmpthis.dataService.getLang("error"));
 
                 }
             )
@@ -109,14 +109,14 @@ showSeperator(){
   }
   getAddress(){
   	if(this.dataService.maincontroller.currentAddress == "empty"){
-  			return "no address";
+  			return  this.dataService.getLang("no_address")
   	}
   	return this.dataService.maincontroller.currentAddress;
   }
 
   getCurrency(){
   	if(this.dataService.maincontroller.currentOrbs == null){
-  		return "loading...";
+  		return  this.dataService.getLang("loading")
   	}
   	else{
 
@@ -171,7 +171,7 @@ getCurrencyIcon (){
     getBalance(currency:string){
      
   	if(this.dataService.maincontroller.userBalance == null){
-  		return "loading...";
+  		return  this.dataService.getLang("loading");
   	}
   	else{
 var abrev = this.dataService.maincontroller.currentAbrev;
@@ -195,7 +195,7 @@ var abrev = this.dataService.maincontroller.currentAbrev;
   getBalanceFiat(currency:string){
      
     if(this.dataService.maincontroller.userBalance == null){
-      return "loading...";
+      return this.dataService.getLang("loading");
     }
     else{
 var abrev = this.dataService.maincontroller.currentAbrev;

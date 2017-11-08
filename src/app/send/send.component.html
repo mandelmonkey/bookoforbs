@@ -28,7 +28,7 @@
   <img class="middleBarImg"    [src]="dataService.getImage('sendMiddleBar')" /> 
    <div *ngIf="!sending" class="sendButton" (click)="send()">
     <img class="sendButtonImg"   [src]="dataService.getImage('filterButtonBackground')" /> 
-    <label>send</label>
+    <label>{{dataService.getLang('send')}}</label>
     
   </div>
   
@@ -36,7 +36,7 @@
  
    <img id="spinner"   [src]="dataService.getImage('spinner')" *ngIf="sending" />
   <label class="amountText">{{currentORB}}{{amount}}</label>
- <input type="text" class="addressText" placeholder="enter address" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()" (focus)="onFocusMethod()">
+ <input type="text" class="addressText" [placeholder]="dataService.getLang('enter_address')" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 </div>
 
  
@@ -106,7 +106,7 @@
     <img class="backButtonImg" [src]="dataService.getImage('filterButtonBackground')"/>
 
 
-    <label>back</label>
+    <label>{{dataService.getLang("back")}}</label>
       
    
 

@@ -213,16 +213,16 @@ currentOwner.sending = true;
     
     if(parseFloat(this.amount) < 0 || parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
       if( parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
- this.dataService.maincontroller.showMessage("you don't have enough "+this.dataService.maincontroller.selectedKey);
+ this.dataService.maincontroller.showMessage(this.dataService.getLang("dont_have_enough",this.dataService.maincontroller.selectedKey));
 
       }else{
-      this.dataService.maincontroller.showMessage("please enter a valid amount");
+      this.dataService.maincontroller.showMessage(this.dataService.getLang("enter_valid_amount"));
     }
       return;
     }
 
     if( bitcore.Address.isValid(this.dataService.maincontroller.currentSendAddress, 'livenet') == false){
-           this.dataService.maincontroller.showMessage("please enter a valid address");
+           this.dataService.maincontroller.showMessage(this.dataService.getLang("enter_valid_address"));
         return;
 
     }
@@ -313,7 +313,7 @@ var feeBTC = data.fee * 100000000;
             return;
         }
         tmpthis.sending = false;
-        tmpthis.dataService.maincontroller.showMessage("sent!");
+        tmpthis.dataService.maincontroller.showMessage(tmpThis.dataService.getLang("sent"));
           tmpthis.closeSend();
             tmpthis.dataService.maincontroller.closeQR();
       });  
@@ -334,11 +334,8 @@ var feeBTC = data.fee * 100000000;
 
       }else{
 
-         tmpthis.dataService.maincontroller.showConf("You are sending\n\n"+tmpthis.amount+ " " +tmpthis.dataService.maincontroller.selectedKey+" to "+tmpthis.dataService.maincontroller.currentSendAddress+"\n\nfee: "+feeBTC+" btc",tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
-
-
-    
-
+         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_sending',tmpthis.amount,tmpthis.dataService.maincontroller.selectedKey,tmpthis.dataService.maincontroller.currentSendAddress,feeBTC+""),tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
+ 
       } 
   
 
@@ -348,7 +345,7 @@ var feeBTC = data.fee * 100000000;
 }
 catch(e){
   console.log("unknown error");
-   tmpthis.dataService.maincontroller.showMessage("unknown error");
+   tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang('error'));
              tmpthis.sending = false;
 }
 /*
