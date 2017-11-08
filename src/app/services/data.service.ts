@@ -31,17 +31,21 @@ export class DataService {
 this.uiclass = new UI();
 
 this.langclass = new ja();
+var language =  window.navigator.language;
+
+
+    if(language == "ja-JP"){
+      this.langclass = new ja();
+    }else{
+       this.langclass = new en();
+    }
+ 
 this.showIntroScreen = true;
   }
 
   setLang(locale:string){
 
-    alert("locale"+locale);
-    if(locale == "ja-JP"){
-      this.langclass = new ja();
-    }else{
-       this.langclass = new en();
-    }
+    
 
   }
 
