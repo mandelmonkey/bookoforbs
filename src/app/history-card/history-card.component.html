@@ -3,8 +3,10 @@
 ()" [style.height]="getHeight()" [style.background-image]="'url(' +dataService.getImage('historyBoxBack')+ ')'">
 
 <div  class="contents">
+	<div  class="contentsLeft">
 <img class="tokenImage"   [lazyLoad]="getImage()"  [scrollObservable]="dataService.history.scrollObservable" [scrollTarget]=dataService.history.scrollView   onerror="imgLoadError()" (load)="imageLoaded()" />
-
+</div>
+<div  class="contentsRight">
 <div *ngIf="!order" class="infoText">
 <p class="titleline">{{getInfo()}}<p>
 
@@ -29,7 +31,7 @@
 <p class="infoline">{{getDate()}}<p>
 </div>
 
-
+</div>
 </div>
 
 

@@ -185,7 +185,7 @@ if(currentFee == "custom"){
         tmpthis.dataService.maincontroller.showMessage(error.message);
       }
       else{
-        tmpthis.dataService.maincontroller.showMessage(this.dataService.getLang("error"));
+        tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
       }
         console.error(error);
         return;
@@ -205,7 +205,7 @@ if(currentFee == "custom"){
     		tmpthis.dataService.maincontroller.showMessage(error.message);
     	}
     	else{
-    		tmpthis.dataService.maincontroller.showMessage(this.dataService.getLang("error"));
+    		tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
     	}
         return;
     }
@@ -222,7 +222,7 @@ if(currentFee == "custom"){
     		tmpthis.dataService.maincontroller.showMessage(error.message);
     	}
     	else{
-    		tmpthis.dataService.maincontroller.showMessage(this.dataService.getLang("error"));
+    		tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
     	}
        tmpthis.closeConf();
     tmpthis.dataService.maincontroller.closeQR();
@@ -231,7 +231,7 @@ if(currentFee == "custom"){
  
  tmpthis.closeConf();
  tmpthis.dataService.maincontroller.closeQR();
- tmpthis.dataService.maincontroller.showMessage(this.dataService.getLang("order_placed"));
+ tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_placed"));
      
  
 });  

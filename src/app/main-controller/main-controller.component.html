@@ -70,19 +70,6 @@
   </div>
 
 
-  <div class="messageDark"   *ngIf="showingQR">
-   <div class="messageBack" id="qrBack" >
-   
-               <canvas id="qr2" ></canvas>
-       <h3 class="qrtitle">{{dataService.getLang('scaninstruc')}}</h3>
- <br>
- <img  style="height: 30px;" src="../assets/images/linkageIcon.png"/>
- 
-      
-       </div>
-
-
-  </div>
 
    <div class="messageDark"  *ngIf="showingConf">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
@@ -104,6 +91,21 @@
   <div class="messageText">{{messageText}}</div> 
          
      
+       </div>
+
+
+  </div>
+
+  
+  <div class="messageDark"   *ngIf="showingQR">
+   <div class="messageBack" id="qrBack" >
+   
+               <canvas id="qr2" ></canvas>
+       <h3 class="qrtitle">{{dataService.getLang('scaninstruc')}}</h3>
+ <br>
+ <img  style="height: 30px;" src="../assets/images/linkageIcon.png"/>
+ 
+      
        </div>
 
 

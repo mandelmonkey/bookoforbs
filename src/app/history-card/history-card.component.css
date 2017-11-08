@@ -15,11 +15,18 @@
 }
 .tokenImage{
 	 display: inline-block;
-	width: 25%;
+	width: 100%;
 	height: auto; 
+   position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   
 
 }
+
 .customButton{
     background-color: Transparent;
   background-repeat: no-repeat;
@@ -40,7 +47,15 @@
 	 text-align: center;
 	 word-wrap: break-word;
    max-width: 45vw;
-   vertical-align:top;
+  /* vertical-align:top;*/
+
+    
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
  
 }
  
@@ -59,8 +74,23 @@
  
 }
 .contents{
-
+width: 90%;
+height: 95%;
 	 position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  left:50%;
+transform:translate(-50%,-50%);
+}
+.contentsLeft{
+  width: 30%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+.contentsRight{
+  width: 70%;
+ height: 100%;
+  float: right;
+    position: relative;
+      display: inline-flex;
 }

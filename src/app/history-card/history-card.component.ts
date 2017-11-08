@@ -65,7 +65,28 @@ if(this.data != null){
   else{
 
 
+if(this.data.type == "order"){
+  var token =this.data.token;
+  if(this.data.token != this.data.get_asset){
+token =this.data.get_asset;
+  }else{
+    token =this.data.give_asset;
+  }
 
+
+        for(var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++){
+
+          var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
+          if(aKey ==  token){
+
+            return  this.dataService.maincontroller.currentOrbs[aKey].image;
+          }
+        }
+
+        return "https://api.indiesquare.me/v2/tokens/"+  token +"/image?width=200&X-Api-Key=" + this.httpService.apiKey;
+
+
+}else{
 	if(this.data.token != null){
 		if(this.data.token == "BTC"){
 			return this.dataService.getImage("asset_bitcoin");
@@ -73,6 +94,8 @@ if(this.data != null){
 			return this.dataService.getImage("xcp_asset");
 		}
 		else{
+
+
     
   
         for(var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++){
@@ -88,6 +111,7 @@ if(this.data != null){
 
     }
 	 }
+  }
 	 
 	return "";
 }
@@ -106,6 +130,13 @@ return true;
     //return true;
 }
 cancelOrder(){
+
+if(this.dataService.maincontroller.getPersistance("cancel:"+this.data.tx_hash) != ""){
+
+  alert('Seems like you have already placed a cancel transaction order, you may not want to continue');
+  
+
+}
 var tmpthis = this;
 	this.dataService.maincontroller.showLoading(this.dataService.getLang("please_wait"));
 	console.log("Data "+JSON.stringify(this.data));
@@ -154,10 +185,14 @@ indiesquare.createCancel(sendParams, function(data, error){
        
         return;
     } 
+
+    if(!tmpthis.dataService.isMobile){
+      tmpthis.dataService.maincontroller.showQR(url);
+    }
    
    
 }, function(result, error){
- 
+  tmpthis.dataService.maincontroller.closeQR();
   if(error){
   	tmpthis.dataService.maincontroller.showingLoading = false;
     console.error(error); 
@@ -181,6 +216,8 @@ console.log(result.signed_tx);
         }
         tmpthis.dataService.history.reloadOrders();
         tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
+
+        tmpthis.dataService.maincontroller.setPersistance("cancel:"+tmpthis.data.tx_hash,"cancelled");
            
       });   
     
@@ -236,7 +273,7 @@ if(this.data.type == "sell"){
    }
    else if(this.data.type == "buy"){
     
-     return this.dataService.getLang("order_buy_info", this.data.give_quantity,this.data.give_token,this.data.price,this.data.get_token,this.getOrderStatus()); 
+     return this.dataService.getLang("order_buy_info", this.data.get_quantity,this.data.get_token,this.data.price,this.data.give_token,this.getOrderStatus()); 
   
    }
 }
@@ -290,7 +327,7 @@ if(this.data != null){
  getAddress(){
  	if(this.data != null){
 if(this.data.type == "order"){
-  return this.dataService.getLang("order_order_info",this.data.quantity,this.data.get_asset,this.data.give_quantity,this.data.give_asset);
+  return this.dataService.getLang("order_order_info",this.data.get_quantity,this.data.get_asset,this.data.give_quantity,this.data.give_asset);
   		
   	}else{
  

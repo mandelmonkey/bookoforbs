@@ -57,7 +57,7 @@ this.showIntroScreen = true;
 
 
   getLang(trans:string,param1 = "",param2 = "",param3 = "",param4 = "", param5 = ""){
-
+ 
      var val = this.langclass.getTrans(trans);
          val = val.replace('$1$', param1);
          val = val.replace('$2$', param2);
