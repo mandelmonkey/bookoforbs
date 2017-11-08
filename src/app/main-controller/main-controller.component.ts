@@ -13,6 +13,7 @@ export class MainControllerComponent implements OnInit {
 
   constructor(@Inject(LOCALE_ID) locale: string, public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef,private persistenceService: PersistenceService){
     this.locale = locale;
+    this.dataService.setLang(locale);
   }
   public locale = "";
 
@@ -364,11 +365,11 @@ if(this.dataService.isMobile ==false){
 
        setTimeout(function(){ 
  var qrBack = document.getElementById("qrBack");
-    
+     
             var qr = new QRious({
           element: document.getElementById('qr2'),
           value:  tmpthis.qrUrl,
-          size:qrBack.clientWidth-20
+          size:250
         });
 
 

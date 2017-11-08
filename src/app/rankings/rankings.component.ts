@@ -61,7 +61,7 @@ this.loadingUsername = true;
     }
 
   if(!tmpthis.dataService.isMobile){
-
+console.log("url is "+url);
     tmpthis.dataService.maincontroller.showQR(url);
 
   }

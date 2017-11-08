@@ -24,7 +24,7 @@ export class DataService {
   uiclass:any;
   langclass:any;
   showIntroScreen:boolean;
-  dev:boolean;
+  dev:boolean; 
    constructor(){
     this.currentTab = 1;
 
@@ -32,6 +32,17 @@ this.uiclass = new UI();
 
 this.langclass = new ja();
 this.showIntroScreen = true;
+  }
+
+  setLang(locale:string){
+
+    console.log("locale"+locale);
+    if(locale == "ja-JP"){
+      this.langclass = new ja();
+    }else{
+       this.langclass = new en();
+    }
+
   }
 
   getImage(image:string){
