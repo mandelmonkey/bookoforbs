@@ -60,11 +60,16 @@ this.loadingUsername = true;
       
     }
 
+  if(!tmpthis.dataService.isMobile){
+
+    tmpthis.dataService.maincontroller.showQR(url);
+
+  }
 
    
    
 }, function(result, error){
- 
+  tmpthis.dataService.maincontroller.closeQR();
   if(error){
   		this.loadingUsername = false;
     console.error("Link error");
