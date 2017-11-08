@@ -150,6 +150,10 @@ console.log("error fees");
 
 }
 
+removePrefs(){
+  console.log("removing prefs");
+  this.persistenceService.removeAll(StorageType.LOCAL);
+}
 getFiatForToken(token:string,quantity:number,fixed = 2){
 
  if(quantity == 0){

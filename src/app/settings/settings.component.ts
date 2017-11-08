@@ -65,6 +65,7 @@ this.fiatPickerTop =  document.documentElement.clientHeight+"";
  
  }
 	 logout(){
+  this.dataService.maincontroller.removePrefs();
   this.dataService.maincontroller.currentOrbsKeys = [];
   this.dataService.maincontroller.showIntro = true;
   this.dataService.maincontroller.showCollection = false;
