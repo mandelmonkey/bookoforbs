@@ -29,7 +29,15 @@ ngAfterViewInit() {
 }
 
  getMarketKeys(){
- 	return Object.keys(this.dataService.maincontroller.markets);
+
+   var keys = Object.keys(this.dataService.maincontroller.markets);
+   if(keys.indexOf("PEPECASH") != -1){
+      keys.splice(keys.indexOf("PEPECASH"),1);
+   }
+    if(keys.indexOf("XCP") != -1){
+      keys.splice(keys.indexOf("XCP"),1);
+   }
+ 	return keys;
  }
  getFiatPickerTop(){
   
