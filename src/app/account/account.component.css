@@ -17,7 +17,7 @@
 .title1{
    position: relative;
 
-  font-size: 0.8em;
+  font-size: 0.7em;
   color: #ffffd5;
   font-family:   sling; 
    
@@ -26,13 +26,13 @@
  .title2{
   margin-top: -8px;
  position: relative;
-  font-size: 0.6em;
+  font-size: 0.5em;
   color: #ffffd5;
   font-family:   sling; 
  }
   .title3{
  position: relative;
-  font-size: 0.7em;
+  font-size: 0.6em;
   color: #ffffd5;
   font-family:   sling; 
  }
