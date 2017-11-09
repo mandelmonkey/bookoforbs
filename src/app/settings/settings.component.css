@@ -19,9 +19,9 @@ font-size: 10pt;
  .fiatPicker{
   position: absolute;
   height: 400px;
-  width: 80vw;
+  width: 100vw;
   background-color: #655e4f;
- -webkit-transition: top 0.5s, bottom 0.5s;
+ /*-webkit-transition: top 0.5s, bottom 0.5s;*/
  }
  .currencyList {
       top:50px;
