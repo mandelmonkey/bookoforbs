@@ -33,7 +33,7 @@ var tmpthis = this;
                 ( value: string ) : void => {
 
                     this.copyEvent.emit( value );
-                    alert(value+tmpthis.dataService.getLang("copied_info"))
+                    alert(tmpthis.dataService.getLang("copied_info",value))
 
                 }
             )
