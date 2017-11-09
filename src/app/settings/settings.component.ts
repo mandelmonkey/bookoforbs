@@ -26,6 +26,7 @@ ngAfterViewInit() {
     this.fiatPicker = document.getElementById("fiatPicker");
 
     this.fiatPickerTop = document.documentElement.clientHeight+"";
+    document.body.style.position = "fixed";
 }
 
  getMarketKeys(){
