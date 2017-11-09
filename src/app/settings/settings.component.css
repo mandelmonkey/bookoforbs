@@ -21,7 +21,7 @@ font-size: 10pt;
   height: 400px;
   width: 100vw;
   background-color: #655e4f;
- -webkit-transition: top 0.5s, bottom 0.2s;
+ -webkit-transition: top 0.1s, bottom 0.1s;
  }
  .currencyList {
       top:50px;
