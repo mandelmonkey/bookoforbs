@@ -11,7 +11,7 @@
  	<div class="pickerTopBar">
  	
  	<img class="pickerbar"   [src]="dataService.getImage('tool_bar_background')"/>
- 	<input class="closeButton" type="close" [value]="dataService.getLang('back')" (click)="closePicker()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+ 	<input class="closeButton" type="button" [value]="dataService.getLang('back')" (click)="closePicker()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
  	</div>
 
    <ul  class="currencyList" [style.height]="getListHeight()">
@@ -21,6 +21,8 @@
    </li>
  </ul>
  </div>
+
+
 
 <div class="parent">
   <img class="backbar"   [src]="dataService.getImage('tool_bar_background')"/>
