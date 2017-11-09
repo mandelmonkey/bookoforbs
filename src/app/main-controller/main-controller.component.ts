@@ -12,8 +12,8 @@ import { PersistenceService, StorageType } from 'angular-persistence';
 export class MainControllerComponent implements OnInit {
 
   constructor(@Inject(LOCALE_ID) locale: string, public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef,private persistenceService: PersistenceService){
-    this.locale = locale;
-    this.dataService.setLang(locale);
+    this.locale = window.navigator.language;
+  
   }
   public locale = "";
 
