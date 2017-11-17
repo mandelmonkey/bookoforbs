@@ -32,7 +32,8 @@ export class IntroComponent implements OnInit {
      linkText = "";
      isIndiesquare = false;
      qrUrl = "";
-
+     wordCheck ="";
+     showNewAccountNext=false;
      
  constructor(public dataService:DataService, private httpService:HTTPService, private route: ActivatedRoute,private persistenceService: PersistenceService) { 
     route.queryParams.subscribe(
@@ -51,6 +52,10 @@ showLinkageIcon(){
   }
   return false;
 
+}
+showEnterPassphrase(){
+  this.showIntroButtons = false;
+  this.showPassphraseField = true;
 }
 linkIndieSquare(){
 
@@ -115,14 +120,8 @@ this.isIndiesquare = true;
 }
   getMessage(){
 
-    
-    if(this.dataService.isMobile){
-      return "Enter a password and save the next page to your home screen, this will let you login without entering your recovery phrase";
-    }else{
-      return "Enter a password and save the next page to your bookmarks, this will let you login without entering your recovery phrase";
-   
-    }
-
+      return "Enter a secure password, this is used to secrure your key";
+     
   }
   ngOnInit() {
  if(this.dataService.dev == true){
@@ -245,19 +244,21 @@ this.showPassphraseField = false;
   }
 createNewAccount(){
 
-  
+  this.showNewAccountNext = false;
  
   this.showNewPassphrase = true;
-   this.showIntroButtons = false;
+   this.showPassphraseField = false;
 
  var words = null;
 	
       
 			var m = new Mnemonic(words);
       this.passphrase =  m.toWords().toString().replace(/,/gi, ' ');
-  
+  var tmpthis = this;
       this.createAddressFromPassphrase(m);
-       
+         setTimeout(function() {
+       tmpthis.showNewAccountNext= true;
+        },3000);
    
 
 }
@@ -379,6 +380,55 @@ var tmpdata =  this.dataService;
 		
 	
   }
+
+
+updatePhraseEnter(val:string){
+ 
+ var words = val.split(' ');
+ this.wordCheck = "";
+ 
+  for(var i=0;i<words.length;i++){
+    if(Mnemonic.words.indexOf(words[i]) != -1){
+
+      this.wordCheck = "Word "+(i+1)+"/12";
+    }
+ }
+
+
+   var aWord = words[words.length-1];
+  var lastVal = val[val.indexOf(aWord)+(aWord.length-1)];
+   //   console.log(lastVal);
+      if(typeof lastVal == "undefined" ){
+
+
+    aWord = words[words.length-2];
+     if(Mnemonic.words.indexOf(aWord) == -1){
+       alert("the last word was incorrect, please re-type it");
+this.passphrase = "";
+       for(var i=0;i<words.length-2;i++){
+
+this.passphrase = this.passphrase + words[i]+" ";
+}
+       return;
+     }
+     
+
+   }
+   if(words.length == 12){
+
+     aWord = words[words.length-1];
+ 
+     if(Mnemonic.words.indexOf(aWord) != -1){
+         alert("valid!");
+       return;
+     }
+  
+   }
+   
+    
+ 
+}
+
   updateShortUrl(){
   // this.shorturl+=this.password;
 

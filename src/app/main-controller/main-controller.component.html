@@ -1,5 +1,5 @@
  
-   
+   <!--
  <app-top-bar *ngIf="showTopBar"></app-top-bar>
   
 
@@ -7,15 +7,15 @@
    <app-market  *ngIf="showMarket" ></app-market>  
 <app-history  *ngIf="showHistory"></app-history>
    <app-account  *ngIf="showAccount"></app-account>
- 
+ -->
 
- <app-intro  *ngIf="showIntro"></app-intro> 
-
+ <app-intro  *ngIf="!showIntro"></app-intro> 
+   <!--
   <app-bottom-bar  *ngIf="showBottomBar"></app-bottom-bar>
 
    <app-rankings  *ngIf="showRankings"></app-rankings>
      <app-settings  *ngIf="showSettings"></app-settings>
-
+-->
 <div class="largeORB" *ngIf="showSelected && showCollection"  >
 
 <div class="parent">

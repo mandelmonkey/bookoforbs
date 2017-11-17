@@ -1,8 +1,8 @@
  <div class="introPage">
  <!--<h1>{{testObj.userAgent}}</h1>-->
  
-   
-  <img class="topImage" [src]="dataService.getImage('bookLiningFront')"/>
+   <!--
+  <img class="topImage" [src]="dataService.getImage('bookLiningFront')"/>-->
  <div class="introButtons">
 <div *ngIf="isIndiesquare" class="linkOptions">
    <canvas id="qr1" ></canvas>
@@ -21,38 +21,30 @@
        <label class="install" (click)="goToIndieSquare()">{{dataService.getLang('dont_have_indiesquare')}}</label>  
     </div>
  <br>  
-
-<!--
-     <div *ngIf="!dataService.isMobile" class="newWalletButton" (click)="createNewAccount()" >
-
-        <img class="newWalletImage"  [src]="dataService.getImage('frontButton')"/>
-        <label>Create new wallet</label>
+          <p class="title">or</p>
+      <br> 
+  <input  class="aButton" type="button" value="Login/signup" (click)="showEnterPassphrase()" [style.background-image]="'url(' +dataService.getImage('filterButtonLong')+ ')'">
      </div>
- <br> 
-   
-    <div *ngIf="!dataService.isMobile" class="newWalletButton" (click)="enterPassphrase()">
-      <img class="newWalletImage"   [src]="dataService.getImage('frontButton')" />
-      <label>Enter passphrase</label>  
-    </div>
- -->
  
-  </div>
+   
+ 
+ 
 
   <div  *ngIf="showPassphraseField">
-  
-  <input  class="textInput"  type="password" [(ngModel)]="passphrase"  placeholder="enter your 12 word recovery phrase"  name="passphrase"> 
-  <br> 
+  <p class="title">{{wordCheck}}</p>
+  <input  class="textInput"  type="password" [(ngModel)]="passphrase"  (input)="updatePhraseEnter($event.target.value)" placeholder="enter your 12 word recovery phrase"  name="passphrase"> 
+   <div class="navButtons">
+     <input  class="backNext"  type="button" value="back" (click)="backToStart()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'"> 
     
+   <input  class="backNext" type="button" value="next" (click)="checkPassphrase()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'"> 
     
-   <br>
-  
- <div class="navButtons">
-    <span class="button" (click)="backToStart()">back</span>
-    <span class="button" (click)="checkPassphrase()">next</span>  
+   
 </div>
-    
-    <br><label class="shorturl">{{passphraseStatus}}</label><br>
-  
+<p class="title">or</p>
+  <br> 
+
+   <input  id="create"  type="button" value="Create new passphrase" (click)="createNewAccount()" [style.background-image]="'url(' +dataService.getImage('filterButtonLong')+ ')'" > 
+      
    </div>
 
 
@@ -96,15 +88,18 @@
    
     
    <br>
- <div class="navButtons"> 
-     <span class="button" (click)="backToStart()">back</span>
-    <span class="button" (click)="checkPassphrase()">next</span>     
-</div> 
+   <div  *ngIf="showNewAccountNext" class="navButtons">
+     <input  class="backNext"  type="button" value="back" (click)="backToStart()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'"> 
+    
+   <input  class="backNext" type="button" value="I wrote it down" (click)="checkPassphrase()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'"> 
+    
+   
+</div>
    
    </div>
  </div>
   </div>
    </div>
 
-    <app-introscreens *ngIf="dataService.showIntroScreen" ></app-introscreens>
+    <app-introscreens *ngIf="!dataService.showIntroScreen" ></app-introscreens>
    
