@@ -2,7 +2,10 @@ import { Inject,LOCALE_ID, Component, OnInit,ChangeDetectorRef } from '@angular/
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
 import { PersistenceService, StorageType } from 'angular-persistence';
+import * as CryptoJS from 'crypto-js';
    declare var QRious:any;
+    declare var Mnemonic:any; 
+
 @Component({
   selector: 'app-main-controller',
   templateUrl: './main-controller.component.html',
@@ -17,6 +20,9 @@ export class MainControllerComponent implements OnInit {
   }
   public locale = "";
 
+public basePath = 'm/0\'/0/';
+public userPassword = "";
+public showingPasswordInput = false;
 public loading = true;
 public showTopBar = true;
 public showSend = false;
@@ -36,6 +42,7 @@ public showingLoading = false;
 public orbData :any;
 public userBalance :Array<any>;
 public currentAddress = "";
+public currentAddressIndex = 0;
 public recoveryPhrase = "";
 public currentFiatCurreny = "";
 public currentEnv = "";
@@ -85,6 +92,14 @@ public qrUrl = "";
 
 currentConfirm;
 currentCancel;
+
+  reloadBalances(){
+    this.loading = true;
+    this.dataService.maincontroller.history = [];
+    this.dataService.maincontroller.orders = [];
+    this.loadEnvironments();
+
+  }
   loadEnvironments(){
    
      var tmpData = this.dataService;
@@ -106,7 +121,7 @@ this.httpService.getEnvironments().subscribe(
       this.httpService.getBalance(this.currentAddress).subscribe(
      data => { 
       this.userBalance = data;
-     // console.log("usre balancre "+  this.userBalance);
+      
       
      tmpData.topbar.setEnvironments(this.orbData.Environements);
         
@@ -320,9 +335,13 @@ if(this.dataService.isMobile ==false){
       this.currentFee = "hourFee";
     }
 
-    var userAddress = this.persistenceService.get('userAddress0',   StorageType.LOCAL);
+    var userAddress = this.persistenceService.get('userAddress',   StorageType.LOCAL);
     if(typeof userAddress != "undefined"){
-       this.currentAddress = userAddress;
+
+        var addressObject = JSON.parse(userAddress);
+       this.currentAddress = addressObject.address;
+       this.currentIndex = addressObject.index;
+
     }else{
         this.currentAddress = "empty";
     }
@@ -359,6 +378,68 @@ if(this.dataService.isMobile ==false){
     this.messageText = message;
     this.showingMessage = true;
    
+
+  }
+
+  showPassword(cancel,confirm,currentOwner:any){
+    this.currentConfirm = confirm;
+   this.currentCancel = cancel;
+   this.currentOwner  = currentOwner;
+    this.userPassword = "";
+this.showingPasswordInput = true;
+  }
+   closePassword(){
+this.showingPasswordInput = false;
+ if(this.currentCancel != null){
+this.currentCancel(this.currentOwner );
+}
+  }
+
+  decryptPassphrase(){
+
+    var tmpthis = this.dataService.maincontroller;
+    var userPassphrase = tmpthis.persistenceService.get("userPassphrase",   StorageType.LOCAL);
+    if(typeof userPassphrase == "undefined"){
+      alert("error");
+      return;
+    }
+  
+
+      
+  try{
+          var bytes  = CryptoJS.AES.decrypt(userPassphrase, tmpthis.userPassword);
+    userPassphrase = bytes.toString(CryptoJS.enc.Utf8);
+
+      var words = null;
+    if(   userPassphrase != null ) words =   userPassphrase.split(' ');
+
+    
+      var m;
+    try{
+      
+      m = new Mnemonic(words);
+       
+
+      }
+      catch(e){
+  alert("password incorrect");
+return;
+      }
+
+
+     
+
+     }
+    catch(e){ 
+      
+     alert("password incorrect");
+    return;
+   }
+
+     tmpthis.closePassword();
+        if(tmpthis.currentConfirm != null){
+         tmpthis.currentConfirm(userPassphrase,this.currentOwner );
+        }
 
   }
 

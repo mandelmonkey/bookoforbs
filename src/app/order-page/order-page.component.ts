@@ -3,6 +3,7 @@ import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
  declare var IndieSquare:any; 
   declare var bitcore:any; 
+  declare var Mnemonic:any;
 @Component({
   selector: 'app-order-page',
   templateUrl: './order-page.component.html',
@@ -14,6 +15,8 @@ export class OrderPageComponent implements OnInit {
 
  constructor(public dataService:DataService,private httpService:HTTPService) { }
 loading:boolean;
+indiesquare:any;
+unsigned_tx = "";
 orderType = "";
 orbHeight = "";
 orbWidth = "";
@@ -128,7 +131,7 @@ createOrder(){
 	var tmpthis = this;
 	this.loading = true;
 
-	 var indiesquare = new IndieSquare({
+	 this.indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
   });
      
@@ -155,7 +158,7 @@ if(currentFee == "custom"){
    
 	console.log(JSON.stringify(params));
 
-    indiesquare.createOrder(params, function(data, error){
+    tmpthis.indiesquare.createOrder(params, function(data, error){
 
     if( error ){
     	tmpthis.closeConf();
@@ -173,11 +176,12 @@ if(currentFee == "custom"){
     	 tmpthis.selectAmount = false; 
 		 tmpthis.showOrderText = false;
    tmpthis.showConfText = true;
-    tmpthis.currentTransactionFee =  data.fee * 100000000;
+    tmpthis.currentTransactionFee =  data.fee / 100000000;
+    tmpthis.unsigned_tx = data.unsigned_tx;
     console.dir('unsigned_tx:' + data.unsigned_tx);
 
-    if(tmpthis.dataService.maincontroller.linkType == "indiesquare" || 1==1){
-    indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){
+    if(tmpthis.dataService.maincontroller.linkType == "indiesquare" ){
+    tmpthis.indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){
     if( error ){
           tmpthis.closeConf();
       tmpthis.loading = false;
@@ -212,7 +216,7 @@ if(currentFee == "custom"){
 
     
        
-    indiesquare.broadcast({"tx": data.signed_tx}, function(data, error){
+    tmpthis.indiesquare.broadcast({"tx": data.signed_tx}, function(data, error){
     	 tmpthis.loading = false;
     if( error ){
 
@@ -240,6 +244,12 @@ if(currentFee == "custom"){
 
 
 });
+}else{
+
+    
+         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_ordering',giveQuant+"",giveToken,getQuant+"",getToken,  tmpthis.currentTransactionFee+""),tmpthis.getPassphrase ,tmpthis.cancelOrder,tmpthis );
+ 
+
 }
 
 
@@ -249,6 +259,110 @@ if(currentFee == "custom"){
 
 
 }
+cancelOrder(owner:any){
+  owner.loading = false;
+}
+
+ getPassphrase(currentOwner:any){
+
+      currentOwner.dataService.maincontroller.showPassword(currentOwner.cancelSend,currentOwner.broadcast,currentOwner);
+   }
+ 
+
+  broadcast(passphrase:string,owner:any){
+     
+ 
+    owner.loading = true;
+
+    var tmpthis =owner;
+
+    try {
+
+        var seed = new Mnemonic(passphrase.split(' ')).toHex();
+    }
+    catch(err) {
+       
+         tmpthis.loading = false;
+         throw  err;
+    }
+  
+    
+    var master = bitcore.HDPrivateKey.fromSeed(seed);
+    
+    var route = tmpthis.dataService.maincontroller.basePath + tmpthis.dataService.maincontroller.currentIndex;
+    
+    var masterderive = master.derive( route );
+    
+     
+     
+
+         tmpthis.params = [];
+       
+        /*
+        tmpthis.params["pubkey"] = masterderive.publicKey;
+       
+         tmpthis.params["destination"] =  tmpthis.dataService.maincontroller.currentSendAddress;
+        */
+        var privkey = bitcore.PrivateKey(masterderive.privateKey);
+        
+         tmpthis.params["address"] = privkey.toAddress().toString();
+         tmpthis.params.callback = function(signed_tx){
+                /*
+              if(1==1){
+    tmpthis.loading = false;
+ tmpthis.closeConf(); 
+ tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_placed"));
+    return; 
+  }*/
+             
+      tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
+    if( error ){
+     
+ tmpthis.closeConf(); 
+        console.error(error);
+        alert("error broadcasting");
+        return;
+    }
+     tmpthis.loading= false;
+  
+ tmpthis.closeConf(); 
+ tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_placed"));
+});
+              
+
+            
+        };
+         tmpthis.params.onError = function(error){
+            console.log("error "+error);
+            tmpthis.loading = false;
+
+ tmpthis.closeConf(); 
+            
+        };
+         tmpthis.params.fail = function(error){
+            console.log("fail "+error);
+            tmpthis.loading= false;
+
+ tmpthis.closeConf(); 
+            
+        };
+         try {
+            
+            var result = bitcore.signrawtransaction(tmpthis.unsigned_tx, privkey, tmpthis.params,tmpthis.httpService.apiKey);
+          
+
+        }  catch(err) {
+            tmpthis.loading= false;
+
+ tmpthis.closeConf(); 
+           console.log("error"+err);
+        }
+
+
+
+
+
+  }
 getSellPrice(){
 
 

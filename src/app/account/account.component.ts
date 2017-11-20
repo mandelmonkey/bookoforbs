@@ -13,7 +13,8 @@ export class AccountComponent implements OnInit {
    public copyEvent: EventEmitter<string>;
     public errorEvent: EventEmitter<Error>;
     public value: string;
-
+  addressPickerTop = "1000px";
+  addressPicker;
     private clipboardService: ClipboardService;
 
 
@@ -25,6 +26,13 @@ export class AccountComponent implements OnInit {
         this.value = "";
 
     }
+
+    ngAfterViewInit() {
+    this.addressPicker = document.getElementById("addressPicker");
+
+    this.addressPickerTop = document.documentElement.clientHeight+"";
+    document.body.style.position = "fixed";
+}
     public copyToClipboard() : void {
 var tmpthis = this;
         this.clipboardService
@@ -49,6 +57,12 @@ var tmpthis = this;
 
     }
 
+
+
+ getAddressPickerTop(){
+  
+   return this.addressPickerTop+"px";
+ }
 showSeperator(){
   if(document.documentElement.clientHeight > 600){
     return true;
@@ -163,13 +177,19 @@ getCurrencyIcon (){
 }
  
    getBalanceCurrency(){
+     if(this.dataService.maincontroller.loading == true){
+       return this.dataService.getLang("loading");
+     }
    	if(this.dataService.maincontroller.currentCurrency == null){
    		return "";
    	}
     return this.getBalance(this.dataService.maincontroller.currentCurrency);
   }
     getBalance(currency:string){
-     
+       
+    if(this.dataService.maincontroller.loading == true){
+      return this.dataService.getLang("loading");
+    }
   	if(this.dataService.maincontroller.userBalance == null){
   		return  this.dataService.getLang("loading");
   	}
@@ -192,8 +212,68 @@ var abrev = this.dataService.maincontroller.currentAbrev;
   	}
   }
 
+
+   getListHeight(){
+   if(this.addressPicker != null){
+     return this.addressPicker.offsetHeight-50 +"px";
+   }
+ }
+getLeftPos(){
+  var bwidth  = document.getElementById("changeAdd").clientWidth;
+  return (document.documentElement.clientWidth / 2)-(bwidth/2) + "px";
+}
+ setAddress(addresObj:any){
+   this.dataService.maincontroller.currentAddress = addresObj.address;
+   this.dataService.maincontroller.currentAddressIndex = addresObj.index;
+   this.dataService.maincontroller.setPersistance("userAddress",JSON.stringify(addresObj) );
+   this.dataService.maincontroller.reloadBalances();
+     this.closePicker();
+
+
+ }
+getAddresses(){
+
+
+var addressesString = this.dataService.maincontroller.getPersistance("HDaddressesV1");
+    if(addressesString == ""){
+      return [];
+    }
+  var addresses = JSON.parse(addressesString);
+
+ 
+return addresses;
+
+}
+
+addAddress(){
+  this.dataService.maincontroller.showPassword(null,this.contAddAddress,this);
+}
+contAddAddress(passphrase:string){
+this.dataService.addAddressToHDList(passphrase);
+}
+
+ showAddressPicker(){
+
+ 
+
+this.addressPickerTop = (document.documentElement.clientHeight-this.addressPicker.offsetHeight)+"";
+   
+
+ }
+closePicker(){
+
+
+this.addressPickerTop =  document.documentElement.clientHeight+"";
+
+ 
+ }
+
+
   getBalanceFiat(currency:string){
-     
+       
+    if(this.dataService.maincontroller.loading == true){
+      return "";
+    }
     if(this.dataService.maincontroller.userBalance == null){
       return this.dataService.getLang("loading");
     }

@@ -485,9 +485,8 @@ updatePhraseEnter(val:string){
     return;
   }
  
-this.cipherText =  CryptoJS.AES.encrypt(this.passphrase, this.password);
- console.log("pass "+this.cipherText);
-
+this.cipherText =  CryptoJS.AES.encrypt(this.passphrase, this.password).toString();
+ 
  
    var words = null;
     if( this.passphrase != null ) words = this.passphrase.split(' ');
@@ -500,8 +499,12 @@ this.cipherText =  CryptoJS.AES.encrypt(this.passphrase, this.password);
 
    this.createAddressFromPassphrase(m);
 
+     this.dataService.resetHDAddresses(this.passphrase);
+     this.dataService.maincontroller.currentAddressIndex = 0;
+
      this.persistenceService.set('userPassphrase', this.cipherText, {type: StorageType.LOCAL}); 
-   this.persistenceService.set('userAddress0', this.dataService.maincontroller.currentAddress, {type: StorageType.LOCAL}); 
+     var addressObject = {"address":this.dataService.maincontroller.currentAddress,"index":0};
+   this.persistenceService.set('userAddress',JSON.stringify(addressObject) , {type: StorageType.LOCAL}); 
    this.persistenceService.set('linkType', "passphrase", {type: StorageType.LOCAL}); 
    this.dataService.maincontroller.linkType = "passphrase";
 

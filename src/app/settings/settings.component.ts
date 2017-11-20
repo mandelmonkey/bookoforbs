@@ -28,7 +28,15 @@ ngAfterViewInit() {
     this.fiatPickerTop = document.documentElement.clientHeight+"";
     document.body.style.position = "fixed";
 }
+showPassphrase(){
+  this.dataService.maincontroller.showPassword(this.cancelPassphrase,this.contShowPassphrase);
+}
+contShowPassphrase(passphrase:string){
+  alert(passphrase)
+}
+cancelPassphrase(){
 
+}
  getMarketKeys(){
 
    var keys = Object.keys(this.dataService.maincontroller.markets);

@@ -21,10 +21,10 @@ export class SendComponent implements OnInit {
 public params:any;
 public currentSendResponse:any;
 public sending:boolean;
-    public basePath = 'm/0\'/0/';
+  
   public account = null;
   public indiesquare:any;
-  
+  tmpthis:any;
   
    getNumImage(image:string){
       
@@ -46,7 +46,7 @@ public sending:boolean;
     this.indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
     });
-
+    this.tmpthis = this;
     
     document.body.style.position = "fixed";
 
@@ -85,16 +85,22 @@ public sending:boolean;
   	
   }
 
-  
+   getPassphrase(currentOwner:any){
 
+      currentOwner.dataService.maincontroller.showPassword(currentOwner.cancelSend,currentOwner.broadcast,currentOwner);
+   }
+ 
 
-  broadcast(currentOwner:any){
-currentOwner.sending = true;
+  broadcast(passphrase:string,owner:any){
+     
 
-    var tmpthis = currentOwner;
+    owner.sending = true;
+
+    var tmpthis =owner;
 
     try {
-        var seed = new Mnemonic(tmpthis.dataService.maincontroller.recoveryPhrase).toHex();
+
+        var seed = new Mnemonic(passphrase.split(' ')).toHex();
     }
     catch(err) {
        
@@ -105,8 +111,8 @@ currentOwner.sending = true;
     
     var master = bitcore.HDPrivateKey.fromSeed(seed);
     
-    var route = tmpthis.basePath + tmpthis.dataService.maincontroller.currentIndex;
-    
+    var route = tmpthis.dataService.maincontroller.basePath + tmpthis.dataService.maincontroller.currentIndex;
+      console.log(route);
     var masterderive = master.derive( route );
     
      
@@ -124,11 +130,17 @@ currentOwner.sending = true;
          tmpthis.params["address"] = privkey.toAddress().toString();
          tmpthis.params.callback = function(signed_tx){
                 
+             /*
+                 tmpthis.sending = false;
+    tmpthis.dataService.maincontroller.showMessage("sent!");
+    tmpthis.closeSend();
+    return;*/
              
-                       tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
+      tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
     if( error ){
        tmpthis.sending = false;
         console.error(error);
+        alert("error broadcasting");
         return;
     }
      tmpthis.sending = false;
@@ -152,9 +164,7 @@ currentOwner.sending = true;
          try {
             
             var result = bitcore.signrawtransaction(tmpthis.currentSendResponse.unsigned_tx, privkey, tmpthis.params,tmpthis.httpService.apiKey);
-           
-
-
+          
 
         }  catch(err) {
             tmpthis.sending = false;
@@ -167,7 +177,7 @@ currentOwner.sending = true;
 
   }
   cancelSend(currentOwner:any){
-
+ 
     currentOwner.sending = false;
 
   }
@@ -256,7 +266,7 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
 tmpthis.indiesquare.createSend(sendParams, function(data, error){
     if( error ){
 console.error("send error " + error);
-             tmpthis.dataService.maincontroller.showMessage(error);
+             tmpthis.dataService.maincontroller.showMessage(JSON.stringify(error));
         
          tmpthis.sending = false;
         return;
@@ -265,7 +275,7 @@ console.error("send error " + error);
     if(data != null){
 
     tmpthis.currentSendResponse = data;
-var feeBTC = data.fee * 100000000;
+var feeBTC = data.fee / 100000000;
 
       
       console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx+" "+tmpthis.dataService.maincontroller.linkType);
@@ -333,8 +343,8 @@ var feeBTC = data.fee * 100000000;
 
 
       }else{
-
-         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_sending',tmpthis.amount,tmpthis.dataService.maincontroller.selectedKey,tmpthis.dataService.maincontroller.currentSendAddress,feeBTC+""),tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
+        tmpthis.sending = false;
+         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_sending',tmpthis.amount,tmpthis.dataService.maincontroller.selectedKey,tmpthis.dataService.maincontroller.currentSendAddress,feeBTC+""),tmpthis.getPassphrase ,tmpthis.cancelSend,tmpthis );
  
       } 
   

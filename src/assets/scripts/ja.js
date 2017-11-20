@@ -114,7 +114,10 @@ function ja() {
 
 }
 ja.prototype.getTrans = function(str) {
-var res = lang[str]; 
+var res = lang[str];
+if(typeof res == "undefined"){
+	return str;
+} 
 return res;
 
 }

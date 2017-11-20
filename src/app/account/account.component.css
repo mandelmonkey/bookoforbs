@@ -152,3 +152,99 @@ font-size: 0.7em;
 	height: 2vh;
   max-height: 15px;  
 }
+
+.addressPicker{
+  position: absolute;
+  height: 400px;
+  width: 100vw;
+  background-color: #655e4f;
+ -webkit-transition: top 0.2s, bottom 0.2s;
+ }
+
+ .pickerBarOuter{
+   position: absolute;
+  top: 0;
+  left: 0;
+}
+.closeButton {
+
+text-align: center;
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em; 
+  font-family:   sling;
+   color: #ffffd5;
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:90px; 
+   height: 6vh;
+  max-height:35px;
+  top:4px;
+  right:5px;
+
+
+}
+.addressButton {
+
+text-align: center;
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em; 
+  font-family:   sling;
+   color: #ffffd5;
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:150px; 
+   height: 6vh;
+  max-height:35px;
+  top:6px;
+  
+
+}
+
+ .addressList {
+      top:50px;
+      position: absolute;
+     
+ overflow-y: scroll;   
+    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  
+    list-style: none outside none; margin:0; padding: 0;
+ -webkit-overflow-scrolling: touch;
+}
+.pickerbar {
+   position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:45px;
+}
+li
+{
+     margin: 0 10px; display: inline;
+   width: 100vw;
+    display: table;
+    min-width: 200px;
+    list-style-type:none;
+    padding-left:5px;
+    left: 0; 
+    height:50px;
+    color: #ffffd5;
+  font-family:   sling;
+}
+ 

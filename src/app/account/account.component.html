@@ -11,9 +11,10 @@
  </div>
   </div>
 <div class="bottomDiv" [style.height]="getBottomHeight()">
-	<img class="seperator"  [src]="dataService.getImage('leatherSeperator')" />
- 
-
+	<div style="text-align: center;">
+		<img class="seperator"  [src]="dataService.getImage('leatherSeperator')" />
+ 		<input class="addressButton" id="changeAdd" [style.left]="getLeftPos()" type="button" [value]="dataService.getLang('change_address')" (click)="showAddressPicker()" [style.background-image]="'url(' +dataService.getImage('filterButtonLong')+ ')'">
+	</div>
 
 <div class="aCurrency">
 		<img class="smallCurrency"  [src]="dataService.getImage('asset_bitcoin')" />
@@ -23,9 +24,12 @@
 				<span class="currencyBalance">{{getBalance('BTC')}}<b>BTC</b></span>
 				<span class="currencyBalanceFiat">{{getBalanceFiat('BTC')}}</span>
 			</div>
+			
 		</div>
 		<input class="smallSendButton" type="button" [value]="dataService.getLang('send')"  (click)="send('BTC')">
 </div>
+
+
 <hr style="height:3pt; visibility:hidden;"  *ngIf="!showSeperator()"/>
  
 <img class="seperatorSmall"  *ngIf="showSeperator()" [src]="dataService.getImage('fancySeperator')"   />
@@ -44,6 +48,23 @@
 
 </div>
 
+ <div class="addressPicker" id="addressPicker" [style.top]="getAddressPickerTop()">
+ 	<div class="pickerTopBar">
+ 	
+ 	<img class="pickerbar"   [src]="dataService.getImage('tool_bar_background')"/>
+ 	<input class="closeButton" type="button" [value]="dataService.getLang('back')" (click)="closePicker()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+ 	</div>
 
+   <ul  class="addressList" [style.height]="getListHeight()">
+   <li *ngFor="let adds of getAddresses();  let i = index" (click)="setAddress(adds)">
+    <span class="envtitle" >{{adds.address}}</span>
+   
+   </li>
+    <li (click)="addAddress()">
+    <span class="envtitle" >{{dataService.getLang('add_address')}}</span>
+   
+   </li>
+ </ul>
+ </div>
 
 

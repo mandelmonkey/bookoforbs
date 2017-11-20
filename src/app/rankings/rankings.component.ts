@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { DataService } from '../services/data.service';
 import {HTTPService} from "../services/http.service";
  declare var IndieSquare:any; 
+  declare var bitcore:any; 
+  declare var Mnemonic:any;
 @Component({
   selector: 'app-rankings',
   templateUrl: './rankings.component.html',
@@ -33,6 +35,70 @@ ngAfterViewInit() {
 onFocus(){
 
 }
+cancelSign(owner:any){
+ owner.loadingUsername = false; 
+}
+continueSign(passphrase:string,owner:any){
+  var tmpthis = owner;
+
+
+
+
+       try {
+
+        var seed = new Mnemonic(passphrase.split(' ')).toHex();
+    }
+    catch(err) {
+       
+         tmpthis.loading = false;
+         throw  err;
+    }
+  
+    
+    var master = bitcore.HDPrivateKey.fromSeed(seed);
+    
+    var route = tmpthis.dataService.maincontroller.basePath + tmpthis.dataService.maincontroller.currentIndex;
+    
+    var masterderive = master.derive( route );
+    var privkey = bitcore.PrivateKey(masterderive.privateKey);
+        
+
+    var sig = bitcore.signMessage("hello",privkey);
+
+
+
+
+
+
+
+  tmpthis.httpService.setUsername(sig,tmpthis.username).subscribe(
+     data => { 
+console.log("set"+JSON.stringify(data));
+     tmpthis.loadingUsername = false; 
+     if(typeof data.error != undefined){
+
+       if(data.error != null){
+           tmpthis.loadingUsername = false;
+           alert(tmpthis.dataService.getLang("error"));
+         return;
+       }else{
+          console.log("error null"+data.username);
+       }
+     }
+     console.log("data username "+data.username);
+       alert(tmpthis.dataService.getLang("username_set"));
+       tmpthis.getRankings();
+       tmpthis.dataService.maincontroller.setPersistance("username:"+tmpthis.dataService.maincontroller.currentAddress,data.username+":"+tmpthis.dataService.maincontroller.currentEnv);
+        
+     },
+         error => {
+  tmpthis.loadingUsername = false; 
+       alert(tmpthis.dataService.getLang("error"));
+ 
+       },
+     () => {});
+
+}
 setUsername(){
 
 	if(this.dataService.maincontroller.currentAddress == "empty"){
@@ -48,7 +114,7 @@ this.loadingUsername = true;
      
      	var hashToSign = data["handshake"];
      	
-
+      if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
  this.indiesquare.signMessage({"message": hashToSign,"xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
     if( error ){
         console.log("error"+error);
@@ -112,6 +178,13 @@ console.log("set"+JSON.stringify(data));
 
 });
 
+}else{
+
+ tmpthis.dataService.maincontroller.showPassword(tmpthis.cancelSign,tmpthis.continueSign,tmpthis);
+
+
+}
+
       },   
       error => {
 	this.loadingUsername = false;
@@ -153,6 +226,12 @@ this.getRankings();
 
 this.username =  this.dataService.maincontroller.getPersistance("username:"+this.dataService.maincontroller.currentAddress+":"+this.dataService.maincontroller.currentEnv);
 
+
+
+
+
+
+   
      
 
   }

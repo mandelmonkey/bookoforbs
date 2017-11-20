@@ -74,8 +74,26 @@
    height:100%;
    background-color: rgba(0,0,0,0.7);
 }
-
-
+.confButtons{
+  width: 100%;
+  bottom: 100px;
+  position: absolute;
+  text-align: center;
+}
+.confConfirmButton{
+   width:100px; 
+  height:40px; 
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+ margin-top: 20px;
+  background-color: Transparent;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+ cursor: pointer; 
+}
 .messageDark {
    z-index: 10;
    position: absolute;
@@ -88,7 +106,34 @@
      border-color: transparent;
 
 }
+.passwordtitle{
+   font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  margin-top: 30px;
+ }
+.userpassword {
+  height: 25px;
+  width:70%;
+  margin-top: 10px;
+  text-align: center;
+}
+.closePasswordButton {
+  
+ width:90px; 
+  height:40px; 
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+ margin-top: 20px;
+  background-color: Transparent;
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+ cursor: pointer; 
 
+}
 .messageBack { 
     display: inline-block;
   position: absolute;
@@ -96,6 +141,23 @@
      background-size: 100% 100%;
      width: 80vw;
      height: 80vh;
+     max-width:315px;
+     max-height:500px;
+      top: 45%; left: 50%;
+  transform: translate(-50%,-50%);
+  border-color: transparent;
+ border:none;
+  outline: none;
+}
+
+.messageBackPassword { 
+    display: inline-block;
+  position: absolute;
+     background-repeat: no-repeat; 
+     background-size: 100% 100%;
+     width: 80vw;
+     text-align: center;
+     height: 30vh;
      max-width:315px;
      max-height:500px;
       top: 45%; left: 50%;

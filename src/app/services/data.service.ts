@@ -5,6 +5,9 @@ import {CollectionComponent} from '../collection/collection.component';
 import {MarketComponent} from '../market/market.component';
 import { MainControllerComponent} from '../main-controller/main-controller.component';
 import { HistoryComponent } from '../history/history.component';
+import * as CryptoJS from 'crypto-js';
+  declare var Mnemonic:any; 
+   declare var bitcore:any; 
  declare var UI:any; 
 declare var en:any; 
 declare var ja:any;
@@ -46,6 +49,91 @@ this.showIntroScreen = true;
   setLang(locale:string){
 
     
+
+  }
+
+  resetHDAddresses(passphrase:string){
+
+       var currentAddsArray = [];
+    
+
+    var newIndex = 0;
+
+
+
+
+   var words = null;
+    if(passphrase != null ) words = passphrase.split(' ');
+
+    
+      var m;
+    try{
+      
+      m = new Mnemonic(words);
+
+    var basePath = 'm/0\'/0/';
+      var seed = m.toHex();
+          var master = bitcore.HDPrivateKey.fromSeed(seed);
+       var d = basePath + newIndex;
+      var masterderive = master.derive( d );
+   var priv = bitcore.PrivateKey(masterderive.privateKey);
+   
+var newAddress = priv.toAddress().toString();
+    
+    currentAddsArray.push({"address":newAddress,"index":newIndex});
+
+    this.maincontroller.setPersistance("HDaddressesV1",JSON.stringify(currentAddsArray));
+   }
+ catch(e){
+alert("error");
+ }
+
+}
+
+
+  addAddressToHDList(passphrase:string){
+
+    var currentAdds = this.maincontroller.getPersistance("HDaddressesV1");
+       var currentAddsArray = [];
+    if(currentAdds != ""){
+       currentAddsArray = JSON.parse(currentAdds);
+    } 
+  
+
+    var newIndex = currentAddsArray.length;
+
+
+
+
+   var words = null;
+    if(passphrase != null ) words = passphrase.split(' ');
+
+    
+      var m;
+    try{
+      
+      m = new Mnemonic(words);
+
+    var basePath = 'm/0\'/0/';
+      var seed = m.toHex();
+          var master = bitcore.HDPrivateKey.fromSeed(seed);
+       var d = basePath + newIndex;
+      var masterderive = master.derive( d );
+   var priv = bitcore.PrivateKey(masterderive.privateKey);
+   
+var newAddress = priv.toAddress().toString();
+    
+    currentAddsArray.push({"address":newAddress,"index":newIndex});
+
+    this.maincontroller.setPersistance("HDaddressesV1",JSON.stringify(currentAddsArray));
+
+ }
+ catch(e){
+alert("error");
+ }
+
+
+ 
 
   }
 

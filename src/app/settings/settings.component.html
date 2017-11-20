@@ -10,8 +10,8 @@
 
 
 <div class="settingsOptions" style="top:200px;" *ngIf="dataService.maincontroller.linkType == 'passphrase'">
-<input  class="someSettings"  type="button" [value]="getCurrentFiatCurrency()" (click)="showPassphrase()" [style.background-image]="'url(' +dataService.getImage('settingsBoxBorder')+ ')'">
-<p class="subtext">{{dataService.getLang('preferred_currency')}}</p>
+<input  class="someSettings"  type="button" [value]="dataService.getLang('show_passphrase')" (click)="showPassphrase()" [style.background-image]="'url(' +dataService.getImage('settingsBoxBorder')+ ')'">
+<p class="subtext">{{dataService.getLang('show_passphrase_desc')}}</p>
  
 
 </div>

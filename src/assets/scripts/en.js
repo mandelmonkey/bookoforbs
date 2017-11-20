@@ -109,7 +109,37 @@ var en = function() {
 	lang["intro_pagefour3"]="With new titles added reguarly";
 	lang["sign_in_indiesquare"]="Sign in with IndieSquare";
 	lang["dont_have_indiesquare"]="Don't have IndieSquare Wallet? install here";
+	lang["show_passphrase"]="Show recovery phrase";
+	lang["show_passphrase_desc"]="View your 12 word recovery phrase";
+	lang["change_address"]="change address";
+	lang["add_address"]="Generate new address +";
+	lang["you_are_ordering"]="You are placing and order for\n\n$1$ $2$ at $3$ $4$ \n\nfee: $5$ BTC ";
+	lang["you_are_canceling"]="Are you sure you want to cancel this order?";
+	lang["login_signup"]="Login/signup";
+	lang["enter_each_word"]="Enter each word from your 12 word recovery phrase";
+	lang["enter_secure_password"]="Enter a SECURE password";
+	lang["if_you_forget"]="If you forget this password you will need to restore your account from your recovery phrase";
+	lang["enter_secure_password"]="enter a secure password";
+	lang["confirm_password"]="confirm password";
+	lang["create_new_passphrase"]="Create new account";
+	lang["intro_warning_1"]="Before continuing you must write down this 12 word recovery phrase";
+	lang["intro_warning_2"]="This recovery phrase is the only way to recover your bitcoin and tokens...";
+	lang["intro_warning_3"]="...if your account is lost or data is reset";
+	lang["wrote_down"]="I wrote it down";
+	lang["enter_password"]="enter password";
+	lang["enter_your_password"]="Enter your password";
+	lang["or"]="or";
 	lang[""]="";
+	lang[""]="";
+	lang[""]="";
+	lang[""]="";
+	lang[""]="";
+	lang[""]="";
+	lang[""]="";
+	lang[""]="";
+	lang[""]="";
+	lang[""]="";
+
 	 
 	 
 function en() {
@@ -118,6 +148,9 @@ function en() {
 }
 en.prototype.getTrans = function(str) {
 var res = lang[str]; 
+if(typeof res == "undefined"){
+	return str;
+}
 return res;
 
 }

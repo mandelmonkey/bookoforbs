@@ -3,11 +3,16 @@ import { DataService } from '../services/data.service';
 
 import {HTTPService} from "../services/http.service";
    declare var IndieSquare:any; 
+    declare var bitcore:any; 
+  declare var Mnemonic:any;
+
 @Component({
   selector: 'app-history-card',
   templateUrl: './history-card.component.html',
   styleUrls: ['./history-card.component.css']
 })
+
+
 export class HistoryCardComponent implements OnInit {
  unsigned_tx = "";
  @Input()
@@ -15,6 +20,8 @@ export class HistoryCardComponent implements OnInit {
 
  @Input()
   order:boolean;
+  indiesquare:any;
+
 
 constructor(public dataService:DataService,private httpService:HTTPService) { }
   ngOnInit() {
@@ -140,7 +147,7 @@ if(this.dataService.maincontroller.getPersistance("cancel:"+this.data.tx_hash) !
 var tmpthis = this;
 	this.dataService.maincontroller.showLoading(this.dataService.getLang("please_wait"));
 	console.log("Data "+JSON.stringify(this.data));
-	  var indiesquare = new IndieSquare({
+	  tmpthis.indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
   });
        var sendParams = {"source": this.dataService.maincontroller.currentAddress, "offer_hash":this.data.tx_hash};
@@ -156,7 +163,7 @@ if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.c
 }
 
 
-indiesquare.createCancel(sendParams, function(data, error){
+tmpthis.indiesquare.createCancel(sendParams, function(data, error){
 
 
 	
@@ -172,9 +179,10 @@ indiesquare.createCancel(sendParams, function(data, error){
     }
 
  tmpthis.unsigned_tx=data.unsigned_tx;
+ var feeBTC= data.fee / 100000000;
     	  if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
      
-  indiesquare.signTransaction({'unsigned_tx': tmpthis.unsigned_tx}, function(url, urlScheme, error){
+  tmpthis.indiesquare.signTransaction({'unsigned_tx': tmpthis.unsigned_tx}, function(url, urlScheme, error){
   
     if( error ){
     	tmpthis.dataService.maincontroller.showingLoading = false;
@@ -204,7 +212,7 @@ indiesquare.createCancel(sendParams, function(data, error){
 console.log(result.signed_tx); 
 
     
-  indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
+  tmpthis.indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
 
      tmpthis.dataService.maincontroller.showingLoading = false;
         if( error ){
@@ -232,7 +240,13 @@ console.log(result.signed_tx);
 
 
 }
+else{
 
+    
+         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC+""),tmpthis.getPassphrase ,tmpthis.cancelCancelOrder,tmpthis );
+ 
+
+}
 
 
 
@@ -427,5 +441,119 @@ if(this.dataService.isMobile){
   
   
   }
+
+
+
+cancelCancelOrder(owner:any){
+  owner.loading = false;
+}
+
+ getPassphrase(currentOwner:any){
+
+      currentOwner.dataService.maincontroller.showPassword(currentOwner.cancelSend,currentOwner.broadcast,currentOwner);
+   }
+ 
+
+  broadcast(passphrase:string,owner:any){
+     
+ 
+    owner.loading = true;
+
+    var tmpthis =owner;
+
+    try {
+
+        var seed = new Mnemonic(passphrase.split(' ')).toHex();
+    }
+    catch(err) {
+       
+         tmpthis.loading = false;
+         throw  err;
+    }
+  
+    
+    var master = bitcore.HDPrivateKey.fromSeed(seed);
+    
+    var route = tmpthis.dataService.maincontroller.basePath + tmpthis.dataService.maincontroller.currentIndex;
+    
+    var masterderive = master.derive( route );
+    
+     
+     
+
+         tmpthis.params = [];
+       
+        /*
+        tmpthis.params["pubkey"] = masterderive.publicKey;
+       
+         tmpthis.params["destination"] =  tmpthis.dataService.maincontroller.currentSendAddress;
+        */
+        var privkey = bitcore.PrivateKey(masterderive.privateKey);
+        
+         tmpthis.params["address"] = privkey.toAddress().toString();
+         tmpthis.params.callback = function(signed_tx){
+              
+             /* if(1==1){
+     tmpthis.loading= false;
+   tmpthis.dataService.history.reloadOrders();
+        tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
+    return; 
+  } */
+             
+      tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
+    if( error ){
+     
+tmpthis.dataService.history.reloadOrders();
+        console.error(error);
+        alert("error broadcasting");
+        return;
+    }
+     tmpthis.loading= false;
+   tmpthis.dataService.history.reloadOrders();
+        tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
+
+        tmpthis.dataService.maincontroller.setPersistance("cancel:"+tmpthis.data.tx_hash,"cancelled");
+});
+              
+
+            
+        };
+         tmpthis.params.onError = function(error){
+            console.log("error "+error);
+            tmpthis.loading = false;
+tmpthis.dataService.history.reloadOrders();
+            
+        };
+         tmpthis.params.fail = function(error){
+            console.log("fail "+error);
+            tmpthis.loading= false;
+ 
+   tmpthis.dataService.history.reloadOrders();
+            
+        };
+         try {
+            
+            var result = bitcore.signrawtransaction(tmpthis.unsigned_tx, privkey, tmpthis.params,tmpthis.httpService.apiKey);
+          
+
+        }  catch(err) {
+            tmpthis.loading= false;
+
+ tmpthis.dataService.history.reloadOrders();
+           console.log("error"+err);
+        }
+
+
+
+
+
+  }
+
+
+
+
+
+
+
 
 }

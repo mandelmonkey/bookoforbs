@@ -74,28 +74,23 @@
    <div class="messageDark"  *ngIf="showingConf">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
   <div class="messageText">{{messageText}}</div> 
-         <div class="confirmMessageButton" (click)="didConfirm()">
-        <label class="buttonLabel">{{dataService.getLang('confirm')}}</label> 
-       </div>
-       <br>
-       <div class="closeMessageButton" (click)="didCancel()">
-        <label class="buttonLabel">{{dataService.getLang('cancel')}}</label> 
-       </div>
-       </div>
+
+<div class="confButtons">
+       <input class="confConfirmButton" type="button" [value]="dataService.getLang('cancel')" (click)="didCancel()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+       <input class="confConfirmButton" type="button" [value]="dataService.getLang('confirm')" (click)="didConfirm()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'">
+</div>
+  
 
 
   </div>
 
      <div class="messageDark"  *ngIf="showingLoading">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
-  <div class="messageText">{{messageText}}</div> 
-         
-     
-       </div>
-
-
-  </div>
-
+  <div class="messageText">{{messageText}}
+  </div> 
+    </div>
+</div>
+</div>
   
   <div class="messageDark"   *ngIf="showingQR">
    <div class="messageBack" id="qrBack" >
@@ -110,6 +105,24 @@
 
 
   </div>
+    <div class="messageDark"   *ngIf="showingPasswordInput">
+   <div class="messageBackPassword" id="qrBack"  [style.background-image]="'url(' +dataService.getImage('thinFrameSmall')+ ')'">
+   
+            <div>   
+       <h3 class="passwordtitle">{{dataService.getLang('enter_your_password')}} </h3>
+        </div>
+        <div>
+      <input  class="userpassword"  type="password" [(ngModel)]="userPassword" [placeholder]="dataService.getLang('enter_password')"  name="password"> 
+       </div>
+      <div>
+        <input class="closePasswordButton" type="button" [value]="dataService.getLang('cancel')" (click)="closePassword()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+       <input class="closePasswordButton" type="button" [value]="dataService.getLang('confirm')" (click)="decryptPassphrase()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'">
+      </div>
+       </div>
+
+
+  </div>
+
    <app-qrscan  *ngIf="showQRScan"></app-qrscan>
      
  
