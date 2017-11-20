@@ -16,29 +16,154 @@ import { PersistenceService, StorageType } from 'angular-persistence';
   
 })
 export class IntroComponent implements OnInit {
+   currentField = 0;
   showIntroButtons = true;
   showPasswordDecryptField =false;
    showPassphraseField = false;
-    showPasswordField = false;
-     shorturl = "";
+    showPasswordField = false; 
       passphraseStatus = "";
        showNewPassphrase = false;
        decryptStatus = "";
      passphrase = "";
-     password = "";
-     cipherText = "";
+     password = ""; 
+     confPassword = ""; 
      userAgent = "";
      testObj:any;
      linkText = "";
      isIndiesquare = false;
      qrUrl = "";
-     wordCheck ="";
+     wordCheck =" ";
      showNewAccountNext=false;
+     wordValid = false;
+     cipherText = "";
+      word1= "";
+       word2= "";
+        word3= "";
+         word4= "";
+          word5= "";
+           word6= "";
+            word7= "";
+             word8= "";
+              word9= "";
+               word10= "";
+                word11= "";
+                 word12= "";
+     
      
  constructor(public dataService:DataService, private httpService:HTTPService, private route: ActivatedRoute,private persistenceService: PersistenceService) { 
-    route.queryParams.subscribe(
-      data =>  this.loadShortUrl(data['pass']));
+    
 
+}
+checkWord(val:string){
+   if(Mnemonic.words.indexOf(val) != -1){
+     this.wordValid = true;
+    this.wordCheck ="Valid!";
+
+  }else{
+    this.wordValid = false;
+    this.wordCheck =  this.currentField+"/12";
+  }
+}
+nextWord(){
+   this.wordCheck =  this.currentField+"/12";
+  if(this.currentField == 12){
+
+    this.passphrase = this.word1+" "+this.word2+" "+this.word3+" "+this.word4+" "+this.word5+" "+this.word6+" "+this.word7+" "+this.word8+" "+this.word9+" "+this.word10+" "+this.word11+" "+this.word12;
+   this.showPassphraseField = false;
+    this.showPasswordField = true;
+    return;
+ 
+  }
+  if(this.wordValid){
+  this.currentField++;
+  }else{
+    alert("word not valid");
+    return;
+  }
+
+this.wordValid = false;
+if(this.currentField == 12){
+this.checkWord(this.word12);
+}
+else if(this.currentField == 11){
+this.checkWord(this.word11);
+}
+else if(this.currentField == 10){
+this.checkWord(this.word10);
+}
+else if(this.currentField == 9){
+this.checkWord(this.word9);
+}
+else if(this.currentField == 8){
+this.checkWord(this.word8);
+}
+else if(this.currentField == 7){
+this.checkWord(this.word7);
+}
+else if(this.currentField == 6){
+this.checkWord(this.word6);
+}
+else if(this.currentField == 5){
+this.checkWord(this.word5);
+}
+else if(this.currentField == 4){
+this.checkWord(this.word4);
+}
+else if(this.currentField == 3){
+this.checkWord(this.word3);
+}
+else if(this.currentField == 2){
+this.checkWord(this.word2);
+}
+else if(this.currentField == 1){
+this.checkWord(this.word1);
+}
+   
+
+}
+prevWord(){
+  this.currentField--;
+  if(this.currentField == 0){
+    this.backToStart();
+    return;
+  }
+
+if(this.currentField == 12){
+this.checkWord(this.word12);
+}
+else if(this.currentField == 11){
+this.checkWord(this.word11);
+}
+else if(this.currentField == 10){
+this.checkWord(this.word10);
+}
+else if(this.currentField == 9){
+this.checkWord(this.word9);
+}
+else if(this.currentField == 8){
+this.checkWord(this.word8);
+}
+else if(this.currentField == 7){
+this.checkWord(this.word7);
+}
+else if(this.currentField == 6){
+this.checkWord(this.word6);
+}
+else if(this.currentField == 5){
+this.checkWord(this.word5);
+}
+else if(this.currentField == 4){
+this.checkWord(this.word4);
+}
+else if(this.currentField == 3){
+this.checkWord(this.word3);
+}
+else if(this.currentField == 2){
+this.checkWord(this.word2);
+}
+else if(this.currentField == 1){
+this.checkWord(this.word1);
+}
    
 
 }
@@ -53,9 +178,26 @@ showLinkageIcon(){
   return false;
 
 }
+getXPosForField(field:number){
+ var fieldWidth = document.getElementById("word1").clientWidth / 2;
+  
+  if(this.currentField == field){
+  
+
+  return ((document.documentElement.clientWidth/2)-fieldWidth)+"px";
+  }
+  else if(field<this.currentField){
+    return ((fieldWidth*-1)*3)+"px";
+  }
+  else{
+    return "100vw";
+  }
+}
 showEnterPassphrase(){
   this.showIntroButtons = false;
   this.showPassphraseField = true;
+  this.currentField = 1;
+  this.wordCheck =  this.currentField+"/12";
 }
 linkIndieSquare(){
 
@@ -118,6 +260,13 @@ this.isIndiesquare = true;
 
 
 }
+
+getWord(word:number){
+ 
+return this.passphrase.split(' ')[word-1];
+
+}
+ 
   getMessage(){
 
       return "Enter a secure password, this is used to secrure your key";
@@ -131,21 +280,18 @@ this.isIndiesquare = true;
     //this.persistenceService.set('linkType', "indiesquare", {type: StorageType.LOCAL}); 
    }
     this.isIndiesquare = false; 
-    this.shorturl = window.location.href+"?pass=";
+     
    this.testObj = [];
-    // this.linkIndiesquare();
+   
  
 
   }
 
   linkIndiesquare(){
-   
-// this.testObj.userAgent = "loading...";
+ 
     
 this.testObj["userAgent"]  =  navigator.userAgent;
    
-  
- 
      if(this.testObj["userAgent"].indexOf("IndieSquare") != -1){
 var tempDataService = this.dataService;
     var tempThis = this;
@@ -197,7 +343,7 @@ this.passphrase = userAgent;
     var words = null;
     if( this.passphrase != null ) words = this.passphrase.split(' ');
 
-     this.dataService.maincontroller.recoveryPhrase = words;
+     
       var m;
     try{
       
@@ -272,6 +418,7 @@ createAddressFromPassphrase(m:any){
  	var priv = bitcore.PrivateKey(masterderive.privateKey);
 	 this.dataService.maincontroller.currentAddress = priv.toAddress().toString();
 
+
       
 }
 continueLogin(){
@@ -291,67 +438,8 @@ var tmpdata =  this.dataService;
     this.showIntroButtons =false;
     this.showPassphraseField = true;
   }
-    loadShortUrl(encData:string){
-      this.cipherText = encData;
+ 
   
-       if(typeof this.cipherText !=  "undefined"){
-
-          
-         this.showPasswordDecryptField =true;
-          this.showIntroButtons =false;
-    this.showPassphraseField = false;
-   
-       
-      }
-
-
-      // this.password = "password";
-    // this.decryptPassphrase();
-
-
-    }
-
-    decryptPassphrase(){
-     this.decryptStatus = "";
-       console.log("password is"+this.cipherText);
-	try{
-          var bytes  = CryptoJS.AES.decrypt(this.cipherText, this.password);
-         this.passphrase = bytes.toString(CryptoJS.enc.Utf8);
-
-
-  var words = null;
-		if( this.passphrase != null ) words = this.passphrase.split(' ');
-
-     this.dataService.maincontroller.recoveryPhrase = words;
-    	var m;
-		try{
-      
-			m = new Mnemonic(words);
-
-   this.createAddressFromPassphrase(m);
-      this.continueLogin();
-
-		}
-		catch(e){ 
-      
-      this.decryptStatus = "password or link incorrect";
-    
-   }
-
-   	}
-		catch(e){ 
-      
-      this.decryptStatus = "password or link incorrect";
-    
-   }
-    }
-
-    continueNoAddress(){
-
-  this.dataService.viewMode = true;
-      this.dataService.maincontroller.currentAddress = "empty";
-   this.continueLogin();
-    }
    checkPassphrase(){
        this.showNewPassphrase = false;
 
@@ -369,7 +457,7 @@ var tmpdata =  this.dataService;
     this.showPassphraseField = false;
      this.showPasswordField = true;
        this.passphraseStatus = "";
-  //   	return m.toWords().toString().replace(/,/gi, ' ');
+       this.cipherText = ""; 
 
 		}
 		catch(e){ 
@@ -383,81 +471,98 @@ var tmpdata =  this.dataService;
 
 
 updatePhraseEnter(val:string){
- 
- var words = val.split(' ');
- this.wordCheck = "";
- 
-  for(var i=0;i<words.length;i++){
-    if(Mnemonic.words.indexOf(words[i]) != -1){
 
-      this.wordCheck = "Word "+(i+1)+"/12";
-    }
- }
-
-
-   var aWord = words[words.length-1];
-  var lastVal = val[val.indexOf(aWord)+(aWord.length-1)];
-   //   console.log(lastVal);
-      if(typeof lastVal == "undefined" ){
-
-
-    aWord = words[words.length-2];
-     if(Mnemonic.words.indexOf(aWord) == -1){
-       alert("the last word was incorrect, please re-type it");
-this.passphrase = "";
-       for(var i=0;i<words.length-2;i++){
-
-this.passphrase = this.passphrase + words[i]+" ";
-}
-       return;
-     }
-     
-
-   }
-   if(words.length == 12){
-
-     aWord = words[words.length-1];
- 
-     if(Mnemonic.words.indexOf(aWord) != -1){
-         alert("valid!");
-       return;
-     }
+ this.checkWord(val);
   
-   }
-   
     
  
 }
 
-  updateShortUrl(){
-  // this.shorturl+=this.password;
-
-  // var CryptoJS = require("crypto-js");
- 
-// Encrypt 
-
- 
-var ciphertext =  CryptoJS.AES.encrypt(this.passphrase, this.password);
- 
-// Decrypt 
-//var bytes  = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
-//var plaintext = bytes.toString(CryptoJS.enc.Utf8);
- 
-this.shorturl = window.location.href+"?pass="+ciphertext;
+  encryptPassphrase(){
+  
+  if(this.password != this.confPassword){
+    alert("passwords do not match");
+    return;
   }
+ 
+this.cipherText =  CryptoJS.AES.encrypt(this.passphrase, this.password);
+ console.log("pass "+this.cipherText);
 
-  setShortUrl(){
-    if(this.password.length > 3){
-    // this.copyToClipboard(this.shorturl);
-    window.location.href = this.shorturl;
-    }
-    else{
+ 
+   var words = null;
+    if( this.passphrase != null ) words = this.passphrase.split(' ');
+
+    
+      var m;
+    try{
       
+      m = new Mnemonic(words);
+
+   this.createAddressFromPassphrase(m);
+
+     this.persistenceService.set('userPassphrase', this.cipherText, {type: StorageType.LOCAL}); 
+   this.persistenceService.set('userAddress0', this.dataService.maincontroller.currentAddress, {type: StorageType.LOCAL}); 
+   this.persistenceService.set('linkType', "passphrase", {type: StorageType.LOCAL}); 
+   this.dataService.maincontroller.linkType = "passphrase";
+
+      this.continueLogin();
+
     }
+    catch(e){ 
+      
+    alert("error creating wallet");
+    
+
+        return;
+
+
   }
+
+ 
+ 
+  }
+
+   
   copyToClipboard(text) {
   window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 }
+
+
+/*
+decryptPassphrase(){
+     this.decryptStatus = "";
+       console.log("password is"+this.cipherText);
+  try{
+          var bytes  = CryptoJS.AES.decrypt(this.cipherText, this.password);
+         this.passphrase = bytes.toString(CryptoJS.enc.Utf8);
+
+
+  var words = null;
+    if( this.passphrase != null ) words = this.passphrase.split(' ');
+ 
+      var m;
+    try{
+      
+      m = new Mnemonic(words);
+
+   this.createAddressFromPassphrase(m);
+      this.continueLogin();
+
+    }
+    catch(e){ 
+      
+      this.decryptStatus = "password or link incorrect";
+    
+   }
+
+     }
+    catch(e){ 
+      
+      this.decryptStatus = "password or link incorrect";
+    
+   }
+    }
+*/
   
 
 }

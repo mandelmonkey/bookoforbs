@@ -25,18 +25,35 @@
       <br> 
   <input  class="aButton" type="button" value="Login/signup" (click)="showEnterPassphrase()" [style.background-image]="'url(' +dataService.getImage('filterButtonLong')+ ')'">
      </div>
- 
-   
- 
- 
+  
 
   <div  *ngIf="showPassphraseField">
-  <p class="title">{{wordCheck}}</p>
-  <input  class="textInput"  type="password" [(ngModel)]="passphrase"  (input)="updatePhraseEnter($event.target.value)" placeholder="enter your 12 word recovery phrase"  name="passphrase"> 
+      <div class="topStatus">
+  <p class="title">Enter each word from your 12 word recovery phrase</p>
+</div>
+     <div class="topStatus">
+  <p class="wordcheck">{{wordCheck}}</p>
+</div>
+<div class="topStatus">
+  <input  class="passphrase" id="word1" type="password" [(ngModel)]="word1"  (input)="updatePhraseEnter($event.target.value)" placeholder="Word 1"  name="passphrase" [style.left]="getXPosForField(1)"> 
+   <input  class="passphrase"  type="password" [(ngModel)]="word2"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 2"  name="passphrase" [style.left]="getXPosForField(2)"> 
+    <input  class="passphrase"  type="password" [(ngModel)]="word3"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 3"  name="passphrase" [style.left]="getXPosForField(3)"> 
+     <input  class="passphrase"  type="password" [(ngModel)]="word4"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 4"  name="passphrase" [style.left]="getXPosForField(4)"> 
+      <input  class="passphrase"  type="password" [(ngModel)]="word5"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 5"  name="passphrase" [style.left]="getXPosForField(5)"> 
+       <input  class="passphrase"  type="password" [(ngModel)]="word6"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 6"  name="passphrase" [style.left]="getXPosForField(6)"> 
+        <input  class="passphrase"  type="password" [(ngModel)]="word7"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 7"  name="passphrase" [style.left]="getXPosForField(7)"> 
+         <input  class="passphrase"  type="password" [(ngModel)]="word8"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 8"  name="passphrase" [style.left]="getXPosForField(8)"> 
+          <input  class="passphrase"  type="password" [(ngModel)]="word9"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 9"  name="passphrase" [style.left]="getXPosForField(9)"> 
+           <input  class="passphrase"  type="password" [(ngModel)]="word10"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 10"  name="passphrase" [style.left]="getXPosForField(10)"> 
+            <input  class="passphrase"  type="password" [(ngModel)]="word11"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 11"  name="passphrase" [style.left]="getXPosForField(11)"> 
+             <input  class="passphrase"  type="password" [(ngModel)]="word12"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 12"  name="passphrase" [style.left]="getXPosForField(12)"> 
+</div>
+<br>
+<br>
    <div class="navButtons">
-     <input  class="backNext"  type="button" value="back" (click)="backToStart()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'"> 
+     <input  class="backNext"  type="button" value="cancel" (click)="backToStart()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'"> 
     
-   <input  class="backNext" type="button" value="next" (click)="checkPassphrase()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'"> 
+   <input  class="backNext" type="button" value="next" (click)="nextWord()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'"> 
     
    
 </div>
@@ -49,17 +66,15 @@
 
 
  <div  *ngIf="showPasswordField">
-  <label class="title">Make quick url</label><br>
-  <br>
-    <label class="desc" >{{getMessage()}}</label><br>
+  <label class="passwordTitle">Enter a SECURE password</label><br>
+   <label class="passwordDesc">If you forget this password you will need to restore your account from your recovery phrase</label><br>
     <br>
- <input   class="textInput"   type="password" name="password" placeholder="enter a secure password" [(ngModel)]="password"   (ngModelChange)="updateShortUrl()"> 
+ <input   class="textInput"   type="password" name="password" placeholder="enter a secure password" [(ngModel)]="password"  > 
+ <input   class="textInput" style="margin-top: 5px;"  type="password" name="password" placeholder="confirm password" [(ngModel)]="confPassword"    > 
 
 
  <div class="navButtons">
-     
-      <span class="button" (click)="setShortUrl()">set</span>
-      <p  style="color:white">make sure to write down your recovery phrase first!</p>  
+     <input  class="backNext" type="button" value="next" (click)="encryptPassphrase()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'"> 
 </div>
    <br> 
    </div>
@@ -79,19 +94,38 @@
    </div>
 
 
-   <div  *ngIf="showNewPassphrase">
-     <label class="title">Please write down this passphrase</label><br>
+   <div style="text-align: center;" *ngIf="showNewPassphrase">
+     <label class="title" id="warning1">Before continuing you must write down this 12 word recovery phrase</label><br>
      <br>
-  <label class="desc">{{passphrase}}</label><br>
-  
+     <div class="recoveryPhrase">
+
+  <div class="phraseWord" id="word1">{{getWord(1)}}</div> 
+  <div class="phraseWord" id="word2">{{getWord(2)}}</div> 
+  <div class="phraseWord" id="word3">{{getWord(3)}}</div> 
+  <div class="phraseWord" id="word4">{{getWord(4)}}</div> 
+  <div class="phraseWord" id="word5">{{getWord(5)}}</div> 
+  <div class="phraseWord" id="word6">{{getWord(6)}}</div> 
+  <div class="phraseWord" id="word7">{{getWord(7)}}</div> 
+  <div class="phraseWord" id="word8">{{getWord(8)}}</div> 
+  <div class="phraseWord" id="word9">{{getWord(9)}}</div>
+  <div class="phraseWord" id="word10">{{getWord(10)}}</div>
+  <div class="phraseWord" id="word11">{{getWord(11)}}</div>
+  <div class="phraseWord" id="word12">{{getWord(12)}}</div>
+
+  </div>
+
    <br> 
-   
+    <label class="title" id="warning2">This recovery phrase is the only way to recover your bitcoin and tokens...</label><br>
+     <label class="title" id="warning3">...if your account is lost or data is reset.</label><br>
+     <br>
     
    <br>
-   <div  *ngIf="showNewAccountNext" class="navButtons">
+   <div  *ngIf="showNewAccountNext" id="warning4" class="navButtons">
+      <input  class="wroteDown" type="button" value="I wrote it down" (click)="checkPassphrase()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'"> 
+      <br>
      <input  class="backNext"  type="button" value="back" (click)="backToStart()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'"> 
-    
-   <input  class="backNext" type="button" value="I wrote it down" (click)="checkPassphrase()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'"> 
+  
+ 
     
    
 </div>
@@ -101,5 +135,5 @@
   </div>
    </div>
 
-    <app-introscreens *ngIf="!dataService.showIntroScreen" ></app-introscreens>
+    <app-introscreens *ngIf="dataService.showIntroScreen" ></app-introscreens>
    
