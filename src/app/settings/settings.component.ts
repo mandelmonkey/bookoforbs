@@ -29,7 +29,7 @@ ngAfterViewInit() {
     document.body.style.position = "fixed";
 }
 showPassphrase(){
-  this.dataService.maincontroller.showPassword(this.cancelPassphrase,this.contShowPassphrase);
+  this.dataService.maincontroller.showPassword(this.cancelPassphrase,this.contShowPassphrase,this);
 }
 contShowPassphrase(passphrase:string){
   alert(passphrase)
