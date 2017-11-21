@@ -492,14 +492,14 @@ cancelCancelOrder(owner:any){
         
          tmpthis.params["address"] = privkey.toAddress().toString();
          tmpthis.params.callback = function(signed_tx){
-              
+          /*    
            if(1==1){
      tmpthis.loading= false;
    tmpthis.dataService.history.reloadOrders();
         tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
          tmpthis.dataService.maincontroller.hideLoading();
     return; 
-  }   
+  }   */
              
       tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
     if( error ){
