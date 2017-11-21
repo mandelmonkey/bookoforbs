@@ -232,6 +232,9 @@ this.isIndiesquare = true;
 
 
    
+
+
+   
    
 }, function(result, error){
  tempThis.qrUrl="";
@@ -423,7 +426,7 @@ createAddressFromPassphrase(m:any){
 	  	var masterderive = master.derive( d );
  	var priv = bitcore.PrivateKey(masterderive.privateKey);
 	 this.dataService.maincontroller.currentAddress = priv.toAddress().toString();
-
+  
 
       
 }
