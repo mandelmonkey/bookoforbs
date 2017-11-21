@@ -242,10 +242,9 @@ console.log(result.signed_tx);
 }
 else{
 
-    
-         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC+""),tmpthis.getPassphrase ,tmpthis.cancelCancelOrder,tmpthis );
- 
-
+    tmpthis.dataService.maincontroller.hideLoading();
+    tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC+""),tmpthis.getPassphrase ,tmpthis.cancelCancelOrder,tmpthis );
+  
 }
 
 
@@ -460,6 +459,7 @@ cancelCancelOrder(owner:any){
     owner.loading = true;
 
     var tmpthis =owner;
+    tmpthis.dataService.maincontroller.showLoading(this.dataService.getLang("please_wait"));
 
     try {
 
@@ -493,22 +493,26 @@ cancelCancelOrder(owner:any){
          tmpthis.params["address"] = privkey.toAddress().toString();
          tmpthis.params.callback = function(signed_tx){
               
-             /* if(1==1){
+           /*  if(1==1){
      tmpthis.loading= false;
    tmpthis.dataService.history.reloadOrders();
         tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
+         tmpthis.dataService.maincontroller.hideLoading();
     return; 
-  } */
+  }  */
              
       tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
     if( error ){
      
 tmpthis.dataService.history.reloadOrders();
         console.error(error);
+            tmpthis.loading= false;
+      tmpthis.dataService.maincontroller.hideLoading();
         alert("error broadcasting");
         return;
     }
      tmpthis.loading= false;
+      tmpthis.dataService.maincontroller.hideLoading();
    tmpthis.dataService.history.reloadOrders();
         tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
 
@@ -521,12 +525,14 @@ tmpthis.dataService.history.reloadOrders();
          tmpthis.params.onError = function(error){
             console.log("error "+error);
             tmpthis.loading = false;
+             tmpthis.dataService.maincontroller.hideLoading();
 tmpthis.dataService.history.reloadOrders();
             
         };
          tmpthis.params.fail = function(error){
             console.log("fail "+error);
             tmpthis.loading= false;
+             tmpthis.dataService.maincontroller.hideLoading();
  
    tmpthis.dataService.history.reloadOrders();
             
@@ -538,7 +544,7 @@ tmpthis.dataService.history.reloadOrders();
 
         }  catch(err) {
             tmpthis.loading= false;
-
+ tmpthis.dataService.maincontroller.hideLoading();
  tmpthis.dataService.history.reloadOrders();
            console.log("error"+err);
         }

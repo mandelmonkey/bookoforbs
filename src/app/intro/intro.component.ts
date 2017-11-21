@@ -480,7 +480,14 @@ updatePhraseEnter(val:string){
 
   encryptPassphrase(){
   
+
+   if(this.password.length < 7){
+     this.dataService.getLang("password_please_enter");
+    alert("please enter a secure password, at least 6 characters long");
+    return;
+  }
   if(this.password != this.confPassword){
+    this.dataService.getLang("password_dontmatch");
     alert("passwords do not match");
     return;
   }
@@ -529,43 +536,7 @@ this.cipherText =  CryptoJS.AES.encrypt(this.passphrase, this.password).toString
   copyToClipboard(text) {
   window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 }
-
-
-/*
-decryptPassphrase(){
-     this.decryptStatus = "";
-       console.log("password is"+this.cipherText);
-  try{
-          var bytes  = CryptoJS.AES.decrypt(this.cipherText, this.password);
-         this.passphrase = bytes.toString(CryptoJS.enc.Utf8);
-
-
-  var words = null;
-    if( this.passphrase != null ) words = this.passphrase.split(' ');
- 
-      var m;
-    try{
-      
-      m = new Mnemonic(words);
-
-   this.createAddressFromPassphrase(m);
-      this.continueLogin();
-
-    }
-    catch(e){ 
-      
-      this.decryptStatus = "password or link incorrect";
-    
-   }
-
-     }
-    catch(e){ 
-      
-      this.decryptStatus = "password or link incorrect";
-    
-   }
-    }
-*/
+　
   
 
 }

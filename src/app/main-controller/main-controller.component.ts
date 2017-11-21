@@ -473,6 +473,10 @@ return;
    
 
   }
+  hideLoading(){
+    
+    this.showingLoading = false; 
+  }
 showLoading(message:string){
     this.messageText = message;
     this.showingLoading = true; 

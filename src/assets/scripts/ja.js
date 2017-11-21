@@ -107,7 +107,29 @@ var ja = function() {
 	lang["intro_pagefour2"]="新しいタイトルも続々追加予定！";
 	lang["intro_pagefour3"]="";
 	lang["sign_in_indiesquare"]="IndieSquareでサインイン";
-	lang["dont_have_indiesquare"]="IndieSquare ウォレットをお持ちではないですか? インストールはこちらから";
+	lang["dont_have_indiesquare"]="IndieSquare ウォレットをお持ちではないですか?\nインストールはこちらから";
+	lang["show_passphrase"]="復元フレーズを表示します";
+	lang["show_passphrase_desc"]="復元フレーズを記録しないと、自分のコインを失う可能性があります";
+	lang["change_address"]="アドレスの切替";
+	lang["add_address"]="+ 新しいアドレス（HD）の追加";
+	lang["you_are_ordering"]="注文の詳細\n\n$1$ $2$ をそれぞれ $3$ $4$ \n\nfee: $5$ BTC ";
+	lang["you_are_canceling"]="この注文を本当にキャンセルしてもいいですか？({fee} マイナーへの手数料がかかります)";
+	lang["login_signup"]="ログイン/サインアップ";
+	lang["enter_each_word"]="復元フレーズを1単語ずつ入力する";
+	lang["confirm_password"]="パスワードを再確認してください";
+	lang["create_new_passphrase"]="アカウントを作成";
+	lang["wrote_down"]="記録しました";
+	lang["enter_password"]="パスワードを設定";
+	lang["enter_your_password"]="パスワードを設定";
+	lang["or"]="それとも";
+	lang["enter_secure_password"]="安全なパスワードを設定";
+	lang["if_you_forget"]="パスワードを忘れた場合でも、復元パスフレーズでアカウントを復旧することができます。";
+	lang["enter_secure_password"]="安全なパスワードを設定";
+	lang["intro_warning_1"]="この復元フレーズを記録し、大切に誰にも見られないように保管してください";
+	lang["intro_warning_2"]="復元フレーズは端末やアプリを紛失、消去した時に中のコインを復元する唯一の方法です。";
+	lang["intro_warning_3"]="もしこの復元フレーズが他の人に知られてしまった場合、自分のORBがとられてしまう可能性があります";
+	lang["password_please_enter"]="6文字以上の安全なパスワードを入力してください";
+	lang["password_dont_match"]="パスワードが合っていません";
 
 function ja() {
 

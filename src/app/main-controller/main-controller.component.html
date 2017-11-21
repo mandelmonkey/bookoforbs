@@ -70,7 +70,7 @@
   </div>
 
 
-
+ 
    <div class="messageDark"  *ngIf="showingConf">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
   <div class="messageText">{{messageText}}</div> 
@@ -82,7 +82,9 @@
   
 
 
-  </div>
+  </div> 
+  </div> 
+  
 
      <div class="messageDark"  *ngIf="showingLoading">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
@@ -90,7 +92,7 @@
   </div> 
     </div>
 </div>
-</div>
+ 
   
   <div class="messageDark"   *ngIf="showingQR">
    <div class="messageBack" id="qrBack" >
