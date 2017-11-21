@@ -42,7 +42,7 @@ var language =  window.navigator.language;
     }else{
        this.langclass = new en();
     }
-     this.langclass = new ja();
+     
  
 this.showIntroScreen = true;
   }

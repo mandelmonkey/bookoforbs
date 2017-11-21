@@ -273,6 +273,12 @@ return this.passphrase.split(' ')[word-1];
      
   }
   ngOnInit() {
+
+    document.querySelector('input').addEventListener('keydown', function (e) {
+    if (e.which == 9) {
+        e.preventDefault();
+    }
+});
  if(this.dataService.dev == true){
      //alert("Dev");
     
