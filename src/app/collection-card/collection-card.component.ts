@@ -52,7 +52,9 @@ export class CollectionCardComponent implements OnInit {
 imgLoadError(){
 	console.error("load error "+this.orbKey);
 }
- 
+ getId(){
+ 	return "img"+this.i;
+ }
 imageLoaded(){
 /*
 if(typeof this.orbImage != "undefined"){
@@ -100,7 +102,7 @@ xhr.send();
 }*/
 
  
-var img = document.getElementById("img");
+var img = document.getElementById("img"+this.i);
 img.style.background = "none";
 
 

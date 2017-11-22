@@ -1,7 +1,7 @@
 	  
 	 <!-- <img id="img"   class="card" img-cache img-cache-src="{{orbImage}}" [style.height]="getHeight()" src="../assets/images/blank.png" (click)="showORB()" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" (load)="imageLoaded()"/>-->
 
-<img id="img"   class="card"  (click)="showORB()" [src]="dataService.collection.defaultImage" [style.height]="getHeight()" [errorImage]="dataService.collection.errorImage" [lazyLoad]="getImage()"  [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]="dataService.collection.scrollView" onerror="imgLoadError()" (load)="imageLoaded()" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" />
+<img [id]="getId()"   class="card"  (click)="showORB()" [src]="dataService.collection.defaultImage" [style.height]="getHeight()" [errorImage]="dataService.collection.errorImage" [lazyLoad]="getImage()"  [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]="dataService.collection.scrollView" onerror="imgLoadError()" (load)="imageLoaded()" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" />
  
 
     <div class="shadowBox">
