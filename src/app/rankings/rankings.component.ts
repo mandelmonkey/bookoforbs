@@ -25,6 +25,7 @@ export class RankingsComponent implements OnInit {
 	   scrollObservable;
 	loading:boolean;
 indiesquare;
+hashToSign= "";
   constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef) { }
 ngAfterViewInit() {
     this.scrollView = document.getElementById("scrollView");
@@ -63,13 +64,9 @@ continueSign(passphrase:string,owner:any){
     var privkey = bitcore.PrivateKey(masterderive.privateKey);
         
 
-    var sig = bitcore.signMessage("hello",privkey);
+    var sig = bitcore.signMessage( tmpthis.hashToSign,privkey);
 
-
-
-
-
-
+ 
 
   tmpthis.httpService.setUsername(sig,tmpthis.username).subscribe(
      data => { 
@@ -112,10 +109,10 @@ this.loadingUsername = true;
 	 this.httpService.getHandshake().subscribe(
      data => { 
      
-     	var hashToSign = data["handshake"];
+     tmpthis.hashToSign = data["handshake"];
      	
       if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
- this.indiesquare.signMessage({"message": hashToSign,"xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
+ this.indiesquare.signMessage({"message":  tmpthis.hashToSign,"xsuccess":"Book of Orbs"}, function(url, urlScheme, error){
     if( error ){
         console.log("error"+error);
        	   tmpthis.loadingUsername = false;
