@@ -80,7 +80,7 @@ export class HTTPService{
             signature: encodeURIComponent(sig),
         };
 
-      var params = json;
+      var params ="signature:"+encodeURIComponent(sig);
       var header = new Headers();
     // header.append('Content-Type', 'application/x-www-form-urlencoded');
     
