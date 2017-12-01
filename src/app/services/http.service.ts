@@ -80,14 +80,19 @@ export class HTTPService{
             signature: encodeURIComponent(sig),
         };
         console.log(sig);
-      var params ="signature:"+sig;
+     
+     var payload = new FormData();
+
+    payload.append("signature", sig);
+   
+
       var header = new Headers();
-    // header.append('Content-Type', 'application/x-www-form-urlencoded');
+  //  header.append('Content-Type', 'application/x-www-form-urlencoded');
     
        var theurl=this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl();
      
 
-      return this._http.post( theurl,params)
+      return this._http.post( theurl,payload)
       .map(res => res.json());
       
     }
