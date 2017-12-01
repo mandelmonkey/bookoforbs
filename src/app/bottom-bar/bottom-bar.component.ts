@@ -17,7 +17,9 @@ export class BottomBarComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  getBottom(){
+    return (document.documentElement.clientHeight-((document.documentElement.clientHeight *0.09)/1))+"px";
+  }
   select1(){
 
     if(this.dataService.maincontroller.loading){

@@ -15,7 +15,9 @@ export class CompletionbarComponent implements OnInit {
   getCompletionWidth(){
 
   	if(this.dataService.maincontroller.ownedOrbsEnv != null){
-  	var ownedNum = Object.keys(this.dataService.maincontroller.ownedOrbsEnv).length;
+      var keys = Object.keys(this.dataService.maincontroller.ownedOrbsEnv);
+      if(keys != null){
+  	var ownedNum =keys.length;
 
   	var allOrbs = this.dataService.maincontroller.allOrbsKeys.length;
    
@@ -26,6 +28,7 @@ export class CompletionbarComponent implements OnInit {
   	}
   	return percentage;
   	}
+  }
   	return 0;
   }
   showRankings(){

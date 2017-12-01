@@ -39,7 +39,7 @@ export class CollectionComponent implements OnInit {
     this.scrollView = document.getElementById("scrollView");
     this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
 
-
+  window.scrollTo(0, 1);
   
 
  }

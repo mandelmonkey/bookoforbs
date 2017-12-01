@@ -177,8 +177,11 @@ if(currentFee == "custom"){
 		 tmpthis.showOrderText = false;
    tmpthis.showConfText = true;
     tmpthis.currentTransactionFee =  data.fee / 100000000;
+     data.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(data.unsigned_tx);
     tmpthis.unsigned_tx = data.unsigned_tx;
-    console.dir('unsigned_tx:' + data.unsigned_tx);
+  //  console.dir('unsigned_tx:' + data.unsigned_tx);
+
+  
 
     if(tmpthis.dataService.maincontroller.linkType == "indiesquare" ){
     tmpthis.indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){

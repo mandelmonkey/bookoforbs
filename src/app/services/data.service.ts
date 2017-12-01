@@ -11,6 +11,7 @@ import * as CryptoJS from 'crypto-js';
  declare var UI:any; 
 declare var en:any; 
 declare var ja:any;
+ declare var RBFTools:any;
 @Injectable()
 export class DataService {
  
@@ -28,6 +29,8 @@ export class DataService {
   langclass:any;
   showIntroScreen:boolean;
   dev:boolean; 
+  rbf_tools:any;
+  
    constructor(){
     this.currentTab = 1;
 
@@ -45,6 +48,9 @@ var language =  window.navigator.language;
      
  
 this.showIntroScreen = true;
+
+  
+        this.rbf_tools = new RBFTools();
   }
 
   setLang(locale:string){

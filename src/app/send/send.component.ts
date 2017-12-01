@@ -6,6 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 declare var Mnemonic:any; 
  declare var bitcore:any; 
     declare var IndieSquare:any; 
+   
 @Component({
   selector: 'app-send',
   templateUrl: './send.component.html',
@@ -275,10 +276,17 @@ console.error("send error " + error);
     if(data != null){
 
     tmpthis.currentSendResponse = data;
+ // console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
+
+    
+    tmpthis.currentSendResponse.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(tmpthis.currentSendResponse.unsigned_tx);
+   // console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
+   
+
 var feeBTC = data.fee / 100000000;
 
       
-      console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx+" "+tmpthis.dataService.maincontroller.linkType);
+     // console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx+" "+tmpthis.dataService.maincontroller.linkType);
 
    if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
      
@@ -358,86 +366,7 @@ catch(e){
    tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang('error'));
              tmpthis.sending = false;
 }
-/*
-
- this.httpService.createSendTransaction(this.dataService.maincontroller.currentAddress,this.dataService.maincontroller.currentSendAddress,this.dataService.maincontroller.selectedKey,this.amount,feePerKb,fee).subscribe(
-     data => { 
-      console.log(JSON.stringify(data));
-        tmpthis.currentSendResponse = data;
-      var feeBTC = (tmpthis.currentSendResponse.fee / 100000000);
-        if(data.unsigned_tx != null){
- 
-      if(this.dataService.maincontroller.linkType == "indiesquare"){
-
-
-     
-     tmpthis.indiesquare.signTransaction({'unsigned_tx': tmpthis.currentSendResponse.unsigned_tx}, function(url, urlScheme, error){
-  
-    if( error ){
-        tmpthis.sending = false;
-        console.log("error"+error);
-       
-        return;
-    } 
-   
-   
-}, function(result, error){
- 
-  if(error){
-    console.error(error);
-    tmpthis.sending = false;
- return;
-  }else{
-     
-console.log(result.signed_tx); 
-
-  
-     tmpthis.indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
-        if( error ){
-            console.error(error);
-             tmpthis.sending = false;
-            return;
-        }
-        tmpthis.dataService.maincontroller.showMessage("sent!");
-      }); 
-
-
-
-   }
-   
-
-});
-
-
-
-
-
-
-
-
-      }else{
-
-         tmpthis.dataService.maincontroller.showConf("You are sending\n\n"+tmpthis.amount+ " " +tmpthis.dataService.maincontroller.selectedKey+" to "+tmpthis.sendAddress+"\n\nfee: "+feeBTC+" btc",tmpthis.broadcast ,tmpthis.cancelSend,tmpthis );
-
-
-    
-
-      } 
-      }
-      },   
-      error => {
-        tmpthis.sending = false;
-         try{
-                   tmpthis.dataService.maincontroller.showMessage(JSON.parse(error._body).message);
-                }
-                catch(e){
-                   tmpthis.dataService.maincontroller.showMessage("error");
-                }
- 
-      },
-     () => {});
-
-*/
+　
   }
 
 }

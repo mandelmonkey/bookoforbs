@@ -361,6 +361,8 @@ if(this.dataService.isMobile ==false){
  
   
   this.loadEnvironments();
+
+  
     
   }
   reloadViews(){

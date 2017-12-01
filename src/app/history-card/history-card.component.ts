@@ -178,6 +178,8 @@ tmpthis.indiesquare.createCancel(sendParams, function(data, error){
         return;
     }
 
+    data.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(data.unsigned_tx);
+
  tmpthis.unsigned_tx=data.unsigned_tx;
  var feeBTC= data.fee / 100000000;
     	  if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){

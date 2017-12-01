@@ -82,14 +82,12 @@ export class HTTPService{
 
       var params = json;
       var header = new Headers();
-     header.append('Content-Type', 'application/x-www-form-urlencoded');
+    // header.append('Content-Type', 'application/x-www-form-urlencoded');
     
        var theurl=this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl();
-       console.log("sig:"+sig+" "+theurl)
+     
 
-      return this._http.post( theurl,params, {
-        headers:header
-      })
+      return this._http.post( theurl,params)
       .map(res => res.json());
       
     }
