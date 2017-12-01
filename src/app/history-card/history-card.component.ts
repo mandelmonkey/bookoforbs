@@ -180,6 +180,13 @@ tmpthis.indiesquare.createCancel(sendParams, function(data, error){
 
     data.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(data.unsigned_tx);
 
+
+     var res =   tmpthis.dataService.cp_tools.checkCancelTransaction(data.unsigned_tx);
+    if(res == false){
+       alert("error transaction does not match params");
+       return;
+    }
+
  tmpthis.unsigned_tx=data.unsigned_tx;
  var feeBTC= data.fee / 100000000;
     	  if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){

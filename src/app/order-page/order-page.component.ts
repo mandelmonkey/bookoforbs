@@ -37,6 +37,9 @@ originalOrderAmount:number;
 bottomTop = "0px";
   supply = " ";
   locked =" ";
+ baseDivisible = -1;
+ selectedDivisible = -1;
+
   ngOnInit() {
      
   	 this.orbHeight =  "80%";
@@ -45,6 +48,52 @@ bottomTop = "0px";
 
     this.buySellText = this.dataService.getLang("you_are_buying");
        document.body.style.position = "fixed";
+ 
+
+
+ if(this.dataService.maincontroller.getPersistance("DIVISIBLEV1"+this.dataService.maincontroller.selectedKey) == "NO"){
+             this. selectedDivisible = 0;
+              
+           }
+           else{
+           this.httpService.getTokenInfo( this.dataService.maincontroller.selectedKey).subscribe(
+     data => { 
+        
+           this. selectedDivisible= data.divisible;
+           if(this. selectedDivisible == 0){
+             this.dataService.maincontroller.setPersistance("DIVISIBLEV1"+this.dataService.maincontroller.selectedKey,"NO");
+           }
+  },   
+      error => {
+        
+        
+      },
+     () => {});
+
+         }
+
+
+          if(this.dataService.maincontroller.getPersistance("DIVISIBLEV1"+this.dataService.maincontroller.currentCurrency) == "NO"){
+             this.baseDivisible = 0;
+              
+           }
+           else{
+           this.httpService.getTokenInfo( this.dataService.maincontroller.currentCurrency).subscribe(
+     data => { 
+          
+           this. baseDivisible= data.divisible;
+           if(this.baseDivisible == 0){
+             this.dataService.maincontroller.setPersistance("DIVISIBLEV1"+this.dataService.maincontroller.currentCurrency,"NO");
+           }
+  },   
+      error => {
+        
+        
+      },
+     () => {});
+
+         }
+
 
 
   this.httpService.getAssetInfo( this.dataService.maincontroller.selectedKey).subscribe(
@@ -56,6 +105,7 @@ bottomTop = "0px";
          }else{
             this.supply = this.dataService.getLang("supply",data.supply);
         }
+       
          if(data.divisible == 0){
            this.locked = "";
            
@@ -127,6 +177,11 @@ showConf(){
 	
 }
 createOrder(){
+
+    if(this.selectedDivisible == -1 || this.baseDivisible == -1){
+      alert("Error loading, please try again");
+      return;
+    }
 	this.selectAmount = false;
 	var tmpthis = this;
 	this.loading = true;
@@ -178,10 +233,40 @@ if(currentFee == "custom"){
    tmpthis.showConfText = true;
     tmpthis.currentTransactionFee =  data.fee / 100000000;
      data.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(data.unsigned_tx);
-    tmpthis.unsigned_tx = data.unsigned_tx;
-  //  console.dir('unsigned_tx:' + data.unsigned_tx);
 
-  
+     var getDivisible= false;
+      var giveDivisible= false;
+     
+
+     if(giveToken == tmpthis.dataService.maincontroller.selectedKey){
+       if(tmpthis.baseDivisible == 1){
+       getDivisible = true;
+       
+     }
+       if(tmpthis.selectedDivisible == 1){
+       giveDivisible = true;
+      
+     }
+   }else{
+if(tmpthis.baseDivisible == 1){
+       giveDivisible = true;
+       
+     }
+       if(tmpthis.selectedDivisible == 1){
+       getDivisible = true;
+       
+     }
+
+   }
+     
+
+
+     var res =   tmpthis.dataService.cp_tools.checkOrderTransaction(data.unsigned_tx,tmpthis.dataService.maincontroller.currentAddress,getToken,getQuant,giveToken,giveQuant,getDivisible,giveDivisible);
+    if(res == false){
+       alert("error transaction does not match params");
+       return;
+    }
+    tmpthis.unsigned_tx = data.unsigned_tx;
 
     if(tmpthis.dataService.maincontroller.linkType == "indiesquare" ){
     tmpthis.indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){

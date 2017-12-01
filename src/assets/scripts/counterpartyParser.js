@@ -42,7 +42,109 @@ arc4 = function(key, data) {
 	return tools.buffer(ret);
 };
 
+	counterpartyParser.prototype.checkSendTransaction = function(unsignedtx,source,destination,token,amount,divisible) {
+
+
+ if(divisible){
+		amount*=100000000;
+		 
+		 }
+
+		var jsonData = this.parse(unsignedtx);
+			console.log(jsonData);
+
+		if("Enhanced Send" != jsonData.type){
+			 
+			return false;
+		}
+		if(source != jsonData.destination.address){
+		 
+			return false;
+		}
+
+		var destinationAddress = jsonData.data.destination;
+		var network = destinationAddress.substr(0,2);
+		var pubkeyhash = destinationAddress.substr(2,40);
+		var address = bitcoin.address.toBase58Check(tools.buffer(pubkeyhash,'hex'),parseInt(network));
+
+		if(destination != address){
+		 
+			return false;
+		}
+
+		if(token != jsonData.data.asset_id){
+		 
+			 return false;
+		}
+
+		if(amount != jsonData.data.quantity){
+			
+			 return false;
+		}
+
+
+	
+		return true;
+
+	}
+
+	counterpartyParser.prototype.checkOrderTransaction = function(unsignedtx,address,get_token,get_quantity,give_token,give_quantity,getDivisible,giveDivisible) {
+
+		if(getDivisible){
+			get_quantity*=100000000;
+			 
+		}
+		if(giveDivisible){
+			 
+			give_quantity =give_quantity*100000000;
+		}
+		var jsonData = this.parse(unsignedtx);
+		console.log(jsonData);
+		if("Order" != jsonData.type){ 
+			return false;
+		}
+
+		if(address != jsonData.destination.address){ 
+			return false;
+		}
+		 
+		if(get_token != jsonData.data.get_id){ 
+			console.log(get_token+" "+jsonData.data.get_id);
+			 return false;
+		}
+
+		if(give_token != jsonData.data.give_id){
+			 return false;
+		}
+
+		if(get_quantity != jsonData.data.get_quantity){
+			console.log(get_quantity+" "+jsonData.data.get_quantity);
+			 return false;
+		}
+
+		if(give_quantity != jsonData.data.give_quantity){
+			console.log(give_quantity+" "+jsonData.data.give_quantity);
+			 return false;
+		}
+ 
+		return true;
+
+	}
+
+		counterpartyParser.prototype.checkCancelTransaction = function(unsignedtx) {
+
+		var jsonData = this.parse(unsignedtx);
+
+		if("Cancel" != jsonData.type){ 
+			return false;
+		}
+		 
+		return true;
+
+	}
+
 	counterpartyParser.prototype.parse = function(rawtx) {
+
 
  
 		var network = 'mainnet';
@@ -53,13 +155,15 @@ arc4 = function(key, data) {
 	var rawdata = tools.buffer.alloc(0);
 
  		var key = tools.bufferReverse(txObj.ins[0].hash);
- 		console.log(key);
+ 	 
  		txObj.outs.forEach(function (out, idx) {
 
 
 		var type = bitcoin.script.classifyOutput(out.script);
 		if(type == 'pubkeyhash') {
-			if(!destination && rawdata.length===0) {
+ 
+			if(!destination) {
+
 				destination = {
 					address: bitcoin.address.toBase58Check(out.script.slice(3, 23), {mainnet: 0x00, testnet: 0x6f}[network]),
 					amount: out.value,
@@ -76,7 +180,7 @@ arc4 = function(key, data) {
 
  		}); 
 
- 			console.log(rawdata);
+ 		 
 
  			var message;
 	try {
@@ -84,9 +188,11 @@ arc4 = function(key, data) {
 	} catch(e) {
 		alert(e);
 		// maybe non-Counterparty tx.
-	}
- 	 console.log(message);
- 	  console.log(message.toJSON());
+	}	
+	var jsonMessage = message.toJSON();
+	jsonMessage.destination = destination;
+  
+ 	 	return jsonMessage;
 
 	}
 

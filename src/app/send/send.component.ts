@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 declare var Mnemonic:any; 
  declare var bitcore:any; 
     declare var IndieSquare:any; 
-   
+
 @Component({
   selector: 'app-send',
   templateUrl: './send.component.html',
@@ -25,6 +25,7 @@ public sending:boolean;
   
   public account = null;
   public indiesquare:any;
+  public  divisible = -1;
   tmpthis:any;
   
    getNumImage(image:string){
@@ -50,6 +51,33 @@ public sending:boolean;
     this.tmpthis = this;
     
     document.body.style.position = "fixed";
+
+
+  if(this.dataService.maincontroller.selectedKey == "BTC"){
+             this.divisible = 1;
+             
+           }
+           else if(this.dataService.maincontroller.getPersistance("DIVISIBLEV1"+this.dataService.maincontroller.selectedKey) == "NO"){
+             this.divisible = 0;
+              
+           }
+           else{
+           this.httpService.getTokenInfo( this.dataService.maincontroller.selectedKey).subscribe(
+     data => { 
+        
+           this.divisible = data.divisible;
+           if(this.divisible == 0){
+             this.dataService.maincontroller.setPersistance("DIVISIBLEV1"+this.dataService.maincontroller.selectedKey,"NO");
+           }
+  },   
+      error => {
+        
+        
+      },
+     () => {});
+
+         }
+
 
   }
   ngOnDestroy(){
@@ -221,6 +249,11 @@ public sending:boolean;
      }
 
   send(){
+
+     if(this.divisible == -1){
+      alert("Error loading, please try again");
+      return;
+    }
     
     if(parseFloat(this.amount) < 0 || parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
       if( parseFloat(this.amount) > this.dataService.maincontroller.currentBalance){
@@ -278,8 +311,19 @@ console.error("send error " + error);
     tmpthis.currentSendResponse = data;
  // console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
 
-    
+      var isDivisble= false;
+     if(tmpthis.divisible == 1){
+       isDivisble = true;
+     }
     tmpthis.currentSendResponse.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(tmpthis.currentSendResponse.unsigned_tx);
+   
+    if(tmpthis.dataService.maincontroller.selectedKey != "BTC"){
+      var check = tmpthis.dataService.cp_tools.checkSendTransaction( tmpthis.currentSendResponse.unsigned_tx,tmpthis.dataService.maincontroller.currentAddress,tmpthis.dataService.maincontroller.currentSendAddress,tmpthis.dataService.maincontroller.selectedKey,parseFloat(tmpthis.amount), isDivisble );
+      if(check  == false){
+          alert("transaction does not match parameters");
+          return;
+      }
+    }  
    // console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
    
 

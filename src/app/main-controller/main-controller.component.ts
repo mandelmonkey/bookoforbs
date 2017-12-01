@@ -106,7 +106,7 @@ currentCancel;
 this.httpService.getEnvironments().subscribe(
      data => { 
       this.orbData = data;
-      console.log("orbdata "+ JSON.stringify(this.orbData));
+   //   console.log("orbdata "+ JSON.stringify(this.orbData));
       
 
 

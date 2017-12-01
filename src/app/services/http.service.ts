@@ -76,18 +76,13 @@ export class HTTPService{
 
     };
     setUsername(sig:string,username:string){
-       var json =  {
-            signature: encodeURIComponent(sig),
-        };
-        console.log(sig);
+      
      
      var payload = new FormData();
 
     payload.append("signature", sig);
    
-
-      var header = new Headers();
-  //  header.append('Content-Type', 'application/x-www-form-urlencoded');
+ 
     
        var theurl=this.baseOrbUrl+"&action=setUsername&username="+ username +"&responseType=JSON"+this.devExt+this.getAddressUrl();
      
@@ -107,6 +102,21 @@ export class HTTPService{
         headers:header
       })
       .map(res => res.json());
+   }
+
+     getTokenInfo(theToken:string){
+   
+     var url = this.indieURL+"/v2/tokens/"+theToken+"?X-Api-Key=" + this.apiKey
+
+       var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.get(url, {
+        headers:header
+      })
+      .map(res => res.json());
+
    }
 
    getPriceForToken(theToken:string){

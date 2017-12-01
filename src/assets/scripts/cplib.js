@@ -5669,6 +5669,10 @@ Message.TYPES = {
                 label: 'quantity',
                 type: 'UInt64BE',
             },
+            {
+                label: 'destination',
+                type: 'Address',
+            },
         ],
     }
 };
@@ -5683,7 +5687,7 @@ Message.prototype.parse = function() {
 	var offset = 0;
 	for(var i in struct.structure) {
 		var item = struct.structure[i];
-        console.log("type"+item.type);
+
 		switch(item.type) {
 			case 'Boolean':
 				data[item.label] = this.data[offset] ? true : false;
@@ -5705,7 +5709,7 @@ Message.prototype.parse = function() {
 				data[item.label] = this.data.readUInt32BE(offset);
 				offset += 4;
 				break;
-			case 'UInt64BE':
+			case 'UInt64BE': 
 				data[item.label] = new Long(this.data.readUInt32BE(offset+4), this.data.readUInt32BE(offset), true);
 				offset += 8;
 				break;
@@ -5720,7 +5724,11 @@ Message.prototype.parse = function() {
 			case 'AssetID':
 				data[item.label] = util.assetIdToName(new Long(this.data.readUInt32BE(offset+4), this.data.readUInt32BE(offset), true));
 				offset += 8;
-				break; 
+				break;
+            case 'Address': 
+                var hexString = this.data.toString('hex'); 
+                data[item.label] = hexString.substr(32, 42);
+                break; 
 			default:
 				//throw new Error('Internal error: invalid item type: '+item.type)
 		}
@@ -5733,6 +5741,18 @@ Message.prototype.parse = function() {
 
 Message.prototype.toJSON = function() {
 	var parse = this.parse();
+    if(typeof parse.data.quantity != "undefined"){ 
+        
+        parse.data.quantity = parseInt(parse.data.quantity.toString());
+    }
+
+    if(typeof parse.data.get_quantity != "undefined"){ 
+        parse.data.get_quantity = parseInt(parse.data.get_quantity.toString());
+    }
+
+    if(typeof parse.data.give_quantity != "undefined"){ 
+        parse.data.give_quantity = parseInt(parse.data.give_quantity.toString());
+    }
 	return {
 		prefix: this.prefix,
 		id: this.id,

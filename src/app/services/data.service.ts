@@ -12,6 +12,7 @@ import * as CryptoJS from 'crypto-js';
 declare var en:any; 
 declare var ja:any;
  declare var RBFTools:any;
+   declare var counterpartyParser:any; 
 @Injectable()
 export class DataService {
  
@@ -30,7 +31,8 @@ export class DataService {
   showIntroScreen:boolean;
   dev:boolean; 
   rbf_tools:any;
-  
+  cp_tools:any;
+
    constructor(){
     this.currentTab = 1;
 
@@ -51,6 +53,11 @@ this.showIntroScreen = true;
 
   
         this.rbf_tools = new RBFTools();
+
+
+
+     this.cp_tools= new counterpartyParser();
+   
   }
 
   setLang(locale:string){
