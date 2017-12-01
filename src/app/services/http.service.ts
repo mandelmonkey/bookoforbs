@@ -79,8 +79,8 @@ export class HTTPService{
        var json =  {
             signature: encodeURIComponent(sig),
         };
-
-      var params ="signature:"+encodeURIComponent(sig);
+        console.log(sig);
+      var params ="signature:"+sig;
       var header = new Headers();
     // header.append('Content-Type', 'application/x-www-form-urlencoded');
     
