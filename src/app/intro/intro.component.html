@@ -1,8 +1,5 @@
  <div class="introPage">
- <!--<h1>{{testObj.userAgent}}</h1>-->
- 
-   <!--
-  <img class="topImage" [src]="dataService.getImage('bookLiningFront')"/>-->
+  
  <div class="introButtons">
 <div *ngIf="isIndiesquare" class="linkOptions">
    <canvas id="qr1" ></canvas>
@@ -28,8 +25,15 @@
   
 
   <div  *ngIf="showPassphraseField">
+    
+
       <div class="topStatus">
   <p class="title">{{dataService.getLang('enter_each_word')}}</p>
+
+ <input  class="textInput"   type="password" name="passphraseFull" [placeholder]="dataService.getLang('enter_recoveryphrase')" [(ngModel)]="passphraseFull"  > 
+ <br>
+  <br>
+ <p class="title">{{dataService.getLang('enter_word_by')}}</p>
 </div>
      <div class="topStatus">
   <p class="wordcheck">{{wordCheck}}</p>
@@ -48,6 +52,7 @@
             <input  class="passphrase"  tabindex="-1" type="password" [(ngModel)]="word11"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 11"  name="passphrase" [style.left]="getXPosForField(11)"> 
              <input  class="passphrase"  tabindex="-1" type="password" [(ngModel)]="word12"   (input)="updatePhraseEnter($event.target.value)" placeholder="Word 12"  name="passphrase" [style.left]="getXPosForField(12)"> 
 </div>
+<br>
 <br>
 <br>
    <div class="navButtons">
@@ -70,6 +75,7 @@
    <label class="passwordDesc">{{dataService.getLang('if_you_forget')}}</label><br>
     <br>
  <input   class="textInput"   type="password" name="password" [placeholder]="dataService.getLang('enter_secure_password')" [(ngModel)]="password"  > 
+ <br>
  <input   class="textInput" style="margin-top: 5px;"  type="password" name="password" [placeholder]="dataService.getLang('confirm_password')" [(ngModel)]="confPassword"    > 
 
 

@@ -17,6 +17,7 @@ import { PersistenceService, StorageType } from 'angular-persistence';
 })
 export class IntroComponent implements OnInit {
    currentField = 0;
+   passphraseFull = "";
   showIntroButtons = true;
   showPasswordDecryptField =false;
    showPassphraseField = false;
@@ -59,12 +60,46 @@ checkWord(val:string){
      this.wordValid = true;
     this.wordCheck ="Valid!";
 
+
   }else{
     this.wordValid = false;
     this.wordCheck =  this.currentField+"/12";
   }
 }
 nextWord(){
+
+ 
+  if(this.passphraseFull.split(" ").length > 0){
+    this.passphrase = this.passphraseFull;
+      
+
+     var words = null;
+    if( this.passphrase != null ) words = this.passphrase.split(' ');
+    var m;
+
+
+    try{
+      m = new Mnemonic(words);
+
+      this.createAddressFromPassphrase(m);
+    this.showIntroButtons =false;
+    this.showPassphraseField = false;
+     this.showPasswordField = true;
+       this.passphraseStatus = "";
+       this.cipherText = ""; 
+
+    }
+    catch(e){ 
+     alert("error creating passphrase");
+    
+   }
+
+
+
+
+    return;
+  }
+
    this.wordCheck =  this.currentField+"/12";
   if(this.currentField == 12){
 

@@ -106,7 +106,7 @@ bottomTop = "0px";
             this.supply = this.dataService.getLang("supply",data.supply);
         }
        
-         if(data.divisible == 0){
+         if(data.locked == false){
            this.locked = "";
            
          }else{

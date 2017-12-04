@@ -130,6 +130,9 @@ var ja = function() {
 	lang["intro_warning_3"]="もしこの復元フレーズが他の人に知られてしまった場合、自分のORBがとられてしまう可能性があります";
 	lang["password_please_enter"]="6文字以上の安全なパスワードを入力してください";
 	lang["password_dont_match"]="パスワードが合っていません";
+	lang["enter_word_by"]="単語毎に入力する";
+	lang["enter_recoveryphrase"]="単語毎に入力する";
+	lang["enter_recoveryphrase"]="復元パスフレーズに入力する";
 
 function ja() {
 

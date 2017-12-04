@@ -20,27 +20,7 @@ var txObject;
  function counterpartyParser() {
 
  }
-arc4 = function(key, data) {
-	if(typeof key == 'string') key = tools.buffer(key, 'hex');
-	if(typeof data == 'string') data = tools.buffer(data, 'hex');
-	var S = [];
-	for(var i=0; i<256; i++) {
-		S[i] = i;
-	}
-	for(var i=0,j=0; i<256; i++) {
-		j = (j + S[i] + key[i % key.length]) % 256;
-		[S[i], S[j]] = [S[j], S[i]];
-	}
-	var ret = [];
-	for(var x=0,i=0,j=0; x<data.length; x++) {
-		i = (i + 1) % 256;
-		j = (j + S[i]) % 256;
-		[S[i], S[j]] = [S[j], S[i]];
-		var K = S[(S[i] + S[j]) % 256];
-		ret.push(data[x] ^ K);
-	}
-	return tools.buffer(ret);
-};
+ 
 
 	counterpartyParser.prototype.checkSendTransaction = function(unsignedtx,source,destination,token,amount,divisible) {
 
@@ -146,7 +126,7 @@ arc4 = function(key, data) {
 	counterpartyParser.prototype.parse = function(rawtx) {
 
 
- 
+ var cpDataCount = 0;
 		var network = 'mainnet';
 	var rawdata = [];
 		var txObj = bitcoin.Transaction.fromHex(rawtx);
@@ -171,9 +151,11 @@ arc4 = function(key, data) {
 			}
 		}
 		if(type == 'nulldata') {
+			cpDataCount++;
 			rawdata = cplib.counterjs.util.arc4(key, bitcoin.script.decompile(out.script)[1]);
 		}
 		if(type == 'multisig') {
+			cpDataCount++;
 			var decrypted = cplib.counterjs.util.arc4(key, Buffer.concat([out.script.slice(3, 33), out.script.slice(36, 68)]));
 			rawdata = Buffer.concat([rawdata, decrypted.slice(1, 1+decrypted[0])]);
 		}
@@ -181,6 +163,10 @@ arc4 = function(key, data) {
  		}); 
 
  		 
+ 		if(cpDataCount > 1){
+ 			return [];
+ 		}
+
 
  			var message;
 	try {
