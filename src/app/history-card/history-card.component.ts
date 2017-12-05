@@ -6,7 +6,7 @@ import {HTTPService} from "../services/http.service";
     declare var bitcore:any; 
   declare var Mnemonic:any;
 
-  declare var RBFTools:any;
+
 
 @Component({
   selector: 'app-history-card',
@@ -67,16 +67,7 @@ constructor(public dataService:DataService,private httpService:HTTPService) { }
 
   }
 
-  bumpFee(){
-
-    alert("coming soon...");
-    /*
-      var rbf = new RBFTools();
-      rbf.checkRBF(this.data.tx_hash,function(result){
-        console.log(result);
-      });
-      */
-  }
+ 
 
 getImage(){
 

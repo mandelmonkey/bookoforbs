@@ -17,6 +17,11 @@ var txObject;
      var newTx;
      var sourceAddress;
      var bumbFeeCallback;
+     var checkFeeCallback;
+     var currentRawTx;
+     var counterpartyOutput = null;
+     var changeAmount = 0;
+
  function RBFTools() {
 
  }
@@ -77,6 +82,7 @@ console.log(spentUTXOSs.length);
 				var amount = getOutputAmount(rawtx,utxo.index);
 				inputAmount += amount;
 				if(utxo.included == true){
+					console.log("did include");
 					includedInputAmount = amount;
 					 
 				}
@@ -91,15 +97,116 @@ console.log(spentUTXOSs.length);
 
 		);
     	}else{
-    		continueBump();
+    		continueCheck();
     	}
 
     }
 
-   function continueBump(){
-    	var counterpartyOutput = null;
-    	 var changeAmount = 0;
+  RBFTools.prototype.continueBump =   function(newFee,callback){
+ 
+    	 
 
+ 					  console.log ("inputAmount:"+inputAmount)
+ 					  console.log ("outAmount:"+ (outputAmount - changeAmount) )
+ 					  console.log ("fee:"+fee)
+ 					    console.log ("newfee:"+newFee)
+ 					  
+ 					    var increase =  newFee-fee;
+ 					      console.log ("bumb:"+increase)
+ 					  fee += increase; 	
+ console.log ("newfee:"+fee)
+
+
+  sourceAddress = getUserAddressFromTx(txObject);
+console.log(sourceAddress);
+		getUTXOS(sourceAddress).then(function(utxos) {
+ 
+		  UTXOSs = utxos;
+
+ 
+ 					  newTx = new bitcoin.TransactionBuilder();
+ 
+		 		try{
+
+ 				  selectInputs(outputAmount,fee,includedInput,UTXOSs);
+
+ 				}
+ 				catch(e){
+ 					callback(null,e);
+ 					return;
+ 				}
+
+ 				
+ 				  	newTx.tx["outs"] = [];
+ 				  	newTx.tx.outs.push(counterpartyOutput); //add back cp output;
+
+ 				  	//calculate new change
+ 				  	var newChange =  newInputAmount - (outputAmount+fee);
+console.log("calc change "+ newInputAmount+" "+outputAmount+" "+fee);
+
+ 				  		console.log("new change "+newChange)
+
+ 				  	if(newChange  > 0){ //if new change exists add change output and push
+ 				  		newTx.addOutput(sourceAddress,newChange);
+ 				  	}
+ 				  	 
+ 				  
+ 				  	callback(newTx.buildIncomplete().toHex(),null);
+
+ 
+	 		 }); 		 
+       		
+    }
+  
+	var getRawTx = function(txid){
+		 return new Promise(function(resolve, reject) {
+     	makeGetRequest("transactions/"+txid+"/raw", 
+
+			function callback(result){
+				resolve(JSON.parse(result));
+
+		},
+		function error(error){
+    		resolve(null);
+
+		},
+
+
+		);
+    })
+ 
+		 
+
+	}
+
+
+		var getUTXOS = function(address){
+		 return new Promise(function(resolve, reject) {
+     	makeGetRequest("addresses/"+address+"/utxos", 
+
+			function callback(result){
+				resolve(JSON.parse(result));
+
+		},
+		function error(error){
+    		reject(error);
+
+		},
+
+
+		);
+    })
+ 
+		 
+
+	}
+
+	function continueCheck(){
+
+		  counterpartyOutput = null;
+    	  changeAmount = 0;
+ sourceAddress = getUserAddressFromTx(txObject);
+console.log(sourceAddress);
 
 
  				txObject.outs.forEach(function (output, idx) { //calculate the output value
@@ -135,100 +242,64 @@ console.log(spentUTXOSs.length);
 
  					  fee = inputAmount - outputAmount - changeAmount;
 
- 					  console.log ("inputAmount:"+inputAmount)
- 					  console.log ("outAmount:"+ (outputAmount - changeAmount) )
- 					  console.log ("fee:"+fee)
- 					    console.log ("bumb:"+increase)
- 					  fee += increase; 	
- console.log ("newfee:"+fee)
- 					  newTx = new bitcoin.TransactionBuilder();
- 
-		 		
-
- 				  selectInputs(outputAmount,fee,includedInput,UTXOSs);
-
- 				
- 				  	newTx.tx["outs"] = [];
- 				  	newTx.tx.outs.push(counterpartyOutput); //add back cp output;
-
- 				  	//calculate new change
- 				  	var newChange =  newInputAmount - (outputAmount+fee);
-
- 				  	if(newChange  > 0){ //if new change exists add change output and push
- 				  		newTx.addOutput(sourceAddress,newChange);
- 				  	}
- 				  	 
- 				  
- 				  	bumbFeeCallback(newTx.buildIncomplete().toHex());
-
- 
-	 				 
-       		
-    }
-  
-	var getRawTx = function(txid){
-		 return new Promise(function(resolve, reject) {
-     	makeGetRequest("transactions/"+txid+"/raw", 
-
-			function callback(result){
-				resolve(JSON.parse(result));
-
-		},
-		function error(error){
-    		reject(error);
-
-		},
-
-
-		);
-    })
- 
-		 
+ 					  checkFeeCallback(true,fee,currentRawTx);
 
 	}
 
+	RBFTools.prototype.checkRBF = function(txid,callback,errorCallback) {
+		checkFeeCallback = callback;
+includedInput = null;
 
-		var getUTXOS = function(address){
-		 return new Promise(function(resolve, reject) {
-     	makeGetRequest("addresses/"+address+"/utxos", 
+		spentUTXOSs = [];
 
-			function callback(result){
-				resolve(JSON.parse(result));
-
-		},
-		function error(error){
-    		reject(error);
-
-		},
+ 				  inputAmount = 0;
+ 				  includedInputAmount = 0;
+ 				  outputAmount = 0;
+ 				  fee= 0;
 
 
-		);
-    })
- 
-		 
 
-	}
-
-	RBFTools.prototype.checkRBF = function(txid,callback) {
-	 
+	 var isRBF = false;
 		getRawTx(txid).then(function(rawTx) {
+
+			if(rawTx == null){
+				errorCallback("error please try again later");
+				return;
+			}
                        
 		 
-			var rawTx = rawTx+""; //for some reason need to add empty string in prominse;
+			var rawTx = rawTx+""; //for some reason need to add empty string in promise;
+			currentRawTx = rawTx;
  	 console.log("rawtx "+rawTx);
 	 txObject = bitcoin.Transaction.fromHex(rawTx);
 
 	  
-  
+  spentUTXOSs = [];
  			txObject.ins.forEach(function (input, idx) {
+ 				console.log(input.sequence);
+ 				if(input.sequence == 4294967293){
+ 					isRBF = true;
+ 				}
 
-
- 			 	console.log("seq "+input.sequence);
-
+			let txid = tools.buffer((input.hash).reverse(),'hex').toString('hex');
+ 				if(includedInput == null){
+       				 includedInput = {"txid":txid,"index":input.index,"included":true};
+       				  spentUTXOSs.push(includedInput);
+       			}else{
+       				 spentUTXOSs.push({"txid":txid,"index":input.index,"included":false});
+       			}
+       			 
+ 
 
        		 
  			}); 
- 			callback("ok");
+ 			if(isRBF == false){
+				callback(false,null,null);
+ 				return;
+ 			}	
+ 			startGetUTXOAmounts();
+
+ 		
  				 
        		  }); 
  			  
@@ -254,8 +325,7 @@ console.log(spentUTXOSs.length);
 
 	 txObject = bitcoin.Transaction.fromHex(rawTx);
 
-	  sourceAddress = getUserAddressFromTx(txObject);
-console.log(sourceAddress);
+	 
 		getUTXOS(sourceAddress).then(function(utxos) {
  
 		  UTXOSs = utxos;
@@ -335,7 +405,7 @@ console.log(aUTXO.txid +" "+aUTXO.vout);
 		return addresses[0];//assuming all address are the same, not a good way to get the source address
 	}
  
-	function selectInputs(amount,newFee,includedInput,utxos){
+	function selectInputs(outputAmount,newFee,includedInput,utxos){
 
 
 		 
@@ -353,18 +423,40 @@ console.log(aUTXO.txid +" "+aUTXO.vout);
   			return a.amount - b.amount;
 		});
  
+ 		var availableBalance = 0;
 
+ 		for(var i =0;i<utxos.length;i++){
+			 
+				 	var aUTXO = utxos[i];
+				availableBalance +=  aUTXO.amount;
+					 
+		}
+		console.log("available amount "+availableBalance);
+
+		var requiredInputAmount = (outputAmount + newFee);
+
+		console.log("required:"+requiredInputAmount+" current:"+newInputAmount +" "+includedInputAmount );
 		for(var i =0;i<utxos.length;i++){
-			console.log(newInputAmount +" "+amount +" "+ newFee);
-			if(newInputAmount < (amount + newFee)){
+			
+		
+			if(newInputAmount <= requiredInputAmount){
 				var aUTXO = utxos[i];
+
+				 availableBalance-=aUTXO.amount;
 				 
 				newInputAmount += (aUTXO.amount * 100000000);
+
+				console.log("required:"+requiredInputAmount+" current:"+newInputAmount +" "+(aUTXO.amount * 100000000) );
 					newTx.addInput(aUTXO.txid,aUTXO.vout);
 				 
 			}else{
 				break;
 			}
+		}
+
+		if(newInputAmount < requiredInputAmount){
+			throw "balance error";
+			return;
 		}
 		
 		newTx.tx.ins.forEach(function (input, idx) {

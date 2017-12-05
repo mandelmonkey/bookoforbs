@@ -3,7 +3,10 @@ import { Component, OnInit,ViewChild, ElementRef,ChangeDetectorRef } from '@angu
 import { Observable } from 'rxjs/Observable';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
- 
+   declare var RBFTools:any;
+    declare var IndieSquare:any; 
+    declare var Mnemonic:any;  
+      declare var foo:any;
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -11,17 +14,31 @@ import { DataService } from '../services/data.service';
 })
 export class HistoryComponent implements OnInit {
 allOwnImage = this.dataService.getImage('leftOptionSeg');
+loadingBump = false;
+showBump = false;
+currentBumpFee = 0;
   viewPortItems2:any;
 loading = false;
  scrollView;
  didInit=false;
+ newFee="";
  lastType="";
  mode="history";
   cardHeightInner = "100%";
    scrollObservable;
    orderSelectImage;
    currentRequest;
-  constructor(public dataService:DataService,private httpService:HTTPService) { }
+   rbf:any;
+   currentBumpUnsignedHex="";
+    indiesquare:any;
+  constructor(public dataService:DataService,private httpService:HTTPService) { 
+
+  
+
+
+
+
+  }
  ngAfterViewInit() {
  	this.didInit=true;
     this.scrollView = document.getElementById("scrollView");
@@ -163,9 +180,10 @@ getOrders(type:string){
   this.lastType = type;
   this.dataService.maincontroller.orders=[];
   var tmpthis = this;
+  
     if(this.dataService.maincontroller.currentAddress != "empty" && tmpthis.dataService.maincontroller.orders.length == 0){
       this.loading = true;
-    this.currentRequest = this.httpService.getOrderHistory(this.dataService.maincontroller.currentAddress,type,this.dataService.maincontroller.currentCurrency).subscribe(
+    this.currentRequest =  tmpthis.httpService.getOrderHistory(this.dataService.maincontroller.currentAddress,type,this.dataService.maincontroller.currentCurrency).subscribe(
      data => { 
       tmpthis.dataService.maincontroller.orders= data;
       console.log("orders:"+ JSON.stringify(tmpthis.dataService.maincontroller.orders ));
@@ -194,6 +212,140 @@ reloadOrders(){
 
     this.getHistory();
       
+  }
+
+   bumpFee(txid){
+this.newFee="";
+ this.showBump = true;
+        this.loadingBump = true;
+ 
+    var tmpthis = this;
+ this.rbf = new RBFTools();
+       this.rbf.checkRBF(txid,function(result,currentFee,rawtx){
+        if(result == true){
+
+          tmpthis.currentBumpFee = currentFee / 100000000;
+          tmpthis.loadingBump = false;
+         
+
+        }else{
+          tmpthis.showBump = false;
+          alert(tmpthis.dataService.getLang('cant_bump_fee'));
+        }
+
+      },function(error){
+         tmpthis.showBump = false;
+          alert(error);
+      }); 
+      
+  }
+closeBumpFee(){
+  this.showBump = false;
+}
+continueBumpFee(){
+  var tmpthis = this;
+var newFeeNum = Number(this.newFee);
+ 
+  if(Number.isNaN(newFeeNum)){
+    alert(tmpthis.dataService.getLang('fee_not_valid'));
+    return;
+  }
+  
+  //var minBump=0.00001;
+//console.log(this.currentBumpFee+" "+minBump);
+  if(newFeeNum<=(this.currentBumpFee)){
+   alert(tmpthis.dataService.getLang('fee_not_valid'));
+    return;
+  }
+  
+  this.loadingBump = true;
+
+  this.rbf.continueBump(Math.round(newFeeNum*100000000),function(unsignedhex,error){
+       tmpthis.loadingBump = false;
+
+    if(error != null){
+
+      alert(error);
+      return;
+    } 
+ 
+   
+    tmpthis.currentBumpUnsignedHex = unsignedhex;
+    
+    tmpthis.dataService.maincontroller.showPassword(tmpthis.closeBumpFee,tmpthis.signBroadcast,tmpthis);
+
+  });
+
+}
+
+signBroadcast(passphrase:string,owner:any){
+       try {
+
+        var seed = new Mnemonic(passphrase.split(' ')).toHex();
+    }
+    catch(err) {
+       
+        
+         throw  err;
+    }
+   
+  var masterKey = foo.bitcoin.HDNode.fromSeedBuffer(foo.buffer(seed, 'hex'), foo.bitcoin.networks.bitcoin);
+
+    var route = owner.dataService.maincontroller.basePath +owner.dataService.maincontroller.currentIndex;
+    
+var key1 = masterKey.derivePath(route).keyPair;
+  var unsignedTx = foo.bitcoin.Transaction.fromHex(owner.currentBumpUnsignedHex);
+
+                                        var txb = foo.bitcoin.TransactionBuilder.fromTransaction(unsignedTx,foo.bitcoin.networks.bitcoin);
+
+                                        txb.inputs.forEach(function (input, idx) {
+                                            txb.inputs[idx] = {}; // small hack to undo the fact that CP sets the output script in the input script
+                                            txb.sign(idx, key1);
+                                        });
+
+                                        var signedTx = txb.build();
+
+                                        console.log("sig"+signedTx.toHex());
+
+
+
+
+
+     
+
+     
+  owner.indiesquare = new IndieSquare({
+    'apikey':  owner.httpService.apiKey  
+  });
+ owner.loadingBump = true;
+ owner.indiesquare.broadcast({"tx":signedTx.toHex()}, function(data, error){
+
+     owner.showBump = false;
+        if( error ){
+           
+            console.error(error);
+            owner.dataService.maincontroller.showMessage(error.message);
+             
+            return;
+        }
+
+
+    owner.dataService.maincontroller.history = [];
+     owner.getHistory();  
+     if(owner.dataService.maincontroller.orders.length > 0){ 
+ owner.reloadOrders();
+}
+ 
+        owner.dataService.maincontroller.showMessage(owner.dataService.getLang("fee_bumped"));
+
+
+ 
+ 
+       
+           
+      });  
+
+
   }
 
 getHistory(){

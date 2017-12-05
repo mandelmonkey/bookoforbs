@@ -133,7 +133,11 @@ var ja = function() {
 	lang["enter_word_by"]="単語毎に入力する";
 	lang["enter_recoveryphrase"]="単語毎に入力する";
 	lang["enter_recoveryphrase"]="復元パスフレーズに入力する";
-	lang["bump_fee"]="手数料上がる";
+	lang["bump_fee"]="手数料上がる"; 
+	lang["enter_new_fee"]="enter new fee (btc)";
+	lang["fee_not_valid"]="Enter a fee higher than the previous";
+	lang["cant_bump_fee"]="You cannot increase the fee on this transaction";
+	lang["fee_bumped"]="Success! The transaction was broadcast with a higher fee";
 
 function ja() {
 

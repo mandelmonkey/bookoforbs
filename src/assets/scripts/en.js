@@ -134,11 +134,10 @@ var en = function() {
 	lang["enter_word_by"]="Enter word by word";
 	lang["enter_recoveryphrase"]="enter 12 word phrase";
 	lang["bump_fee"]="bump fee";
-	lang[""]="";
-	lang[""]="";
-	lang[""]="";
-	lang[""]="";
-	lang[""]="";
+	lang["enter_new_fee"]="enter new fee (btc)";
+	lang["fee_not_valid"]="Enter a fee higher than the previous";
+	lang["cant_bump_fee"]="You cannot increase the fee on this transaction";
+	lang["fee_bumped"]="Success! The transaction was broadcast with a higher fee";
 
 	 
 	 

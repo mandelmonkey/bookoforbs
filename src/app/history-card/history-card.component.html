@@ -16,7 +16,7 @@
 <p class="infoline">{{getDate()}}<p>
 
 	   <div class="rbfButton" *ngIf="canRBF()">
- 	<input class="customButton" type="button" [value]="dataService.getLang('bump_fee')"   (click)="bumpFee()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	
+ 	<input class="customButton" type="button" [value]="dataService.getLang('bump_fee')"   (click)="dataService.history.bumpFee(data.tx_hash)" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	
  </div>
 
 </div>
@@ -38,7 +38,7 @@
 <p class="infoline">{{getDate()}}<p>
 
    <div class="rbfButton" *ngIf="canRBF()">
- 	<input class="customButton" type="button" [value]="dataService.getLang('bump_fee')"   (click)="bumpFee()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	
+ 	<input class="customButton" type="button" [value]="dataService.getLang('bump_fee')"   (click)="dataService.history.bumpFee(data.tx_hash)" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	
  </div>
 </div>
 

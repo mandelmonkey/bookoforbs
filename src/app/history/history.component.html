@@ -67,3 +67,30 @@
 
 
     </div>
+
+     <div class="bumpFeeDark"  *ngIf="showBump" >
+   <div class="bumpFee" id="bumpFee"  [style.background-image]="'url(' +dataService.getImage('thinFrameSmall')+ ')'">
+   
+            <div>  
+                <div *ngIf="loadingBump"> 
+
+<h3 class="bumpFeeTitle" style="margin-top: 30%;">Please wait...</h3>
+                </div>
+
+            <div *ngIf="!loadingBump"> 
+       <h3 class="bumpFeeTitle">Increase Fee </h3>
+        
+         <h4 class="bumpFeeTitle">Current fee: {{currentBumpFee}} BTC {{dataService.maincontroller.getFiatForToken('BTC',currentBumpFee)}}</h4>
+        <div>
+      <input  class="newFee"  type="text" [(ngModel)]="newFee" [placeholder]="dataService.getLang('enter_new_fee')"  name="new fee"> 
+       </div>
+      <div>
+        <input class="closeBumpButton" type="button" [value]="dataService.getLang('cancel')" (click)="closeBumpFee()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+       <input class="closeBumpButton" type="button" [value]="dataService.getLang('confirm')" (click)="continueBumpFee()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'">
+      </div>
+       </div>
+        </div>
+        </div>
+
+
+  </div>
