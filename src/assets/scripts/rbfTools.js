@@ -21,6 +21,8 @@ var txObject;
      var currentRawTx;
      var counterpartyOutput = null;
      var changeAmount = 0;
+     var includedInputs = [];
+	var oldTxid = "";
 
  function RBFTools() {
 
@@ -83,9 +85,10 @@ console.log(spentUTXOSs.length);
 				inputAmount += amount;
 				if(utxo.included == true){
 					console.log("did include");
-					includedInputAmount = amount;
+				//	includedInputAmount += amount;
 					 
 				}
+				includedInputAmount += amount;
 				  spentUTXOSs.splice(-1,1);
 				 startGetUTXOAmounts();
 
@@ -124,7 +127,7 @@ console.log(sourceAddress);
 		  UTXOSs = utxos;
 
  
- 					  newTx = new bitcoin.TransactionBuilder();
+ 					  
  
 		 		try{
 
@@ -247,11 +250,12 @@ console.log(sourceAddress);
 	}
 
 	RBFTools.prototype.checkRBF = function(txid,callback,errorCallback) {
+		oldTxid = txid;
 		checkFeeCallback = callback;
 includedInput = null;
 
 		spentUTXOSs = [];
-
+includedInputs = [];
  				  inputAmount = 0;
  				  includedInputAmount = 0;
  				  outputAmount = 0;
@@ -272,22 +276,30 @@ includedInput = null;
 			currentRawTx = rawTx;
  	 console.log("rawtx "+rawTx);
 	 txObject = bitcoin.Transaction.fromHex(rawTx);
-
+newTx = new bitcoin.TransactionBuilder();
 	  
   spentUTXOSs = [];
  			txObject.ins.forEach(function (input, idx) {
+
+
  				console.log(input.sequence);
  				if(input.sequence == 4294967293){
  					isRBF = true;
  				}
 
 			let txid = tools.buffer((input.hash).reverse(),'hex').toString('hex');
- 				if(includedInput == null){
-       				 includedInput = {"txid":txid,"index":input.index,"included":true};
-       				  spentUTXOSs.push(includedInput);
-       			}else{
+
+			newTx.addInput(txid, input.index);
+			includedInputs.push(txid+":"+input.index);
+
+ 				//if(includedInput == null){
+       				// includedInput = {"txid":txid,"index":input.index,"included":true};
+       				 // spentUTXOSs.push(includedInput);
+       		//	}else{
        				 spentUTXOSs.push({"txid":txid,"index":input.index,"included":false});
-       			}
+       	//		}
+
+
        			 
  
 
@@ -409,14 +421,13 @@ console.log(aUTXO.txid +" "+aUTXO.vout);
 
 
 		 
-		newTx.addInput(includedInput.txid, includedInput.index);
+		//newTx.addInput(includedInput.txid, includedInput.index);
   
 
 		var newInputs = [];
-		newInputAmount = 0;
+		newInputAmount = includedInputAmount;
 
-		newInputAmount  += includedInputAmount;
-
+		 
  		 
 
 		utxos =  utxos.sort(function(a, b) { //order utxos by value
@@ -440,14 +451,19 @@ console.log(aUTXO.txid +" "+aUTXO.vout);
 			
 		
 			if(newInputAmount <= requiredInputAmount){
+
+
 				var aUTXO = utxos[i];
+				if(includedInputs.indexOf(aUTXO.txid+":"+aUTXO.vout) == -1 && aUTXO.txid != oldTxid){
 
 				 availableBalance-=aUTXO.amount;
 				 
 				newInputAmount += (aUTXO.amount * 100000000);
 
 				console.log("required:"+requiredInputAmount+" current:"+newInputAmount +" "+(aUTXO.amount * 100000000) );
+
 					newTx.addInput(aUTXO.txid,aUTXO.vout);
+				}
 				 
 			}else{
 				break;
