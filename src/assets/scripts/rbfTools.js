@@ -23,7 +23,8 @@ var txObject;
      var changeAmount = 0;
      var includedInputs = [];
 	var oldTxid = "";
-
+var oldSize = 0;
+var oldFeeSatByte = 0;
  function RBFTools() {
 
  }
@@ -153,14 +154,21 @@ console.log("calc change "+ newInputAmount+" "+outputAmount+" "+fee);
  				  		newTx.addOutput(sourceAddress,newChange);
  				  	}
  				  	 
+ 				   var newTxHex = newTx.buildIncomplete().toHex();
+
+ 				 
+ 				 
+ 				 	callback(newTxHex,null,oldFeeSatByte);
+ 				 
  				  
- 				  	callback(newTx.buildIncomplete().toHex(),null);
 
  
 	 		 }); 		 
        		
     }
-  
+  function getBinarySize(string) {
+    return tools.buffer.byteLength(string, 'hex');
+}
 	var getRawTx = function(txid){
 		 return new Promise(function(resolve, reject) {
      	makeGetRequest("transactions/"+txid+"/raw", 
@@ -245,6 +253,8 @@ console.log(sourceAddress);
 
  					  fee = inputAmount - outputAmount - changeAmount;
 
+ 					  oldFeeSatByte = fee/oldSize;
+
  					  checkFeeCallback(true,fee,currentRawTx);
 
 	}
@@ -273,6 +283,7 @@ includedInputs = [];
                        
 		 
 			var rawTx = rawTx+""; //for some reason need to add empty string in promise;
+			oldSize = getBinarySize(rawTx);
 			currentRawTx = rawTx;
  	 console.log("rawtx "+rawTx);
 	 txObject = bitcoin.Transaction.fromHex(rawTx);

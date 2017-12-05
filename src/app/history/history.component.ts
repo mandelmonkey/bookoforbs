@@ -21,6 +21,7 @@ currentBumpFee = 0;
 loading = false;
  scrollView;
  didInit=false;
+ oldSatByte=0;
  newFee="";
  lastType="";
  mode="history";
@@ -260,9 +261,9 @@ var newFeeNum = Number(this.newFee);
   
   this.loadingBump = true;
 
-  this.rbf.continueBump(Math.round(newFeeNum*100000000),function(unsignedhex,error){
+  this.rbf.continueBump(Math.round(newFeeNum*100000000),function(unsignedhex,error,oldFee){
        tmpthis.loadingBump = false;
-
+tmpthis.oldSatByte = oldFee;
     if(error != null){
 
       alert(error);
@@ -318,7 +319,25 @@ var key1 = masterKey.derivePath(route).keyPair;
     'apikey':  owner.httpService.apiKey  
   });
  owner.loadingBump = true;
- owner.indiesquare.broadcast({"tx":signedTx.toHex()}, function(data, error){
+
+
+  function getBinarySize(string) {
+    return foo.buffer.byteLength(string, 'hex');
+}
+
+var newSize =  Math.round(Number(owner.newFee)*100000000) / getBinarySize(signedTx.toHex());
+  
+if(newSize<=owner.oldSatByte){
+   owner.showBump = false;
+
+           
+            owner.dataService.maincontroller.showMessage("please enter a higher fee");
+             
+            return;
+}
+console.log(newSize +"  "+owner.oldSatByte);
+
+ owner.indiesquare.broadcast({"tx":signedTx.toHex() }, function(data, error){
 
      owner.showBump = false;
         if( error ){
