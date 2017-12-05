@@ -25,7 +25,7 @@ export class HistoryCardComponent implements OnInit {
 
 constructor(public dataService:DataService,private httpService:HTTPService) { }
   ngOnInit() {
-  	//console.log(JSON.stringify(this.data));
+   console.log(JSON.stringify(this.data));
   }
 getImage(){
 

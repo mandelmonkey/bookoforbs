@@ -69,7 +69,7 @@ checkWord(val:string){
 nextWord(){
 
  
-  if(this.passphraseFull.split(" ").length > 0){
+  if(this.passphraseFull.length > 0){
     this.passphrase = this.passphraseFull;
       
 
