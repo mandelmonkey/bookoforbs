@@ -44266,13 +44266,37 @@ Message.prototype.inspect = function() {
 					for( var i = 0; i < decoded_tx.vin.length; i++ ){
 						var vin = decoded_tx.vin[i];
 						for( var j = 0; j < result.utxos.length; j++ ){
+
 							if( vin.txid === result.utxos[j].txid && vin.vout == result.utxos[j].vout ){
-								utxos = utxos.concat( result.utxos.splice(j, 1) );
+               
+ 
+								utxos = utxos.concat(result.utxos.splice(j, 1));
 								continue;
 							}
 						}
 					}
+
+          
 					var tx = new bitcoreBoo.Transaction().from(utxos);
+  //set custom sequence number if available
+           for( var i = 0; i < decoded_tx.vin.length; i++ ){
+            var vin = decoded_tx.vin[i];
+         for( var j = 0; j < tx.inputs.length; j++ ){
+          var vinNew =  tx.inputs[j]; 
+              if( vinNew.prevTxId.toString('hex') === vin.txid && vinNew.outputIndex == vin.vout ){
+               
+                if(typeof vin.sequence != "undefined"){
+                  console.log("sequence "+vin.sequence);
+                 vinNew.sequenceNumber = vin.sequence;
+                    
+                }
+
+              }
+
+
+         }
+
+       }
 					
 					tx.version = decoded_tx.version;
 					tx.nLockTime = decoded_tx.locktime;

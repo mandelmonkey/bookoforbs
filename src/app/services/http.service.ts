@@ -177,12 +177,7 @@ export class HTTPService{
         headers:header
       })
       .map(res => res.json());
-       /*
- return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
-        headers:header
-      })
-      .map(res => res.json());
-      */
+      
 
     };
 

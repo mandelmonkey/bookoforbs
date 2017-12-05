@@ -208,6 +208,33 @@ console.log(spentUTXOSs.length);
 		 
 
 	}
+
+	RBFTools.prototype.checkRBF = function(txid,callback) {
+	 
+		getRawTx(txid).then(function(rawTx) {
+                       
+		 
+			var rawTx = rawTx+""; //for some reason need to add empty string in prominse;
+ 	 console.log("rawtx "+rawTx);
+	 txObject = bitcoin.Transaction.fromHex(rawTx);
+
+	  
+  
+ 			txObject.ins.forEach(function (input, idx) {
+
+
+ 			 	console.log("seq "+input.sequence);
+
+
+       		 
+ 			}); 
+ 			callback("ok");
+ 				 
+       		  }); 
+ 			  
+
+
+    };
  
 	RBFTools.prototype.bumpFee = function(txid,bumbAmount,callback) {
 	bumbFeeCallback = callback;

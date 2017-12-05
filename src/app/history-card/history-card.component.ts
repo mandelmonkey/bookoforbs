@@ -6,6 +6,8 @@ import {HTTPService} from "../services/http.service";
     declare var bitcore:any; 
   declare var Mnemonic:any;
 
+  declare var RBFTools:any;
+
 @Component({
   selector: 'app-history-card',
   templateUrl: './history-card.component.html',
@@ -22,11 +24,60 @@ export class HistoryCardComponent implements OnInit {
   order:boolean;
   indiesquare:any;
 
+  rawtx:string;
+
 
 constructor(public dataService:DataService,private httpService:HTTPService) { }
   ngOnInit() {
-   console.log(JSON.stringify(this.data));
+  console.log(JSON.stringify(this.data));
+/*
+
+      this.httpService.getRawTransaction(this.data.tx_hash).subscribe(
+    
+     data => { 
+        console.log("Rawtx"+data);
+        this.rawtx = data;
+      
+      },   
+      error => {
+        console.log("error rawtx");
+       
+     },
+     () => {});
+*/
+
+  
+
+
   }
+  canRBF(){
+
+      if(this.data.unconfirm != null){
+        if(this.data.unconfirm == true){
+          return true;
+        }
+      }else{
+        return false;
+      }
+   /*if(this.rawtx.length > 0){
+      return true;
+   }else{
+       return false;
+   }*/
+
+  }
+
+  bumpFee(){
+
+    alert("coming soon...");
+    /*
+      var rbf = new RBFTools();
+      rbf.checkRBF(this.data.tx_hash,function(result){
+        console.log(result);
+      });
+      */
+  }
+
 getImage(){
 
 if(this.data != null){

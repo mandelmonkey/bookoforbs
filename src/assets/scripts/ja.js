@@ -133,6 +133,7 @@ var ja = function() {
 	lang["enter_word_by"]="単語毎に入力する";
 	lang["enter_recoveryphrase"]="単語毎に入力する";
 	lang["enter_recoveryphrase"]="復元パスフレーズに入力する";
+	lang["bump_fee"]="手数料上がる";
 
 function ja() {
 

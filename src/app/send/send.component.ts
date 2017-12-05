@@ -164,7 +164,8 @@ public sending:boolean;
     tmpthis.dataService.maincontroller.showMessage("sent!");
     tmpthis.closeSend();
     return;*/
-             
+ 
+ 
       tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
     if( error ){
        tmpthis.sending = false;
@@ -175,7 +176,7 @@ public sending:boolean;
      tmpthis.sending = false;
     tmpthis.dataService.maincontroller.showMessage("sent!");
     tmpthis.closeSend();
-});
+}); 
               
 
             
@@ -324,7 +325,7 @@ console.error("send error " + error);
           return;
       }
     }  
-   // console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
+    console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx);
    
 
 var feeBTC = data.fee / 100000000;
@@ -365,7 +366,6 @@ var feeBTC = data.fee / 100000000;
      
  
  
-        
      tmpthis.indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
         if( error ){
             console.error(error);
@@ -379,6 +379,7 @@ var feeBTC = data.fee / 100000000;
           tmpthis.closeSend();
             tmpthis.dataService.maincontroller.closeQR();
       });  
+ 
 
     
 
