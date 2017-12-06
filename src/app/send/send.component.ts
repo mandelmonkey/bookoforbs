@@ -288,7 +288,8 @@ var tmpThis = this
 if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)){
  
 
-  sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
+ // sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
+ sendParams["feePerKb"] =  parseFloat(this.dataService.maincontroller.customFee) / 1000;
 
 }else{
   sendParams["feePerKb"] =this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
@@ -397,7 +398,7 @@ var feeBTC = data.fee / 100000000;
 
       }else{
         tmpthis.sending = false;
-         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_sending',tmpthis.amount,tmpthis.dataService.maincontroller.selectedKey,tmpthis.dataService.maincontroller.currentSendAddress,feeBTC+""),tmpthis.getPassphrase ,tmpthis.cancelSend,tmpthis );
+         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_sending',tmpthis.amount,tmpthis.dataService.maincontroller.selectedKey,tmpthis.dataService.maincontroller.currentSendAddress,feeBTC+"")+" "+tmpthis.dataService.maincontroller.getFiatForToken('BTC',feeBTC),tmpthis.getPassphrase ,tmpthis.cancelSend,tmpthis );
  
       } 
   

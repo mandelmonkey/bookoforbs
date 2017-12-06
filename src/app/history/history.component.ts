@@ -16,13 +16,15 @@ export class HistoryComponent implements OnInit {
 allOwnImage = this.dataService.getImage('leftOptionSeg');
 loadingBump = false;
 showBump = false;
+oldSatByte = 0;
+newFee = 0;
 currentBumpFee = 0;
   viewPortItems2:any;
 loading = false;
  scrollView;
  didInit=false;
- oldSatByte=0;
- newFee="";
+  
+ newSatByte="";
  lastType="";
  mode="history";
   cardHeightInner = "100%";
@@ -216,16 +218,17 @@ reloadOrders(){
   }
 
    bumpFee(txid){
-this.newFee="";
+this.newSatByte="";
  this.showBump = true;
         this.loadingBump = true;
  
     var tmpthis = this;
  this.rbf = new RBFTools();
-       this.rbf.checkRBF(txid,function(result,currentFee,rawtx){
+       this.rbf.checkRBF(txid,function(result,currentFee,satByte,rawtx){
         if(result == true){
 
           tmpthis.currentBumpFee = currentFee / 100000000;
+          tmpthis.oldSatByte = Math.round(satByte);
           tmpthis.loadingBump = false;
          
 
@@ -240,46 +243,68 @@ this.newFee="";
       }); 
       
   }
-closeBumpFee(){
+closeBumpFee(tmpthis){
+  if(typeof tmpthis == "undefined"){
+ this.loadingBump = false;
   this.showBump = false;
+  }else{
+ tmpthis.loadingBump = false;
+  tmpthis.showBump = false;
+}
 }
 continueBumpFee(){
   var tmpthis = this;
-var newFeeNum = Number(this.newFee);
+var newSatByteNum = Number(this.newSatByte);
  
-  if(Number.isNaN(newFeeNum)){
+  if(Number.isNaN(newSatByteNum)){
     alert(tmpthis.dataService.getLang('fee_not_valid'));
     return;
   }
   
   //var minBump=0.00001;
 //console.log(this.currentBumpFee+" "+minBump);
-  if(newFeeNum<=(this.currentBumpFee)){
+  if(newSatByteNum<=(this.oldSatByte)){
    alert(tmpthis.dataService.getLang('fee_not_valid'));
     return;
   }
   
   this.loadingBump = true;
 
-  this.rbf.continueBump(Math.round(newFeeNum*100000000),function(unsignedhex,error,oldFee){
-       tmpthis.loadingBump = false;
-tmpthis.oldSatByte = oldFee;
+  this.rbf.continueBump( newSatByteNum,function(unsignedhex,error,newFee){
+       tmpthis.loadingBump = false; 
     if(error != null){
-
+      if(error == "balance error"){
+  alert( tmpthis.dataService.getLang('bump_balance'));
+  tmpthis.showBump = false;
+     tmpthis.loadingBump = false; 
+      }else{
       alert(error);
+    }
       return;
     } 
- 
+       tmpthis.newFee = newFee;
    
     tmpthis.currentBumpUnsignedHex = unsignedhex;
-    
-    tmpthis.dataService.maincontroller.showPassword(tmpthis.closeBumpFee,tmpthis.signBroadcast,tmpthis);
 
+   var newFeeBtc =  newFee / 100000000 ;
+    var fiatVal = tmpthis.dataService.maincontroller.getFiatForToken('BTC',newFeeBtc );
+    tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('new_fee',newFeeBtc +"",fiatVal),tmpthis.finishBump ,tmpthis.cancelBump,tmpthis );
+ 
+    
   });
 
 }
+finishBump(tmpthis){
+  tmpthis.dataService.maincontroller.showPassword(tmpthis.closeBumpFee,tmpthis.signBroadcast,tmpthis);
+
+}
+cancelBump(tmpthis){
+  tmpthis.loadingBump = false;
+  tmpthis.showBump = false;
+}
 
 signBroadcast(passphrase:string,owner:any){
+   owner.showBump =true;
        try {
 
         var seed = new Mnemonic(passphrase.split(' ')).toHex();
@@ -325,19 +350,12 @@ var key1 = masterKey.derivePath(route).keyPair;
     return foo.buffer.byteLength(string, 'hex');
 }
 
-var newSize =  Math.round(Number(owner.newFee)*100000000) / getBinarySize(signedTx.toHex());
-  
-if(newSize<=owner.oldSatByte){
-   owner.showBump = false;
+var newSize =   owner.newFee / getBinarySize(signedTx.toHex());
+  console.log(newSize +"  "+owner.oldSatByte);
+ 
 
-           
-            owner.dataService.maincontroller.showMessage("please enter a higher fee");
-             
-            return;
-}
-console.log(newSize +"  "+owner.oldSatByte);
 
- owner.indiesquare.broadcast({"tx":signedTx.toHex() }, function(data, error){
+ owner.indiesquare.broadcast({"tx":signedTx.toHex()}, function(data, error){
 
      owner.showBump = false;
         if( error ){

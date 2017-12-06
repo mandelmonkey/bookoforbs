@@ -79,7 +79,7 @@ var en = function() {
 	lang["enter_valid_address"]="Enter a valid address";
 	lang["you_are_sending"]="You are sending\n\n$1$ $2$ to $3$ \n\nfee: $4$ BTC";
 	lang["sent"]="Sent!";
-	lang["custom_fee"]="custom fee btc";
+	lang["custom_fee"]="custom fee sat/bytes";
 	lang["fee_high"]="Fee: high";
 	lang["fee_mid"]="Fee: mid";
 	lang["fee_low"]="Fee: low";
@@ -134,11 +134,14 @@ var en = function() {
 	lang["enter_word_by"]="Enter word by word";
 	lang["enter_recoveryphrase"]="enter 12 word phrase";
 	lang["bump_fee"]="bump fee";
-	lang["enter_new_fee"]="enter new fee (btc)";
+	lang["enter_new_fee"]="enter new fee (sat/byte)";
 	lang["fee_not_valid"]="Enter a fee higher than the previous";
 	lang["cant_bump_fee"]="You cannot increase the fee on this transaction";
 	lang["fee_bumped"]="Success! The transaction was broadcast with a higher fee";
-
+	lang["new_fee"]="Confirm\n\nThe new fee will cost \n\n$1$ BTC\n\n$2$";
+	lang["bump_balance"]="You do not have enough balance to increase the fee";
+	lang["current_bump_fee"]="Current fee: $1$ BTC ";
+	
 	 
 	 
 function en() {

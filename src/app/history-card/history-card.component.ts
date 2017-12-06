@@ -196,7 +196,8 @@ var tmpthis = this;
 if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)){
  
 
-  sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
+  //sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
+  sendParams["feePerKb"] =  parseFloat(this.dataService.maincontroller.customFee) / 1000;
 
 }else{
   sendParams["feePerKb"] =this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];

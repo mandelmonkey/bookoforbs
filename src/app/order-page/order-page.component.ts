@@ -206,7 +206,9 @@ createOrder(){
     var params = {"source": this.dataService.maincontroller.currentAddress, "give_quantity": giveQuant, "give_token": giveToken, "get_quantity":getQuant, "get_token": getToken, "expiration": 100};
 var currentFee = this.dataService.maincontroller.getCurrentFee();
 if(currentFee == "custom"){
-	params["fee"] = +this.dataService.maincontroller.currentFee * 100000000;
+	//params["fee"] = +this.dataService.maincontroller.currentFee * 100000000;
+
+  params["feePerKb"] =  parseFloat(this.dataService.maincontroller.customFee) / 1000;
 }else{
 	 params["fee_per_kb"] = currentFee;
 }

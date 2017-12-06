@@ -37,7 +37,7 @@ rotated = false;
     }
     else{
 
-      return  this.dataService.maincontroller.currentFee+" BTC";
+      return  this.dataService.maincontroller.currentFee+" sat/byte";
     }
  
 
@@ -121,7 +121,7 @@ rotated = false;
          this.dataService.maincontroller.showMessage(this.dataService.getLang("fee_too_low"));
          this.dataService.maincontroller.customFee = "";
        }
-       else if(customFee > 0.01){
+       else if(customFee > 1000){
          this.dataService.maincontroller.showMessage("fee_too_high");
          this.dataService.maincontroller.customFee = "";
        }
