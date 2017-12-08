@@ -1,22 +1,50 @@
-.priceBuy{ 
+.title{ 
   
   white-space:pre-wrap;
   margin-top: 10px;
-  width: 50%;
  
-  float: left;
+ 
+ 
   color: #ffffd5;
     font-family:   sling;
-     font-size: 1em;
+ 
+       font-size: 0.7em;
 }
-.priceSell{ 
+.priceVal{ 
 
   white-space:pre-wrap;
   margin-top: 10px;
-  width: 50%;
+ 
   
-  float: right;
+ 
   color: #ffffd5;
-    font-family:   merriweather;
-     font-size: 10pt;
+     font-family:   sling;
+       font-size: 0.8em;
+    
+  
+}
+.priceVal b{ 
+ 
+       font-size: 0.6em;
+    
+  
+}
+.fiatVal{ 
+
+  white-space:pre-wrap;
+  margin-top: 10px;
+  
+  color: #ffffd5;
+     font-family:   sling;
+     
+      font-size: 0.7em;
+}
+.buySection{
+ 
+  width: 50%; 
+   float: left;
+}
+.sellSection{
+  float: right;
+   width: 50%; 
 }

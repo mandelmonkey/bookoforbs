@@ -1,2 +1,59 @@
-<div ><label class="priceBuy">{{buyPrice}}</label><label class="priceSell">{{sellPrice}}</label> </div>
-					
+<div *ngIf="!loading">
+
+	<div class="buySection">
+		<div *ngIf="!noSellOrders">
+			<div class="title">{{dataService.getLang('buy')}}</div>
+			<div  class="priceVal">{{buyPrice}}<b>{{dataService.maincontroller.currentAbrev}}</b></div>
+			<div  class="fiatVal">{{fiatBuyPrice}}</div>
+		</div>
+		<div *ngIf="noSellOrders">
+	 
+			<div class="title">{{dataService.getLang('no_orders')}}</div>
+			<div  class="priceVal"> </div>
+			<div  class="fiatVal"> </div>
+		 
+		</div>
+	</div> 
+	<div class="sellSection">
+		<div *ngIf="!noBuyOrders">
+			<div  class="title">{{dataService.getLang('sell')}}</div>
+			<div  class="priceVal">{{sellPrice}}<b>{{dataService.maincontroller.currentAbrev}}</b></div>
+			<div  class="fiatVal">{{fiatSellPrice}}</div>
+		</div>
+		<div *ngIf="noBuyOrders">
+	 
+		<div class="title">{{dataService.getLang('no_orders')}}</div>
+			<div  class="priceVal"> </div>
+			<div  class="fiatVal"> </div>
+		 
+		</div>
+	</div> 
+
+</div>
+
+
+
+<div *ngIf="loading">
+	 
+			 
+			<div class="title">{{dataService.getLang('loading')}}</div>
+			<div  class="priceVal"> </div>
+			<div  class="fiatVal"> </div>
+	 
+	 
+		 
+</div>
+
+
+
+<div *ngIf="isError">
+	 
+			 
+			<div class="title">{{dataService.getLang('error')}}</div>
+			<div  class="priceVal"> </div>
+ 
+</div>
+
+
+
+						

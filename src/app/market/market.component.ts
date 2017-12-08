@@ -29,6 +29,16 @@ export class MarketComponent implements OnInit {
      this.setMarketData();
 
   }
+  getCardWidth(){
+    
+    if(document.documentElement.clientHeight > document.documentElement.clientWidth){
+       return "35vw";
+    } else{
+      return "15vw";
+    }
+ 
+  }
+
 getCollectionHeight(){
     return (document.documentElement.clientHeight-document.getElementById("marketScroll").offsetTop-55)+"px"; 
   }
