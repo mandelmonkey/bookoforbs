@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,Directive, HostListener, ChangeDetectorRef  } from '@angular/core';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
  declare var IndieSquare:any; 
@@ -12,9 +12,10 @@ import { DataService } from '../services/data.service';
 })
 
 export class OrderPageComponent implements OnInit {
+ 
 
- constructor(public dataService:DataService,private httpService:HTTPService) { }
- pastOrderPickerTop = "1000px";
+
+pastOrderPickerTop = "1000px";
   pastOrderPicker;
 loading:boolean;
 loadingOrders:boolean;
@@ -44,7 +45,7 @@ bottomTop = "0px";
   locked =" ";
  baseDivisible = -1;
  selectedDivisible = -1;
-
+ constructor(public dataService:DataService,private httpService:HTTPService , private ref: ChangeDetectorRef  )  { }
   ngOnInit() {
      this.sell_orders = [];
     this.buy_orders = [];
@@ -129,6 +130,13 @@ bottomTop = "0px";
 
   }
 
+@HostListener('window:resize', ['$event'])
+onResize(event) {
+   console.log("resize");
+ this.ref.markForCheck();
+ this.pastOrderPickerTop = document.documentElement.clientHeight+"";
+
+}
   getAmount(order){
 
     if(order.type == "sell"){
@@ -624,7 +632,7 @@ this.selectAmount = false;
 	}
 }
 
- getPastOrderPickerTop(){
+ grabPastOrderPickerTop(){
   
    return this.pastOrderPickerTop+"px";
  }

@@ -12,7 +12,7 @@ declare var QRious:any;
 export class AccountComponent implements OnInit {
 
  
-@HostListener('window:resize', ['$event'])
+
    public copyEvent: EventEmitter<string>;
     public errorEvent: EventEmitter<Error>;
     public value: string;
@@ -38,6 +38,7 @@ export class AccountComponent implements OnInit {
 
 }
 
+@HostListener('window:resize', ['$event'])
 onResize(event) {
  this.ref.markForCheck();
  this.addressPickerTop = document.documentElement.clientHeight+"";
