@@ -4,7 +4,7 @@
 
 <div  class="contents">
 	<div  class="contentsLeft">
-<img class="tokenImage"   [lazyLoad]="getImage()"  [scrollObservable]="dataService.history.scrollObservable" [scrollTarget]=dataService.history.scrollView   onerror="imgLoadError()" (load)="imageLoaded()" />
+<img class="tokenImage"   [lazyLoad]="getImage()" [defaultImage]="dataService.getImage('cardback')" [scrollObservable]="dataService.history.scrollObservable" [scrollTarget]=dataService.history.scrollView   onerror="imgLoadError()" (load)="imageLoaded()" />
 </div>
 <div  class="contentsRight">
 <div *ngIf="!order" class="infoText">

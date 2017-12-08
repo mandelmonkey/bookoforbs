@@ -44,10 +44,16 @@ loading = false;
   }
  ngAfterViewInit() {
  	this.didInit=true;
-    this.scrollView = document.getElementById("scrollView");
-    this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
+    this.setScrollObs();
  
  }
+
+setScrollObs(){
+
+  this.scrollView = document.getElementById("scrollView");
+    this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
+}
+
 
  addPullHistory(){
 
@@ -129,7 +135,7 @@ list.addEventListener("touchmove", function (e) {
    if(this.dataService.maincontroller.orders.length == 0){
        this.selectOrdersAll();
     }
-
+  this.setScrollObs();
 }
 
  selectOrdersAll(){ 
@@ -137,7 +143,7 @@ list.addEventListener("touchmove", function (e) {
   this.orderSelectImage = this.dataService.getImage('orderSelect1');
  
   this.getOrders("all");
-
+  this.setScrollObs();
 }
 
  selectOrdersBought(){ 
@@ -145,7 +151,7 @@ list.addEventListener("touchmove", function (e) {
    this.orderSelectImage  = this.dataService.getImage('orderSelect2');
  
   this.getOrders("buy");
-
+  this.setScrollObs();
 }
 
  selectOrdersSold(){ 
@@ -153,14 +159,14 @@ list.addEventListener("touchmove", function (e) {
    this.orderSelectImage = this.dataService.getImage('orderSelect3');
  
   this.getOrders("sell");
-
+  this.setScrollObs();
 }
  selectOrdersOpen(){ 
   this.mode="order";
    this.orderSelectImage  = this.dataService.getImage('orderSelect4');
  
   this.getOrders("open");
-
+  this.setScrollObs();
 }
 
 
@@ -171,7 +177,7 @@ list.addEventListener("touchmove", function (e) {
 this.mode="history";
  this.allOwnImage = this.dataService.getImage('leftOptionSeg');
 
-
+  this.setScrollObs();
 
 }
 
@@ -199,9 +205,10 @@ console.log("error history");
  tmpthis.loading = false;
       },
      () => {});
+      this.setScrollObs();
 }
 
-
+  this.setScrollObs();
 }
 reloadOrders(){
 	this.getOrders(this.lastType);
@@ -412,6 +419,7 @@ getHistory(){
      },
      () => {});
     }
+      this.setScrollObs();
 }
 
     getHistoryHeight(){
