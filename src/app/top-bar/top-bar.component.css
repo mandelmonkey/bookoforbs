@@ -39,6 +39,7 @@
   left: 25px;
    width:16px;
   height:10px;
+   pointer-events: none;
 }
  
 

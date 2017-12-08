@@ -5,7 +5,7 @@
   <div class="environmentButton">
     <img class="envbutton" [src]="dataService.getImage('selectGameButtonBackground')" (click)="openEnvironmentList()" />
     <span>{{currentEnvTitle}}</span>
-    <img id="smallarrow" class="smallarrow" [src]="dataService.getImage('littleArrow')"  />
+    <img id="smallarrow" class="smallarrow" [src]="dataService.getImage('littleArrow')"  (click)="openEnvironmentList()" />
   </div>
    
     <ul id="myDropdown" class="dropdown-content">
