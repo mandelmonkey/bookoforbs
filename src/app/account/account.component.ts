@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Directive } from '@angular/core';
+import { Component , OnInit, EventEmitter, Directive, HostListener, ChangeDetectorRef  } from '@angular/core';
 
 import { DataService } from '../services/data.service';
 import { ClipboardService } from '../services/clipboard.service';
@@ -10,6 +10,9 @@ declare var QRious:any;
 })
  
 export class AccountComponent implements OnInit {
+
+ 
+@HostListener('window:resize', ['$event'])
    public copyEvent: EventEmitter<string>;
     public errorEvent: EventEmitter<Error>;
     public value: string;
@@ -18,7 +21,7 @@ export class AccountComponent implements OnInit {
     private clipboardService: ClipboardService;
 
 
-  constructor(public dataService:DataService, clipboardService: ClipboardService ) {
+  constructor(public dataService:DataService, clipboardService: ClipboardService, private ref: ChangeDetectorRef ) {
 
         this.clipboardService = clipboardService;
         this.copyEvent = new EventEmitter();
@@ -32,6 +35,13 @@ export class AccountComponent implements OnInit {
 
     this.addressPickerTop = document.documentElement.clientHeight+"";
     document.body.style.position = "fixed";
+
+}
+
+onResize(event) {
+ this.ref.markForCheck();
+ this.addressPickerTop = document.documentElement.clientHeight+"";
+
 }
     public copyToClipboard() : void {
 var tmpthis = this;
@@ -89,7 +99,7 @@ showSeperator(){
   }
   getTopHeight(){
       if(document.documentElement.clientHeight < document.documentElement.clientWidth){
-         return "60vh";
+         return "50vh";
      }else{
       return "40vh";
     }
@@ -97,7 +107,7 @@ showSeperator(){
   }
    getBottomHeight(){
      if(document.documentElement.clientHeight < document.documentElement.clientWidth){
-         return "40vh";
+         return "50vh";
      }else{
       return "60vh";
     }
@@ -220,6 +230,7 @@ var abrev = this.dataService.maincontroller.currentAbrev;
  }
 getLeftPos(){
   var bwidth  = document.getElementById("changeAdd").clientWidth;
+  console.log("cw "+document.documentElement.clientWidth);
   return (document.documentElement.clientWidth / 2)-(bwidth/2) + "px";
 }
  setAddress(addresObj:any){
