@@ -230,7 +230,7 @@ var abrev = this.dataService.maincontroller.currentAbrev;
  }
 getLeftPos(){
   var bwidth  = document.getElementById("changeAdd").clientWidth;
-  console.log("cw "+document.documentElement.clientWidth);
+   
   return (document.documentElement.clientWidth / 2)-(bwidth/2) + "px";
 }
  setAddress(addresObj:any){

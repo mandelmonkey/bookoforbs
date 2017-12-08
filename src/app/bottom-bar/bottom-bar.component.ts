@@ -48,7 +48,7 @@ export class BottomBarComponent implements OnInit {
   		console.log("2");
 
   this.dataService.maincontroller.showAccount = false;
-      this.dataService.maincontroller.showCollection = false;
+      this.dataService.maincontroller.showCollection = true;
       this.dataService.maincontroller.showMarket= true;
       this.dataService.maincontroller.showHistory= false;
 
@@ -65,7 +65,7 @@ export class BottomBarComponent implements OnInit {
   		console.log("3");
 
        this.dataService.maincontroller.showAccount = false;
-      this.dataService.maincontroller.showCollection = false;
+      this.dataService.maincontroller.showCollection = true;
       this.dataService.maincontroller.showMarket= false;
       this.dataService.maincontroller.showHistory= true;
      
@@ -84,7 +84,7 @@ export class BottomBarComponent implements OnInit {
   		this.image4 = this.dataService.getImage('bottomBarBlack');
      
       this.dataService.maincontroller.showAccount = true;
-      this.dataService.maincontroller.showCollection = false;
+      this.dataService.maincontroller.showCollection = true;
       this.dataService.maincontroller.showMarket= false;
       this.dataService.maincontroller.showHistory= false;
 

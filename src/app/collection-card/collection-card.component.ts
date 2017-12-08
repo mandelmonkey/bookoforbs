@@ -50,6 +50,7 @@ export class CollectionCardComponent implements OnInit {
  
   }
 imgLoadError(){
+
 	console.error("load error "+this.orbKey);
 }
  getId(){
@@ -158,10 +159,7 @@ getHeight(){
   }
  
   ngOnInit() {
- /*
-var img = document.getElementById("img"); 
-img.setAttribute('src', this.orbImage);*/
-  
+ 	 
   
   }
  getImage(){

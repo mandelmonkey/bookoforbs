@@ -36,12 +36,16 @@ export class CollectionComponent implements OnInit {
  constructor(public dataService:DataService,private httpService:HTTPService) {
  }
  ngAfterViewInit() {
+  this.setScrollObs();
+  
+
+ }
+ setScrollObs(){
+
     this.scrollView = document.getElementById("scrollView");
     this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
 
-  window.scrollTo(0, 1);
-  
-
+ 
  }
 
  addPull(){
@@ -228,7 +232,7 @@ console.log("error balance");
  
 
   
- 
+   
 
   }
   continueLoad(data:any){
@@ -292,6 +296,8 @@ this.defaultImage = this.dataService.getImage('cardback');
       this.allOwnImage = this.dataService.getImage('rightOptionSeg');
 
     }
+
+    this.setScrollObs();
 }
 var tmpthis = this;
  setTimeout(function () {
@@ -342,12 +348,14 @@ tmpthis.addPull();
         
       this.dataService.maincontroller.allOrbs = false;
       this.allOwnImage =this.dataService.getImage('leftOptionSeg');
+      this.setScrollObs();
   }
   selectAll(){
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
           
        this.dataService.maincontroller.allOrbs = true;
       this.allOwnImage = this.dataService.getImage('rightOptionSeg');
+      this.setScrollObs();
   }
   selectAllOwn(){
     if( this.dataService.maincontroller.allOrbs == true){
