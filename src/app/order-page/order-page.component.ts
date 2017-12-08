@@ -14,7 +14,11 @@ import { DataService } from '../services/data.service';
 export class OrderPageComponent implements OnInit {
 
  constructor(public dataService:DataService,private httpService:HTTPService) { }
+ pastOrderPickerTop = "1000px";
+  pastOrderPicker;
 loading:boolean;
+loadingOrders:boolean;
+loadingClosedOrders:boolean;
 indiesquare:any;
 unsigned_tx = "";
 orderType = "";
@@ -25,6 +29,7 @@ orderPrice:number;
 currentTransactionFee:number;
 sell_orders : any;
 buy_orders : any;
+closedOrders : any;
 customOrder1Left = "0"; 
 customOrder2Left = "100vw"; 
 customOrder3Left = "200vw"; 
@@ -41,10 +46,13 @@ bottomTop = "0px";
  selectedDivisible = -1;
 
   ngOnInit() {
-     
+     this.sell_orders = [];
+    this.buy_orders = [];
+    this.closedOrders = [];
   	 this.orbHeight =  "80%";
       this.orbWidth = "auto";
       this.getOrders();
+      this.getClosedOrders();
 
     this.buySellText = this.dataService.getLang("you_are_buying");
        document.body.style.position = "fixed";
@@ -120,6 +128,62 @@ bottomTop = "0px";
      () => {});
 
   }
+
+  getAmount(order){
+
+    if(order.type == "sell"){
+      return order.give_quantity;
+    }else{
+      return order.get_quantity;
+    }
+
+  }
+
+   getPrice(order){
+
+    if(order.type == "sell"){
+      return order.get_quantity;
+    }else{
+      return order.give_quantity;
+    }
+
+  }
+
+
+   getDate(order){
+
+   
+     var dateString= order.time.replace('T', ' ');
+      dateString= dateString.replace('-', '/');
+       dateString= dateString.replace('-', '/');
+        dateString= dateString.replace('-', '/');
+     // console.log("ds"+dateString);
+   //   dateString = "2015/12/31 00:00:00";
+   //2017/10/17T09:31:12+0000
+   let date = new Date(dateString);
+
+ var hourOffset = date.getTimezoneOffset() / 60;
+
+        date.setHours( date.getHours() + hourOffset ); 
+
+
+
+   var day = date.getDate();
+var monthIndex = date.getMonth();
+var year = date.getFullYear();
+var minutes = date.getMinutes();
+var hours = date.getHours();
+var seconds = date.getSeconds();
+var myFormattedDate = day+"-"+(monthIndex+1)+"-"+year+" "+ hours+":"+minutes+":"+seconds;
+
+   return myFormattedDate;
+
+  }
+    getListHeight(){
+   if(this.pastOrderPicker!= null){
+     return this.pastOrderPicker.offsetHeight-40 +"px";
+   }
+ }
   ngOnDestroy(){
      document.body.style.position = null;
      
@@ -132,8 +196,26 @@ bottomTop = "0px";
     return  {height:"45vh"};
   }
   ngAfterViewInit() {
-   
+    this.pastOrderPicker = document.getElementById("pastOrderPicker");
+
+    this.pastOrderPickerTop = document.documentElement.clientHeight+"";
   }
+
+ showPastOrderPicker(){
+ 
+
+this.pastOrderPickerTop = (document.documentElement.clientHeight-this.pastOrderPicker.offsetHeight)+"";
+   
+
+ }
+closePicker(){
+
+
+this.pastOrderPickerTop =  document.documentElement.clientHeight+"";
+
+ 
+ }
+
   getBottomTop(){
 
    var clientHeight = document.documentElement.clientHeight / 2;
@@ -506,6 +588,7 @@ return num.toFixed(6);
   return num.toFixed(8);
 }
 }
+ 
 buyOrder(order:any,type:string){
 	this.goToCustom1();
 this.orderAmount = null;
@@ -540,6 +623,11 @@ this.selectAmount = false;
 		this.showOrderText = false;
 	}
 }
+
+ getPastOrderPickerTop(){
+  
+   return this.pastOrderPickerTop+"px";
+ }
 getOrderAmount(order:any){
 
   var fiatPrice = this.dataService.maincontroller.getFiatForToken(this.dataService.maincontroller.currentCurrency,order.price);
@@ -548,10 +636,12 @@ getOrderAmount(order:any){
 	}
 	return ""+fiatPrice;
 }
+ 
 getOrders(){
-
+this.loadingOrders = true;
 		 this.httpService.getOrders( this.dataService.maincontroller.selectedKey, this.dataService.maincontroller.currentCurrency).subscribe(
      data => { 
+       this.loadingOrders = false;
           	console.log("got orders"+JSON.stringify(data)+" "+this.dataService.maincontroller.currentCurrency);
 
           this.sell_orders = this.dataService.maincontroller.marge(data.ask, 'sell');
@@ -581,8 +671,46 @@ getOrders(){
 
       },   
       error => {
+        this.loadingOrders = false;
       	console.log("get orders"+JSON.stringify(error));
  			 
+      },
+     () => {});
+
+
+
+
+}
+getLastSoldPrice(){
+  if(this.closedOrders.length > 0){
+    return this.getPrice(this.closedOrders[0])+" "+this.dataService.maincontroller.currentAbrev;
+  }else{
+    return "-";
+  }
+}
+getLastSoldDate(){
+  if(this.closedOrders.length > 0){
+    return this.getDate(this.closedOrders[0]);
+  }else{
+    return "-";
+  }
+}
+getClosedOrders(){
+this.loadingClosedOrders = true;
+     this.httpService.getClosedOrders( this.dataService.maincontroller.selectedKey, this.dataService.maincontroller.currentCurrency).subscribe(
+     data => { 
+       this.loadingClosedOrders = false;
+            console.log("got closed orders"+JSON.stringify(data)+" "+this.dataService.maincontroller.currentCurrency);
+         
+         this.closedOrders = data;
+
+             
+
+      },   
+      error => {
+        this.loadingClosedOrders = false;
+        console.log("get closedorders"+JSON.stringify(error));
+        
       },
      () => {});
 

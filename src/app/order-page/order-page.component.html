@@ -23,6 +23,12 @@
 			 </div>
 	</div>
 </div> 
+<div *ngIf="sell_orders.length==0 && !loadingOrders">
+	<p class="noOrders">{{dataService.getLang('no_orders')}}</p>
+</div>
+<div *ngIf="loadingOrders">
+	<p class="noOrders">{{dataService.getLang('loading')}}</p>
+</div>
 <br>
 <span class="ordersTitle">Buyers</span>
 <div lass="buyOrdersList" *ngFor="let order of buy_orders" >
@@ -33,21 +39,51 @@
 		</div>
 	</div>
 </div> 
+<div *ngIf="buy_orders.length==0 && !loadingOrders">
+	<p class="noOrders">{{dataService.getLang('no_orders')}}</p>
+</div>
+<div *ngIf="loadingOrders">
+	<p class="noOrders">{{dataService.getLang('loading')}}</p>
+</div>
+<br>
+ 
+ <div class="lastOrder" *ngIf="!loadingClosedOrders">
+ 	<div class="lastSoldTitle">
+{{dataService.getLang('last_sold_at')}}
+ </div>
+ <div class="lastSoldPrice">
+{{getLastSoldPrice()}} 
+ </div>
+  <div class="lastSoldDate">
+{{getLastSoldDate()}}
+ </div>
+ <input class="historyButton" type="button" [value]="dataService.getLang('closed_orders')"   (click)="showPastOrderPicker()" [style.background-image]="'url(' +dataService.getImage('filterButtonLong')+ ')'">
 
+
+ </div>
+  <div class="lastOrder" *ngIf="loadingClosedOrders">
+ 	<div class="lastSoldTitle">
+{{dataService.getLang('loading')}}
+ </div>
+
+ </div>
+ 
 
 </div>
 </div>
 
 
  </div>
-
+ <div class="historySection" [style.top]="getBottomTop()">
+ 
+ </div>
 
  <div class="bottomSection" [style.top]="getBottomTop()">
 	
 	<div class="customOrder1" [style.left]="customOrder1Left">
 		
 		<div class="items1">
-			<div class="itemTitle">Place a custom order</div>
+			<div class="itemTitle">{{dataService.getLang('place_custom_order')}}</div>
 			<br>
 				<div class="items1Buttons">
 					<input class="customButtonBuy" type="button" [value]="dataService.getLang('buy')" style="float: left; " (click)="goToCustom2('buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">	 
@@ -156,4 +192,32 @@
       <app-fee-selector></app-fee-selector>
 
 </div>
+ </div>
+
+
+  <div class="pastOrderPicker" id="pastOrderPicker" [style.top]="getPastOrderPickerTop()">
+ 	<div class="pickerTopBar">
+ 	
+ 	<img class="pickerbar"   [src]="dataService.getImage('tool_bar_background')"/>
+ 	<input class="closeButton" type="button" [value]="dataService.getLang('back')" (click)="closePicker()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+ 	</div>
+ 
+   <ul  class="pastOrderList" [style.height]="getListHeight()">
+   	<li  *ngIf="!loadingClosedOrders" >
+
+    <label class="envtitle" style="width: 16%;">{{dataService.getLang('po_type')}}</label> <label class="envtitle" style="width: 16%;" >{{dataService.getLang('po_amount')}}</label><label class="envtitle"  style="width: 16%;" >{{dataService.getLang('po_price')}}</label><label class="envtitle"  style="width: 50%;">{{dataService.getLang('po_date')}}</label>
+   
+   </li>
+   <li  *ngIf="loadingClosedOrders" >
+
+    <label class="envtitle" style="width: 100%;">{{dataService.getLang('loading')}}</label> 
+   
+   </li>
+   <li *ngFor="let order of closedOrders;  let i = index" >
+
+    <label class="envtitle" style="width: 16%;">{{order.type}}</label> <label class="envtitle" style="width: 16%;" >{{getAmount(order)}}</label><label class="envtitle"  style="width: 16%;" >{{getPrice(order)}}{{dataService.maincontroller.currentAbrev}}</label><label class="envtitle"  style="width: 50%;">{{getDate(order)}}</label>
+   
+   </li>
+     
+ </ul> 
  </div>

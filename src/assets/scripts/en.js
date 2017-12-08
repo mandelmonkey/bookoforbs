@@ -141,8 +141,15 @@ var en = function() {
 	lang["new_fee"]="Confirm\n\nThe new fee will cost \n\n$1$ BTC\n\n$2$";
 	lang["bump_balance"]="You do not have enough balance to increase the fee";
 	lang["current_bump_fee"]="Current fee: $1$ BTC ";
-	
-	 
+	lang["closed_orders"]="Closed Orders";
+	lang["no_orders"]="no orders";
+	lang["po_type"]="Type";
+	lang["po_amount"]="Amount";
+	lang["po_price"]="Price";
+	lang["po_date"]="Date";
+	lang["place_custom_order"]="Place a custom order";
+	lang["last_sold_at"]="Last sold at";
+
 	 
 function en() {
 

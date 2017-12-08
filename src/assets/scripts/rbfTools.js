@@ -514,7 +514,8 @@ console.log("output size"+sizeOfChangeOutput+" amount"+changeAmount);
  
 
 	RBFTools.prototype.continueBump =   function(newSatByte,callback){
- 
+ 		
+ 		
  
 
  

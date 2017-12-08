@@ -138,7 +138,18 @@ var ja = function() {
 	lang["fee_not_valid"]="Enter a fee higher than the previous";
 	lang["cant_bump_fee"]="You cannot increase the fee on this transaction";
 	lang["fee_bumped"]="Success! The transaction was broadcast with a higher fee";
-
+	lang["new_fee"]="Confirm\n\nThe new fee will cost \n\n$1$ BTC\n\n$2$";
+	lang["bump_balance"]="You do not have enough balance to increase the fee";
+	lang["current_bump_fee"]="Current fee: $1$ BTC ";
+	lang["closed_orders"]="Closed Orders";
+	lang["no_orders"]="no orders";
+	lang["po_type"]="Type";
+	lang["po_amount"]="Amount";
+	lang["po_price"]="Price";
+	lang["po_date"]="Date";
+	lang["place_custom_order"]="Place a custom order";
+	lang["last_sold_at"]="Last sold at";
+	
 function ja() {
 
 

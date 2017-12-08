@@ -1,4 +1,77 @@
 
+.pastOrderPicker{
+  position: absolute;
+  height: 400px;
+  width: 100vw;
+  background-color: #655e4f;
+ -webkit-transition: top 0.2s, bottom 0.2s;
+ }
+
+ .pickerBarOuter{
+   position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.closeButton {
+
+text-align: center;
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+   
+   
+  background-position: 50% 50%; 
+  background-color: Transparent;
+  font-size: 0.9em; 
+  font-family:   sling;
+   color: #ffffd5;
+  border: none; 
+ cursor: pointer; 
+
+ position: absolute;
+  
+ width:90px; 
+   height: 6vh;
+  max-height:35px;
+  top:4px;
+  right:5px;
+
+
+}
+ .pastOrderList {
+      top:40px;
+      position: absolute;
+    
+ overflow-y: scroll;   
+    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  
+    list-style: none outside none; margin:0; padding: 0;
+ -webkit-overflow-scrolling: touch;
+}
+.pickerbar {
+   position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:45px;
+}
+li
+{
+     margin: 0 10px; display: inline;
+   width: 100vw;
+    display: table;
+    min-width: 200px;
+    list-style-type:none;
+    padding-left:5px;
+    left: 0; 
+    height:50px;
+    color: #ffffd5;
+  font-family:   sling;
+}
+
+
 .backGround {
   position: absolute;
   top: 0;
@@ -256,6 +329,29 @@ label{
   height: 20vh;
 
 }
+.historySection {
+  position: absolute; 
+  height: 20vh;
+  width: 100vw;
+
+}
+
+.historyButton {
+     background-color: Transparent;
+ background-repeat: no-repeat;
+  background-size:100% 100%; 
+  width:120px; 
+  background-position: 50% 50%; 
+  height:40px; 
+  font-size: 0.7em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none;
+  margin-right: 10px; 
+
+}
+
 
 .items1 {
   float:left;
@@ -278,7 +374,12 @@ label{
   font-family:   sling;
   text-align: left;
 }
-
+.noOrders{
+  
+  font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling; 
+}
 .textInputCenter {
    
 }
@@ -652,7 +753,7 @@ font-size: 10pt;
    width:16px;
   height:10px;
 }
- 
+
 .feetitle {
   display: table-cell;
   vertical-align: middle;
@@ -671,20 +772,61 @@ font-size: 10pt;
  
     width:110px;
 }
+.loading {
+  margin-top: 100px;
+   font-size: 0.9em;
+  color: #ffffd5;
+  font-family:   sling;
+  padding: 0;
+  border: none; 
+}
+
+.lastSoldTitle {
+   font-size: 0.8em;
+  color: #ffffd5;
+  font-family:   sling; 
+  
+}
+.lastSoldPrice {
+  margin-top: 5px;
+   font-size: 0.8em;
+  color: #ffffff;
+  font-family:   sling; 
+}
+.lastSoldDate {
+   margin-top: 5px;
+   margin-bottom: 5px;
+   font-size: 0.6em;
+  color: #ffffd5;
+  font-family:   sling; 
+}
+
+.envtitle{
+   display: inline-block;
+    display: -moz-inline-box;
+    *display: inline; /* For IE7 */
+    zoom: 1; /* Trigger hasLayout */
+    text-align: center;
+ height: 50px;
+ font-size: 0.9em;
+ line-height: 50px;
+ }
 li
 {
+  width: 100vw;
   
-    background-color: #442117;
+  
     display: table;
-    min-width: 50px;
-    width:170px;
+    
     list-style-type:none;
-    padding-left:15px;
+    text-align: center;
     margin:0px;
     height:50px;
+
+
+
 }
-/* Change color of dropdown links on hover */
-li:hover {background-color: #654137}
+ 
 
 
  

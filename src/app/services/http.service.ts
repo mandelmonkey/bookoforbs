@@ -189,44 +189,20 @@ export class HTTPService{
       return this._http.get(this.indieURL+"/v2/transactions/"+txid+"/raw?X-Api-Key=" + this.apiKey)
       .map(res=>res.json());
     };
-     
-    getOrders(token,currency){
-
- /*
-         var header = new Headers();
-   
-
-
-     var url = "https://api.indiesquare.me/v2/orders/"+token+"/book?base_token="+currency+"&X-Api-Key=" + this.apiKey;
-       console.log( url);
       
- var json = JSON.stringify({
-             url: url,
-        });
-
-      var params = json;
-      var header = new Headers();
-      header.append('Content-type', 'Content-Type: application/json'); 
-
-      return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
-        headers:header
-      })
-      .map(res => res.json());
-
+     getClosedOrders(token,currency){
  
-*/
-
-
          var header = new Headers();
- header.append('Content-type','Content-Type: application/json; charset=utf-8');
-header.append('X-Api-Key', this.apiKey);
+       header.append('Content-type','Content-Type: application/json; charset=utf-8');
+       header.append('X-Api-Key', this.apiKey);
       
-       return this._http.get(this.indieURL+"/v2/orders/"+token+"/book?base_token="+currency+"&X-Api-Key=" + this.apiKey,{
+       return this._http.get(this.indieURL+"/v2/orders/"+token+"/history?base_token="+currency+"&X-Api-Key=" + this.apiKey,{
         headers:header
       })
       .map(res => res.json());
        
     };
+
        getOrderHistory(address,type,currency){
         if(type == "all"){
 
@@ -246,6 +222,19 @@ header.append('X-Api-Key', this.apiKey);
   
       } 
     };
+    getOrders(token,currency){
+ 
+         var header = new Headers();
+ header.append('Content-type','Content-Type: application/json; charset=utf-8');
+header.append('X-Api-Key', this.apiKey);
+      
+       return this._http.get(this.indieURL+"/v2/orders/"+token+"/book?base_token="+currency+"&X-Api-Key=" + this.apiKey,{
+        headers:header
+      })
+      .map(res => res.json());
+       
+    };
+       
       getHistory(address){
       
 
