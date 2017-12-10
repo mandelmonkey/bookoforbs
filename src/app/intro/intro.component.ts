@@ -280,8 +280,9 @@ this.isIndiesquare = true;
  return;
   }else{
       
-
-   tempThis.persistenceService.set('userAddress0', result.address, {type: StorageType.LOCAL}); 
+       var addressObject = {"address":result.address,"index":0};
+   tempThis.persistenceService.set('userAddress',JSON.stringify(addressObject) , {type: StorageType.LOCAL}); 
+ 
    tempThis.persistenceService.set('linkType', "indiesquare", {type: StorageType.LOCAL}); 
 
    tempThis.dataService.maincontroller.currentAddress =result.address;
