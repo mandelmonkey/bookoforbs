@@ -142,6 +142,19 @@ if (document.addEventListener) {                // For all major browsers, excep
    */
 
     var bitcore = require('bitcoreBoo'); 
+
+    CURRENTDATA = "";
+CURRENTSIG = "";
+    function getSignData(){
+
+      return  CURRENTDATA;
+    }
+
+    function setSignData(sig){
+      
+      CURRENTDATA = "";
+      CURRENTSIG = sig;
+    }
 //1DpDxott2vt2n7GqEMSNCjcFxQLMdaA8MA
  
 

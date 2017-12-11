@@ -13,6 +13,7 @@ declare var en:any;
 declare var ja:any;
  declare var RBFTools:any;
    declare var counterpartyParser:any; 
+  
 @Injectable()
 export class DataService {
  

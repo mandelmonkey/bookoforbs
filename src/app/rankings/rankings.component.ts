@@ -7,6 +7,8 @@ import {HTTPService} from "../services/http.service";
  declare var IndieSquare:any; 
   declare var bitcore:any; 
   declare var Mnemonic:any;
+   declare var  CURRENTDATA:any;
+     declare var  CURRENTSIG:any;
 @Component({
   selector: 'app-rankings',
   templateUrl: './rankings.component.html',
@@ -66,9 +68,14 @@ continueSign(passphrase:string,owner:any){
 
     var sig = bitcore.signMessage( tmpthis.hashToSign,privkey);
 
+ tmpthis.finishSetUsername(sig,tmpthis);
+
  
 
-  tmpthis.httpService.setUsername(sig,tmpthis.username).subscribe(
+}
+
+finishSetUsername(sig,tmpthis){
+   tmpthis.httpService.setUsername(sig,tmpthis.username).subscribe(
      data => { 
 console.log("set"+JSON.stringify(data));
      tmpthis.loadingUsername = false; 
@@ -94,7 +101,6 @@ console.log("set"+JSON.stringify(data));
  
        },
      () => {});
-
 }
 setUsername(){
 
@@ -175,7 +181,18 @@ console.log("set"+JSON.stringify(data));
 
 });
 
-}else{
+}else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
+
+  CURRENTDATA =  JSON.stringify({signType:"message","toSign":tmpthis.hashToSign});
+  
+
+setTimeout(function(){
+   tmpthis.checkForData();
+}, 1000);
+
+
+}
+else{
 
  tmpthis.dataService.maincontroller.showPassword(tmpthis.cancelSign,tmpthis.continueSign,tmpthis);
 
@@ -214,8 +231,7 @@ jumpToMe(){
 	 this.indiesquare = new IndieSquare({
     'apikey': this.httpService.apiKey  
   });
-  //	 this.rankings = JSON.parse("{\"1\":{\"score\":\"75\",\"userId\":434481,\"userName\":\"Test\",\"xcpAddress\":\"1Nh4tPtQjHZSoYdToTF7T3xbaKrTNKM3wP\"},\"2\":{\"score\":\"58\",\"userId\":434734,\"userName\":\"kojitest\",\"xcpAddress\":\"1BG5Kra4EhAaJwkaGX2LQWWbqpGXv6f7dj\"},\"3\":{\"score\":\"0\",\"userId\":434484,\"userName\":\"Test\",\"xcpAddress\":\"1DVQiPGJYoA8RNfJxe6AeNgwdjvUHGZC6F\"}}");
-  	// this.rankingsKeys = Object.keys(this.rankings);
+   
 
 
 this.getRankings();
@@ -231,6 +247,23 @@ this.username =  this.dataService.maincontroller.getPersistance("username:"+this
    
      
 
+  }
+  checkForData(){
+
+       
+    if(CURRENTSIG.length > 0){
+ 
+var tmpthis = this;
+     this.finishSetUsername(CURRENTSIG,tmpthis);
+
+ 
+      CURRENTSIG = "";
+
+    }else{
+      setTimeout(function(){
+   this.checkForData();
+  }, 1000);
+    }
   }
   getRankings(){
 

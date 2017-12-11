@@ -5,6 +5,7 @@ import { PersistenceService, StorageType } from 'angular-persistence';
 import * as CryptoJS from 'crypto-js';
    declare var QRious:any;
     declare var Mnemonic:any; 
+   
 
 @Component({
   selector: 'app-main-controller',
@@ -308,9 +309,24 @@ getPersistance(key:string,){
     if(window.location.href.indexOf("localhost") != -1 ){
 this.dataService.dev = true;
     }
-   
+ //  alert("user ag"+window.navigator.userAgent);
  this.dataService.isMobile = /Android|iPhone|IndieSquare|indieSquare|indiesquare/i.test(window.navigator.userAgent);
   
+
+  if(window.navigator.userAgent.indexOf("BoO:") != -1){
+
+ this.dataService.isMobile = true;
+    var data = window.navigator.userAgent.split(":");
+    var address = data[1];
+ 
+  
+   this.persistenceService.set('userAddress',JSON.stringify({"address":address,"index":0}) , {type: StorageType.LOCAL}); 
+ 
+   this.persistenceService.set('linkType', "BoO", {type: StorageType.LOCAL}); 
+ 
+  
+    
+  }
 
 if(this.dataService.isMobile ==false){
 //alert("please load this app in iOS safari browser");
