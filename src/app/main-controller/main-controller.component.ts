@@ -138,9 +138,11 @@ this.showMessage(this.dataService.getLang("errorloading"));
           
      },   
       error => {
+        this.loading = false;
        this.showMessage(this.dataService.getLang("errorloading"));
 console.log("error gamecenter");
- this.loading = false;
+alert(this.dataService.getLang("errorloading"));
+ 
       },
      () => {});
 

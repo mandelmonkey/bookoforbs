@@ -319,10 +319,7 @@ return this.passphrase.split(' ')[word-1];
     }
 });
  if(this.dataService.dev == true){
-     //alert("Dev");
-    
-  //this.persistenceService.set('userAddress0', "1Nh4tPtQjHZSoYdToTF7T3xbaKrTNKM3wP", {type: StorageType.LOCAL}); 
-    //this.persistenceService.set('linkType', "indiesquare", {type: StorageType.LOCAL}); 
+     
    }
     this.isIndiesquare = false; 
      
