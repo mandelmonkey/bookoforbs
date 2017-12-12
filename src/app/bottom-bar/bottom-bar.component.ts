@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 
+import {HTTPService} from "../services/http.service";
+
 @Component({
   selector: 'app-bottom-bar',
   templateUrl: './bottom-bar.component.html',
@@ -13,7 +15,7 @@ export class BottomBarComponent implements OnInit {
  image4 = this.dataService.getImage('bottomBarClear');//"../assets/images/bottomBarClear.png";
 
 
-  constructor(public dataService:DataService) { }
+  constructor(public dataService:DataService,private httpService:HTTPService) { }
 
   ngOnInit() {
   }
@@ -35,6 +37,19 @@ export class BottomBarComponent implements OnInit {
       this.dataService.maincontroller.showMarket= false;
       this.dataService.maincontroller.showHistory= false;
   	console.log("1");
+
+
+   this.httpService.getRankings(this.dataService.maincontroller.currentEnv).subscribe(
+     data => { 
+      
+
+      },   
+      error => {
+       
+console.log("error trigger rankings"); 
+       },
+     () => {});
+
   }
   select2(){
     if(this.dataService.maincontroller.loading){

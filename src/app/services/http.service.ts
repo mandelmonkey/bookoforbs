@@ -24,6 +24,18 @@ export class HTTPService{
    return  "&mainAddress="+this.dataService.maincontroller.currentAddress+"&targetAddress="+this.dataService.maincontroller.currentAddress;
  }
 
+triggerRankings(env:string){
+     var url = this.baseOrbUrl+"&action=getUserPerEnv&env="+env+"&responseType=JSON"+this.devExt+this.getAddressUrl();
+     console.log(url);
+       var header = new Headers();
+      header.append('Content-type', 'Content-Type: application/json');
+       header.append('Content-type', 'Content-Type: application/json');
+
+      return this._http.get(url, {
+        headers:header
+      })
+      .map(res => res.json());
+   }
  getAssetInfo(asset:string){
      var header = new Headers();
    
