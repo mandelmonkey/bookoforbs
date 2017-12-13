@@ -36,7 +36,7 @@ export class BottomBarComponent implements OnInit {
       this.dataService.maincontroller.showCollection = true;
       this.dataService.maincontroller.showMarket= false;
       this.dataService.maincontroller.showHistory= false;
-  	console.log("1");
+  	console.log("1"); 
 
 
    this.httpService.getRankings(this.dataService.maincontroller.currentEnv).subscribe(
