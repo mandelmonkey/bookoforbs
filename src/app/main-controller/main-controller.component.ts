@@ -420,7 +420,7 @@ this.currentCancel(this.currentOwner );
     var tmpthis = this.dataService.maincontroller;
     var userPassphrase = tmpthis.persistenceService.get("userPassphrase",   StorageType.LOCAL);
     if(typeof userPassphrase == "undefined"){
-      alert("error");
+      alert(tmpthis.dataService.getLang("password_incorrect"));
       return;
     }
   

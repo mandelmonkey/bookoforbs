@@ -149,6 +149,7 @@ var en = function() {
 	lang["po_date"]="Date";
 	lang["place_custom_order"]="Place a custom order";
 	lang["last_sold_at"]="Last sold at";
+	lang["password_incorrect"]="Password incorrect";
 
 	 
 function en() {

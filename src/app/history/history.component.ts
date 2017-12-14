@@ -302,8 +302,9 @@ var newSatByteNum = Number(this.newSatByte);
 
 }
 finishBump(tmpthis){
+     console.log("here wentxxxx");
   tmpthis.dataService.maincontroller.showPassword(tmpthis.closeBumpFee,tmpthis.signBroadcast,tmpthis);
-
+  console.log("here wentxxxx22222");
 }
 cancelBump(tmpthis){
   tmpthis.loadingBump = false;
@@ -312,6 +313,7 @@ cancelBump(tmpthis){
 
 signBroadcast(passphrase:string,owner:any){
    owner.showBump =true;
+   console.log("here went");
        try {
 
         var seed = new Mnemonic(passphrase.split(' ')).toHex();
@@ -321,12 +323,13 @@ signBroadcast(passphrase:string,owner:any){
         
          throw  err;
     }
-   
+    console.log("here went2");
   var masterKey = foo.bitcoin.HDNode.fromSeedBuffer(foo.buffer(seed, 'hex'), foo.bitcoin.networks.bitcoin);
 
     var route = owner.dataService.maincontroller.basePath +owner.dataService.maincontroller.currentIndex;
     
 var key1 = masterKey.derivePath(route).keyPair;
+ console.log("here went3");
   var unsignedTx = foo.bitcoin.Transaction.fromHex(owner.currentBumpUnsignedHex);
 
                                         var txb = foo.bitcoin.TransactionBuilder.fromTransaction(unsignedTx,foo.bitcoin.networks.bitcoin);
@@ -343,7 +346,7 @@ var key1 = masterKey.derivePath(route).keyPair;
 
 
 
-
+ console.log("here went4");
      
 
      
