@@ -34,7 +34,7 @@ export class AccountComponent implements OnInit {
     this.addressPicker = document.getElementById("addressPicker");
 
     this.addressPickerTop = document.documentElement.clientHeight+"";
-    document.body.style.position = "fixed";
+   document.body.style.position = "fixed";
 
 }
 
@@ -42,7 +42,7 @@ export class AccountComponent implements OnInit {
 onResize(event) {
  this.ref.markForCheck();
  this.addressPickerTop = document.documentElement.clientHeight+"";
-
+  document.body.style.position = "fixed";
 }
     public copyToClipboard() : void {
 var tmpthis = this;

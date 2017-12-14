@@ -82,6 +82,8 @@ public sending:boolean;
   }
   ngOnDestroy(){
      document.body.style.position = null;
+      
+    document.body.style.position = "fixed";
      
   }
   disableTouches(){
@@ -90,6 +92,7 @@ public sending:boolean;
   closeSend(){
     this.dataService.maincontroller.currentSendAddress="";
   	this.dataService.maincontroller.showSend = false; 
+
   }
   addKey(num:string){
   	if(num == "-1"){
