@@ -90,72 +90,6 @@ console.log("dif"+dif);
 		 console.log("updatedSatByte:"+ updatedSatByteEst.toFixed(4)+" requiredSizeByteEst:"+requiredSatByteEst);
 
 
-		 //check if removing change made satbyte too high
-/*
-		 
-	
-		 if(updatedSatByteEst > requiredSatByteEst){
-
-				 console.log("toobig: "+(updatedSatByteEst-requiredSatByteEst));
-				 	 var newUTXOS = [];
-var updatedFeeTmp = updatedFee;
-var updatedSizeTmp = updatedSize;
-
-	var tmpUTXOS = [];
-				  for(var i =0;i<newTx.tx.ins.length;i++){
-				  	tmpUTXOS .push( newTx.tx.ins[i]);
-
-				  	}
-
-				  	tmpUTXOS =  tmpUTXOS .sort(function(a, b) { //order utxos by value
-  			return b.amount - a.amount ;
-		});
-
-				  for(var i =0;i<tmpUTXOS.length;i++){
-				  	 var aUTXO = tmpUTXOS[i];
-
-				  	 
-
-				  	var newSatByte = ((updatedFeeTmp -= aUTXO.amount)/(updatedSizeTmp -= outputBytes( aUTXO )))+dif;
-console.log(newSatByte +" udp: "+updatedSatByteEst)
-
-				  	if(newSatByte < updatedSatByteEst && newSatByte >= requiredSatByteEst){
-				  		
-				  		updatedSatByteEst=newSatByte;
-				  		console.log("udp: "+updatedSatByteEst+" removed: "+JSON.stringify( aUTXO))
-				  		  tmpUTXOS.splice(-1,1);
-				  		  i--;
-
-				 	}else{
-
-				 			//console.log("udp: "+updatedSatByteEst+" kept: "+JSON.stringify( aUTXO))
-				  		  
-				 		//console.log("newSatByte:"+newSatByte)
-				 		
-				 	}
-				  
-				}
-
-
-				 
-				var newNewTx = new bitcoin.TransactionBuilder();
-				newNewTx.tx.outs = newTx.tx.outs;
-
-				
-
-		tmpUTXOS.forEach(function(aUTXO,idx) {
-			  	 let txid = tools.buffer((aUTXO.hash).reverse(),'hex').toString('hex');
-				newNewTx.addInput(txid,aUTXO.index);
-
-				});
-
-		 newTx = newNewTx;
-
-
-
-			}
- */
-
 
 
  		for(var i =0;i<utxos.length;i++){
@@ -173,13 +107,85 @@ console.log(newSatByte +" udp: "+updatedSatByteEst)
 
 
 
+
+
+  			//see if can acheive new sat/byte by reducing change
+ 
+
+  		var newSetFee = requiredSatByteEst*oldSize;
+
+  		var reduceChangeAmount =  newSetFee - oldFee;
+
+  	 
+
+ 			 var foundChange = false;
+ 			 var updatedViaChange = false;
+ 			 var removeChange =-1;
+ 			 
+				 
+
+
+ 				newTx.tx.outs.forEach(function (output, idx) { //calculate the output value
+
+
+				try{
+ 					var add = bitcoin.address.fromOutputScript(output.script);
+ 						if(add == sourceAddress && foundChange== false){
+ 							
+							foundChange = true;
+
+							var tmpVal = output.value;-reduceChangeAmount;
+							if(tmpVal == 0){
+								updatedViaChange = true;
+								removeChange = idx;
+
+							}else if(tmpVal > 0){
+								output.value-=reduceChangeAmount;
+								updatedViaChange = true;
+							}
+								
+
+						 } 
+					}
+        		catch(e){
+
+        		 
+
+        		}
+
+        			 
+
+
+ 				
+ 				 });
+
+ 				 if(removeChange != -1){
+ 				 	newTx.tx.outs.splice(removeChange,1);
+ 				 }	
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 		if(updatedViaChange == false){
+
 		for(var i =0;i<utxos.length;i++){
-			
+			var aUTXO = utxos[i];
+			if(aUTXO.confirmations == 0){
+				continue;
+			}
 		
 			if(updatedSatByteEst <= requiredSatByteEst){
 
-
-				var aUTXO = utxos[i];
+ 
 				if(includedInputs.indexOf(aUTXO.txid+":"+aUTXO.vout) == -1 && aUTXO.txid != oldTxid){
 
 			  
@@ -213,6 +219,8 @@ console.log(newSatByte +" udp: "+updatedSatByteEst)
 				throw "balance error";
 				return;
 			}
+
+		}
  
 
 
@@ -539,54 +547,6 @@ console.log("output size"+sizeOfChangeOutput+" amount"+changeAmount);
  				
  				  
 
- 				  /*	//calculate new change
- 				  	var newChange =  inputAmounts - (outputAmount+fee);
- 
-
- 				  	if(newChange  > 0){ //if new change exists add change output and push
- 				  		newTx.addOutput(sourceAddress,newChange);
- 				  	}
-
- 				  	*/
-
- 				  	/*
-						
-						txObject.outs.forEach(function (output, idx) { //calculate the output value
-
- 				newTx.tx.outs.push(output);
-				outputAmount+=output.value;
-
-				var isChange = false;
-
-				
-				try{
- 					var add = bitcoin.address.fromOutputScript(output.script);
- 						console.log(add+" "+sourceAddress);
-
- 					 
-
-						if(add == sourceAddress){
-
-							isChange = true;
-							changeAmount = output.value;
-							console.log("change "+changeAmount );
-						} 
-					}
-        			 catch(e){
-        			 
-
-        				 }
-        				 if(!isChange){
-
-        				 	outputAmount+=output.value;
-        				 	  
-        				 }
-        				 
-               
-       			 });
-
- 				  	*/
-
 
  				   var newTxBuilt = newTx.buildIncomplete() 
 
@@ -610,7 +570,7 @@ console.log("output size"+sizeOfChangeOutput+" amount"+changeAmount);
  				  		var newFee = inputAmounts - newOutputAmounts;
 
 
- 				 
+ 			 
  				 
  				 	callback(newTxBuilt.toHex(),null,newFee);
  				 
