@@ -124,34 +124,29 @@ console.log("dif"+dif);
  			 
 				 
 
-
- 				newTx.tx.outs.forEach(function (output, idx) { //calculate the output value
-
-
-				try{
+	newTx.tx.outs.forEach(function (output, idx) {  
+			var type = bitcoin.script.classifyOutput(output.script);
+			 
+				if(type == 'pubkeyhash') {
  					var add = bitcoin.address.fromOutputScript(output.script);
- 						if(add == sourceAddress && foundChange== false){
+ 						if(add == sourceAddress && foundChange == false){
  							
 							foundChange = true;
 
-							var tmpVal = output.value;-reduceChangeAmount;
+							var tmpVal = output.value - reduceChangeAmount;
+							 console.log("new change val :"+ tmpVal);
 							if(tmpVal == 0){
 								updatedViaChange = true;
 								removeChange = idx;
 
 							}else if(tmpVal > 0){
-								output.value-=reduceChangeAmount;
+								output.value -= reduceChangeAmount;
 								updatedViaChange = true;
 							}
 								
 
 						 } 
 					}
-        		catch(e){
-
-        		 
-
-        		}
 
         			 
 
@@ -163,15 +158,7 @@ console.log("dif"+dif);
  				 	newTx.tx.outs.splice(removeChange,1);
  				 }	
 
-
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -478,31 +465,11 @@ console.log("sa:"+sourceAddress);
   
  				txObject.outs.forEach(function (output, idx) { //calculate the output value
 
- 			 var isChange = false;
+ 			 
 
 				outputAmounts+=output.value;
 
-
-
-				try{
- 					var add = bitcoin.address.fromOutputScript(output.script);
- 						if(add == sourceAddress){
-
-							 //sizeOfChangeOutput = outputBytes(output);
-							// changeAmount = output.value;
-							isChange = true;
-						} 
-					}
-        		catch(e){
-
-        			//is counterpartyoutput
-
-        		}
-
-        			 if(isChange==false){
-        			 	       			 
-
-        			 }
+ 
  newTx.tx.outs.push(output);
 
 
@@ -569,10 +536,15 @@ console.log("output size"+sizeOfChangeOutput+" amount"+changeAmount);
 
  				  		var newFee = inputAmounts - newOutputAmounts;
 
-
- 			 
+ try{
+					var newHex = newTxBuilt.toHex();
+					callback(newHex,null,newFee);
+				}
+				catch(e){
+					
+					callback(null,e,null);
+				}
  				 
- 				 	callback(newTxBuilt.toHex(),null,newFee);
  				 
  				  
 
