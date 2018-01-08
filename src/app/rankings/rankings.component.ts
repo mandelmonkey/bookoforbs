@@ -183,14 +183,8 @@ console.log("set"+JSON.stringify(data));
 
 }else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
 
-  CURRENTDATA =  JSON.stringify({signType:"message","toSign":tmpthis.hashToSign});
-  
-
-setTimeout(function(){
-   tmpthis.checkForData();
-}, 1000);
-
-
+   tmpthis.dataService.setCurrentSignData(JSON.stringify({signType:"message","toSign":tmpthis.hashToSign}),tmpthis);
+   
 }
 else{
 
@@ -248,23 +242,11 @@ this.username =  this.dataService.maincontroller.getPersistance("username:"+this
      
 
   }
-  checkForData(){
 
-       
-    if(CURRENTSIG.length > 0){
- 
-var tmpthis = this;
-     this.finishSetUsername(CURRENTSIG,tmpthis);
-
- 
-      CURRENTSIG = "";
-
-    }else{
-      setTimeout(function(){
-   this.checkForData();
-  }, 1000);
-    }
+  finishSign(sig){
+    this.finishSetUsername(sig,this);
   }
+
   getRankings(){
 
   	this.loading = true;

@@ -146,7 +146,7 @@ if (document.addEventListener) {                // For all major browsers, excep
     var bitcore = require('bitcoreBoo'); 
 
     CURRENTDATA = "";
-CURRENTSIG = "";
+    CURRENTSIG = "";
     function getSignData(){
 
       return  CURRENTDATA;
@@ -155,7 +155,7 @@ CURRENTSIG = "";
     function setSignData(sig){
       
       CURRENTDATA = "";
-      CURRENTSIG = sig;
+      SIGNCALLBACK(sig);
     }
 //1DpDxott2vt2n7GqEMSNCjcFxQLMdaA8MA
  

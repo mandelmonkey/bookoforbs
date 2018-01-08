@@ -217,6 +217,7 @@ console.log("dif"+dif);
 		});
 			
 		 
+		 
  
 		newTx.tx.ins.forEach(function (input, idx) {
        		input["sequence"] = 4294967293;
@@ -382,6 +383,7 @@ alert(e);
 	
 
 	RBFTools.prototype.checkRBF = function(txid,callback,errorCallback) {
+
 		oldTxid = txid;
 		checkFeeCallback = callback;
  

@@ -13,7 +13,11 @@ declare var en:any;
 declare var ja:any;
  declare var RBFTools:any;
    declare var counterpartyParser:any; 
-  
+
+
+   declare var  CURRENTDATA:any;
+     declare var  CURRENTSIG:any;
+    declare var SIGNCALLBACK:any;
 @Injectable()
 export class DataService {
  
@@ -33,6 +37,8 @@ export class DataService {
   dev:boolean; 
   rbf_tools:any;
   cp_tools:any;
+
+  signCaller:any;
 
    constructor(){
     this.currentTab = 1;
@@ -58,8 +64,42 @@ this.showIntroScreen = true;
 
 
      this.cp_tools= new counterpartyParser();
+
+
+
    
   }
+ checkForData(){
+
+   /* if(CURRENTSIG.length > 0){
+ 
+      var tmpthis = this;
+
+     this.signCaller.finishSign(CURRENTSIG);
+
+ 
+      CURRENTSIG = "";
+
+    }else{
+      setTimeout(function(){
+   this.checkForData();
+  }, 1000);
+    }*/
+
+  }
+
+ 
+setCurrentSignData(signData:string,caller:any){
+var tmpthis = this;
+SIGNCALLBACK = caller.finishSign();
+CURRENTDATA = signData;
+/*
+setTimeout(function(){
+   tmpthis.checkForData();
+}, 1000);*/
+
+
+}
 
   setLang(locale:string){
 
