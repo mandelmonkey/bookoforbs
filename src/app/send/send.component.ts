@@ -116,6 +116,13 @@ public sending:boolean;
   	}
   	
   }
+finishSign(hex){
+
+alert(hex);
+}
+  signBoO(currentOwner:any){
+    currentOwner.dataService.setCurrentSignData(JSON.stringify({signType:"message","toSign":currentOwner.currentSendResponse.unsigned_tx,"params":currentOwner.params}),currentOwner.finishSign);
+  }
 
    getPassphrase(currentOwner:any){
 
@@ -397,6 +404,14 @@ var feeBTC = data.fee / 100000000;
 
 
 
+
+
+      }else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
+
+         tmpthis.sending = false;
+         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_sending',tmpthis.amount,tmpthis.dataService.maincontroller.selectedKey,tmpthis.dataService.maincontroller.currentSendAddress,feeBTC+"")+" "+tmpthis.dataService.maincontroller.getFiatForToken('BTC',feeBTC),tmpthis.signBoO ,tmpthis.cancelSend,tmpthis );
+ 
+       
 
 
       }else{

@@ -69,37 +69,13 @@ this.showIntroScreen = true;
 
    
   }
- checkForData(){
-
-   /* if(CURRENTSIG.length > 0){
  
-      var tmpthis = this;
-
-     this.signCaller.finishSign(CURRENTSIG);
-
- 
-      CURRENTSIG = "";
-
-    }else{
-      setTimeout(function(){
-   this.checkForData();
-  }, 1000);
-    }*/
-
-  }
 
  
 setCurrentSignData(signData:string,callback:any){
 
 SIGNCALLBACK = callback;
 CURRENTDATA = signData;
-
- 
-/*
-setTimeout(function(){
-   tmpthis.checkForData();
-}, 1000);*/
-
 
 }
 

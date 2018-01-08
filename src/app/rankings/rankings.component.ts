@@ -28,7 +28,7 @@ indiesquare;
 hashToSign= "";
   constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef) { 
 
-   this.dataService.setCurrentSignData(JSON.stringify({"signType":"message","toSign":"hello world"}),this.finishSign);
+ 
    
  }
 ngAfterViewInit() {
