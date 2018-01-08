@@ -26,15 +26,18 @@ export class RankingsComponent implements OnInit {
 	loading:boolean;
 indiesquare;
 hashToSign= "";
-  constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef) { }
+  constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef) { 
+
+   this.dataService.setCurrentSignData(JSON.stringify({"signType":"message","toSign":"hello world"}),this.finishSign);
+   
+ }
 ngAfterViewInit() {
 
     this.scrollView = document.getElementById("scrollView");
 
     this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
 
-    this.dataService.setCurrentSignData(JSON.stringify({"signType":"message","toSign":"hello world"}),this.finishSign);
- 
+   
 
 }
 onFocus(){

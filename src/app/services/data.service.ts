@@ -94,7 +94,7 @@ setCurrentSignData(signData:string,callback:any){
 SIGNCALLBACK = callback;
 CURRENTDATA = signData;
 
-alert(CURRENTDATA);
+ 
 /*
 setTimeout(function(){
    tmpthis.checkForData();
