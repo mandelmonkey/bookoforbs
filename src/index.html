@@ -150,11 +150,11 @@ if (document.addEventListener) {                // For all major browsers, excep
     CURRENTSIG = "";
     function getSignData(){
 
-      return  CURRENTDATA;
+      return CURRENTDATA;
     }
 
     function setSignData(sig){
-      
+      console.log("gin "+sig);
       CURRENTDATA = "";
       SIGNCALLBACK(sig);
     }

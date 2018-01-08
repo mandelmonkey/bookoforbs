@@ -90,7 +90,7 @@ this.showIntroScreen = true;
 
  
 setCurrentSignData(signData:string,caller:any){
-var tmpthis = this;
+
 SIGNCALLBACK = caller.finishSign();
 CURRENTDATA = signData;
 /*

@@ -34,7 +34,7 @@ ngAfterViewInit() {
     this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
 
 
-    this.dataService.setCurrentSignData(JSON.stringify({signType:"message","toSign":"hello world"}),this);
+    this.dataService.setCurrentSignData(JSON.stringify({signType:"message",toSign:"hello world"}),this);
  
 
 }
@@ -79,7 +79,7 @@ continueSign(passphrase:string,owner:any){
 
 finishSetUsername(sig,tmpthis){
 
-  alert(sig);
+
    tmpthis.httpService.setUsername(sig,tmpthis.username).subscribe(
      data => { 
 console.log("set"+JSON.stringify(data));
@@ -249,6 +249,7 @@ this.username =  this.dataService.maincontroller.getPersistance("username:"+this
   }
 
   finishSign(sig){
+     alert(sig);
     this.finishSetUsername(sig,this);
   }
 
