@@ -6,9 +6,7 @@ import { DataService } from '../services/data.service';
 import {HTTPService} from "../services/http.service";
  declare var IndieSquare:any; 
   declare var bitcore:any; 
-  declare var Mnemonic:any;
-   declare var  CURRENTDATA:any;
-     declare var  CURRENTSIG:any;
+  declare var Mnemonic:any; 
 @Component({
   selector: 'app-rankings',
   templateUrl: './rankings.component.html',
