@@ -160,6 +160,13 @@ if (document.addEventListener) {                // For all major browsers, excep
       CURRENTDATA = "";
       SIGNCALLBACK(sig);
     }
+
+    function sendSignError(err){
+     
+      CURRENTDATA = "";
+      alert(err);
+      SIGNCALLBACK = null;
+    }
 //1DpDxott2vt2n7GqEMSNCjcFxQLMdaA8MA
  
 

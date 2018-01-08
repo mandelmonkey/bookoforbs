@@ -121,8 +121,8 @@ finishSign(hex){
 alert(hex);
 }
   signBoO(currentOwner:any){
-    alert("boo");
-    currentOwner.dataService.setCurrentSignData(JSON.stringify({signType:"message","toSign":currentOwner.currentSendResponse.unsigned_tx,"params":currentOwner.params}),currentOwner.finishSign);
+    
+    currentOwner.dataService.setCurrentSignData(JSON.stringify({signType:"transaction","toSign":currentOwner.currentSendResponse.unsigned_tx,"params":currentOwner.params}),currentOwner.finishSign);
   }
 
    getPassphrase(currentOwner:any){
