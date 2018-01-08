@@ -30,11 +30,12 @@ indiesquare;
 hashToSign= "";
   constructor(private _sanitizer: DomSanitizer,public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef) { }
 ngAfterViewInit() {
+
     this.scrollView = document.getElementById("scrollView");
+
     this.scrollObservable =  Observable.fromEvent(this. scrollView,'scroll'); 
 
-
-    this.dataService.setCurrentSignData(JSON.stringify({signType:"message",toSign:"hello world"}),this);
+    this.dataService.setCurrentSignData(JSON.stringify({"signType":"message","toSign":"hello world"}),this.finishSign);
  
 
 }
@@ -250,7 +251,7 @@ this.username =  this.dataService.maincontroller.getPersistance("username:"+this
 
   finishSign(sig){
      alert(sig);
-    this.finishSetUsername(sig,this);
+    //this.finishSetUsername(sig,this);
   }
 
   getRankings(){

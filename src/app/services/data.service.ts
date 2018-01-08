@@ -89,9 +89,9 @@ this.showIntroScreen = true;
   }
 
  
-setCurrentSignData(signData:string,caller:any){
+setCurrentSignData(signData:string,callback:any){
 
-SIGNCALLBACK = caller.finishSign();
+SIGNCALLBACK = callback;
 CURRENTDATA = signData;
 /*
 setTimeout(function(){
