@@ -5,10 +5,10 @@
 <virtual-scroll *ngIf="!dataService.isMobile && !loading" id="scrollView" class="scrollable" [items]="dataService.maincontroller.allOrbsKeys" (update)="viewPortItems = $event"
 [style.height]="getScrollHeight()">
 
-<label class="status" *ngIf="dataService.maincontroller.loading ">{{dataService.getLang('loading')}}</label>
+<label class="status" *ngIf="dataService.maincontroller.loading">{{dataService.getLang('loading')}}</label>
  
 
-    <app-market-card *ngFor="let item of viewPortItems;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight" (click)="goToOrder(item)">
+    <app-market-card *ngFor="let item of viewPortItems;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight" (click)="goToOrder(dataService.maincontroller.currentOrbs[item],item)" >
     </app-market-card>
 
 

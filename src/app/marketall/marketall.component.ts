@@ -43,8 +43,11 @@ export class MarketallComponent implements OnInit {
 
  }
  goBack(){
- 	  this.dataService.maincontroller.selectedKey = null; 
-   this.dataService.maincontroller.showMarketAll = false;
+ 	this.dataService.maincontroller.currentBalance = null;
+    this.dataService.maincontroller.selectedOrb  = "";
+    this.dataService.maincontroller.selectedKey = "";
+    this.dataService.maincontroller.showMarketAll = false;
+    this.dataService.maincontroller.showSelected = false;
  }
  setScrollObs(){
 
@@ -74,14 +77,11 @@ export class MarketallComponent implements OnInit {
     }
    
   }
-  goToOrder(key){
-
-  	  this.dataService.maincontroller.currentBalance =  this.dataService.maincontroller.getUserBalance(key);
-   // this.dataService.maincontroller.selectedOrb = selectedOrb;
-    this.dataService.maincontroller.selectedKey = key;  
- 
-  	this.dataService.maincontroller.showOrderPage = true;
-  	 
+  goToOrder(selectedOrb,selectedKey){
+this.dataService.maincontroller.currentBalance =  this.dataService.maincontroller.getUserBalance(selectedKey);
+    this.dataService.maincontroller.selectedOrb = selectedOrb;
+    this.dataService.maincontroller.selectedKey = selectedKey;
+    this.dataService.maincontroller.showOrderPage = true;
   }
   setWidths(){
  
