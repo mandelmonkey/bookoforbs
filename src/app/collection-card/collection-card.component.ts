@@ -102,9 +102,12 @@ getHeight(){
   
   }
  getImage(){
-
-  var img = this.orbImage.replace("http:", '');
-	  console.log(img);
+ 
+  var img = this.orbImage;
+  if(this.orbImage.indexOf("http://") != -1){
+  	img = img.replace("http:", '');
+	  
+  }
     return img;
 
 }
