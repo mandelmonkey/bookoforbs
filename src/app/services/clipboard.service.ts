@@ -30,7 +30,7 @@ export class ClipboardService {
 	// resolves to the given value on success or rejects with the raised Error.
 	public copy( value: string ) : Promise<string> {
 
-		var promise = new Promise(
+		var promise = new Promise<string>(
 			( resolve, reject ) : void => {
 
 				var textarea = null;
