@@ -32,6 +32,8 @@ import { RankingsCellComponent } from './rankings-cell/rankings-cell.component';
 import { IntroscreensComponent } from './introscreens/introscreens.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { MarketallComponent } from './marketall/marketall.component';
+import { MarketCardComponent } from './market-card/market-card.component';
 
 
 const appRoutes: Routes = [
@@ -60,7 +62,9 @@ const appRoutes: Routes = [
     CompletionbarComponent,
     SettingsComponent,
     RankingsCellComponent,
-    IntroscreensComponent
+    IntroscreensComponent,
+    MarketallComponent,
+    MarketCardComponent
   ],
   imports: [
     PersistenceModule,

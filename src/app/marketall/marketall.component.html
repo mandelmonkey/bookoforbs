@@ -1,0 +1,41 @@
+<div class="marketAll" *ngIf="dataService.currentTab == 2" [@fadeInOut] [style.background-image]="'url(' +dataService.getImage('stoneBack')+ ')'">
+ 
+ <p class="title" *ngIf="loading">{{dataService.getLang('loading')}}</p>
+
+<virtual-scroll *ngIf="!dataService.isMobile && !loading" id="scrollView" class="scrollable" [items]="dataService.maincontroller.allOrbsKeys" (update)="viewPortItems = $event"
+[style.height]="getScrollHeight()">
+
+<label class="status" *ngIf="dataService.maincontroller.loading ">{{dataService.getLang('loading')}}</label>
+ 
+
+    <app-market-card *ngFor="let item of viewPortItems;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight" (click)="goToOrder(item)">
+    </app-market-card>
+
+
+</virtual-scroll>  
+ 
+ 
+
+ <div class="parent">
+  <img class="backbar"   [src]="dataService.getImage('tool_bar_background')"/>
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')" />
+  <img class="rightbracket"  [src]="dataService.getImage('rightBracket')" />
+
+
+
+   <div class="backButton" (click)="goBack()">
+    <img class="backButtonImg" [src]="dataService.getImage('filterButtonBackground')"/>
+
+
+    <label>{{dataService.getLang("back")}}</label>
+      
+   
+
+
+
+  </div>
+ 
+
+</div>
+
+ 

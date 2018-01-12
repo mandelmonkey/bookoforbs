@@ -33,6 +33,7 @@ public showOrderPage = false;
 public showCollection = true;
 public showSelected = false;
 public showMarket = false;
+public showMarketAll = false;
 public showHistory = false;
 public showBottomBar = true;
 public showRankings = false;

@@ -34,6 +34,7 @@ export class CollectionComponent implements OnInit {
 
 
  constructor(public dataService:DataService,private httpService:HTTPService) {
+   
  }
  ngAfterViewInit() {
   this.setScrollObs();

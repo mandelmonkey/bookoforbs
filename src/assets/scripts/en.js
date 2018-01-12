@@ -72,6 +72,7 @@ var en = function() {
 	lang["no_address"]="No address";
 	lang["settings"]="Settings";
 	lang["signin"]="Sign In";
+	lang["viewall"]="View All";
 	lang["signout"]="Sign Out";
 	lang["preferred_currency"]="Choose your preferred currency";
 	lang["enter_address"]="enter address";

@@ -71,6 +71,7 @@ var ja = function() {
 	lang["no_address"]="アドレスがありません";
 	lang["settings"]="設定";
 	lang["signin"]="ログイン";
+	lang["viewall"]="全て見る";
 	lang["signout"]="ログアウト";
 	lang["preferred_currency"]="表示したい通貨を選んでください";
 	lang["enter_address"]="ビットコインアドレスを入力";

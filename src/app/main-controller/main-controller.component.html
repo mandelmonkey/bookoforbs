@@ -4,7 +4,7 @@
   
 
    <app-collection  class="scrollable" *ngIf="showCollection" ></app-collection>
-   <app-market  *ngIf="showMarket" ></app-market>  
+   <app-market  *ngIf="showMarket" ></app-market>   
 <app-history  *ngIf="showHistory"></app-history>
    <app-account  *ngIf="showAccount"></app-account>
  
@@ -58,7 +58,9 @@
 
 </div>
 <app-send *ngIf="showSend" ></app-send>
+<app-marketall  *ngIf="showMarketAll" ></app-marketall> 
 <app-order-page *ngIf="showOrderPage" ></app-order-page>
+
  <div class="messageDark"  *ngIf="showingMessage">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">
   <div class="messageText">{{messageText}}</div> 

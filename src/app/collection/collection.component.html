@@ -8,7 +8,7 @@
  <app-completionbar  *ngIf="!dataService.maincontroller.loading"></app-completionbar > 
  <p class="title" *ngIf="loading">{{dataService.getLang('loading')}}</p>
 
-<virtual-scroll *ngIf="dataService.isMobile && !loading" id="scrollView" class="scrollable" [items]="dataService.maincontroller.currentOrbsKeys" (update)="viewPortItems = $event"
+<virtual-scroll *ngIf="!loading" id="scrollView" class="scrollable" [items]="dataService.maincontroller.currentOrbsKeys" (update)="viewPortItems = $event"
 [style.height]="getCollectionHeight()">
 
 <label class="status" *ngIf="dataService.maincontroller.loading ">{{dataService.getLang('loading')}}</label>
@@ -19,7 +19,7 @@
 
 
 </virtual-scroll>  
- 
+ <!--
 <div *ngIf="!dataService.isMobile" id="scrollView" class="scrollView"
 [style.height]="getCollectionHeight()">
 
@@ -30,6 +30,7 @@
     </app-collection-card>
 
 </div>  
+-->
  
 	 
 

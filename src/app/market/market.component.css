@@ -1,14 +1,6 @@
  
 .marketScroll{
-/*overflow:hidden; overflow-y:scroll;
-    overflow: auto;
-        -webkit-overflow-scrolling: touch;
  
-   
-  height: 100%;
-
-
-*/
    width:100vw;
    text-align: center; 
    overflow:hidden; overflow-y:scroll;

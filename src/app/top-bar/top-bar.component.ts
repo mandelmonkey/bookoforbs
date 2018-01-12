@@ -47,6 +47,14 @@ rotated = false;
        }
       return false;
     }
+        shouldShowViewAll(){
+       if(this.dataService.currentTab == 2){
+           if(this.dataService.maincontroller.loading == false){
+             return true;
+           }
+       }
+      return false;
+    }
   ngOnInit() {
       this.dataService.topbar = this;
        this.currentEnvTitle = this.dataService.getLang("loading");
@@ -57,8 +65,19 @@ rotated = false;
  getSignIn(){
     return this.dataService.getLang("signin");
  }
+ getViewAll(){
+    return this.dataService.getLang("viewall");
+ }
  showSettings(){
-   return this.dataService.maincontroller.showSettings = true;;
+   this.dataService.maincontroller.showSettings = true;;
+ }
+ showMarketAll(){
+   /*this.dataService.maincontroller.showMarket = false;
+   this.dataService.maincontroller.showCollection = false;
+   this.dataService.maincontroller.showBottomBar = false;
+   this.dataService.maincontroller.showTopBar = false;*/
+
+   this.dataService.maincontroller.showMarketAll = true;
  }
  logout(){
   this.dataService.maincontroller.currentOrbsKeys = [];

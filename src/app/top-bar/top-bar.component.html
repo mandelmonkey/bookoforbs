@@ -26,5 +26,7 @@
   <input type="search"  style="text-transform:uppercase" (input)="updateSearch($event.target.value)">
   
 </div>
- 
+
+  <input *ngIf="shouldShowViewAll()" class="loginLogoutButton" type="button" [value]="getViewAll()" (click)="showMarketAll()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
+
 </div>
