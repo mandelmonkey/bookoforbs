@@ -50,7 +50,8 @@
     "ng-lazyload-image": "^3.3.3",
     "path-is-absolute": "^1.0.1",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "typescript": "2.4.2"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^5.2.0",
