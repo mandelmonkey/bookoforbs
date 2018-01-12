@@ -196,6 +196,37 @@ getCurrencyIcon (){
    	}
     return this.getBalance(this.dataService.maincontroller.currentCurrency);
   }
+   getUnconfBalanceCurrency(){
+     if(this.dataService.maincontroller.loading == true){
+       return "";
+     }
+     if(this.dataService.maincontroller.currentCurrency == null){
+       return "";
+     }
+    return this.getUnconfBalance(this.dataService.maincontroller.currentCurrency);
+  }
+   getUnconfBalance(currency:string){
+       
+    if(this.dataService.maincontroller.loading == true){
+      return "";
+    }
+    if(this.dataService.maincontroller.userBalance == null){
+      return "";
+    }
+    else{
+     
+
+      var currentBalance = this.dataService.maincontroller.getUserUnconfBalance(currency);
+       currentBalance = currentBalance.replace( /\s/g, "");
+
+      if(currentBalance == null){
+        return "";
+      }else{
+
+        return currentBalance+" ";;
+      }
+    }
+  }
     getBalance(currency:string){
        
     if(this.dataService.maincontroller.loading == true){

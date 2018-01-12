@@ -149,6 +149,8 @@ if (document.addEventListener) {                // For all major browsers, excep
     CURRENTDATA = "";
     CURRENTSIG = "";
     SIGNCALLBACK = null;
+    CURRENTCALLER = null;
+    SIGNERROR = null;
 
     function getSignData(){ 
 
@@ -156,16 +158,22 @@ if (document.addEventListener) {                // For all major browsers, excep
     }
 
     function setSignData(sig){
-      console.log("gin "+sig);
+ 
       CURRENTDATA = "";
-      SIGNCALLBACK(sig);
+      SIGNCALLBACK(sig,CURRENTCALLER);
+      SIGNCALLBACK = null;
+      CURRENTCALLER = null;
+      SIGNERROR = null;
+      
     }
 
     function sendSignError(err){
-     
+     alert(err);
+     SIGNERROR(err,CURRENTCALLER);
       CURRENTDATA = "";
-      alert(err);
+       CURRENTCALLER = null;
       SIGNCALLBACK = null;
+      SIGNERROR = null;
     }
 //1DpDxott2vt2n7GqEMSNCjcFxQLMdaA8MA
  

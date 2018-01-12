@@ -165,9 +165,7 @@ onResize(event) {
       dateString= dateString.replace('-', '/');
        dateString= dateString.replace('-', '/');
         dateString= dateString.replace('-', '/');
-     // console.log("ds"+dateString);
-   //   dateString = "2015/12/31 00:00:00";
-   //2017/10/17T09:31:12+0000
+    
    let date = new Date(dateString);
 
  var hourOffset = date.getTimezoneOffset() / 60;
@@ -361,6 +359,8 @@ if(tmpthis.baseDivisible == 1){
     tmpthis.unsigned_tx = data.unsigned_tx;
 
     if(tmpthis.dataService.maincontroller.linkType == "indiesquare" ){
+
+
     tmpthis.indiesquare.signTransaction({'unsigned_tx': data.unsigned_tx}, function(url, urlScheme, error){
     if( error ){
           tmpthis.closeConf();
@@ -424,10 +424,16 @@ if(tmpthis.baseDivisible == 1){
 
 
 });
+}else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
+
+
+     tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_ordering',giveQuant+"",giveToken,getQuant+"",getToken,  tmpthis.currentTransactionFee+""),tmpthis.signBoO ,tmpthis.cancelOrder,tmpthis );
+  
+
 }else{
 
     
-         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_ordering',giveQuant+"",giveToken,getQuant+"",getToken,  tmpthis.currentTransactionFee+""),tmpthis.getPassphrase ,tmpthis.cancelOrder,tmpthis );
+     tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_ordering',giveQuant+"",giveToken,getQuant+"",getToken,  tmpthis.currentTransactionFee+""),tmpthis.getPassphrase ,tmpthis.cancelOrder,tmpthis );
  
 
 }
@@ -439,6 +445,41 @@ if(tmpthis.baseDivisible == 1){
 
 
 }
+
+ 
+signError(error,currentOwner){
+
+ 
+   currentOwner.loading= false;
+  
+ currentOwner.closeConf();  
+  currentOwner.ref.detectChanges();
+
+ 
+ 
+}
+
+finishSign(hex,currentOwner){
+ 
+  currentOwner.broadcastTx(hex,currentOwner);
+ 
+}
+  signBoO(currentOwner:any){
+
+
+     var params = {};
+       
+  
+    params["address"] =  currentOwner.dataService.maincontroller.currentAddress;
+
+
+    var json = JSON.stringify({signType:"transaction","toSign":currentOwner.unsigned_tx,"params":params});
+   
+    currentOwner.dataService.setCurrentSignData(json,currentOwner.finishSign,currentOwner.signError,currentOwner);
+
+    currentOwner.loading = true;
+  }
+
 cancelOrder(owner:any){
   owner.loading = false;
 }
@@ -478,11 +519,7 @@ cancelOrder(owner:any){
 
          tmpthis.params = [];
        
-        /*
-        tmpthis.params["pubkey"] = masterderive.publicKey;
        
-         tmpthis.params["destination"] =  tmpthis.dataService.maincontroller.currentSendAddress;
-        */
         var privkey = bitcore.PrivateKey(masterderive.privateKey);
         
          tmpthis.params["address"] = privkey.toAddress().toString();
@@ -495,19 +532,7 @@ cancelOrder(owner:any){
     return; 
   }*/
              
-      tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
-    if( error ){
-     
- tmpthis.closeConf(); 
-        console.error(error);
-        alert("error broadcasting");
-        return;
-    }
-     tmpthis.loading= false;
-  
- tmpthis.closeConf(); 
- tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_placed"));
-});
+     tmpthis.broadcastTx(signed_tx,tmpthis);
               
 
             
@@ -541,6 +566,26 @@ cancelOrder(owner:any){
 
 
 
+
+  }
+
+  broadcastTx(hex,currentOwner){
+     currentOwner.indiesquare.broadcast({"tx": hex}, function(data, error){
+    if( error ){
+       currentOwner.loading= false;
+ currentOwner.closeConf(); 
+        console.error(error);
+        alert("error broadcasting");
+         currentOwner.ref.detectChanges();
+        return;
+    }
+    currentOwner.loading= false;
+  
+ currentOwner.closeConf(); 
+ currentOwner.dataService.maincontroller.showMessage(currentOwner.dataService.getLang("order_placed"));
+
+  currentOwner.ref.detectChanges();
+});
 
   }
 getSellPrice(){

@@ -1,6 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { DataService } from '../services/data.service';
-
+import { ChangeDetectorRef } from '@angular/core';
 import {HTTPService} from "../services/http.service";
    declare var IndieSquare:any; 
     declare var bitcore:any; 
@@ -27,25 +27,10 @@ export class HistoryCardComponent implements OnInit {
   rawtx:string;
 
 
-constructor(public dataService:DataService,private httpService:HTTPService) { }
+constructor(public dataService:DataService,private httpService:HTTPService, private ref: ChangeDetectorRef  ) { }
   ngOnInit() {
   console.log(JSON.stringify(this.data));
-/*
-
-      this.httpService.getRawTransaction(this.data.tx_hash).subscribe(
-    
-     data => { 
-        console.log("Rawtx"+data);
-        this.rawtx = data;
-      
-      },   
-      error => {
-        console.log("error rawtx");
-       
-     },
-     () => {});
-*/
-
+ 
   
 
 
@@ -59,11 +44,7 @@ constructor(public dataService:DataService,private httpService:HTTPService) { }
       }else{
         return false;
       }
-   /*if(this.rawtx.length > 0){
-      return true;
-   }else{
-       return false;
-   }*/
+    
 
   }
 
@@ -178,6 +159,41 @@ return true;
   
     //return true;
 }
+
+signError(error,currentOwner){
+
+ 
+  currentOwner.dataService.maincontroller.hideLoading();
+       
+             currentOwner.ref.detectChanges();
+ 
+}
+
+finishSign(hex,currentOwner){
+
+ 
+
+ 
+ currentOwner.broadcastTx(hex,currentOwner);
+ 
+}
+  signBoO(currentOwner:any){
+
+
+     var params = {};
+       
+     
+    params["address"] =  currentOwner.dataService.maincontroller.currentAddress;
+
+
+    var json = JSON.stringify({signType:"transaction","toSign":currentOwner.unsigned_tx,"params":params});
+   
+    currentOwner.dataService.setCurrentSignData(json,currentOwner.finishSign,currentOwner.signError,currentOwner);
+
+    currentOwner.sending = true;
+
+  }
+
 cancelOrder(){
 
 if(this.dataService.maincontroller.getPersistance("cancel:"+this.data.tx_hash) != ""){
@@ -264,23 +280,7 @@ tmpthis.indiesquare.createCancel(sendParams, function(data, error){
 console.log(result.signed_tx); 
 
     
-  tmpthis.indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
-
-     tmpthis.dataService.maincontroller.showingLoading = false;
-        if( error ){
-        	 
-            console.error(error);
-             tmpthis.dataService.maincontroller.showMessage(error);
-             
-            return;
-        }
-        tmpthis.dataService.history.reloadOrders();
-        tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
-
-        tmpthis.dataService.maincontroller.setPersistance("cancel:"+tmpthis.data.tx_hash,"cancelled");
-           
-      });   
-    
+  tmpthis.broadcastTx(result.signeed_tx,tmpthis)
 
    }
    
@@ -291,6 +291,11 @@ console.log(result.signed_tx);
 
 
 
+}
+else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
+   tmpthis.dataService.maincontroller.hideLoading();
+    tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC+""),tmpthis.signBoO ,tmpthis.cancelCancelOrder,tmpthis );
+  
 }
 else{
 
@@ -306,6 +311,28 @@ else{
 
  
 
+}
+
+broadcastTx(hex,currentOwner){
+
+
+ currentOwner.indiesquare.broadcast({"tx":hex}, function(data, error){
+
+    currentOwner.dataService.maincontroller.hideLoading();
+        if( error ){
+           
+            console.error(error);
+            currentOwner.dataService.maincontroller.showMessage(error);
+             currentOwner.ref.detectChanges();
+            return;
+        }
+      currentOwner.dataService.history.reloadOrders();
+       currentOwner.dataService.maincontroller.showMessage(currentOwner.dataService.getLang("order_canceled"));
+
+       currentOwner.dataService.maincontroller.setPersistance("cancel:"+currentOwner.data.tx_hash,"cancelled");
+            currentOwner.ref.detectChanges();
+      });   
+    
 }
 getOrderTitle1(){
 if(this.data != null){
@@ -553,24 +580,7 @@ cancelCancelOrder(owner:any){
     return; 
   }   */
              
-      tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
-    if( error ){
-     
-tmpthis.dataService.history.reloadOrders();
-        console.error(error);
-            tmpthis.loading= false;
-      tmpthis.dataService.maincontroller.hideLoading();
-        alert("error broadcasting");
-        return;
-    }
-     tmpthis.loading= false;
-      tmpthis.dataService.maincontroller.hideLoading();
-   tmpthis.dataService.history.reloadOrders();
-        tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
-
-        tmpthis.dataService.maincontroller.setPersistance("cancel:"+tmpthis.data.tx_hash,"cancelled");
-});
-              
+     tmpthis.broadcastTx(signed_tx,tmpthis);       
 
             
         };

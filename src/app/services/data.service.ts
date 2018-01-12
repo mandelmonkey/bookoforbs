@@ -18,6 +18,8 @@ declare var ja:any;
    declare var  CURRENTDATA:any;
      declare var  CURRENTSIG:any;
     declare var SIGNCALLBACK:any;
+     declare var CURRENTCALLER:any;
+     declare var   SIGNERROR:any;
 @Injectable()
 export class DataService {
  
@@ -72,10 +74,15 @@ this.showIntroScreen = true;
  
 
  
-setCurrentSignData(signData:string,callback:any){
-
-SIGNCALLBACK = callback;
+setCurrentSignData(signData:string,callback:any,errorCallback:any,caller:any){
+ 
 CURRENTDATA = signData;
+SIGNERROR = errorCallback;
+SIGNCALLBACK = callback;
+CURRENTCALLER = caller;
+ 
+ 
+
 
 }
 

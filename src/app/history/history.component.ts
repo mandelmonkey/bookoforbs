@@ -301,10 +301,36 @@ var newSatByteNum = Number(this.newSatByte);
   });
 
 }
+signError(error,currentOwner){
+
+ 
+ 
+ 
+}
+finishSign(hex,currentOwner){
+
+ 
+
+  alert(hex);
+ 
+}
 finishBump(tmpthis){
+
+if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
      console.log("here wentxxxx");
   tmpthis.dataService.maincontroller.showPassword(tmpthis.closeBumpFee,tmpthis.signBroadcast,tmpthis);
   console.log("here wentxxxx22222");
+
+}else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
+ 
+    
+    var json = JSON.stringify({signType:"basic","toSign":tmpthis.currentBumpUnsignedHex});
+   
+    tmpthis.dataService.setCurrentSignData(json,tmpthis.finishSign,tmpthis.signError,tmpthis);
+
+}
+
+
 }
 cancelBump(tmpthis){
   tmpthis.loadingBump = false;
@@ -323,13 +349,13 @@ signBroadcast(passphrase:string,owner:any){
         
          throw  err;
     }
-    console.log("here went2");
+ 
   var masterKey = foo.bitcoin.HDNode.fromSeedBuffer(foo.buffer(seed, 'hex'), foo.bitcoin.networks.bitcoin);
 
     var route = owner.dataService.maincontroller.basePath +owner.dataService.maincontroller.currentIndex;
     
 var key1 = masterKey.derivePath(route).keyPair;
- console.log("here went3");
+ 
   var unsignedTx = foo.bitcoin.Transaction.fromHex(owner.currentBumpUnsignedHex);
 
                                         var txb = foo.bitcoin.TransactionBuilder.fromTransaction(unsignedTx,foo.bitcoin.networks.bitcoin);

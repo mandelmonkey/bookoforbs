@@ -2,6 +2,7 @@ import { Inject,LOCALE_ID, Component, OnInit,ChangeDetectorRef } from '@angular/
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
 import { PersistenceService, StorageType } from 'angular-persistence';
+
 import * as CryptoJS from 'crypto-js';
    declare var QRious:any;
     declare var Mnemonic:any; 
@@ -397,7 +398,7 @@ if(this.dataService.isMobile ==false){
   showMessage(message:string){
     this.messageText = message;
     this.showingMessage = true;
-   
+    this.ref.detectChanges();
 
   }
 

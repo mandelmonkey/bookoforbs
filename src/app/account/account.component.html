@@ -21,7 +21,7 @@
 		<div class="middleSection">
 			<span class="currencyTitle">{{dataService.getLang('bitcoin')}}</span>
 			<div class="imageBack">
-				<span class="currencyBalance">{{getBalance('BTC')}}<b>BTC</b></span>
+				<span class="currencyBalance">{{getBalance('BTC')}}<b>{{getUnconfBalance('BTC')}}BTC</b></span>
 				<span class="currencyBalanceFiat">{{getBalanceFiat('BTC')}}</span>
 			</div>
 			
@@ -39,7 +39,7 @@
 		<div class="middleSection">
 			<span class="currencyTitle">{{getCurrency()}}</span>
 			<div class="imageBack">
-				<span class="currencyBalance">{{getBalanceCurrency()}}<b>{{dataService.maincontroller.currentAbrev}}</b></span>
+				<span class="currencyBalance">{{getBalanceCurrency()}}<b>{{getUnconfBalanceCurrency()}}{{dataService.maincontroller.currentAbrev}}</b></span>
 				<span class="currencyBalanceFiat">{{getBalanceFiat(getCurrency())}}</span>
 			</div>
 		</div>

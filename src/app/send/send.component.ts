@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HTTPService} from "../services/http.service";
 import { DataService } from '../services/data.service';
 import {ActivatedRoute} from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 declare var Mnemonic:any; 
  declare var bitcore:any; 
@@ -15,14 +16,14 @@ declare var Mnemonic:any;
 })
 export class SendComponent implements OnInit {
 
-  constructor(public dataService:DataService,private httpService:HTTPService,private route:ActivatedRoute) { }
+  constructor(public dataService:DataService,private httpService:HTTPService,private route:ActivatedRoute,private ref: ChangeDetectorRef) { }
   public amount:string;
   public currentORB:string; 
   public status:string;
 public params:any;
 public currentSendResponse:any;
 public sending:boolean;
-  
+  test = "hello";
   public account = null;
   public indiesquare:any;
   public  divisible = -1;
@@ -37,7 +38,7 @@ public sending:boolean;
          "border":"none",
          "background-blend-mode":" overlay"
       }
-    //return "background: url("+ this.dataService.getImage(image)+") no-repeat 0 0;"
+     
   }
   ngOnInit() {
   	this.amount = "";
@@ -116,13 +117,41 @@ public sending:boolean;
   	}
   	
   }
-finishSign(hex){
+ 
+signError(error,currentOwner){
 
-alert(hex);
+ 
+ currentOwner.sending = false;
+  
+  currentOwner.closeSend();
+
+currentOwner.ref.detectChanges();
+ 
+ 
+}
+finishSign(hex,currentOwner){
+
+ 
+
+ 
+ currentOwner.broadcastTx(hex,currentOwner);
+ 
 }
   signBoO(currentOwner:any){
-    
-    currentOwner.dataService.setCurrentSignData(JSON.stringify({signType:"transaction","toSign":currentOwner.currentSendResponse.unsigned_tx,"params":currentOwner.params}),currentOwner.finishSign);
+
+
+     var params = {};
+       
+      params["destination"] =  currentOwner.dataService.maincontroller.currentSendAddress;
+        
+    params["address"] =  currentOwner.dataService.maincontroller.currentAddress;
+
+
+    var json = JSON.stringify({signType:"transaction","toSign":currentOwner.currentSendResponse.unsigned_tx,"params":params});
+   
+    currentOwner.dataService.setCurrentSignData(json,currentOwner.finishSign,currentOwner.signError,currentOwner);
+
+    currentOwner.sending = true;
   }
 
    getPassphrase(currentOwner:any){
@@ -155,9 +184,6 @@ alert(hex);
       console.log(route);
     var masterderive = master.derive( route );
     
-     
-     
-
          tmpthis.params = [];
        
         
@@ -170,24 +196,9 @@ alert(hex);
          tmpthis.params["address"] = privkey.toAddress().toString();
          tmpthis.params.callback = function(signed_tx){
                 
-             /*
-                 tmpthis.sending = false;
-    tmpthis.dataService.maincontroller.showMessage("sent!");
-    tmpthis.closeSend();
-    return;*/
+   
  
- 
-      tmpthis.indiesquare.broadcast({"tx": signed_tx}, function(data, error){
-    if( error ){
-       tmpthis.sending = false;
-        console.error(error);
-        alert("error broadcasting");
-        return;
-    }
-     tmpthis.sending = false;
-    tmpthis.dataService.maincontroller.showMessage("sent!");
-    tmpthis.closeSend();
-}); 
+       tmpthis.broadcastTx(signed_tx,tmpthis);
               
 
             
@@ -217,6 +228,39 @@ alert(hex);
 
 
   }
+  broadcastTx(hex,currentOwner){
+     
+     
+
+ 
+     currentOwner.indiesquare.broadcast({"tx": hex}, function(data, error){
+        
+    if( error ){
+       
+      currentOwner.sending = false;
+       
+        alert("error broadcasting");
+        currentOwner.ref.detectChanges();
+        return;
+    }
+
+  
+ currentOwner.sending = false;
+ 
+   currentOwner.dataService.maincontroller.showMessage("sent!");
+     
+  currentOwner.closeSend();
+  currentOwner.dataService.maincontroller.reloadBalances();
+currentOwner.ref.detectChanges();
+ 
+ 
+
+}); 
+ 
+     
+ 
+  }
+
   cancelSend(currentOwner:any){
  
     currentOwner.sending = false;

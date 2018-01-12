@@ -91,6 +91,7 @@ console.log("set"+JSON.stringify(data));
        if(data.error != null){
            tmpthis.loadingUsername = false;
            alert(tmpthis.dataService.getLang("error"));
+           this.ref.detectChanges();
          return;
        }else{
           console.log("error null"+data.username);
@@ -100,12 +101,12 @@ console.log("set"+JSON.stringify(data));
        alert(tmpthis.dataService.getLang("username_set"));
        tmpthis.getRankings();
        tmpthis.dataService.maincontroller.setPersistance("username:"+tmpthis.dataService.maincontroller.currentAddress,data.username+":"+tmpthis.dataService.maincontroller.currentEnv);
-        
+        this.ref.detectChanges();
      },
          error => {
   tmpthis.loadingUsername = false; 
        alert(tmpthis.dataService.getLang("error"));
- 
+       this.ref.detectChanges();
        },
      () => {});
 }
@@ -190,7 +191,7 @@ console.log("set"+JSON.stringify(data));
 
 }else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
 
-   tmpthis.dataService.setCurrentSignData(JSON.stringify({signType:"message","toSign":tmpthis.hashToSign}),tmpthis);
+   tmpthis.dataService.setCurrentSignData(JSON.stringify({signType:"message","toSign":tmpthis.hashToSign}),tmpthis.finishSign,tmpthis.signError,tmpthis);
    
 }
 else{
@@ -249,10 +250,15 @@ this.username =  this.dataService.maincontroller.getPersistance("username:"+this
      
 
   }
+  signError(error,currentOwner){
+currentOwner.loadingUsername = false;
+          
+         currentOwner.ref.detectChanges();
+  }
 
-  finishSign(sig){
-     alert(sig);
-    //this.finishSetUsername(sig,this);
+  finishSign(sig,currentOwner){
+     
+    currentOwner.finishSetUsername(sig,currentOwner);
   }
 
   getRankings(){
