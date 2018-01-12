@@ -103,7 +103,7 @@ getHeight(){
   }
  getImage(){
 
-  var img = this.orbImage.replace(/^http:\/\//, '');
+  var img = this.orbImage.replace("http:", '');
 	  console.log(img);
     return img;
 
