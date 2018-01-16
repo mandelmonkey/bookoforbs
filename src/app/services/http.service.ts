@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import {Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { DataService } from '../services/data.service';
-import 'rxjs/Rx';
+//import 'rxjs/Rx';
 
 @Injectable()
 export class HTTPService{
