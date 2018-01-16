@@ -35,6 +35,8 @@
     color: #ffffd5;
     font-family:   merriweather;  
     font-size: 0.8em;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+-webkit-tap-highlight-color: transparent;
 }
  
 .ownAllButtonRight { 
@@ -54,6 +56,8 @@
     color: #ffffd5;
     font-family:   merriweather; 
     font-size: 0.8em;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+-webkit-tap-highlight-color: transparent;
 }
 
 
@@ -164,20 +168,7 @@
     font-family:   merriweather;  
     font-size: 0.8em;
 }
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 .parent {
   position: absolute;
   top: 0;
