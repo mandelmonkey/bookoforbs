@@ -2,7 +2,7 @@
  
  <p class="title" *ngIf="loading">{{dataService.getLang('loading')}}</p>
 
-<virtual-scroll *ngIf="!dataService.isMobile && !loading" id="scrollView" class="scrollable" [items]="dataService.maincontroller.allOrbsKeys" (update)="viewPortItems = $event"
+<virtual-scroll *ngIf="!loading" id="scrollView" class="scrollable" [items]="dataService.maincontroller.allOrbsKeys" (update)="viewPortItems = $event"
 [style.height]="getScrollHeight()">
 
 <label class="status" *ngIf="dataService.maincontroller.loading">{{dataService.getLang('loading')}}</label>
