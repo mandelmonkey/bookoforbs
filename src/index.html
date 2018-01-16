@@ -9,8 +9,6 @@
   
   
 
-       
- <script src="assets/scripts/inobounce.js"></script> 
   <meta charset="utf-8">
   <title>Book of Orbs</title>
   <base href="/">
@@ -129,7 +127,7 @@ if (document.addEventListener) {                // For all major browsers, excep
  visibilityHandler();
    */
 
-    var bitcore = require('bitcoreBoo'); 
+  
 
     PUBLICKEY = "";
     CURRENTDATA = "";
@@ -191,6 +189,9 @@ var res = xcp.util.parseTransaction( rawtx ,'mainnet');
 
   
   </script>
+
+       
+ <script src="assets/scripts/inobounce.js"></script> 
 <script type="text/javascript" src="assets/scripts/qcode-decoder.min.js"></script>
 <script src="assets/scripts/qrious.min.js"></script>
 <script src="assets/scripts/indiesquare.min.js"></script> 
@@ -204,11 +205,13 @@ var res = xcp.util.parseTransaction( rawtx ,'mainnet');
          <script src="assets/scripts/cplib.js"></script>
          <script src="assets/scripts/counterpartyParser.js"></script>
 
-  
+
    <script type="text/javascript" src="assets/scripts/UI.js"></script>
     <script type="text/javascript" src="assets/scripts/en.js"></script>
       <script type="text/javascript" src="assets/scripts/ja.js"></script>
-
+<script type="text/javascript">
+    var bitcore = require('bitcoreBoo'); 
+</script>
 
 </body>
 </html>
