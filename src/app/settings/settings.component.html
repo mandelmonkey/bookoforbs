@@ -39,7 +39,7 @@
   <img class="rightbracket"  [src]="dataService.getImage('rightBracket')" />
 
  <input class="backButton" type="button" [value]="dataService.getLang('back')" (click)="closeSelf()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
- <input class="jumpButton" type="button" [value]="dataService.getLang('signout')" (click)="logout()" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
+ <input *ngIf="shouldShowSignOut()" class="jumpButton" type="button" [value]="dataService.getLang('signout')" (click)="logout()" [style.background-image]="'url(' +dataService.getImage('sendButtonCollection')+ ')'">
  
 
 <label id="rankings" class="title">{{dataService.getLang('settings')}}</label> 

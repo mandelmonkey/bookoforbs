@@ -315,7 +315,7 @@ else{
 
 broadcastTx(hex,currentOwner){
 
-
+ currentOwner.dataService.maincontroller.closeQR();
  currentOwner.indiesquare.broadcast({"tx":hex}, function(data, error){
 
     currentOwner.dataService.maincontroller.hideLoading();

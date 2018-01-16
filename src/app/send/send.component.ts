@@ -234,13 +234,14 @@ finishSign(hex,currentOwner){
 
  
      currentOwner.indiesquare.broadcast({"tx": hex}, function(data, error){
-        
+           currentOwner.dataService.maincontroller.closeQR();
     if( error ){
        
       currentOwner.sending = false;
-       
+       currentOwner.dataService.maincontroller.showMessage(error);
         alert("error broadcasting");
         currentOwner.ref.detectChanges();
+
         return;
     }
 
@@ -252,7 +253,6 @@ finishSign(hex,currentOwner){
   currentOwner.closeSend();
   currentOwner.dataService.maincontroller.reloadBalances();
 currentOwner.ref.detectChanges();
- 
  
 
 }); 
@@ -387,8 +387,6 @@ console.error("send error " + error);
 var feeBTC = data.fee / 100000000;
 
       
-     // console.dir('unsigned_tx:' + tmpthis.currentSendResponse.unsigned_tx+" "+tmpthis.dataService.maincontroller.linkType);
-
    if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
      
      tmpthis.indiesquare.signTransaction({'unsigned_tx': tmpthis.currentSendResponse.unsigned_tx}, function(url, urlScheme, error){
@@ -421,21 +419,9 @@ var feeBTC = data.fee / 100000000;
   }else{
      
  
- 
-     tmpthis.indiesquare.broadcast({"tx": result.signed_tx}, function(data, error){
-        if( error ){
-            console.error(error);
-             tmpthis.dataService.maincontroller.showMessage(error);
-             tmpthis.sending = false;
-               tmpthis.dataService.maincontroller.closeQR();
-            return;
-        }
-        tmpthis.sending = false;
-        tmpthis.dataService.maincontroller.showMessage(tmpThis.dataService.getLang("sent"));
-          tmpthis.closeSend();
-            tmpthis.dataService.maincontroller.closeQR();
-      });  
- 
+  tmpthis.broadcastTx(result.signed_tx,tmpthis);
+
+    
 
     
 

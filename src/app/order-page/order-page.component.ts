@@ -524,13 +524,7 @@ cancelOrder(owner:any){
         
          tmpthis.params["address"] = privkey.toAddress().toString();
          tmpthis.params.callback = function(signed_tx){
-                /*
-              if(1==1){
-    tmpthis.loading = false;
- tmpthis.closeConf(); 
- tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_placed"));
-    return; 
-  }*/
+           
              
      tmpthis.broadcastTx(signed_tx,tmpthis);
               
@@ -570,6 +564,7 @@ cancelOrder(owner:any){
   }
 
   broadcastTx(hex,currentOwner){
+     currentOwner.dataService.maincontroller.closeQR();
      currentOwner.indiesquare.broadcast({"tx": hex}, function(data, error){
     if( error ){
        currentOwner.loading= false;

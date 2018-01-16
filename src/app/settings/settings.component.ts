@@ -37,6 +37,15 @@ contShowPassphrase(passphrase:string){
 cancelPassphrase(){
 
 }
+
+shouldShowSignOut(){
+  if(this.dataService.maincontroller.linkType == "BoO"){
+    return false;
+  }
+  else {
+    return true;
+  }
+}
  getMarketKeys(){
 
    var keys = Object.keys(this.dataService.maincontroller.markets);

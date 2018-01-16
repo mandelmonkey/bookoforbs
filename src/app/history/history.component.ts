@@ -34,11 +34,7 @@ loading = false;
    rbf:any;
    currentBumpUnsignedHex="";
     indiesquare:any;
-  constructor(public dataService:DataService,private httpService:HTTPService) { 
-
-  
-
-
+  constructor(public dataService:DataService,private httpService:HTTPService,private ref: ChangeDetectorRef) { 
 
 
   }
@@ -303,23 +299,78 @@ var newSatByteNum = Number(this.newSatByte);
 }
 signError(error,currentOwner){
 
+  alert(error);
  
  
  
 }
-finishSign(hex,currentOwner){
-
+finishSign(hex,owner){
  
-
-  alert(hex);
+ owner.indiesquare = new IndieSquare({
+    'apikey':  owner.httpService.apiKey  
+  });
+ 
+ owner.broadcastTx(hex,owner);
  
 }
 finishBump(tmpthis){
 
-if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
-     console.log("here wentxxxx");
-  tmpthis.dataService.maincontroller.showPassword(tmpthis.closeBumpFee,tmpthis.signBroadcast,tmpthis);
-  console.log("here wentxxxx22222");
+
+
+  if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
+      tmpthis.loadingBump = true;
+  tmpthis.showBump = true;
+   tmpthis.indiesquare = new IndieSquare({
+    'apikey':    tmpthis.httpService.apiKey  
+  });
+ 
+
+    tmpthis.ref.detectChanges();
+ console.log("here went");
+     tmpthis.indiesquare.signTransaction({'unsigned_tx':tmpthis.currentBumpUnsignedHex}, function(url, urlScheme, error){
+   console.log("here went 2");
+    if( error ){
+
+      console.error(error);
+             tmpthis.dataService.maincontroller.showMessage(error);
+        tmpthis.loadingBump = false;
+  tmpthis.showBump = false;
+        
+       
+        return;
+    } 
+
+    if(tmpthis.dataService.isMobile == false){
+
+      tmpthis.dataService.maincontroller.showQR(url);
+      console.log("url is "+url);
+
+    }
+   
+   
+}, function(result, error){
+ 
+  if(error){
+    console.error(error); 
+             tmpthis.dataService.maincontroller.showMessage(error);
+     tmpthis.loadingBump = false;
+  tmpthis.showBump = false;
+      tmpthis.dataService.maincontroller.closeQR();
+ return;
+  }else{
+     
+ 
+  tmpthis.broadcastTx(result.signed_tx,tmpthis);
+
+    
+
+    
+
+   }
+   
+
+});
+ 
 
 }else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
  
@@ -327,7 +378,12 @@ if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
     var json = JSON.stringify({signType:"basic","toSign":tmpthis.currentBumpUnsignedHex});
    
     tmpthis.dataService.setCurrentSignData(json,tmpthis.finishSign,tmpthis.signError,tmpthis);
+     tmpthis.loadingBump = true;
+     tmpthis.showBump = true;
+}else{
 
+  tmpthis.dataService.maincontroller.showPassword(tmpthis.closeBumpFee,tmpthis.signBroadcast,tmpthis);
+ 
 }
 
 
@@ -390,15 +446,23 @@ var newSize =   owner.newFee / getBinarySize(signedTx.toHex());
   console.log(newSize +"  "+owner.oldSatByte);
  
 
+owner.broadcastTx(signedTx.toHex(),owner); 
 
- owner.indiesquare.broadcast({"tx":signedTx.toHex()}, function(data, error){
 
+  }
+
+  broadcastTx(tx,owner){
+ 
+ 
+ owner.indiesquare.broadcast({"tx":tx}, function(data, error){
+ owner.dataService.maincontroller.closeQR();
      owner.showBump = false;
         if( error ){
-           
+           alert("went heer err"+error);
             console.error(error);
             owner.dataService.maincontroller.showMessage(error.message);
              
+    owner.ref.detectChanges();
             return;
         }
 
@@ -406,18 +470,18 @@ var newSize =   owner.newFee / getBinarySize(signedTx.toHex());
     owner.dataService.maincontroller.history = [];
      owner.getHistory();  
      if(owner.dataService.maincontroller.orders.length > 0){ 
- owner.reloadOrders();
-}
+     owner.reloadOrders();
+  }
  
         owner.dataService.maincontroller.showMessage(owner.dataService.getLang("fee_bumped"));
 
 
  
  
+    owner.ref.detectChanges();
        
            
       });  
-
 
   }
 
