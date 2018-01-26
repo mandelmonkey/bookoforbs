@@ -242,7 +242,12 @@ getMarketHeight(){
   }
  getImage(obj:any){
 
-    return obj.image;
+    var img = obj.image;
+  if(obj.image.indexOf("http://") != -1){
+    img = img.replace("http:", '');
+    
+  }
+    return img;
   }
 
 }
