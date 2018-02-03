@@ -1,10 +1,10 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { ChangeDetectorRef } from '@angular/core';
-import {HTTPService} from "../services/http.service";
-   declare var IndieSquare:any; 
-    declare var bitcore:any; 
-  declare var Mnemonic:any;
+import { HTTPService } from "../services/http.service";
+declare var IndieSquare: any;
+declare var bitcore: any;
+declare var Mnemonic: any;
 
 
 
@@ -16,600 +16,589 @@ import {HTTPService} from "../services/http.service";
 
 
 export class HistoryCardComponent implements OnInit {
- unsigned_tx = "";
- @Input()
-	data:any;
+  unsigned_tx = "";
+  @Input()
+	data: any;
 
- @Input()
-  order:boolean;
-  indiesquare:any;
+  @Input()
+  order: boolean;
+  indiesquare: any;
 
-  rawtx:string;
+  rawtx: string;
 
 
-constructor(public dataService:DataService,private httpService:HTTPService, private ref: ChangeDetectorRef  ) { }
+  constructor(public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef) { }
   ngOnInit() {
-  console.log(JSON.stringify(this.data));
- 
-  
+    console.log(JSON.stringify(this.data));
+
+
 
 
   }
-  canRBF(){
+  canRBF() {
 
-      if(this.data.unconfirm != null){
-        if(this.data.unconfirm == true){
-          return true;
-        }
-      }else{
-        return false;
+    if (this.data.unconfirm != null) {
+      if (this.data.unconfirm == true) {
+        return true;
       }
-    
+    } else {
+      return false;
+    }
+
 
   }
 
- 
 
-getImage(){
 
-if(this.data != null){
-  if(this.order == true){
+  getImage() {
 
-    if(this.data.type == "sell"){
+    if (this.data != null) {
+      if (this.order == true) {
 
-      var theToken = this.data.give_token;
+        if (this.data.type == "sell") {
+
+          var theToken = this.data.give_token;
 
         }
-        else{
+        else {
           theToken = this.data.get_token;
         }
 
-    if(theToken == "BTC"){
-      return this.dataService.getImage("asset_bitcoin");
-    }else if(theToken == "XCP"){
-      return this.dataService.getImage("xcp_asset");
-    }
-    else{
-    
-  
-        for(var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++){
+        if (theToken == "BTC") {
+          return this.dataService.getImage("asset_bitcoin");
+        } else if (theToken == "XCP") {
+          return this.dataService.getImage("xcp_asset");
+        }
+        else {
 
-          var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
-          if(aKey == theToken){
 
-            return  this.dataService.maincontroller.currentOrbs[aKey].image;
+          for (var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++) {
+
+            var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
+            if (aKey == theToken) {
+
+              return this.dataService.maincontroller.currentOrbs[aKey].image;
+            }
+          }
+
+          return "https://api.indiesquare.me/v2/tokens/" + theToken + "/image?width=200&X-Api-Key=" + this.httpService.apiKey;
+
+        }
+
+
+
+
+
+
+
+      }
+      else {
+
+
+        if (this.data.type == "order") {
+          var token = this.data.token;
+          if (this.data.token != this.data.get_asset) {
+            token = this.data.get_asset;
+          } else {
+            token = this.data.give_asset;
+          }
+
+
+          for (var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++) {
+
+            var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
+            if (aKey == token) {
+
+              return this.dataService.maincontroller.currentOrbs[aKey].image;
+            }
+          }
+
+          return "https://api.indiesquare.me/v2/tokens/" + token + "/image?width=200&X-Api-Key=" + this.httpService.apiKey;
+
+
+        } else {
+          if (this.data.token != null) {
+            if (this.data.token == "BTC") {
+              return this.dataService.getImage("asset_bitcoin");
+            } else if (this.data.token == "XCP") {
+              return this.dataService.getImage("xcp_asset");
+            }
+            else {
+
+
+
+
+              for (var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++) {
+
+                var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
+                if (aKey == this.data.token) {
+
+                  return this.dataService.maincontroller.currentOrbs[aKey].image;
+                }
+              }
+
+              return "https://api.indiesquare.me/v2/tokens/" + this.data.token + "/image?width=200&X-Api-Key=" + this.httpService.apiKey;
+
+            }
           }
         }
 
-        return "https://api.indiesquare.me/v2/tokens/"+ theToken +"/image?width=200&X-Api-Key=" + this.httpService.apiKey;
+        return "";
+      }
 
     }
 
-
-   
-  
-
-
-
-  }
-  else{
-
-
-if(this.data.type == "order"){
-  var token =this.data.token;
-  if(this.data.token != this.data.get_asset){
-token =this.data.get_asset;
-  }else{
-    token =this.data.give_asset;
   }
 
+  canCancel() {
 
-        for(var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++){
-
-          var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
-          if(aKey ==  token){
-
-            return  this.dataService.maincontroller.currentOrbs[aKey].image;
-          }
-        }
-
-        return "https://api.indiesquare.me/v2/tokens/"+  token +"/image?width=200&X-Api-Key=" + this.httpService.apiKey;
-
-
-}else{
-	if(this.data.token != null){
-		if(this.data.token == "BTC"){
-			return this.dataService.getImage("asset_bitcoin");
-		}else if(this.data.token == "XCP"){
-			return this.dataService.getImage("xcp_asset");
-		}
-		else{
-
-
-    
-  
-        for(var i = 0; i < this.dataService.maincontroller.currentOrbsKeys.length; i++){
-
-        	var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
-        	if(aKey == this.data.token){
-
-        		return  this.dataService.maincontroller.currentOrbs[aKey].image;
-        	}
-        }
-
-        return "https://api.indiesquare.me/v2/tokens/"+ this.data.token +"/image?width=200&X-Api-Key=" + this.httpService.apiKey;
-
+    if (this.data.status == "open") {
+      return true;
     }
-	 }
-  }
-	 
-	return "";
-}
+    return false;
 
-}
-
-}
-
-canCancel(){
-	 
-	if(this.data.status == "open"){
-return true;
-	}
-	return false;
-  
     //return true;
-}
+  }
 
-signError(error,currentOwner){
-
- 
-  currentOwner.dataService.maincontroller.hideLoading();
-       
-             currentOwner.ref.detectChanges();
- 
-}
-
-finishSign(hex,currentOwner){
-
- 
-
- 
- currentOwner.broadcastTx(hex,currentOwner);
- 
-}
-  signBoO(currentOwner:any){
+  signError(error, currentOwner) {
 
 
-     var params = {};
-       
-     
-    params["address"] =  currentOwner.dataService.maincontroller.currentAddress;
+    currentOwner.dataService.maincontroller.hideLoading();
+
+    currentOwner.ref.detectChanges();
+
+  }
+
+  finishSign(hex, currentOwner) {
 
 
-    var json = JSON.stringify({signType:"transaction","toSign":currentOwner.unsigned_tx,"params":params});
-   
-    currentOwner.dataService.setCurrentSignData(json,currentOwner.finishSign,currentOwner.signError,currentOwner);
+
+
+    currentOwner.broadcastTx(hex, currentOwner);
+
+  }
+  signBoO(currentOwner: any) {
+
+
+    var params = {};
+
+
+    params["address"] = currentOwner.dataService.maincontroller.currentAddress;
+
+
+    var json = JSON.stringify({ signType: "transaction", "toSign": currentOwner.unsigned_tx, "params": params });
+
+    currentOwner.dataService.setCurrentSignData(json, currentOwner.finishSign, currentOwner.signError, currentOwner);
 
     currentOwner.sending = true;
 
   }
 
-cancelOrder(){
+  cancelOrder() {
 
-if(this.dataService.maincontroller.getPersistance("cancel:"+this.data.tx_hash) != ""){
+    if (this.dataService.maincontroller.getPersistance("cancel:" + this.data.tx_hash) != "") {
 
-  alert('Seems like you have already placed a cancel transaction order, you may not want to continue');
-  
-
-}
-var tmpthis = this;
-	this.dataService.maincontroller.showLoading(this.dataService.getLang("please_wait"));
-	console.log("Data "+JSON.stringify(this.data));
-	  tmpthis.indiesquare = new IndieSquare({
-    'apikey': this.httpService.apiKey  
-  });
-       var sendParams = {"source": this.dataService.maincontroller.currentAddress, "offer_hash":this.data.tx_hash};
-if(this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)){
- 
-
-  //sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
-  sendParams["feePerKb"] =  parseFloat(this.dataService.maincontroller.customFee) / 1000;
-
-}else{
-  sendParams["feePerKb"] =this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
-
-  
-}
+      alert('Seems like you have already placed a cancel transaction order, you may not want to continue');
 
 
-tmpthis.indiesquare.createCancel(sendParams, function(data, error){
+    }
+    var tmpthis = this;
+    this.dataService.maincontroller.showLoading(this.dataService.getLang("please_wait"));
+    console.log("Data " + JSON.stringify(this.data));
+    tmpthis.indiesquare = new IndieSquare({
+      'apikey': this.httpService.apiKey
+    });
+    var sendParams = { "source": this.dataService.maincontroller.currentAddress, "offer_hash": this.data.tx_hash };
+    if (this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)) {
 
 
-	
-    if( error ){
-    	tmpthis.dataService.maincontroller.showingLoading = false;
+      //sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
+      sendParams["feePerKb"] = parseFloat(this.dataService.maincontroller.customFee) / 1000;
+
+    } else {
+      sendParams["feePerKb"] = this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
+
+
+    }
+
+
+    tmpthis.indiesquare.createCancel(sendParams, function(data, error) {
+
+
+
+      if (error) {
+        tmpthis.dataService.maincontroller.showingLoading = false;
         console.error(error);
-        if(typeof error.message != "undefined"){
-        			tmpthis.dataService.maincontroller.showMessage(error.message);
-        }else{
-       	 	tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
-   		 }
-        return;
-    }
-
-    data.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(data.unsigned_tx);
-
-
-     var res =   tmpthis.dataService.cp_tools.checkCancelTransaction(data.unsigned_tx);
-    if(res == false){
-       alert("error transaction does not match params");
-       return;
-    }
-
- tmpthis.unsigned_tx=data.unsigned_tx;
- var feeBTC= data.fee / 100000000;
-    	  if(tmpthis.dataService.maincontroller.linkType == "indiesquare"){
-     
-  tmpthis.indiesquare.signTransaction({'unsigned_tx': tmpthis.unsigned_tx}, function(url, urlScheme, error){
-  
-    if( error ){
-    	tmpthis.dataService.maincontroller.showingLoading = false;
-      console.error(error);
-             tmpthis.dataService.maincontroller.showMessage(error);
-        
-        
-       
-        return;
-    } 
-
-    if(!tmpthis.dataService.isMobile){
-      tmpthis.dataService.maincontroller.showQR(url);
-    }
-   
-   
-}, function(result, error){
-  tmpthis.dataService.maincontroller.closeQR();
-  if(error){
-  	tmpthis.dataService.maincontroller.showingLoading = false;
-    console.error(error); 
-             tmpthis.dataService.maincontroller.showMessage(error);
-     
- return;
-  }else{
-     
-console.log(result.signed_tx); 
-
-    
-  tmpthis.broadcastTx(result.signeed_tx,tmpthis)
-
-   }
-   
-
-});
-
-
-
-
-
-}
-else if(tmpthis.dataService.maincontroller.linkType == "BoO"){
-   tmpthis.dataService.maincontroller.hideLoading();
-    tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC+""),tmpthis.signBoO ,tmpthis.cancelCancelOrder,tmpthis );
-  
-}
-else{
-
-    tmpthis.dataService.maincontroller.hideLoading();
-    tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC+""),tmpthis.getPassphrase ,tmpthis.cancelCancelOrder,tmpthis );
-  
-}
-
-
-
-
-});
-
- 
-
-}
-
-broadcastTx(hex,currentOwner){
-
- currentOwner.dataService.maincontroller.closeQR();
- currentOwner.indiesquare.broadcast({"tx":hex}, function(data, error){
-
-    currentOwner.dataService.maincontroller.hideLoading();
-        if( error ){
-           
-            console.error(error);
-            currentOwner.dataService.maincontroller.showMessage(error);
-             currentOwner.ref.detectChanges();
-            return;
+        if (typeof error.message != "undefined") {
+          tmpthis.dataService.maincontroller.showMessage(error.message);
+        } else {
+          tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
         }
+        return;
+      }
+
+      data.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(data.unsigned_tx);
+
+
+      var res = tmpthis.dataService.cp_tools.checkCancelTransaction(data.unsigned_tx);
+      if (res == false) {
+        alert("error transaction does not match params");
+        return;
+      }
+
+      tmpthis.unsigned_tx = data.unsigned_tx;
+      var feeBTC = data.fee / 100000000;
+      if (tmpthis.dataService.maincontroller.linkType == "indiesquare") {
+
+        tmpthis.indiesquare.signTransaction({ 'unsigned_tx': tmpthis.unsigned_tx }, function(url, urlScheme, error) {
+
+          if (error) {
+            tmpthis.dataService.maincontroller.showingLoading = false;
+            console.error(error);
+            tmpthis.dataService.maincontroller.showMessage(error);
+
+
+
+            return;
+          }
+
+          if (!tmpthis.dataService.isMobile) {
+            tmpthis.dataService.maincontroller.showQR(url);
+          }
+
+
+        }, function(result, error) {
+          tmpthis.dataService.maincontroller.closeQR();
+          if (error) {
+            tmpthis.dataService.maincontroller.showingLoading = false;
+            console.error(error);
+            tmpthis.dataService.maincontroller.showMessage(error);
+
+            return;
+          } else {
+
+            console.log(result.signed_tx);
+
+
+            tmpthis.broadcastTx(result.signeed_tx, tmpthis)
+
+          }
+
+
+        });
+
+
+
+
+
+      }
+      else if (tmpthis.dataService.maincontroller.linkType == "BoO") {
+        tmpthis.dataService.maincontroller.hideLoading();
+        tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC + ""), tmpthis.signBoO, tmpthis.cancelCancelOrder, tmpthis);
+
+      }
+      else {
+
+        tmpthis.dataService.maincontroller.hideLoading();
+        tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC + ""), tmpthis.getPassphrase, tmpthis.cancelCancelOrder, tmpthis);
+
+      }
+
+
+
+
+    });
+
+
+
+  }
+
+  broadcastTx(hex, currentOwner) {
+
+    currentOwner.dataService.maincontroller.closeQR();
+    currentOwner.indiesquare.broadcast({ "tx": hex }, function(data, error) {
+
+      currentOwner.dataService.maincontroller.hideLoading();
+      if (error) {
+
+        console.error(error);
+        currentOwner.dataService.maincontroller.showMessage(error);
+        currentOwner.ref.detectChanges();
+        return;
+      }
       currentOwner.dataService.history.reloadOrders();
-       currentOwner.dataService.maincontroller.showMessage(currentOwner.dataService.getLang("order_canceled"));
+      currentOwner.dataService.maincontroller.showMessage(currentOwner.dataService.getLang("order_canceled"));
 
-       currentOwner.dataService.maincontroller.setPersistance("cancel:"+currentOwner.data.tx_hash,"cancelled");
-            currentOwner.ref.detectChanges();
-      });   
-    
-}
-getOrderTitle1(){
-if(this.data != null){
-if(this.data.type == "sell"){
-  if(this.data.status == "filled"){
-    return this.dataService.getLang("status_sold");
+      currentOwner.dataService.maincontroller.setPersistance("cancel:" + currentOwner.data.tx_hash, "cancelled");
+      currentOwner.ref.detectChanges();
+    });
+
   }
-  else if(this.data.status == "expired"){
-    return this.dataService.getLang("status_couldnt_sell");
-  }
-     return this.dataService.getLang("status_selling");
-   }
-   else if(this.data.type == "buy"){
-       if(this.data.status == "filled"){
-    return this.dataService.getLang("status_bought");
-  }
-  else if(this.data.status == "expired"){
-    return this.dataService.getLang("status_couldnt_buy");
-  }
-     return this.dataService.getLang("status_buying");
-   }
-}
-    
-}
-
- getOrderInfo(){
- 	if(this.data != null){
- if(this.data.type == "sell"){
-     return this.dataService.getLang("order_sell_info", this.data.give_quantity,this.data.give_token,this.data.price,this.data.get_token,this.getOrderStatus()); 
-   }
-   else if(this.data.type == "buy"){
-    
-     return this.dataService.getLang("order_buy_info", this.data.get_quantity,this.data.get_token,this.data.price,this.data.give_token,this.getOrderStatus()); 
-  
-   }
-}
- }
-
- getOrderTitle2(){
-
-return this.dataService.getLang("order_status");
-    
-}
-
-
-
- getOrderStatus(){
-if(this.data != null){
-return this.data.status;
-}
-    
- }
-
- getOrderTitle3(){
-
-return this.dataService.getLang("order_date");
-    
-}
-
-
-
- getInfo(){
-if(this.data != null){
-
-	if(this.data.type == "order"){
-  	return this.dataService.getLang("order_pending");
-  	}else{
- 	if(this.data.category== "Send"){
-
-     return this.dataService.getLang("order_info_sent",this.data.quantity,this.data.token);
- 	 
- 	}
- 	else if(this.data.category == "Receive"){
-     return this.dataService.getLang("order_info_receive",this.data.quantity,this.data.token);
- 	 
- 	}
- }
-}
- 
- }
-
-
-
- getAddress(){
- 	if(this.data != null){
-if(this.data.type == "order"){
-  return this.dataService.getLang("order_order_info",this.data.get_quantity,this.data.get_asset,this.data.give_quantity,this.data.give_asset);
-  		
-  	}else{
- 
-
-if(this.data.category== "Send"){
-     return this.data.destination;
-   }
-  else if(this.data.category == "Receive"){
-     return this.data.source;
-   }
-}
- 
-}
- }
-
- getDateTitle(){
- 	if(this.data != null){
- 	if(this.data.type == "order"){
-  		return this.dataService.getLang("order_status");
-  	}else{
-return this.dataService.getLang("order_date");
-  	}
-  }
- }
- getDate(){
-	 if(this.data != null){
- 	if(this.data.unconfirm){
- 		return this.dataService.getLang("order_unconfirmed");
- 	}
- 	else if (this.data.time != null){
-  
- 		var dateString=this.data.time.replace('T', ' ');
- 		 dateString= dateString.replace('-', '/');
- 		  dateString= dateString.replace('-', '/');
- 		   dateString= dateString.replace('-', '/');
- 		// console.log("ds"+dateString);
- 	//	 dateString = "2015/12/31 00:00:00";
- 	//2017/10/17T09:31:12+0000
- 	let date = new Date(dateString);
-
- var hourOffset = date.getTimezoneOffset() / 60;
-
-        date.setHours( date.getHours() + hourOffset ); 
-
-
-
- 	var day = date.getDate();
-var monthIndex = date.getMonth();
-var year = date.getFullYear();
-var minutes = date.getMinutes();
-var hours = date.getHours();
-var seconds = date.getSeconds();
-var myFormattedDate = day+"-"+(monthIndex+1)+"-"+year+" "+ hours+":"+minutes+":"+seconds;
-
- 	return myFormattedDate;
- }
- 
- return "";
-}
- }
-
-
-
- imgLoadError(){
- 
-}
-imageLoaded(){
-}
-  getWidth(){
-    if(this.dataService.isMobile){
-  	 var pxWidth = (document.documentElement.clientWidth * 0.9);
-     
-  	return pxWidth+"px";
+  getOrderTitle1() {
+    if (this.data != null) {
+      if (this.data.type == "sell") {
+        if (this.data.status == "filled") {
+          return this.dataService.getLang("status_sold");
+        }
+        else if (this.data.status == "expired") {
+          return this.dataService.getLang("status_couldnt_sell");
+        }
+        return this.dataService.getLang("status_selling");
+      }
+      else if (this.data.type == "buy") {
+        if (this.data.status == "filled") {
+          return this.dataService.getLang("status_bought");
+        }
+        else if (this.data.status == "expired") {
+          return this.dataService.getLang("status_couldnt_buy");
+        }
+        return this.dataService.getLang("status_buying");
+      }
     }
-    else{
-       var pxWidth = (document.documentElement.clientWidth * 0.4);
-     
-    return pxWidth+"px";
+
+  }
+
+  getOrderInfo() {
+    if (this.data != null) {
+      if (this.data.type == "sell") {
+        return this.dataService.getLang("order_sell_info", this.data.give_quantity, this.data.give_token, this.data.price, this.data.get_token, this.getOrderStatus());
+      }
+      else if (this.data.type == "buy") {
+
+        return this.dataService.getLang("order_buy_info", this.data.get_quantity, this.data.get_token, this.data.price, this.data.give_token, this.getOrderStatus());
+
+      }
+    }
+  }
+
+  getOrderTitle2() {
+
+    return this.dataService.getLang("order_status");
+
+  }
+
+
+
+  getOrderStatus() {
+    if (this.data != null) {
+      return this.data.status;
+    }
+
+  }
+
+  getOrderTitle3() {
+
+    return this.dataService.getLang("order_date");
+
+  }
+
+
+
+  getInfo() {
+    if (this.data != null) {
+
+      if (this.data.type == "order") {
+        return this.dataService.getLang("order_pending");
+      } else {
+        if (this.data.category == "Send") {
+
+          return this.dataService.getLang("order_info_sent", this.data.quantity, this.data.token);
+
+        }
+        else if (this.data.category == "Receive") {
+          return this.dataService.getLang("order_info_receive", this.data.quantity, this.data.token);
+
+        }
+      }
+    }
+
+  }
+
+
+
+  getAddress() {
+    if (this.data != null) {
+      if (this.data.type == "order") {
+        return this.dataService.getLang("order_order_info", this.data.get_quantity, this.data.get_asset, this.data.give_quantity, this.data.give_asset);
+
+      } else {
+
+
+        if (this.data.category == "Send") {
+          return this.data.destination;
+        }
+        else if (this.data.category == "Receive") {
+          return this.data.source;
+        }
+      }
 
     }
   }
-   getHeight(){
-if(this.dataService.isMobile){
-       var pxWidth = (document.documentElement.clientWidth * 0.9);
-     var pxHeight = pxWidth * 0.55;
 
-    return pxHeight+"px";
+  getDateTitle() {
+    if (this.data != null) {
+      if (this.data.type == "order") {
+        return this.dataService.getLang("order_status");
+      } else {
+        return this.dataService.getLang("order_date");
+      }
     }
-    else{
-       var pxWidth = (document.documentElement.clientWidth * 0.4);
-     var pxHeight = pxWidth * 0.55;
+  }
+  getDate() {
+    if (this.data != null) {
+      if (this.data.unconfirm) {
+        return this.dataService.getLang("order_unconfirmed");
+      }
+      else if (this.data.time != null) {
 
-    return pxHeight+"px";
+        var dateString = this.data.time.replace('T', ' ');
+        dateString = dateString.replace('-', '/');
+        dateString = dateString.replace('-', '/');
+        dateString = dateString.replace('-', '/');
+        // console.log("ds"+dateString);
+        //	 dateString = "2015/12/31 00:00:00";
+        //2017/10/17T09:31:12+0000
+        let date = new Date(dateString);
 
+        var hourOffset = date.getTimezoneOffset() / 60;
+
+        date.setHours(date.getHours() + hourOffset);
+
+
+
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+        var minutes = date.getMinutes();
+        var hours = date.getHours();
+        var seconds = date.getSeconds();
+        var myFormattedDate = day + "-" + (monthIndex + 1) + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+
+        return myFormattedDate;
+      }
+
+      return "";
     }
-
-  
-  
   }
 
 
 
-cancelCancelOrder(owner:any){
-  owner.loading = false;
-}
+  imgLoadError() {
 
- getPassphrase(currentOwner:any){
+  }
+  imageLoaded() {
+  }
+  getWidth() {
+    if (this.dataService.isMobile) {
+      var pxWidth = (document.documentElement.clientWidth * 0.9);
 
-      currentOwner.dataService.maincontroller.showPassword(currentOwner.cancelSend,currentOwner.broadcast,currentOwner);
-   }
- 
+      return pxWidth + "px";
+    }
+    else {
+      var pxWidth = (document.documentElement.clientWidth * 0.4);
 
-  broadcast(passphrase:string,owner:any){
-     
- 
+      return pxWidth + "px";
+
+    }
+  }
+  getHeight() {
+    if (this.dataService.isMobile) {
+      var pxWidth = (document.documentElement.clientWidth * 0.9);
+      var pxHeight = pxWidth * 0.55;
+
+      return pxHeight + "px";
+    }
+    else {
+      var pxWidth = (document.documentElement.clientWidth * 0.4);
+      var pxHeight = pxWidth * 0.55;
+
+      return pxHeight + "px";
+
+    }
+
+
+
+  }
+
+
+
+  cancelCancelOrder(owner: any) {
+    owner.loading = false;
+  }
+
+  getPassphrase(currentOwner: any) {
+
+    currentOwner.dataService.maincontroller.showPassword(currentOwner.cancelSend, currentOwner.broadcast, currentOwner);
+  }
+
+
+  broadcast(passphrase: string, owner: any) {
+
+
     owner.loading = true;
 
-    var tmpthis =owner;
+    var tmpthis = owner;
     tmpthis.dataService.maincontroller.showLoading(this.dataService.getLang("please_wait"));
 
     try {
 
-        var seed = new Mnemonic(passphrase.split(' ')).toHex();
+      var seed = new Mnemonic(passphrase.split(' ')).toHex();
     }
-    catch(err) {
-       
-         tmpthis.loading = false;
-         throw  err;
+    catch (err) {
+
+      tmpthis.loading = false;
+      throw err;
     }
-  
-    
+
+
     var master = bitcore.HDPrivateKey.fromSeed(seed);
-    
+
     var route = tmpthis.dataService.maincontroller.basePath + tmpthis.dataService.maincontroller.currentIndex;
-    
-    var masterderive = master.derive( route );
-    
-     
-     
 
-         tmpthis.params = [];
-       
-        /*
-        tmpthis.params["pubkey"] = masterderive.publicKey;
-       
-         tmpthis.params["destination"] =  tmpthis.dataService.maincontroller.currentSendAddress;
-        */
-        var privkey = bitcore.PrivateKey(masterderive.privateKey);
-        
-         tmpthis.params["address"] = privkey.toAddress().toString();
-         tmpthis.params.callback = function(signed_tx){
-          /*    
-           if(1==1){
-     tmpthis.loading= false;
-   tmpthis.dataService.history.reloadOrders();
-        tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_canceled"));
-         tmpthis.dataService.maincontroller.hideLoading();
-    return; 
-  }   */
-             
-     tmpthis.broadcastTx(signed_tx,tmpthis);       
+    var masterderive = master.derive(route);
 
-            
-        };
-         tmpthis.params.onError = function(error){
-            console.log("error "+error);
-            tmpthis.loading = false;
-             tmpthis.dataService.maincontroller.hideLoading();
-tmpthis.dataService.history.reloadOrders();
-            
-        };
-         tmpthis.params.fail = function(error){
-            console.log("fail "+error);
-            tmpthis.loading= false;
-             tmpthis.dataService.maincontroller.hideLoading();
- 
-   tmpthis.dataService.history.reloadOrders();
-            
-        };
-         try {
-            
-            var result = bitcore.signrawtransaction(tmpthis.unsigned_tx, privkey, tmpthis.params,tmpthis.httpService.apiKey);
-          
 
-        }  catch(err) {
-            tmpthis.loading= false;
- tmpthis.dataService.maincontroller.hideLoading();
- tmpthis.dataService.history.reloadOrders();
-           console.log("error"+err);
-        }
+
+
+    tmpthis.params = [];
+
+
+    var privkey = bitcore.PrivateKey(masterderive.privateKey);
+
+    tmpthis.params["address"] = privkey.toAddress().toString();
+    tmpthis.params.callback = function(signed_tx) {
+
+
+      tmpthis.broadcastTx(signed_tx, tmpthis);
+
+
+    };
+    tmpthis.params.onError = function(error) {
+      console.log("error " + error);
+      tmpthis.loading = false;
+      tmpthis.dataService.maincontroller.hideLoading();
+      tmpthis.dataService.history.reloadOrders();
+
+    };
+    tmpthis.params.fail = function(error) {
+      console.log("fail " + error);
+      tmpthis.loading = false;
+      tmpthis.dataService.maincontroller.hideLoading();
+
+      tmpthis.dataService.history.reloadOrders();
+
+    };
+    try {
+
+      var result = bitcore.signrawtransaction(tmpthis.unsigned_tx, privkey, tmpthis.params, tmpthis.httpService.apiKey);
+
+
+    } catch (err) {
+      tmpthis.loading = false;
+      tmpthis.dataService.maincontroller.hideLoading();
+      tmpthis.dataService.history.reloadOrders();
+      console.log("error" + err);
+    }
 
 
 

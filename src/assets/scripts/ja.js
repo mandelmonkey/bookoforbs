@@ -151,6 +151,7 @@ var ja = function() {
 	lang["place_custom_order"]="Place a custom order";
 	lang["last_sold_at"]="Last sold at";
 	lang["password_incorrect"]="Password incorrect";
+	lang["rankings_not_set"]="Rankings not set for your account";
 	
 function ja() {
 

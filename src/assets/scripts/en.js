@@ -94,7 +94,7 @@ var en = function() {
 	lang["please_sign_in_username"]="please sign in to set a username";
 	lang["username_set"]="Username set!";
 	lang["collectors"]="$1$ Collectors";
-	lang["jump_me"]="Me";
+	lang["jump_me"]="Jump to me";
 	lang["get_started"]="Get Started!";
 	lang["intro_welcome"]="Welcome to Book of Orbs";
 	lang["intro_welcome2"]="'Ownership Revolution on the Blockchain'";
@@ -151,6 +151,9 @@ var en = function() {
 	lang["place_custom_order"]="Place a custom order";
 	lang["last_sold_at"]="Last sold at";
 	lang["password_incorrect"]="Password incorrect";
+	lang["rankings_not_set"]="Rankings not set for your account";
+
+	
 
 	 
 function en() {
