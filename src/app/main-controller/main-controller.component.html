@@ -30,8 +30,10 @@
 <div class="container" >
 
  <label class="titleLabel">{{selectedKey}}</label> 
-  <img *ngIf="dataService.landscape" class="largeORBImageLandscape" [src]="selectedOrb.image"  [style.background-image]="'url(' +dataService.getImage('cardbackLandscape')+ ')'">
-   <img *ngIf="!dataService.landscape" class="largeORBImage" [src]="selectedOrb.image"  [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'">
+
+  <img *ngIf="dataService.landscape" class="largeORBImageLandscape" [src]="dataService.collection.defaultImage" [lazyLoad]="dataService.getRemoteImage(selectedOrb.image)">
+
+   <img *ngIf="!dataService.landscape" class="largeORBImage" [src]="dataService.collection.defaultImage" [lazyLoad]="dataService.getRemoteImage(selectedOrb.image)"   >
    
     <br>
     <div class="largeButtons" >

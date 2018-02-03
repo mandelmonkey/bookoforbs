@@ -1,202 +1,225 @@
- 
-import {Injectable} from '@angular/core';
-import {TopBarComponent} from '../top-bar/top-bar.component';
-import {CollectionComponent} from '../collection/collection.component';
-import {MarketComponent} from '../market/market.component';
-import { MainControllerComponent} from '../main-controller/main-controller.component';
+
+import { Injectable } from '@angular/core';
+import { TopBarComponent } from '../top-bar/top-bar.component';
+import { CollectionComponent } from '../collection/collection.component';
+import { MarketComponent } from '../market/market.component';
+import { MainControllerComponent } from '../main-controller/main-controller.component';
 import { HistoryComponent } from '../history/history.component';
 import * as CryptoJS from 'crypto-js';
-  declare var Mnemonic:any; 
-   declare var bitcore:any; 
- declare var UI:any; 
-declare var en:any; 
-declare var ja:any;
- declare var RBFTools:any;
-   declare var counterpartyParser:any; 
+declare var Mnemonic: any;
+declare var bitcore: any;
+declare var UI: any;
+declare var en: any;
+declare var ja: any;
+declare var RBFTools: any;
+declare var counterpartyParser: any;
 
 
-   declare var  CURRENTDATA:any;
-     declare var  CURRENTSIG:any;
-    declare var SIGNCALLBACK:any;
-     declare var CURRENTCALLER:any;
-     declare var   SIGNERROR:any;
+declare var CURRENTDATA: any;
+declare var CURRENTSIG: any;
+declare var SIGNCALLBACK: any;
+declare var CURRENTCALLER: any;
+declare var SIGNERROR: any;
 @Injectable()
 export class DataService {
- 
 
-  history:HistoryComponent;
-  topbar:TopBarComponent;
-  collection:CollectionComponent;
+
+  versionNumber: string;
+  history: HistoryComponent;
+  topbar: TopBarComponent;
+  collection: CollectionComponent;
   maincontroller: MainControllerComponent;
-  market:MarketComponent;
-  currentTab:number;
-  isMobile:boolean;
-  viewMode:boolean;
-  landscape:boolean;
-  uiclass:any;
-  langclass:any;
-  showIntroScreen:boolean;
-  dev:boolean; 
-  rbf_tools:any;
-  cp_tools:any;
+  market: MarketComponent;
+  currentTab: number;
+  isMobile: boolean;
+  viewMode: boolean;
+  landscape: boolean;
+  uiclass: any;
+  langclass: any;
+  showIntroScreen: boolean;
+  dev: boolean;
+  rbf_tools: any;
+  cp_tools: any;
 
-  signCaller:any;
+  signCaller: any;
 
-   constructor(){
+  constructor() {
+    this.versionNumber = "0.1";
     this.currentTab = 1;
 
-this.uiclass = new UI();
+    this.uiclass = new UI();
 
-this.langclass = new ja();
-var language =  window.navigator.language;
+    this.langclass = new ja();
+    var language = window.navigator.language;
 
 
-    if(language == "ja-JP"){
+    if (language == "ja-JP") {
       this.langclass = new ja();
-    }else{
-       this.langclass = new en();
+    } else {
+      this.langclass = new en();
     }
-     
- 
-this.showIntroScreen = true;
-
-  
-        this.rbf_tools = new RBFTools();
 
 
+    this.showIntroScreen = true;
 
-     this.cp_tools= new counterpartyParser();
+
+    this.rbf_tools = new RBFTools();
 
 
 
-   
-  }
- 
-
- 
-setCurrentSignData(signData:string,callback:any,errorCallback:any,caller:any){
- 
-CURRENTDATA = signData;
-SIGNERROR = errorCallback;
-SIGNCALLBACK = callback;
-CURRENTCALLER = caller;
- 
- 
+    this.cp_tools = new counterpartyParser();
 
 
-}
 
-  setLang(locale:string){
-
-    
 
   }
 
-  resetHDAddresses(passphrase:string){
 
-       var currentAddsArray = [];
-    
+
+  setCurrentSignData(signData: string, callback: any, errorCallback: any, caller: any) {
+
+    CURRENTDATA = signData;
+    SIGNERROR = errorCallback;
+    SIGNCALLBACK = callback;
+    CURRENTCALLER = caller;
+
+
+
+
+  }
+
+  setLang(locale: string) {
+
+
+
+  }
+
+  resetHDAddresses(passphrase: string) {
+
+    var currentAddsArray = [];
+
 
     var newIndex = 0;
 
 
 
 
-   var words = null;
-    if(passphrase != null ) words = passphrase.split(' ');
+    var words = null;
+    if (passphrase != null) words = passphrase.split(' ');
 
-    
-      var m;
-    try{
-      
+
+    var m;
+    try {
+
       m = new Mnemonic(words);
 
-    var basePath = 'm/0\'/0/';
+      var basePath = 'm/0\'/0/';
       var seed = m.toHex();
-          var master = bitcore.HDPrivateKey.fromSeed(seed);
-       var d = basePath + newIndex;
-      var masterderive = master.derive( d );
-   var priv = bitcore.PrivateKey(masterderive.privateKey);
-   
-var newAddress = priv.toAddress().toString();
-    
-    currentAddsArray.push({"address":newAddress,"index":newIndex});
+      var master = bitcore.HDPrivateKey.fromSeed(seed);
+      var d = basePath + newIndex;
+      var masterderive = master.derive(d);
+      var priv = bitcore.PrivateKey(masterderive.privateKey);
 
-    this.maincontroller.setPersistance("HDaddressesV1",JSON.stringify(currentAddsArray));
-   }
- catch(e){
-alert("error");
- }
+      var newAddress = priv.toAddress().toString();
 
-}
+      currentAddsArray.push({ "address": newAddress, "index": newIndex });
+
+      this.maincontroller.setPersistance("HDaddressesV1", JSON.stringify(currentAddsArray));
+    }
+    catch (e) {
+      alert("error");
+    }
+
+  }
 
 
-  addAddressToHDList(passphrase:string){
+  addAddressToHDList(passphrase: string) {
 
     var currentAdds = this.maincontroller.getPersistance("HDaddressesV1");
-       var currentAddsArray = [];
-    if(currentAdds != ""){
-       currentAddsArray = JSON.parse(currentAdds);
-    } 
-  
+    var currentAddsArray = [];
+    if (currentAdds != "") {
+      currentAddsArray = JSON.parse(currentAdds);
+    }
+
 
     var newIndex = currentAddsArray.length;
 
 
 
 
-   var words = null;
-    if(passphrase != null ) words = passphrase.split(' ');
+    var words = null;
+    if (passphrase != null) words = passphrase.split(' ');
 
-    
-      var m;
-    try{
-      
+
+    var m;
+    try {
+
       m = new Mnemonic(words);
 
-    var basePath = 'm/0\'/0/';
+      var basePath = 'm/0\'/0/';
       var seed = m.toHex();
-          var master = bitcore.HDPrivateKey.fromSeed(seed);
-       var d = basePath + newIndex;
-      var masterderive = master.derive( d );
-   var priv = bitcore.PrivateKey(masterderive.privateKey);
-   
-var newAddress = priv.toAddress().toString();
-    
-    currentAddsArray.push({"address":newAddress,"index":newIndex});
+      var master = bitcore.HDPrivateKey.fromSeed(seed);
+      var d = basePath + newIndex;
+      var masterderive = master.derive(d);
+      var priv = bitcore.PrivateKey(masterderive.privateKey);
 
-    this.maincontroller.setPersistance("HDaddressesV1",JSON.stringify(currentAddsArray));
+      var newAddress = priv.toAddress().toString();
 
- }
- catch(e){
-alert("error");
- }
+      currentAddsArray.push({ "address": newAddress, "index": newIndex });
+
+      this.maincontroller.setPersistance("HDaddressesV1", JSON.stringify(currentAddsArray));
+
+    }
+    catch (e) {
+      alert("error");
+    }
 
 
- 
+
 
   }
 
-  getImage(image:string){
+
+
+  getRemoteImage(image: string) {
+
+    if (image == undefined) {
+      return "";
+    }
+    if (image.indexOf("http://") != -1) {
+      image = image.replace("http:", '');
+
+    }
+
+    if (image.indexOf("https://") != -1) {
+      image = image.replace("https:", '');
+
+    }
+
+    return image + "?v" + this.versionNumber;
+
+  }
+
+  getImage(image: string) {
 
     return this.uiclass.getImage(image);
 
   }
 
 
-  getLang(trans:string,param1 = "",param2 = "",param3 = "",param4 = "", param5 = ""){
- 
-     var val = this.langclass.getTrans(trans);
-         val = val.replace('$1$', param1);
-         val = val.replace('$2$', param2);
-         val = val.replace('$3$', param3);
-         val = val.replace('$4$', param4);
-         val = val.replace('$5$', param5);
-         
+  getLang(trans: string, param1 = "", param2 = "", param3 = "", param4 = "", param5 = "") {
+
+    var val = this.langclass.getTrans(trans);
+    val = val.replace('$1$', param1);
+    val = val.replace('$2$', param2);
+    val = val.replace('$3$', param3);
+    val = val.replace('$4$', param4);
+    val = val.replace('$5$', param5);
+
     return val;
 
   }
-  
+
 
 
 }
