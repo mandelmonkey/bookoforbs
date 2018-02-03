@@ -37,15 +37,13 @@ var txObject;
 			 
 			return false;
 		}
-		if(source != jsonData.destination.address){
-		 
-			return false;
-		}
+		
 
 		var destinationAddress = jsonData.data.destination;
 		var network = destinationAddress.substr(0,2);
 		var pubkeyhash = destinationAddress.substr(2,40);
 		var address = bitcoin.address.toBase58Check(tools.buffer(pubkeyhash,'hex'),parseInt(network));
+ 		console.log(address);
 
 		if(destination != address){
 		 
