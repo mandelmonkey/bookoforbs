@@ -109,6 +109,10 @@ getHeight(){
   	img = img.replace("http:", '');
 	  
   }
+  if(this.orbImage.indexOf("https://") != -1){
+  	img = img.replace("https:", '');
+	  
+  }
     return img;
 
 }
