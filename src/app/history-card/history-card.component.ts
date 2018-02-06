@@ -18,7 +18,7 @@ declare var Mnemonic: any;
 export class HistoryCardComponent implements OnInit {
   unsigned_tx = "";
   @Input()
-	data: any;
+  data: any;
 
   @Input()
   order: boolean;
@@ -211,12 +211,10 @@ export class HistoryCardComponent implements OnInit {
     var sendParams = { "source": this.dataService.maincontroller.currentAddress, "offer_hash": this.data.tx_hash };
     if (this.dataService.maincontroller.feeIsCustom(this.dataService.maincontroller.currentFee)) {
 
-
-      //sendParams["fee"] = Math.floor(parseFloat(this.dataService.maincontroller.customFee) * 100000000);
-      sendParams["feePerKb"] = parseFloat(this.dataService.maincontroller.customFee) / 1000;
+      sendParams["fee_per_kb"] = parseFloat(this.dataService.maincontroller.customFee) * 1000;
 
     } else {
-      sendParams["feePerKb"] = this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
+      sendParams["fee_per_kb"] = this.dataService.maincontroller.fees[this.dataService.maincontroller.currentFee];
 
 
     }
@@ -237,14 +235,6 @@ export class HistoryCardComponent implements OnInit {
         return;
       }
 
-      data.unsigned_tx = tmpthis.dataService.rbf_tools.setRBF(data.unsigned_tx);
-
-
-      var res = tmpthis.dataService.cp_tools.checkCancelTransaction(data.unsigned_tx);
-      if (res == false) {
-        alert("error transaction does not match params");
-        return;
-      }
 
       tmpthis.unsigned_tx = data.unsigned_tx;
       var feeBTC = data.fee / 100000000;
@@ -540,65 +530,28 @@ export class HistoryCardComponent implements OnInit {
     var tmpthis = owner;
     tmpthis.dataService.maincontroller.showLoading(this.dataService.getLang("please_wait"));
 
-    try {
-
-      var seed = new Mnemonic(passphrase.split(' ')).toHex();
-    }
-    catch (err) {
-
-      tmpthis.loading = false;
-      throw err;
+    var params = {
+      "unsigned_tx": tmpthis.unsigned_tx,
+      "type": "cancel",
+      "passphrase": passphrase
     }
 
+    var result = tmpthis.dataService.signRawTransaction(params, function(error, signed_tx) {
 
-    var master = bitcore.HDPrivateKey.fromSeed(seed);
-
-    var route = tmpthis.dataService.maincontroller.basePath + tmpthis.dataService.maincontroller.currentIndex;
-
-    var masterderive = master.derive(route);
-
-
-
-
-    tmpthis.params = [];
-
-
-    var privkey = bitcore.PrivateKey(masterderive.privateKey);
-
-    tmpthis.params["address"] = privkey.toAddress().toString();
-    tmpthis.params.callback = function(signed_tx) {
-
+      if (error != null) {
+        tmpthis.loading = false;
+        tmpthis.dataService.maincontroller.hideLoading();
+        console.log("error" + error);
+        tmpthis.dataService.maincontroller.showMessage(error);
+        tmpthis.ref.detectChanges();
+        return;
+      }
 
       tmpthis.broadcastTx(signed_tx, tmpthis);
 
 
-    };
-    tmpthis.params.onError = function(error) {
-      console.log("error " + error);
-      tmpthis.loading = false;
-      tmpthis.dataService.maincontroller.hideLoading();
-      tmpthis.dataService.history.reloadOrders();
 
-    };
-    tmpthis.params.fail = function(error) {
-      console.log("fail " + error);
-      tmpthis.loading = false;
-      tmpthis.dataService.maincontroller.hideLoading();
-
-      tmpthis.dataService.history.reloadOrders();
-
-    };
-    try {
-
-      var result = bitcore.signrawtransaction(tmpthis.unsigned_tx, privkey, tmpthis.params, tmpthis.httpService.apiKey);
-
-
-    } catch (err) {
-      tmpthis.loading = false;
-      tmpthis.dataService.maincontroller.hideLoading();
-      tmpthis.dataService.history.reloadOrders();
-      console.log("error" + err);
-    }
+    });
 
 
 

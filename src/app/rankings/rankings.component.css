@@ -178,7 +178,7 @@ text-align: center;
  	 color: #ffffd5;
   font-family:   sling;
  }
- .jumpButton {
+ .setUsernameButton {
 
 
  background-repeat: no-repeat;
@@ -194,13 +194,11 @@ text-align: center;
   border: none; 
  cursor: pointer; 
 
- position: absolute;
+ /*position: absolute;*/
   
- width:130px; 
-   height: 9vh;
-  max-height:50px;
-  top:0.3vh;
-  right:5px;
+ width:70px; 
+   height: 40px; 
+  top:0.3vh; 
 
 
 }

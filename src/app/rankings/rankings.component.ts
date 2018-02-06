@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { DataService } from '../services/data.service';
 import { HTTPService } from "../services/http.service";
 declare var IndieSquare: any;
-declare var bitcore: any;
 declare var Mnemonic: any;
 @Component({
   selector: 'app-rankings',
@@ -16,6 +15,7 @@ declare var Mnemonic: any;
 export class RankingsComponent implements OnInit {
   @ViewChild(VirtualScrollComponent)
   private virtualScroll: VirtualScrollComponent;
+
 	rankings = [];
 	rankingsKeys = [];
 	username = "";
@@ -63,16 +63,15 @@ export class RankingsComponent implements OnInit {
     }
 
 
-    var master = bitcore.HDPrivateKey.fromSeed(seed);
+    var root = tmpthis.dataService.bitcoin.HDNode.fromSeedHex(seed);
 
-    var route = tmpthis.dataService.maincontroller.basePath + tmpthis.dataService.maincontroller.currentIndex;
-
-    var masterderive = master.derive(route);
-    var privkey = bitcore.PrivateKey(masterderive.privateKey);
+    var d = tmpthis.dataService.basePath + tmpthis.dataService.maincontroller.currentIndex;
+    var keyPair = root.derivePath(d).keyPair;
 
 
-    var sig = bitcore.signMessage(tmpthis.hashToSign, privkey);
+    var privateKey = keyPair.d.toBuffer(32)
 
+    var sig = tmpthis.dataService.bitcoinMessage.sign(tmpthis.hashToSign, privateKey, keyPair.compressed).toString('base64');
     tmpthis.finishSetUsername(sig, tmpthis);
 
 

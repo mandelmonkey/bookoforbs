@@ -152,6 +152,7 @@ var ja = function() {
 	lang["last_sold_at"]="Last sold at";
 	lang["password_incorrect"]="Password incorrect";
 	lang["rankings_not_set"]="Rankings not set for your account";
+	lang["enter_a_secure_password"]="Enter a secure password, this is used to secure your key";
 	
 function ja() {
 

@@ -7,7 +7,7 @@ import { MainControllerComponent } from '../main-controller/main-controller.comp
 import { HistoryComponent } from '../history/history.component';
 import * as CryptoJS from 'crypto-js';
 declare var Mnemonic: any;
-declare var bitcore: any;
+declare var booTools: any;
 declare var UI: any;
 declare var en: any;
 declare var ja: any;
@@ -22,8 +22,9 @@ declare var CURRENTCALLER: any;
 declare var SIGNERROR: any;
 @Injectable()
 export class DataService {
-
-
+  bitcoin = booTools.bitcoin;
+  bitcoinMessage = booTools.bitcoinJSMessage;
+  basePath = 'm/0\'/0/';
   versionNumber: string;
   history: HistoryComponent;
   topbar: TopBarComponent;
@@ -74,7 +75,161 @@ export class DataService {
 
   }
 
+  signRawTransaction(params, callback) {
 
+    console.log(params);
+    var words = params.passphrase.split(' ');
+
+    var m = new Mnemonic(words);
+
+    var seed = m.toHex();
+    var root = this.bitcoin.HDNode.fromSeedHex(seed);
+    var currentIndex = 0;
+    if (this.maincontroller != undefined) {
+      currentIndex = this.maincontroller.currentAddressIndex;
+    }
+    var d = this.basePath + currentIndex;
+    var masterderive = root.derivePath(d);
+    var changeAddress = masterderive.getAddress();
+
+    var unsignedTx = params.unsigned_tx;
+
+
+
+    unsignedTx = this.rbf_tools.setRBF(unsignedTx);
+
+    if (params.token != "BTC") {
+
+      var check = false;
+      if (params.type == "send") {
+
+        check = this.cp_tools.checkSendTransaction(unsignedTx, "na", params.destination, params.token, parseFloat(params.quantity), params.divisible);
+      }
+      else if (params.type == "cancel") {
+        check = this.cp_tools.checkCancelTransaction(unsignedTx);
+      }
+      else if (params.type == "order") {
+        check = this.cp_tools.checkOrderTransaction(unsignedTx, changeAddress, params.get_token, params.get_quantity, params.give_token, params.give_quantity, params.get_divisible, params.give_divisible);
+      }
+      if (check == false) {
+        callback("xcp details do not match parameters", null);
+        return;
+      }
+    }
+
+    console.dir('unsigned_tx:' + unsignedTx);
+
+
+
+    var txObj = this.bitcoin.Transaction.fromHex(unsignedTx);
+    var tmpthis = this;
+    var totalBTCSent = 0;
+    var totalBTCCheck = 0;
+
+    if (params.quantity != undefined) {
+
+      if (params.token != "BTC") {
+
+        totalBTCCheck = 0;
+
+      } else {
+
+        totalBTCCheck = parseFloat(params.quantity) * 100000000;
+
+      }
+
+    }
+    var error = null;
+    txObj.outs.forEach(function(output, idx) {
+
+      var type = tmpthis.bitcoin.script.classifyOutput(output.script);
+      console.log(type);
+      if (type == 'pubkeyhash' || type == 'scripthash') {
+        var add = tmpthis.bitcoin.address.fromOutputScript(output.script);
+        console.log(add);
+        if (add != params.destination && add != changeAddress) {
+          error = "transaction address does not match parameters";
+
+
+        }
+        if (add != changeAddress) {
+          console.log("ov " + output.value);
+          totalBTCSent += output.value;
+        }
+
+      }
+
+    });
+
+    if (error != null) {
+      callback(error, null);
+      return;
+    }
+    console.log(totalBTCSent);
+    console.log(totalBTCCheck);
+    if (totalBTCSent != totalBTCCheck) {
+      callback("transaction amounts do not match parameters", null);
+      return;
+    }
+
+
+
+    console.log(totalBTCSent);
+
+
+    txObj.ins.forEach(function(input, idx) {
+      input["sequence"] = 4294967293;
+    });
+
+
+
+
+    var keyPair = masterderive.keyPair;
+
+    var txb = this.bitcoin.TransactionBuilder.fromTransaction(txObj)
+
+
+
+    txb.inputs.forEach(function(input, idx) {
+
+      txb.inputs[idx] = {}; // small hack to undo the fact that CP sets the output script in the input script
+
+      try {
+        txb.sign(idx, keyPair);
+      } catch (e) {
+        callback(e, null);
+        return;
+      }
+
+
+
+    });
+
+
+    var signedHex = txb.build().toHex();
+
+    console.log(signedHex);
+
+    callback(null, signedHex);
+
+
+
+
+  }
+
+  addressIsValid(address: string) {
+
+    try {
+      this.bitcoin.address.fromBase58Check(address);
+    }
+    catch (e) {
+      return false;
+    }
+
+
+    return true;
+
+  }
 
   setCurrentSignData(signData: string, callback: any, errorCallback: any, caller: any) {
 
@@ -94,6 +249,8 @@ export class DataService {
 
   }
 
+
+
   resetHDAddresses(passphrase: string) {
 
     var currentAddsArray = [];
@@ -110,24 +267,20 @@ export class DataService {
 
     var m;
     try {
-
       m = new Mnemonic(words);
 
-      var basePath = 'm/0\'/0/';
       var seed = m.toHex();
-      var master = bitcore.HDPrivateKey.fromSeed(seed);
-      var d = basePath + newIndex;
-      var masterderive = master.derive(d);
-      var priv = bitcore.PrivateKey(masterderive.privateKey);
-
-      var newAddress = priv.toAddress().toString();
-
+      var root = this.bitcoin.HDNode.fromSeedHex(seed);
+      var d = this.basePath + newIndex;
+      var masterderive = root.derivePath(d);
+      var newAddress = masterderive.getAddress();
       currentAddsArray.push({ "address": newAddress, "index": newIndex });
-
       this.maincontroller.setPersistance("HDaddressesV1", JSON.stringify(currentAddsArray));
+      return true;
     }
     catch (e) {
-      alert("error");
+      alert("rest hd error");
+      return false;
     }
 
   }
@@ -156,14 +309,11 @@ export class DataService {
 
       m = new Mnemonic(words);
 
-      var basePath = 'm/0\'/0/';
       var seed = m.toHex();
-      var master = bitcore.HDPrivateKey.fromSeed(seed);
-      var d = basePath + newIndex;
-      var masterderive = master.derive(d);
-      var priv = bitcore.PrivateKey(masterderive.privateKey);
-
-      var newAddress = priv.toAddress().toString();
+      var root = this.bitcoin.HDNode.fromSeedHex(seed);
+      var d = this.basePath + newIndex;
+      var masterderive = root.derivePath(d);
+      var newAddress = masterderive.getAddress();
 
       currentAddsArray.push({ "address": newAddress, "index": newIndex });
 

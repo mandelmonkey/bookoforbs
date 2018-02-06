@@ -8,9 +8,9 @@ describe('SettingsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SettingsComponent ]
+      declarations: [SettingsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -18,8 +18,9 @@ describe('SettingsComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create', () => {
+  /*
+    it('should create', () => {
     expect(component).toBeTruthy();
-  });
+    });
+    */
 });

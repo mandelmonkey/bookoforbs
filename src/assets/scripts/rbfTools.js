@@ -8,7 +8,7 @@ var TX_INPUT_PUBKEYHASH = 107
 var TX_OUTPUT_BASE = 8 + 1
 var TX_OUTPUT_PUBKEYHASH = 25
 
-	var tools = foo;
+	var tools = booTools;
 var bitcoin = tools.bitcoin;
 var crypto = bitcoin.crypto;
 var txObject;

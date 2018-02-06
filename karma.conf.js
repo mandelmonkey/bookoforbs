@@ -16,6 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
+    "./src/testindex.html",
       { pattern: './src/test.ts', watched: false }
     ],
     preprocessors: {
@@ -42,3 +43,5 @@ module.exports = function (config) {
     singleRun: false
   });
 };
+
+

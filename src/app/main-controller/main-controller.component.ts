@@ -22,7 +22,7 @@ export class MainControllerComponent implements OnInit {
   }
   public locale = "";
 
-  public basePath = 'm/0\'/0/';
+
   public userPassword = "";
   public showingPasswordInput = false;
   public loading = true;

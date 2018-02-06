@@ -10,20 +10,20 @@ import { DataService } from './services/data.service';
 import { ClipboardService } from './services/clipboard.service';
 import { IntroComponent } from './intro/intro.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { RouterModule, Routes }  from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { SendComponent } from './send/send.component';
 import { MarketComponent } from './market/market.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
 import { OrderPageComponent } from './order-page/order-page.component';
-import { FeeSelectorComponent } from './fee-selector/fee-selector.component'; 
+import { FeeSelectorComponent } from './fee-selector/fee-selector.component';
 import { PersistenceModule } from 'angular-persistence';
 import { VirtualScrollModule } from 'angular2-virtual-scroll';
 import { CollectionCardComponent } from './collection-card/collection-card.component';
 import { AccountComponent } from './account/account.component';
 import { QrscanComponent } from './qrscan/qrscan.component';
 import { HistoryComponent } from './history/history.component';
-import { HistoryCardComponent } from './history-card/history-card.component'; 
+import { HistoryCardComponent } from './history-card/history-card.component';
 import { ImgCacheModule } from 'ng-imgcache';
 import { RankingsComponent } from './rankings/rankings.component';
 import { CompletionbarComponent } from './completionbar/completionbar.component';
@@ -37,7 +37,7 @@ import { MarketCardComponent } from './market-card/market-card.component';
 
 
 const appRoutes: Routes = [
-  { path: 'pass', component: IntroComponent } 
+  { path: 'pass', component: IntroComponent }
 ];
 
 @NgModule({
@@ -70,17 +70,17 @@ const appRoutes: Routes = [
     PersistenceModule,
     BrowserModule,
     FormsModule,
-    HttpModule, 
+    HttpModule,
     ImgCacheModule,
     VirtualScrollModule,
     LazyLoadImageModule,
     RouterModule.forRoot(appRoutes),
-    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   exports: [
     RouterModule
   ],
-  providers: [DataService,ClipboardService],
+  providers: [DataService, ClipboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
