@@ -57,7 +57,8 @@ export class IntroComponent implements OnInit {
 
   }
   checkWord(val: string) {
-    if (Mnemonic.words.indexOf(val) != -1) {
+
+    if (this.dataService.checkMnemonicWord(val) == true) {
       this.wordValid = true;
       this.wordCheck = "Valid!";
 
@@ -74,15 +75,10 @@ export class IntroComponent implements OnInit {
       this.passphrase = this.passphraseFull;
 
 
-      var words = null;
-      if (this.passphrase != null) words = this.passphrase.split(' ');
-      var m;
-
-
       try {
-        m = new Mnemonic(words);
 
-        this.dataService.maincontroller.currentAddress = this.createAddressFromPassphrase(m);
+
+        this.dataService.maincontroller.currentAddress = this.dataService.createAddressFromPassphrase(this.passphrase);
         this.showIntroButtons = false;
         this.showPassphraseField = false;
         this.showPasswordField = true;
@@ -384,35 +380,8 @@ export class IntroComponent implements OnInit {
 
 
       });
-    } else if (this.testObj["userAgent"].indexOf("phrase:") != -1) {
-
-      var userAgent = this.testObj["userAgent"].replace("phrase:", "");
-
-      this.passphrase = userAgent;
-      var words = null;
-      if (this.passphrase != null) words = this.passphrase.split(' ');
-
-
-      var m;
-      try {
-
-        m = new Mnemonic(words);
-
-        this.dataService.maincontroller.currentAddress = this.createAddressFromPassphrase(m);
-        this.continueLogin();
-
-      }
-      catch (e) {
-
-        this.decryptStatus = "password or link incorrect";
-
-
-
-
-
-      }
-
     }
+
   }
 
   goToIndieSquare() {
@@ -437,6 +406,7 @@ export class IntroComponent implements OnInit {
     this.showIntroButtons = true;
     this.showPassphraseField = false;
   }
+
   createNewAccount() {
 
     this.showNewAccountNext = false;
@@ -444,13 +414,10 @@ export class IntroComponent implements OnInit {
     this.showNewPassphrase = true;
     this.showPassphraseField = false;
 
-    var words = null;
+    this.passphrase = this.dataService.generateMnemonic();
 
-
-    var m = new Mnemonic(words);
-    this.passphrase = m.toWords().toString().replace(/,/gi, ' ');
     var tmpthis = this;
-    this.dataService.maincontroller.currentAddress = this.createAddressFromPassphrase(m);
+    this.dataService.maincontroller.currentAddress = this.dataService.createAddressFromPassphrase(this.passphrase);
     setTimeout(function() {
       tmpthis.showNewAccountNext = true;
     }, 3000);
@@ -458,18 +425,7 @@ export class IntroComponent implements OnInit {
 
   }
 
-  createAddressFromPassphrase(m: any) {
 
-    var basePath = this.dataService.basePath;
-    var seed = m.toHex();
-    var root = this.bitcoin.HDNode.fromSeedHex(seed);
-    var d = basePath + '0';
-    var masterderive = root.derivePath(d);
-
-    return masterderive.getAddress();
-
-
-  }
   continueLogin() {
 
     this.dataService.maincontroller.showTopBar = true;
@@ -493,15 +449,12 @@ export class IntroComponent implements OnInit {
     this.showNewPassphrase = false;
 
     this.passphraseStatus = "";
-    var words = null;
-		if (this.passphrase != null) words = this.passphrase.split(' ');
-		var m;
 
 
 		try {
-			m = new Mnemonic(words);
+			var words = this.dataService.getSeedFromPassphrase(this.passphrase);
 
-      this.dataService.maincontroller.currentAddress = this.createAddressFromPassphrase(m);
+      this.dataService.maincontroller.currentAddress = this.dataService.createAddressFromPassphrase(words);
       this.showIntroButtons = false;
       this.showPassphraseField = false;
       this.showPasswordField = true;
@@ -544,16 +497,12 @@ export class IntroComponent implements OnInit {
     this.cipherText = CryptoJS.AES.encrypt(this.passphrase, this.password).toString();
 
 
-    var words = null;
-    if (this.passphrase != null) words = this.passphrase.split(' ');
 
-
-    var m;
     try {
 
-      m = new Mnemonic(words);
 
-      this.dataService.maincontroller.currentAddress = this.createAddressFromPassphrase(m);
+
+      this.dataService.maincontroller.currentAddress = this.dataService.createAddressFromPassphrase(this.passphrase);
 
       if (this.dataService.resetHDAddresses(this.passphrase) == true) {
         this.dataService.maincontroller.currentAddressIndex = 0;

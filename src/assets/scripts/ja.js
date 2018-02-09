@@ -135,25 +135,25 @@ var ja = function() {
 	lang["enter_recoveryphrase"]="単語毎に入力する";
 	lang["enter_recoveryphrase"]="復元パスフレーズに入力する";
 	lang["bump_fee"]="手数料上がる"; 
-	lang["enter_new_fee"]="enter new fee (sat/byte)";
-	lang["fee_not_valid"]="Enter a fee higher than the previous";
-	lang["cant_bump_fee"]="You cannot increase the fee on this transaction";
-	lang["fee_bumped"]="Transaction's fee succesfully increased\n\nIt may take a few minutes for the new transaction to be updated in history";
-	lang["new_fee"]="Confirm\n\nThe new fee will cost \n\n$1$ BTC\n\n$2$";
-	lang["bump_balance"]="You do not have enough balance to increase the fee";
-	lang["current_bump_fee"]="Current fee: $1$ BTC ";
-	lang["closed_orders"]="Closed Orders";
-	lang["no_orders"]="no orders";
-	lang["po_type"]="Type";
-	lang["po_amount"]="Amount";
-	lang["po_price"]="Price";
-	lang["po_date"]="Date";
-	lang["place_custom_order"]="Place a custom order";
-	lang["last_sold_at"]="Last sold at";
-	lang["password_incorrect"]="Password incorrect";
-	lang["rankings_not_set"]="Rankings not set for your account";
-	lang["enter_a_secure_password"]="Enter a secure password, this is used to secure your key";
-	
+	lang["enter_new_fee"]="手数料を入力 (sat/byte)";
+	lang["fee_not_valid"]="前回より高い手数料を入力";
+	lang["cant_bump_fee"]="手数料を増やすことができません";
+	lang["fee_bumped"]="取引手数料の増加に成功しました\n\新しいトランザクションが履歴に更新されるまで少々時間がかかる場合があります";
+	lang["new_fee"]="Confirm\n\n新たな手数料を支払う\n\n$1$ BTC\n\n$2$";
+	lang["bump_balance"]="手数料を増やすための残高が不足しています";
+	lang["current_bump_fee"]="現在の手数料: $1$ BTC ";
+	lang["closed_orders"]="注文履歴";
+	lang["no_orders"]="注文なし";
+	lang["po_type"]="タイプ";
+	lang["po_amount"]="枚数";
+	lang["po_price"]="価格";
+	lang["po_date"]="日時";
+	lang["place_custom_order"]="注文する";
+	lang["last_sold_at"]="最終価格";
+	lang["password_incorrect"]="パスワードが異なります";
+	lang["rankings_not_set"]="アカウントでランキング設定がされていません";
+	lang["enter_a_secure_password"]="安全なパスワードを入力してください。これはあなたの鍵を守るために使用されます。";
+
 function ja() {
 
 

@@ -418,45 +418,34 @@ export class MainControllerComponent implements OnInit {
   decryptPassphrase() {
 
     var tmpthis = this.dataService.maincontroller;
+
     var userPassphrase = tmpthis.persistenceService.get("userPassphrase", StorageType.LOCAL);
+
     if (typeof userPassphrase == "undefined") {
+      alert(tmpthis.dataService.getLang("password_incorrect"));
+      return;
+    }
+
+    try {
+
+
+
+      userPassphrase = this.dataService.decryptPassphrase(userPassphrase, tmpthis.userPassword);
+
+      if (userPassphrase == undefined || userPassphrase.length == "") {
+        throw "error";
+      }
+
+    }
+    catch (e) {
       alert(tmpthis.dataService.getLang("password_incorrect"));
       return;
     }
 
 
 
-    try {
-      var bytes = CryptoJS.AES.decrypt(userPassphrase, tmpthis.userPassword);
-      userPassphrase = bytes.toString(CryptoJS.enc.Utf8);
-
-      var words = null;
-      if (userPassphrase != null) words = userPassphrase.split(' ');
-
-
-      var m;
-      try {
-
-        m = new Mnemonic(words);
-
-
-      }
-      catch (e) {
-        alert("password incorrect");
-        return;
-      }
-
-
-
-
-    }
-    catch (e) {
-
-      alert("password incorrect");
-      return;
-    }
-
     tmpthis.closePassword();
+
     if (tmpthis.currentConfirm != null) {
       tmpthis.currentConfirm(userPassphrase, this.currentOwner);
     }

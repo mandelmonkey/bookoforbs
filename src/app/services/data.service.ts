@@ -20,6 +20,7 @@ declare var CURRENTSIG: any;
 declare var SIGNCALLBACK: any;
 declare var CURRENTCALLER: any;
 declare var SIGNERROR: any;
+
 @Injectable()
 export class DataService {
   bitcoin = booTools.bitcoin;
@@ -45,13 +46,15 @@ export class DataService {
   signCaller: any;
 
   constructor() {
-    this.versionNumber = "0.1";
+    this.versionNumber = "0.11";
     this.currentTab = 1;
 
     this.uiclass = new UI();
 
     this.langclass = new ja();
     var language = window.navigator.language;
+
+
 
 
     if (language == "ja-JP") {
@@ -61,28 +64,187 @@ export class DataService {
     }
 
 
+
     this.showIntroScreen = true;
 
 
     this.rbf_tools = new RBFTools();
 
 
-
     this.cp_tools = new counterpartyParser();
 
+  }
 
+  checkMnemonicWord(word: string) {
+
+
+    if (Mnemonic.words.indexOf(word) != -1) {
+      console.log("legacy");
+      return true;
+    }
+
+    if (booTools.bip39.wordlists.EN.indexOf(word) != -1) {
+      console.log("en");
+      return true;
+    }
+
+    if (booTools.bip39.wordlists.JA.indexOf(word) != -1) {
+      console.log("ja");
+      return true;
+    }
+
+
+    if (booTools.bip39.wordlists.french.indexOf(word) != -1) {
+      console.log("french");
+      return true;
+    }
+
+
+    if (booTools.bip39.wordlists.italian.indexOf(word) != -1) {
+      console.log("italian");
+      return true;
+    }
+
+
+    if (booTools.bip39.wordlists.spanish.indexOf(word) != -1) {
+      console.log("spanish");
+      return true;
+    }
+
+
+    if (booTools.bip39.wordlists.korean.indexOf(word) != -1) {
+      console.log("korean");
+      return true;
+    }
+
+
+    if (booTools.bip39.wordlists.chinese_simplified.indexOf(word) != -1) {
+      console.log("cs");
+      return true;
+    }
+
+
+    if (booTools.bip39.wordlists.chinese_traditional.indexOf(word) != -1) {
+      console.log("ct");
+      return true;
+    }
+
+
+
+    return false;
+
+
+  }
+  generateMnemonic() {
+
+    var language = window.navigator.language;
+
+    var languageISOObject = language.split("-");
+
+    var languageISO = "en";
+
+    if (languageISOObject.length! > 1) {
+
+      languageISO = languageISOObject[0];
+
+    }
+
+    var wordList = booTools.bip39.wordlists.EN;
+
+    if (languageISO == "ja") {
+      wordList = booTools.bip39.wordlists.JA;
+    }
+    else if (languageISO == "fr") {
+      wordList = booTools.bip39.wordlists.french;
+    }
+    else if (languageISO == "it") {
+      wordList = booTools.bip39.wordlists.italian;
+    }
+    else if (languageISO == "es") {
+      wordList = booTools.bip39.wordlists.spanish;
+    }
+    else if (languageISO == "ko") {
+      wordList = booTools.bip39.wordlists.korean;
+    }
+    else if (languageISO == "zh-Hans") {
+      wordList = booTools.bip39.wordlists.chinese_simplified;
+    }
+    else if (languageISO == "zh-Hant") {
+      wordList = booTools.bip39.wordlists.chinese_traditional;
+    }
+
+    var mnemonic = booTools.bip39.generateMnemonic(undefined, undefined, wordList)
+
+
+    return mnemonic;
 
 
   }
 
+
+  createAddressFromPassphrase(passphrase: string) {
+
+    var seed = this.getSeedFromPassphrase(passphrase);
+
+    var root = this.bitcoin.HDNode.fromSeedHex(seed);
+
+    var d = this.basePath + '0';
+    var masterderive = root.derivePath(d);
+
+    return masterderive.getAddress();
+
+
+  }
+  checkIfLegacyMnemonic(passphrase) {
+
+    try {
+      var words = passphrase.split(' ');
+      var m = new Mnemonic(words);
+      alert("ok");
+    }
+    catch (e) {
+      alert(e);
+    }
+
+
+  }
+  getSeedFromPassphrase(passphrase) {
+
+    try {
+      var words = passphrase.split(' ');
+
+      var m = new Mnemonic(words);
+
+      var seed = m.toHex();
+
+      console.log("is legacy");
+
+      return seed;
+
+    } catch (e) {
+
+      try {
+
+        var seed = booTools.bip39.mnemonicToSeedHex(passphrase);
+
+        console.log("is bip39");
+
+        return seed;
+
+      } catch (e) {
+
+        throw e;
+
+      }
+
+
+    }
+
+  }
   signRawTransaction(params, callback) {
 
-    console.log(params);
-    var words = params.passphrase.split(' ');
+    var seed = this.getSeedFromPassphrase(params.passphrase);
 
-    var m = new Mnemonic(words);
-
-    var seed = m.toHex();
     var root = this.bitcoin.HDNode.fromSeedHex(seed);
     var currentIndex = 0;
     if (this.maincontroller != undefined) {
@@ -249,6 +411,21 @@ export class DataService {
 
   }
 
+  decryptPassphrase(userPassphrase, userPassword) {
+
+
+    var bytes = CryptoJS.AES.decrypt(userPassphrase, userPassword);
+
+    userPassphrase = bytes.toString(CryptoJS.enc.Utf8);
+
+
+    this.getSeedFromPassphrase(userPassphrase);
+
+    return userPassphrase;
+
+
+
+  }
 
 
   resetHDAddresses(passphrase: string) {
@@ -261,15 +438,12 @@ export class DataService {
 
 
 
-    var words = null;
-    if (passphrase != null) words = passphrase.split(' ');
 
 
     var m;
     try {
-      m = new Mnemonic(words);
 
-      var seed = m.toHex();
+      var seed = this.getSeedFromPassphrase(passphrase);
       var root = this.bitcoin.HDNode.fromSeedHex(seed);
       var d = this.basePath + newIndex;
       var masterderive = root.derivePath(d);
@@ -279,7 +453,7 @@ export class DataService {
       return true;
     }
     catch (e) {
-      alert("rest hd error");
+      alert("reset hd error");
       return false;
     }
 

@@ -52,16 +52,7 @@ export class RankingsComponent implements OnInit {
 
 
 
-    try {
-
-      var seed = new Mnemonic(passphrase.split(' ')).toHex();
-    }
-    catch (err) {
-
-      tmpthis.loading = false;
-      throw err;
-    }
-
+    var seed = tmpthis.dataService.getSeedFromPassphrase(passphrase);
 
     var root = tmpthis.dataService.bitcoin.HDNode.fromSeedHex(seed);
 

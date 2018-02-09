@@ -20,15 +20,6 @@ describe('IntroComponent', () => {
       .compileComponents();
   }));
 
-  it(`It should generate address from recovery phrase`, async(() => {
-    const fixture = TestBed.createComponent(IntroComponent);
-    const app = fixture.debugElement.componentInstance;
-    var words = "guitar pay throughout blank enjoy relationship flame work smoke tease football inside".split(' ');
-    var m = new Mnemonic(words);
-    expect(app.createAddressFromPassphrase(m)).toEqual('14JRsWbBapWRC6HMDU2mx5XW9VL1rGtB6p');
-  }));
-
-
 
 });
 

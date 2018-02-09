@@ -432,6 +432,117 @@ describe('DataService', () => {
 
 
 
+  it(`test decrypt passphrase bip39 fr`, async(() => {
+    var service = new DataService();
+
+    var encrypted = "U2FsdGVkX19TAT0XuqXCI3inQ6CLdcWGOB1AYqfPzu0EjtZzF8hQzciG+7OpDFO/AMxaBjFF/rBMPvROTtR165i6ItKXG6eAbIiFOlHrC9+iR8xTDQhEXtICbCwP24VafkE9kr8BYqSK/gWmGJ/HeQ==";
+
+
+    var result = service.decryptPassphrase(encrypted, "password");
+
+    expect(result).toEqual("prologue omettre vignette rituel minorer socle miracle effigie climat tiroir échelle pipette");
+
+
+
+  }));
+
+
+  it(`test decrypt passphrase bip39 ja`, async(() => {
+    var service = new DataService();
+
+    var encrypted = "U2FsdGVkX1+T7xValOHsMtqP10KLzlZYlJGP5o3TvIgNpLrWA03GYH/Hu02NMsGc/MLMy+o4RlAlhkmE2Ha/8vmi2J6FDSh8sV6xdMN6JZG4s4yqSY+o3AEkmcvTBQgUQNIxV/fiU1hyMtn9xcETxlsC+t1rvSG9laaOL4iQngwa+lTpvHCgUBscuyT5NzirtbwhDMOn6UwWe6HNKGcZ8Kem/bjqvnKnkC51KdBYd+MFbejJUl5Qy8+xn4fzsVdW";
+
+    var result = service.decryptPassphrase(encrypted, "password");
+
+    expect(result).toEqual("はけん　にあう　あずき　なまえ　いらい　みなと　ぎしき　りんご　にんち　むちゅう　そいとげる　かようび");
+
+
+
+  }));
+
+
+  it(`test get address from passphrase bip39 fr`, async(() => {
+    var service = new DataService();
+
+    var passphrase = "prologue omettre vignette rituel minorer socle miracle effigie climat tiroir échelle pipette";
+
+    var result = service.createAddressFromPassphrase(passphrase);
+
+    expect(result).toEqual("15iMXe3irDmNzHfdP7skU6SDzYppWoYvJ1");
+
+
+
+  }));
+
+
+  it(`test get address from passphrase bip39 ja`, async(() => {
+    var service = new DataService();
+
+    var passphrase = "はけん　にあう　あずき　なまえ　いらい　みなと　ぎしき　りんご　にんち　むちゅう　そいとげる　かようび";
+
+    var result = service.createAddressFromPassphrase(passphrase);
+
+    expect(result).toEqual("1Mw1ASK8nfLzEGbKuD3FJ9y7A3qHDGA75e");
+
+
+
+  }));
+
+  it(`test get address from passphrase bip39 en`, async(() => {
+
+    var service = new DataService();
+
+    var passphrase = "pioneer acid organ walk panda female purity ecology gadget blind opinion range";
+
+    var result = service.createAddressFromPassphrase(passphrase);
+
+    expect(result).toEqual("1GT8u3CSqnNvi9xyBtwLWgyc7fz5JYopeL");
+
+
+  }));
+
+
+  it(`test get address from passphrase legacy en`, async(() => {
+
+    var service = new DataService();
+
+    var passphrase = "guitar pay throughout blank enjoy relationship flame work smoke tease football inside";
+
+    var result = service.createAddressFromPassphrase(passphrase);
+
+    expect(result).toEqual("14JRsWbBapWRC6HMDU2mx5XW9VL1rGtB6p");
+
+
+  }));
+
+
+  it(`test get address from 2 passphrases doest get same address `, async(() => {
+
+    var service = new DataService();
+
+    var passphrase = "pioneer acid organ walk panda female purity ecology gadget blind opinion range";
+
+    var result = service.createAddressFromPassphrase(passphrase);
+
+    var passphrase2 = "はけん　にあう　あずき　なまえ　いらい　みなと　ぎしき　りんご　にんち　むちゅう　そいとげる　かようび";
+
+    var result2 = service.createAddressFromPassphrase(passphrase2);
+
+
+    expect(result).not.toEqual(result2);
+
+
+  }));
+
+
+
+
+
+
+
+
+
+
 });
 
 
