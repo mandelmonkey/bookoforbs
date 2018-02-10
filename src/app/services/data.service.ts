@@ -55,7 +55,7 @@ export class DataService {
     var language = window.navigator.language;
 
 
-
+    alert(language);
 
     if (language == "ja-JP") {
       this.langclass = new ja();
