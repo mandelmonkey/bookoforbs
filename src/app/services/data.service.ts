@@ -55,8 +55,6 @@ export class DataService {
     var language = window.navigator.language;
 
 
-    alert(language);
-
     if (language == "ja-JP") {
       this.langclass = new ja();
     } else {
@@ -141,7 +139,7 @@ export class DataService {
 
     var languageISOObject = language.split("-");
 
-    var languageISO = "en";
+    var languageISO = language;
 
     if (languageISOObject.length! > 1) {
 
