@@ -299,7 +299,10 @@ export class IntroComponent implements OnInit {
 
   getWord(word: number) {
 
-    return this.passphrase.split(' ')[word - 1];
+    var word_tmp = this.passphrase.trim().split(/\s+/)[word - 1];
+
+
+    return word_tmp + ",";
 
   }
 
