@@ -44,7 +44,7 @@ export class QrscanComponent implements OnInit {
       //if (er) throw er;
       if (typeof res != "undefined") {
 
-        if (this.dataService.addressIsValid(res) == true) {
+        if (tmpthis.dataService.addressIsValid(res) == true) {
 
           tmpthis.qrScanner.stop();
           tmpthis.qrScanner = null;
