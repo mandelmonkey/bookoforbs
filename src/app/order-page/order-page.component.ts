@@ -139,7 +139,8 @@ export class OrderPageComponent implements OnInit {
     console.log("resize");
     this.ref.markForCheck();
     this.pastOrderPickerTop = document.documentElement.clientHeight + "";
-    alert("resized");
+
+
 
   }
   getAmount(order) {
