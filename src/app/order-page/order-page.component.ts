@@ -209,6 +209,8 @@ export class OrderPageComponent implements OnInit {
     this.pastOrderPicker = document.getElementById("pastOrderPicker");
 
     this.pastOrderPickerTop = document.documentElement.clientHeight + "";
+
+
   }
 
   showPastOrderPicker() {
@@ -237,12 +239,12 @@ export class OrderPageComponent implements OnInit {
     return this.bottomTop;
   }
   onBlurMethod() {
-    document.body.style.position = "fixed";
+   // document.body.style.position = "fixed";
 
   }
 
   onFocusMethod() {
-    document.body.style.position = "none";
+   // document.body.style.position = "none";
 
   }
   closeSelf() {
