@@ -89,7 +89,7 @@ li
   position: absolute;
    top: 65px; 
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   max-width: 600px;
   text-align: center;
    left: 0; 
