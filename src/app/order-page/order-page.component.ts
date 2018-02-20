@@ -239,12 +239,22 @@ export class OrderPageComponent implements OnInit {
     return this.bottomTop;
   }
   onBlurMethod() {
-   // document.body.style.position = "fixed";
+
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (!isAndroid) {
+      document.body.style.position = "fixed";
+    }
+    alert("blur");
 
   }
 
   onFocusMethod() {
-   // document.body.style.position = "none";
+
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (!isAndroid) {
+      document.body.style.position = "none";
+    }
+
 
   }
   closeSelf() {
