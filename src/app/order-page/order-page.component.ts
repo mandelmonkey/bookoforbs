@@ -248,12 +248,15 @@ export class OrderPageComponent implements OnInit {
 
   }
 
-  onFocusMethod() {
+  onFocusMethod(e) {
 
     var isAndroid = /(android)/i.test(navigator.userAgent);
     if (!isAndroid) {
       document.body.style.position = "none";
     }
+
+    e.preventDefault(); e.stopPropagation();
+    window.scrollTo(0, 0);
 
 
   }
