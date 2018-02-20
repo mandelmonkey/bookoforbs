@@ -214,6 +214,8 @@ export class OrderPageComponent implements OnInit {
   showPastOrderPicker() {
 
     this.canShowPicker = true;
+    this.ref.detectChanges();
+    this.pastOrderPicker = document.getElementById("pastOrderPicker");
     this.pastOrderPickerTop = (document.documentElement.clientHeight - this.pastOrderPicker.offsetHeight) + "";
 
 
@@ -221,6 +223,7 @@ export class OrderPageComponent implements OnInit {
   closePicker() {
 
     this.canShowPicker = false;
+    this.ref.detectChanges();
     this.pastOrderPickerTop = document.documentElement.clientHeight + "";
 
 
