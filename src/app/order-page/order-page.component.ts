@@ -244,7 +244,7 @@ export class OrderPageComponent implements OnInit {
     if (!isAndroid) {
       document.body.style.position = "fixed";
     }
-    alert("blur");
+
 
   }
 
