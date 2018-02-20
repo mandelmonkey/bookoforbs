@@ -40,6 +40,7 @@
     background-attachment: fixed;   
 
       min-height:100%;
+      max-height: 100vh;
     margin-bottom: -40px; /* Put negative height of the footer here */
     padding-bottom: 40px; /* Put height of the footer here. Needed for higher than screen height pages */    
 }
