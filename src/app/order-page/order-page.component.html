@@ -101,7 +101,7 @@
 			<div class="items2">
 			<div class="itemTitle">How Many {{dataService.maincontroller.selectedKey}}?</div>
 			<br>
-			<input  class="textInput"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 1"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()">
+			<input  class="textInput"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 1"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod($event)">
 			<br>
 			<br>
 				<div class="items1Buttons">
@@ -200,7 +200,7 @@
 
 
   <div *ngIf="canShowPicker" class="pastOrderPicker" id="pastOrderPicker" [style.top]="grabPastOrderPickerTop()">
-  	
+
  	<div class="pickerTopBar">
  	
  	<img class="pickerbar"   [src]="dataService.getImage('tool_bar_background')"/>
