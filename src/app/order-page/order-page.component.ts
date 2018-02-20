@@ -137,8 +137,9 @@ export class OrderPageComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     console.log("resize");
-   // this.ref.markForCheck();
-   // this.pastOrderPickerTop = document.documentElement.clientHeight + "";
+    this.ref.markForCheck();
+    this.pastOrderPickerTop = document.documentElement.clientHeight + "";
+    alert("resized");
 
   }
   getAmount(order) {
@@ -242,7 +243,7 @@ export class OrderPageComponent implements OnInit {
 
     var isAndroid = /(android)/i.test(navigator.userAgent);
     if (!isAndroid) {
-      // document.body.style.position = "fixed";
+      document.body.style.position = "fixed";
     }
 
 
@@ -252,7 +253,7 @@ export class OrderPageComponent implements OnInit {
 
     var isAndroid = /(android)/i.test(navigator.userAgent);
     if (!isAndroid) {
-      //document.body.style.position = "none";
+      document.body.style.position = "none";
     }
 
 
