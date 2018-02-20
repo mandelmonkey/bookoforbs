@@ -115,7 +115,7 @@
 				<div class="items2">
 			<div class="itemTitle">{{dataService.getLang('enter_price_per_orb')}}</div>
 			<br>
-			<input  class="textInput"  type="number" [(ngModel)]="orderPrice"  placeholder="e.g. 1"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()"><span class="abrev">&nbsp;{{dataService.maincontroller.currentAbrev}}</span>
+			<input  class="textInput"  type="number" [(ngModel)]="orderPrice"  placeholder="e.g. 1"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod($event)"><span class="abrev">&nbsp;{{dataService.maincontroller.currentAbrev}}</span>
 			<br>
 			<br>
 				<div class="items1Buttons">
@@ -157,7 +157,7 @@
  <p>{{dataService.getLang('availability')}} </p>
   	 <p style="font-style: italic;">x{{originalOrderAmount}}</p> 
  <p>{{dataService.getLang('enter_order_amount')}} </p> 
- <input  style="text-align: center;"class="textInputCenter"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 2"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod()">
+ <input  style="text-align: center;"class="textInputCenter"  type="number" [(ngModel)]="orderAmount"  placeholder="e.g. 2"  name="customfee"  (blur)="onBlurMethod()" (focus)="onFocusMethod($event)">
 
  <div  class="placeOrderButtons">
         <input class="customButtonPlaceOrder" type="button" [value]="dataService.getLang('place_order')"  (click)="showConf()" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	 	 
