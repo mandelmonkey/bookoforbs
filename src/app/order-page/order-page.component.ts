@@ -12,7 +12,7 @@ declare var Mnemonic: any;
 })
 
 export class OrderPageComponent implements OnInit {
-
+  canShowPicker = false;
   giveQuant: number;
   giveToken = "";
   getQuant: number;
@@ -213,14 +213,14 @@ export class OrderPageComponent implements OnInit {
 
   showPastOrderPicker() {
 
-
+    this.canShowPick = true;
     this.pastOrderPickerTop = (document.documentElement.clientHeight - this.pastOrderPicker.offsetHeight) + "";
 
 
   }
   closePicker() {
 
-
+    this.canShowPick = false;
     this.pastOrderPickerTop = document.documentElement.clientHeight + "";
 
 
