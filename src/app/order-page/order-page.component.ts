@@ -213,14 +213,14 @@ export class OrderPageComponent implements OnInit {
 
   showPastOrderPicker() {
 
-    this.canShowPick = true;
+    this.canShowPicker = true;
     this.pastOrderPickerTop = (document.documentElement.clientHeight - this.pastOrderPicker.offsetHeight) + "";
 
 
   }
   closePicker() {
 
-    this.canShowPick = false;
+    this.canShowPicker = false;
     this.pastOrderPickerTop = document.documentElement.clientHeight + "";
 
 
