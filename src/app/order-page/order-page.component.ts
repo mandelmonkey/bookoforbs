@@ -306,6 +306,8 @@ export class OrderPageComponent implements OnInit {
       document.body.style.position = "fixed";
     }
 
+    window.scrollTo(0, 1);
+
 
   }
 
