@@ -203,16 +203,19 @@ export class OrderPageComponent implements OnInit {
   }
   getImageSize() {
 
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (!isAndroid) {
+      var height = (this.screenHeight * 0.45) + "px";
 
-    var height = (this.screenHeight * 0.45) + "px";
+      return { height: height };
 
-    return { height: height };
+    } else {
+      if (this.dataService.landscape == true) {
+        return { width: "100%" };
+      }
+      return { height: "45vh" };
 
-    /*
-    if (this.dataService.landscape == true) {
-    return { width: "100%" };
     }
-    return { height: "45vh" };*/
 
 
 
@@ -231,6 +234,11 @@ export class OrderPageComponent implements OnInit {
       x = w.innerWidth || e.clientWidth || g.clientWidth
 
     this.screenHeight = w.innerHeight || e.clientHeight || g.clientHeight;
+
+
+    var clientHeight = document.documentElement.clientHeight / 2;
+    var top = document.getElementById("sendOrb");
+    this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
 
 
   }
@@ -255,9 +263,9 @@ export class OrderPageComponent implements OnInit {
 
   getBottomTop() {
 
-    var clientHeight = document.documentElement.clientHeight / 2;
+    /*var clientHeight = document.documentElement.clientHeight / 2;
     var top = document.getElementById("sendOrb");
-    this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
+    this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";*/
     return this.bottomTop;
   }
   onBlurMethod() {
