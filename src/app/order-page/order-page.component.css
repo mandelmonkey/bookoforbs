@@ -128,6 +128,9 @@ li
   top: 0;
   left: 0;
   width:100%;
+   height:55px;
+  max-height:55px;
+  
 
 }
 .middleBar {

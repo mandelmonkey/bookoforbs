@@ -4,7 +4,7 @@
 </div>
 
 <div class="container" id="container"  [style.height.px]="getAHeight(100)">
- <input  class="textInput"  type="number"   placeholder="e.g. 1"  >
+ 
 <div class="sendOrb" id="sendOrb"    [style.height.px]="getAHeight(50)">
 	<div class="topSection"  [style.height.px]="getAHeight(30)">
 	<div class="sendOrbImgBox">
@@ -15,7 +15,7 @@
 	</div>
 <img class="sendOrbImg" [errorImage]="dataService.collection.errorImage" [src]="dataService.collection.defaultImage" [lazyLoad]="dataService.getRemoteImage(dataService.maincontroller.selectedOrb.image)"  [ngStyle]="getImageSize()"/>
  </div>
-<input  class="textInput"  type="number"   placeholder="e.g. 1"  >
+
  <div class="ordersList">
  	<span class="ordersTitle">Sellers</span>
  	<div class="sellOrdersList" *ngFor="let order of sell_orders" >
