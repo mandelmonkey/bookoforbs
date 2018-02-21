@@ -655,6 +655,8 @@ export class OrderPageComponent implements OnInit {
     this.customOrder3Left = "100vw";
   }
   goToCustom3() {
+    document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
+
     if (this.orderAmount > 0) {
       this.customOrder1Left = "-100vw";
       this.customOrder2Left = "-100vw";
