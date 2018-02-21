@@ -25,21 +25,30 @@ export class TopBarComponent implements OnInit {
   constructor(public dataService: DataService, private persistenceService: PersistenceService) {
     document.addEventListener('click', this.offClickHandler.bind(this)); // bind on doc
   }
+  getTestHeight() {
 
-  getTopHeight() {
+    return 8;
+
+
+  }
+  getAHeight(hHeight: string) {
 
     var isAndroid = /(android)/i.test(navigator.userAgent);
-    if (isAndroid) {
+    if (!isAndroid) {
 
-      var height = (this.screenHeight * 0.08) + "px";
+      this.calcScreenHeight()
 
-      return { height: height };
-
-    } else {
-
-      return { height: "8vh" };
 
     }
+
+
+
+    var height = (this.screenHeight * (parseFloat(hHeight) / 100));
+
+   // console.log(height + " " + this.screenHeight + " " + parseFloat(hHeight) + " " + (parseFloat(hHeight) / 100));
+
+    return height;
+
 
   }
 
@@ -79,6 +88,10 @@ export class TopBarComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.calcScreenHeight()
+  }
+
+  calcScreenHeight() {
     var w = window,
       d = document,
       e = d.documentElement,
