@@ -5,8 +5,8 @@
 
 <div class="container">
  
-<div class="sendOrb" id="sendOrb"   [style.height]="getSendOrbHeight()">
-	<div class="topSection" [style.height]="getTopHeight()">
+<div class="sendOrb" id="sendOrb"    [style.height.px]="getAHeight(50)">
+	<div class="topSection"  [style.height.px]="getAHeight(30)">
 	<div class="sendOrbImgBox">
 		<div class ="orbDetails">
 	<label class="orbImgTitle">{{dataService.maincontroller.selectedKey}}</label> 
@@ -20,7 +20,7 @@
  	<span class="ordersTitle">Sellers</span>
  	<div class="sellOrdersList" *ngFor="let order of sell_orders" >
 
-	<div class="aSellBuyOrder" (click)="buyOrder(order,'buy')" [style.height]="getSellBuyHeight()" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">
+	<div class="aSellBuyOrder" (click)="buyOrder(order,'buy')"  [style.height.px]="getAHeight(6)" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">
 	   <div class="orderBox">
 		<div class="orderPrice">{{formatNum(order.price)}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
 		<div class="orderPriceDetails">{{getOrderAmount(order)}}</div>
@@ -82,7 +82,7 @@
  
  </div>
 
- <div class="bottomSection" [style.top]="getBottomTop()" [style.height]="getBottomHeight()">
+ <div class="bottomSection" [style.top]="getBottomTop()"  [style.height.px]="getAHeight(20)">
 	
 	<div class="customOrder1" [style.left]="customOrder1Left">
 		
@@ -207,7 +207,7 @@
  	<input class="closeButton" type="button" [value]="dataService.getLang('back')" (click)="closePicker()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
  	</div>
  
-   <ul  class="pastOrderList" [style.height]="getListHeight()">
+   <ul  class="pastOrderList"  [style.height.px]="getListHeight()">
    	<li  *ngIf="!loadingClosedOrders" >
 
     <label class="envtitle" style="width: 16%;">{{dataService.getLang('po_type')}}</label> <label class="envtitle" style="width: 16%;" >{{dataService.getLang('po_amount')}}</label><label class="envtitle"  style="width: 16%;" >{{dataService.getLang('po_price')}}</label><label class="envtitle"  style="width: 50%;">{{dataService.getLang('po_date')}}</label>

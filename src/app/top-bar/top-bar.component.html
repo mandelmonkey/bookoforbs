@@ -2,7 +2,7 @@
   <img class="backbar" id="topBarTop"   [src]="dataService.getImage('tool_bar_background')" [style.height.px]="getAHeight('8')"/>
   <img class="leftbracket"   [src]="dataService.getImage('leftBracket')" [style.height.px]="getAHeight('8')"/>
   <img class="rightbracket"    [src]="dataService.getImage('rightBracket')" [style.height.px]="getAHeight('8')"/>
-  <div class="environmentButton">
+  <div class="environmentButton" [style.height.px]="getAHeight('6')">
     <img class="envbutton" [src]="dataService.getImage('selectGameButtonBackground')" (click)="openEnvironmentList()" [style.height.px]="getAHeight('6')"/>
     <span>{{currentEnvTitle}}</span>
     <img id="smallarrow" class="smallarrow" [src]="dataService.getImage('littleArrow')"  (click)="openEnvironmentList()" />

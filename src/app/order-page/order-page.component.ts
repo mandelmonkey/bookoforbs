@@ -225,6 +225,16 @@ export class OrderPageComponent implements OnInit {
     this.pastOrderPicker = document.getElementById("pastOrderPicker");
 
     this.pastOrderPickerTop = document.documentElement.clientHeight + "";
+    this.calcScreenHeight();
+
+    var clientHeight = document.documentElement.clientHeight / 2;
+    var top = document.getElementById("sendOrb");
+    this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
+
+
+  }
+
+  calcScreenHeight() {
 
 
     var w = window,
@@ -234,12 +244,6 @@ export class OrderPageComponent implements OnInit {
       x = w.innerWidth || e.clientWidth || g.clientWidth
 
     this.screenHeight = w.innerHeight || e.clientHeight || g.clientHeight;
-
-
-    var clientHeight = document.documentElement.clientHeight / 2;
-    var top = document.getElementById("sendOrb");
-    this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
-
 
   }
 
@@ -264,83 +268,34 @@ export class OrderPageComponent implements OnInit {
 
   }
 
-  getSendOrbHeight() {
-    var isAndroid = /(android)/i.test(navigator.userAgent);
-    if (isAndroid) {
-
-      var height = (this.screenHeight * 0.5) + "px";
-
-      return { height: height };
-
-    } else {
-
-      return { height: "50vh" };
-
-    }
-  }
-  getSellBuyHeight() {
+  getAHeight(hHeight: number) {
 
     var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (!isAndroid) {
 
-    if (isAndroid) {
+      this.calcScreenHeight()
 
-      var height = (this.screenHeight * 0.06) + "px";
-
-      return { height: height };
-
-    } else {
-
-      return { height: "6vh" };
 
     }
 
-  }
-  getTopHeight() {
 
-    var isAndroid = /(android)/i.test(navigator.userAgent);
 
-    if (isAndroid) {
-
-      var height = (this.screenHeight * 0.3) + "px";
-
-      return { height: height };
-
-    } else {
-
-      return { height: "30vh" };
-
+    var height = (this.screenHeight * (hHeight / 100));
+    if (height == NaN) {
+      return 0;
     }
-  }
-  getBottomHeight() {
+    return height;
 
-    var isAndroid = /(android)/i.test(navigator.userAgent);
-    if (isAndroid) {
-
-      var height = (this.screenHeight * 0.2) + "px";
-
-      return { height: height };
-
-    } else {
-      return { height: "20vh" };
-
-
-    }
 
   }
   getBottomTop() {
-    var isAndroid = /(android)/i.test(navigator.userAgent);
-    if (isAndroid) {
-      return this.bottomTop;
-    } else {
-
-      var clientHeight = document.documentElement.clientHeight / 2;
-      var top = document.getElementById("sendOrb");
-      this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
-      return this.bottomTop;
-
-    }
 
 
+
+    var clientHeight = document.documentElement.clientHeight / 2;
+    var top = document.getElementById("sendOrb");
+    this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
+    return this.bottomTop;
 
 
   }
