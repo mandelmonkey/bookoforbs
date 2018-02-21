@@ -306,10 +306,6 @@ export class OrderPageComponent implements OnInit {
       document.body.style.position = "fixed";
     }
 
-    document.getElementById("bottomBar").style.bottom = "0px";
-
-    alert(document.getElementById("bottomBar").style.bottom);
-
 
   }
 
