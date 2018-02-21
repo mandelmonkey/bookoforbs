@@ -203,7 +203,7 @@ export class CollectionComponent implements OnInit {
     } else {
       this.loading = true;
     }
-    console.log("called here");
+
     this.dataService.maincontroller.currentOrbs = [];
     this.dataService.maincontroller.currentOrbsKeys = [];
 
@@ -228,7 +228,9 @@ export class CollectionComponent implements OnInit {
         console.log("error balance");
         this.dataService.maincontroller.loading = false;
         this.loading = false;
-      },
+        alert("error loading");
+           
+        },
       () => { });
 
 
