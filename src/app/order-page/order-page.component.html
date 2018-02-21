@@ -20,7 +20,7 @@
  	<span class="ordersTitle">Sellers</span>
  	<div class="sellOrdersList" *ngFor="let order of sell_orders" >
 
-	<div class="aSellBuyOrder" (click)="buyOrder(order,'buy')" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">
+	<div class="aSellBuyOrder" (click)="buyOrder(order,'buy')" [style.height]="getSellBuyHeight()" [style.background-image]="'url(' +dataService.getImage('buyPriceButton')+ ')'">
 	   <div class="orderBox">
 		<div class="orderPrice">{{formatNum(order.price)}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
 		<div class="orderPriceDetails">{{getOrderAmount(order)}}</div>

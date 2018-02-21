@@ -278,7 +278,23 @@ export class OrderPageComponent implements OnInit {
 
     }
   }
+  getSellBuyHeight() {
 
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+
+      var height = (this.screenHeight * 0.06) + "px";
+
+      return { height: height };
+
+    } else {
+
+      return { height: "6vh" };
+
+    }
+
+  }
   getTopHeight() {
 
     var isAndroid = /(android)/i.test(navigator.userAgent);
