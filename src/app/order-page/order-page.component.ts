@@ -306,7 +306,9 @@ export class OrderPageComponent implements OnInit {
       document.body.style.position = "fixed";
     }
 
-    window.scrollTo(0, 1);
+    document.getElementById("bottomBar").style.bottom = "0px";
+
+    alert(document.getElementById("bottomBar").style.bottom);
 
 
   }
