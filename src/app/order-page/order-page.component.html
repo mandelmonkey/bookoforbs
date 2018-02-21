@@ -5,8 +5,8 @@
 
 <div class="container">
  
-<div class="sendOrb" id="sendOrb">
-	<div class="topSection">
+<div class="sendOrb" id="sendOrb"   [style.height]="getSendOrbHeight()">
+	<div class="topSection" [style.height]="getTopHeight()">
 	<div class="sendOrbImgBox">
 		<div class ="orbDetails">
 	<label class="orbImgTitle">{{dataService.maincontroller.selectedKey}}</label> 

@@ -293,7 +293,7 @@ label{
   position: absolute;
    width:100%;
    top: 65px; 
-   height: 50vh; 
+  
       text-align: center;
 }
 .sendOrbImgBox { 
@@ -326,7 +326,7 @@ label{
   
 }
 .topSection {
-  height: 30vh;
+ 
 }
 .bottomSection {
   position: absolute; 

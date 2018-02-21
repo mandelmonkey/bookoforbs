@@ -252,6 +252,9 @@ export class OrderPageComponent implements OnInit {
 
 
   }
+
+
+
   closePicker() {
 
     this.canShowPicker = false;
@@ -259,6 +262,38 @@ export class OrderPageComponent implements OnInit {
     this.pastOrderPickerTop = document.documentElement.clientHeight + "";
 
 
+  }
+
+  getSendOrbHeight() {
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (isAndroid) {
+
+      var height = (this.screenHeight * 0.5) + "px";
+
+      return { height: height };
+
+    } else {
+
+      return { height: "50vh" };
+
+    }
+  }
+
+  getTopHeight() {
+
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+
+      var height = (this.screenHeight * 0.5) + "px";
+
+      return { height: height };
+
+    } else {
+
+      return { height: "30vh" };
+
+    }
   }
   getBottomHeight() {
 
@@ -272,8 +307,8 @@ export class OrderPageComponent implements OnInit {
     } else {
       return { height: "20vh" };
 
-         
-     }
+
+    }
 
   }
   getBottomTop() {
