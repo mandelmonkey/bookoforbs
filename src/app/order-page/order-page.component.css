@@ -96,6 +96,7 @@ li
   right: 0; 
   margin-left: auto; 
   margin-right: auto; 
+  overflow-y: auto;
 }
 .darkView{
   position: absolute;
