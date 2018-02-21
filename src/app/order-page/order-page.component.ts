@@ -315,6 +315,7 @@ export class OrderPageComponent implements OnInit {
     if (!isAndroid) {
       document.body.style.position = "none";
     }
+    document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
 
 
 
@@ -637,7 +638,6 @@ export class OrderPageComponent implements OnInit {
   }
   goToCustom2(orderType: string) {
 
-    document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
 
     this.orderAmount = null;
     this.orderPrice = null;
