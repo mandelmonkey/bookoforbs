@@ -317,6 +317,9 @@ export class OrderPageComponent implements OnInit {
     }
 
 
+    document.body.scrollTop = document.getElementById("container").offsetTop;
+
+
 
   }
   closeSelf() {
