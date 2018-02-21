@@ -14,6 +14,7 @@ declare var Mnemonic: any;
 export class OrderPageComponent implements OnInit {
   canShowPicker = false;
   giveQuant: number;
+  screenHeight: number;
   giveToken = "";
   getQuant: number;
   getToken = "";
@@ -202,15 +203,34 @@ export class OrderPageComponent implements OnInit {
   }
   getImageSize() {
 
+
+    var height = (this.screenHeight * 0.45) + "px";
+
+    return { height: height };
+
+    /*
     if (this.dataService.landscape == true) {
-      return { width: "100%" };
+    return { width: "100%" };
     }
-    return { height: "45vh" };
+    return { height: "45vh" };*/
+
+
+
   }
   ngAfterViewInit() {
+
     this.pastOrderPicker = document.getElementById("pastOrderPicker");
 
     this.pastOrderPickerTop = document.documentElement.clientHeight + "";
+
+
+    var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x = w.innerWidth || e.clientWidth || g.clientWidth
+
+    this.screenHeight = w.innerHeight || e.clientHeight || g.clientHeight;
 
 
   }
