@@ -232,12 +232,6 @@ export class OrderPageComponent implements OnInit {
     this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
 
 
-    var cont = document.getElementById("container");
-
-
-    alert(cont.clientHeight + " " + cont.clientTop)
-
-
   }
 
   calcScreenHeight() {
@@ -321,9 +315,6 @@ export class OrderPageComponent implements OnInit {
     if (!isAndroid) {
       document.body.style.position = "none";
     }
-
-
-
 
 
 
@@ -657,17 +648,8 @@ export class OrderPageComponent implements OnInit {
     this.customOrder1Left = "-100vw";
     this.customOrder2Left = "0";
     this.customOrder3Left = "100vw";
-
-
-
-
   }
   goToCustom3() {
-    var cont = document.getElementById("container");
-
-
-
-    alert(cont.clientHeight + " " + cont.clientTop)
     if (this.orderAmount > 0) {
       this.customOrder1Left = "-100vw";
       this.customOrder2Left = "-100vw";
