@@ -24,6 +24,7 @@ export class SendComponent implements OnInit {
   public account = null;
   public indiesquare: any;
   public divisible = -1;
+  public screenHeight: number;
   tmpthis: any;
 
   getNumImage(image: string) {
@@ -37,6 +38,47 @@ export class SendComponent implements OnInit {
     }
 
   }
+
+  getAHeight(hHeight: number) {
+
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (!isAndroid) {
+
+      this.calcScreenHeight()
+
+
+    }
+
+
+
+    var height = (this.screenHeight * (hHeight / 100));
+    if (height == NaN) {
+      return 0;
+    }
+
+
+    return height;
+
+
+  }
+
+  calcScreenHeight() {
+
+
+    var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x = w.innerWidth || e.clientWidth || g.clientWidth
+
+    this.screenHeight = w.innerHeight || e.clientHeight || g.clientHeight;
+
+  }
+  ngAfterViewInit() {
+    this.calcScreenHeight()
+
+  }
+
   ngOnInit() {
 
 

@@ -103,6 +103,8 @@ export class MainControllerComponent implements OnInit {
     this.loadEnvironments();
 
   }
+
+
   loadEnvironments() {
 
     var tmpData = this.dataService;

@@ -317,8 +317,7 @@ label{
 }
  .keypadBack {
   width:100vw;
-  height: 50vh;
-  top: 50vh;
+   
   position: fixed; 
 
 }
