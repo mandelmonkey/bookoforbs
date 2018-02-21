@@ -9,7 +9,7 @@
   top: 0;
   left: 0;
   width:100%;
-   height: 9vh;
+   
   max-height:55px;
 }
 .leftbracket {
@@ -17,7 +17,7 @@
   top: 0;
   left: 0;
   width:10px;
-   height: 9vh;
+   
   max-height:55px;
 }
 .rightbracket {
@@ -25,7 +25,7 @@
   top: 0;
   right: 0;
    width:10px;
-   height: 9vh;
+   
   max-height:55px;
 }
   
@@ -54,7 +54,7 @@
  position: absolute;
   
  width:90px; 
-   height: 7vh;
+    
   max-height:42px;
   top:10%;
   left:5px;
@@ -70,7 +70,7 @@
    position: absolute;
    top:0;
    width:100%;
-   height:100%;
+   
    background-color: rgba(0,0,0,0.7);
    text-align: center;
      display: inline-block;
@@ -82,7 +82,7 @@
    position: absolute;
    top:0;
    width:100%;
-   height:100%;
+    
     
 }
 .confButtons{
@@ -231,7 +231,7 @@
 .largeORBImage {
 	 
  
- height:70%;
+ 
 
      background-repeat: no-repeat; 
      background-size: cover;
@@ -250,7 +250,7 @@ max-width: 95%;
 	 
    width:100vw;
    max-width: 400px;
-   height: 10vh;
+   
    max-height: 80px;
    margin: auto;
     top: 0;

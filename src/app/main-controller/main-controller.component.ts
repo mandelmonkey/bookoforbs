@@ -22,7 +22,7 @@ export class MainControllerComponent implements OnInit {
   }
   public locale = "";
 
-
+  screenHeight: number;
   public userPassword = "";
   public showingPasswordInput = false;
   public loading = true;
@@ -103,7 +103,46 @@ export class MainControllerComponent implements OnInit {
     this.loadEnvironments();
 
   }
+  ngAfterViewInit() {
 
+    this.calcScreenHeight();
+
+
+  }
+
+  getAHeight(hHeight: number) {
+
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (!isAndroid) {
+
+      this.calcScreenHeight()
+
+
+    }
+
+
+
+    var height = (this.screenHeight * (hHeight / 100));
+    if (height == NaN) {
+      return 0;
+    }
+    return height;
+
+
+  }
+
+  calcScreenHeight() {
+
+
+    var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x = w.innerWidth || e.clientWidth || g.clientWidth
+
+    this.screenHeight = w.innerHeight || e.clientHeight || g.clientHeight;
+
+  }
 
   loadEnvironments() {
 
