@@ -301,7 +301,7 @@ export class OrderPageComponent implements OnInit {
 
     if (isAndroid) {
 
-      var height = (this.screenHeight * 0.5) + "px";
+      var height = (this.screenHeight * 0.3) + "px";
 
       return { height: height };
 
