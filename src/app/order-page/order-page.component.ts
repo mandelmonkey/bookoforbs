@@ -61,7 +61,7 @@ export class OrderPageComponent implements OnInit {
     this.getClosedOrders();
 
     this.buySellText = this.dataService.getLang("you_are_buying");
-    document.body.style.position = "fixed";
+  //  document.body.style.position = "fixed";
 
 
 
@@ -310,13 +310,13 @@ export class OrderPageComponent implements OnInit {
   }
 
   onFocusMethod(e) {
-    /*
-          var isAndroid = /(android)/i.test(navigator.userAgent);
-          if (!isAndroid) {
-             document.body.style.position = "none";
-          }
-    
-    */
+
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (!isAndroid) {
+      document.body.style.position = "none";
+    }
+
+
 
   }
   closeSelf() {
