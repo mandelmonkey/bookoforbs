@@ -204,7 +204,7 @@ export class OrderPageComponent implements OnInit {
   getImageSize() {
 
     var isAndroid = /(android)/i.test(navigator.userAgent);
-    if (!isAndroid) {
+    if (isAndroid) {
       var height = (this.screenHeight * 0.45) + "px";
 
       return { height: height };
@@ -260,13 +260,38 @@ export class OrderPageComponent implements OnInit {
 
 
   }
+  getBottomHeight() {
 
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (isAndroid) {
+
+      var height = (this.screenHeight * 0.2) + "px";
+
+      return { height: height };
+
+    } else {
+      return { height: "20vh" };
+
+         
+     }
+
+  }
   getBottomTop() {
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (isAndroid) {
+      return this.bottomTop;
+    } else {
 
-    /*var clientHeight = document.documentElement.clientHeight / 2;
-    var top = document.getElementById("sendOrb");
-    this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";*/
-    return this.bottomTop;
+      var clientHeight = document.documentElement.clientHeight / 2;
+      var top = document.getElementById("sendOrb");
+      this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
+      return this.bottomTop;
+
+    }
+
+
+
+
   }
   onBlurMethod() {
 
