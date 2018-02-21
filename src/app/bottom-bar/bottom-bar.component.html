@@ -1,12 +1,12 @@
-<div class="parent"  >
-  <img class="backbar" id="bottomBarBottom" [src]="dataService.getImage('bottomBar')" />
- <img class="leftbracket"  [src]="dataService.getImage('leftTabBracket')" />
-  <img class="rightbracket"  [src]="dataService.getImage('rightTabBracket')"  />
+<div class="parent" [style.height.px]="getAHeight(100)" >
+  <img class="backbar" id="bottomBarBottom" [src]="dataService.getImage('bottomBar')" [style.height.px]="getAHeight(100)" />
+ <img class="leftbracket"  [src]="dataService.getImage('leftTabBracket')" [style.height.px]="getAHeight(100)"/>
+  <img class="rightbracket"  [src]="dataService.getImage('rightTabBracket')" [style.height.px]="getAHeight(100)" />
 
-  <img class="firstButton" [src]="image1" (click)="select1()"/>
- <img class="secondButton" [src]="image2" (click)="select2()"/>
-  <img class="thirdButton" [src]="image3"  (click)="select3()"/>
-   <img class="forthButton" [src]="image4" (click)="select4()"/>
+  <img class="firstButton" [src]="image1" (click)="select1()" [style.height.px]="getAHeight(100)"/>
+ <img class="secondButton" [src]="image2" (click)="select2()" [style.height.px]="getAHeight(100)"/>
+  <img class="thirdButton" [src]="image3"  (click)="select3()" [style.height.px]="getAHeight(100)"/>
+   <img class="forthButton" [src]="image4" (click)="select4()" [style.height.px]="getAHeight(100)"/>
 <div class="labels"> 
     <label class="firstLabel">{{dataService.getLang('collection')}}</label>
      <label class="secondLabel">{{dataService.getLang('market')}}</label>
