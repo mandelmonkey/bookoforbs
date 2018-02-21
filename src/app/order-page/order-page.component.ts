@@ -318,6 +318,7 @@ export class OrderPageComponent implements OnInit {
 
 
     document.getElementById("container").scrollTop = document.getElementById("container").scrollHeight;
+    alert("did focus");
 
 
 

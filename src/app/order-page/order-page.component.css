@@ -101,14 +101,7 @@ li
   overflow-y:scroll; 
   overflow-x:hidden;
 }
-.darkView{
-  position: absolute;
-   width:100%;
-    
-   top: 0;   
-   background-color: rgba(0,0,0,0.5);
-      text-align: center;
-}
+ 
 .orderConfOverlay{
   
   position: absolute;
