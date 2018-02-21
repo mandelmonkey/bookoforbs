@@ -20,9 +20,27 @@ export class TopBarComponent implements OnInit {
   environmentKeys: Array<any>;
   environments: Array<any>;
   rotated = false;
+  screenHeight: number;
 
   constructor(public dataService: DataService, private persistenceService: PersistenceService) {
     document.addEventListener('click', this.offClickHandler.bind(this)); // bind on doc
+  }
+
+  getTopHeight() {
+
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (isAndroid) {
+
+      var height = (this.screenHeight * 0.08) + "px";
+
+      return { height: height };
+
+    } else {
+
+      return { height: "8vh" };
+
+    }
+
   }
 
   offClickHandler(event: any) {
@@ -59,6 +77,17 @@ export class TopBarComponent implements OnInit {
     this.dataService.topbar = this;
     this.currentEnvTitle = this.dataService.getLang("loading");
   }
+
+  ngAfterViewInit() {
+    var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      x = w.innerWidth || e.clientWidth || g.clientWidth
+
+    this.screenHeight = w.innerHeight || e.clientHeight || g.clientHeight;
+  }
+
   getSettings() {
     return this.dataService.getLang("settings");
   }

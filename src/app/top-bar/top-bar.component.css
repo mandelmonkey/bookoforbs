@@ -3,8 +3,7 @@
 .parent {
   position: relative;
   top: 0;
-  left: 0; 
-   height: 8vh;
+  left: 0;  
   max-height:55px;
   box-shadow: 0px 10px 5px rgba(0,0,0,0.2);
 }
