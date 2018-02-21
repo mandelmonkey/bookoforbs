@@ -317,8 +317,6 @@ export class OrderPageComponent implements OnInit {
     }
 
 
-    document.getElementById("container").scrollTop = document.getElementById("container").scrollHeight;
-    alert("did focus");
 
 
 
@@ -638,6 +636,9 @@ export class OrderPageComponent implements OnInit {
     this.customOrder3Left = "100vw";
   }
   goToCustom2(orderType: string) {
+
+    document.getElementById("container").scrollTop = document.getElementById("container").scrollHeight;
+
     this.orderAmount = null;
     this.orderPrice = null;
 
