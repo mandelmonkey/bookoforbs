@@ -304,10 +304,27 @@ export class SendComponent implements OnInit {
 
   onBlurMethod() {
 
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (isAndroid) {
+
+      document.getElementById("backGround").style.overflowY = "hidden";
+
+      document.getElementById("backGround").scrollTop = 0;
+
+    }
 
   }
 
   onFocusMethod() {
+
+    var isAndroid = /(android)/i.test(navigator.userAgent);
+    if (isAndroid) {
+
+      document.getElementById("backGround").style.overflowY = "hidden";
+
+      document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
+
+    }
 
 
   }
