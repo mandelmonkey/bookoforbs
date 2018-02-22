@@ -39,7 +39,8 @@ position: absolute;
   bottom: 0;
   left:0;
    width:25%;
-   
+     -webkit-tap-highlight-color: rgba(0,0,0,0);
+ 
   max-height:60px; 
   cursor: pointer;  
 }
@@ -48,6 +49,7 @@ position: absolute;
 left:25%;
   bottom: 0;
    width:25%;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
  
   max-height:60px; 
     cursor: pointer;  
@@ -57,7 +59,8 @@ position: absolute;
   bottom: 0;
   right:25%;
    width:25%;
-  
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+ 
   max-height:60px; 
     cursor: pointer;  
 }
@@ -66,6 +69,7 @@ position: absolute;
   bottom: 0;
   right:0;
    width:25%;
+ -webkit-tap-highlight-color: rgba(0,0,0,0);
  
   max-height:60px; 
     cursor: pointer;  
