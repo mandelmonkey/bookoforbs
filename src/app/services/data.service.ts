@@ -46,7 +46,7 @@ export class DataService {
   signCaller: any;
 
   constructor() {
-    this.versionNumber = "0.12";
+    this.versionNumber = "0.13";
     this.currentTab = 1;
 
     this.uiclass = new UI();
