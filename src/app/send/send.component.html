@@ -30,7 +30,7 @@
 
 <div class="keypad"  [style.height.px]="getAHeight(60)" [style.top.px]="getAHeight(40)">
 
-  <img class="keypadBack"   [src]="dataService.getImage('qrbottomback')" [style.height.px]="getAHeight(50)" [style.top.px]="getAHeight(50)"/> 
+  <img class="keypadBack"   [src]="dataService.getImage('qrbottomback')"  /> 
 <div class="middleBar">
 
   <img class="middleBarImg"    [src]="dataService.getImage('sendMiddleBar')" /> 
@@ -44,10 +44,10 @@
  
    <img id="spinner"   [src]="dataService.getImage('spinner')" *ngIf="sending" />
   <label class="amountText">{{currentORB}}{{amount}}</label>
- <input type="text" class="addressText" [placeholder]="dataService.getLang('enter_address')+'d'" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()" (focus)="onFocusMethod()">
+ <input type="text" class="addressText" [placeholder]="dataService.getLang('enter_address')" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 </div>
 
-<div class="keypadButtons" [style.height.px]="getAHeight(45)" [style.top.px]="getAHeight(13)"> 
+<div class="keypadButtons" [style.height.px]="getAHeight(45)" [style.top.px]="100"> 
 
 <div id="one" class="button" (click)="addKey('1')" [ngStyle]= "getNumImage('1num')">
  
