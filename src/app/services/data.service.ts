@@ -109,23 +109,23 @@ export class DataService {
       return true;
     }
 
-
-    if (booTools.bip39.wordlists.korean.indexOf(word) != -1) {
-      console.log("korean");
-      return true;
-    }
-
-
-    if (booTools.bip39.wordlists.chinese_simplified.indexOf(word) != -1) {
-      console.log("cs");
-      return true;
-    }
-
-
-    if (booTools.bip39.wordlists.chinese_traditional.indexOf(word) != -1) {
-      console.log("ct");
-      return true;
-    }
+    /*
+       if (booTools.bip39.wordlists.korean.indexOf(word) != -1) {
+       console.log("korean");
+       return true;
+       }
+     
+     
+      if (booTools.bip39.wordlists.chinese_simplified.indexOf(word) != -1) {
+       console.log("cs");
+       return true;
+       }
+     
+     
+       if (booTools.bip39.wordlists.chinese_traditional.indexOf(word) != -1) {
+       console.log("ct");
+       return true;
+       }*/
 
 
 
