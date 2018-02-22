@@ -322,7 +322,7 @@ export class OrderPageComponent implements OnInit {
     if (!isAndroid) {
       document.body.style.position = "none";
     } else {
-      document.getElementById("backGround").style.overflowY = "scroll";
+      document.getElementById("backGround").style.overflowY = "hidden";
 
       document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
 

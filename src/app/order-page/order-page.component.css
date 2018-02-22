@@ -83,7 +83,7 @@ li
  
      background-repeat: no-repeat; 
      background-size: cover;
-    overflow-y:scroll; 
+    overflow-y:hidden; 
     overflow-x:hidden;
 
 }
