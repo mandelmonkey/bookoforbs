@@ -44,7 +44,7 @@
  
    <img id="spinner"   [src]="dataService.getImage('spinner')" *ngIf="sending" />
   <label class="amountText">{{currentORB}}{{amount}}</label>
- <input type="text" class="addressText" [placeholder]="dataService.getLang('enter_address')+d" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()" (focus)="onFocusMethod()">
+ <input type="text" class="addressText" [placeholder]="dataService.getLang('enter_address')+'d'" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 </div>
 
 <div class="keypadButtons" [style.height.px]="getAHeight(45)" [style.top.px]="getAHeight(13)"> 
