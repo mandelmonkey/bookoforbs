@@ -1,4 +1,4 @@
-<div class="backGround" id="backGround" [style.background-image]="'url(' +dataService.getImage('accountBackground')+ ')'">
+<div class="backGround" id="backGround" [style.background-image]="'url(' +dataService.getImage('accountBackground')+ ')'" >
 
 <div class="darkView">
 </div>
@@ -22,9 +22,15 @@
   </div> 
 
   <div>
- <img class="keypadBack"   [src]="dataService.getImage('qrbottomback')"   [style.height.px]="getAHeight(50)" [style.top.px]="getAHeight(50)"/>
  
  
+ 
+
+ 
+
+<div class="keypad"  [style.height.px]="getAHeight(60)" [style.top.px]="getAHeight(40)">
+
+  <img class="keypadBack"   [src]="dataService.getImage('qrbottomback')" [style.height.px]="getAHeight(50)" [style.top.px]="getAHeight(50)"/> 
 <div class="middleBar">
 
   <img class="middleBarImg"    [src]="dataService.getImage('sendMiddleBar')" /> 
@@ -41,11 +47,7 @@
  <input type="text" class="addressText" [placeholder]="dataService.getLang('enter_address')" [(ngModel)]="dataService.maincontroller.currentSendAddress" (blur)="onBlurMethod()" (focus)="onFocusMethod()">
 </div>
 
- 
-
-<div class="keypad" [style.height.px]="getAHeight(40)">
-
-
+<div class="keypadButtons" [style.height.px]="getAHeight(45)" [style.top.px]="getAHeight(13)"> 
 
 <div id="one" class="button" (click)="addKey('1')" [ngStyle]= "getNumImage('1num')">
  
@@ -94,7 +96,7 @@
 <div id="del" class="button" (click)="addKey('-1')" [ngStyle]= "getNumImage('delnum')">
  
 </div>
-
+</div>
 </div>
 
 </div>

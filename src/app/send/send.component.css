@@ -5,7 +5,7 @@
   left: 0;
   width:100vw;
   height:100%;
-  overflow-y:hidden; 
+  overflow-y:scroll; 
     overflow-x:hidden;
  
  
@@ -23,7 +23,7 @@ animation-name: slidein;
 
 .middleBar {
   position: absolute;
-  bottom: 40%;
+ top:0;
   left: 0;
   height: 100px;
     width:100%;
@@ -213,6 +213,7 @@ label{
 
  .addressText {  
    position: absolute; 
+   left:0;
      bottom: 10px;
      text-align: center;
   width:100%;
@@ -318,9 +319,13 @@ label{
 }
  .keypadBack {
   width:100vw;
-   
+   left:0;
   position: fixed; 
 
+}
+.keypadButtons{
+  width: 100vw; 
+  position: absolute;
 }
 .keypad {
 text-align: center;
@@ -341,7 +346,7 @@ background-color:rgba(0,0,0,0.2);
 font-size: 20pt;
  color: #ffffd5;
     font-family:   merriweather;
-
+  position: relative;
 
   
 }
@@ -350,6 +355,7 @@ font-size: 20pt;
 display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
 
 
 }
