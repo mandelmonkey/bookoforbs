@@ -306,6 +306,11 @@ export class OrderPageComponent implements OnInit {
     var isAndroid = /(android)/i.test(navigator.userAgent);
     if (!isAndroid) {
       document.body.style.position = "fixed";
+    } else {
+      document.getElementById("backGround").style.overflowY = "scroll";
+
+      document.getElementById("backGround").scrollTop = 0;
+
     }
 
 
@@ -316,8 +321,12 @@ export class OrderPageComponent implements OnInit {
     var isAndroid = /(android)/i.test(navigator.userAgent);
     if (!isAndroid) {
       document.body.style.position = "none";
+    } else {
+      document.getElementById("backGround").style.overflowY = "scroll";
+
+      document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
+
     }
-    document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
 
 
 
