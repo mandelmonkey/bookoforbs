@@ -231,7 +231,7 @@ export class OrderPageComponent implements OnInit {
     var top = document.getElementById("sendOrb");
     this.bottomTop = (top.clientHeight + top.clientTop + 90) + "px";
 
-    document.getElementById("backGround").style.overflowY = "none";
+    document.getElementById("backGround").style.overflowY = "hidden";
 
 
   }
