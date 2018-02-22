@@ -5,24 +5,28 @@
   top: 0;
   left: 0;   
   box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.2);
+   max-height: 55px;
 }
 .backbar {
   position: relative;
   top: 0;
   left: 0;
-  width:100%;  
+  width:100%; 
+   max-height: 55px; 
 }
 .leftbracket {
   position: absolute;
   top: 0;
   left: 0;
   width:10px;  
+  max-height: 55px;
 }
 .rightbracket {
   position: absolute;
   top: 0;
   right: 0;
    width:10px;  
+    max-height: 55px;
 }
 
 .smallarrow {
