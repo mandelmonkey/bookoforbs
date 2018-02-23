@@ -9,7 +9,7 @@ text-align: center;
    
 }
 
-.screenshot {
+.screenshots {
    width:60%;   
    margin-top:10vh;    
  -webkit-filter: drop-shadow(5px 5px 5px #222);
@@ -17,7 +17,7 @@ text-align: center;
   transform: translatey(0px); 
   img { width: 100%; height: auto; }
 }
-.screenshot4 {
+.screenshots4 {
    width:100%;
    margin-top:10vh;    
  -webkit-filter: drop-shadow(5px 5px 5px #222);
