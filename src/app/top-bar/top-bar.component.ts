@@ -45,8 +45,6 @@ export class TopBarComponent implements OnInit {
 
     var height = (this.screenHeight * (parseFloat(hHeight) / 100));
 
-   // console.log(height + " " + this.screenHeight + " " + parseFloat(hHeight) + " " + (parseFloat(hHeight) / 100));
-
     return height;
 
 

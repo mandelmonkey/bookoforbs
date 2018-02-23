@@ -1,4 +1,13 @@
- 
+ .bottomSections{
+  width: 100vw; 
+  height: 50vh;
+top:50vh;
+text-align: center;
+  position: absolute;
+    background-repeat: no-repeat; 
+     background-size: 100% 100%;
+   
+}
 
  
 .apage{
@@ -100,8 +109,8 @@ margin-top: 20px;
   font-family:   sling;
   padding-right: 5px;
   padding-left: 5px;
-  overflow: hidden;
-    white-space: nowrap;
+  /* overflow: hidden;
+    white-space: nowrap;*/
 }
 /*
 @media screen and (min-width: 300px) {
@@ -116,8 +125,8 @@ margin-top: 20px;
   font-family:   sling;
   padding-right: 5px;
   padding-left: 5px;
-  overflow: hidden;
-    white-space: nowrap;
+  /* overflow: hidden;
+    white-space: nowrap;*/
 }
 .title3{
   position: relative; 
@@ -126,8 +135,8 @@ margin-top: 20px;
   font-family:   sling;
   padding-right: 5px;
   padding-left: 5px;
-  overflow: hidden;
-    white-space: nowrap;
+  /*overflow: hidden;
+    white-space: nowrap;*/
 }
 .float {
    width:60%;   
@@ -155,16 +164,7 @@ margin-top: 20px;
   transform: translatey(0px); 
   img { width: 100%; height: auto; }
 }
-.bottomSection{
-	width: 100vw; 
-	height: 50vh;
-top:50vh;
-text-align: center;
-	position: absolute;
-	  background-repeat: no-repeat; 
-     background-size: 100% 100%;
-	 
-}
+
 .background{
 	width: 100%;
 	height: 100%;
