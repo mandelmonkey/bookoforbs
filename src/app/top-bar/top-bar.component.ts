@@ -31,6 +31,12 @@ export class TopBarComponent implements OnInit {
 
 
   }
+  canShowEnv() {
+    if (this.dataService.currentTab == 1 || this.dataService.currentTab == 2) {
+      return true;
+    }
+    return false;
+  }
   getAHeight(hHeight: string) {
 
     var isAndroid = /(android)/i.test(navigator.userAgent);
@@ -184,7 +190,10 @@ export class TopBarComponent implements OnInit {
 
     } else {
       this.dataService.maincontroller.currentOrbsKeys = Object.keys(this.dataService.maincontroller.currentOrbs);
+      this.dataService.collection.refreshView();
     }
+
+
 
     this.dataService.collection.setScrollObs();
   }

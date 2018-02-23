@@ -18,10 +18,10 @@
  <div class="largeORBDark" (click)="closeLarge()" [style.height.px]="getAHeight(100)">
 </div>
 <div class="parent">
-  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')" [style.height.px]="getAHeight(9)"/>
-  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')" [style.height.px]="getAHeight(9)"/>
-  <img class="rightbracket" [src]="dataService.getImage('rightBracket')" [style.height.px]="getAHeight(9)"/>
-    <input class="backButton" type="button" [value]="dataService.getLang('back')" (click)="closeLarge()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'" [style.height.px]="getAHeight(8)">
+  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"  />
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')" />
+  <img class="rightbracket" [src]="dataService.getImage('rightBracket')"  />
+    <input class="backButton" type="button" [value]="dataService.getLang('back')" (click)="closeLarge()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'" >
   
 </div>
 
@@ -112,7 +112,7 @@
 
   </div>
     <div class="messageDark"   *ngIf="showingPasswordInput">
-   <div class="messageBackPassword" id="qrBack"  [style.background-image]="'url(' +dataService.getImage('thinFrameSmall')+ ')'">
+   <div class="messageBackPassword" id="qrBack"  [style.background-image]="'url(' +dataService.getImage('thinFrameSmall')+ ')'" [style.height.px]="getAHeight(30)">
    
             <div>   
        <h3 class="passwordtitle">{{dataService.getLang('enter_your_password')}} </h3>

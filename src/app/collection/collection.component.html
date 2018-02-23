@@ -6,12 +6,17 @@
   </div>
  
  <app-completionbar  *ngIf="!dataService.maincontroller.loading"></app-completionbar > 
- <p class="title" *ngIf="loading">{{dataService.getLang('loading')}}</p>
+
+ 
+ <div *ngIf="dataService.maincontroller.loading" class="loadingCustomSpinnerOuter">
+ <img   class="loadingCustomSpinner"  src="../assets/images/loadingCustom.svg"  />
+ <p class="title"  >{{dataService.getLang('polishing')}}</p>
+</div>
+
 
 <virtual-scroll *ngIf="!loading" id="scrollView" class="scrollable" [items]="dataService.maincontroller.currentOrbsKeys" (update)="viewPortItems = $event"
 [style.height]="getCollectionHeight()">
-
-<label class="status" *ngIf="dataService.maincontroller.loading ">{{dataService.getLang('loading')}}</label>
+ 
 <label class="status" *ngIf="showNoOrbs() && !allOrbs">{{dataService.getLang('noorbs')}}</label>
 
     <app-collection-card *ngFor="let item of viewPortItems;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight">
@@ -21,18 +26,6 @@
   
 
 </virtual-scroll>  
- <!--
-<div *ngIf="!dataService.isMobile" id="scrollView" class="scrollView"
-[style.height]="getCollectionHeight()">
-
-<label class="status" *ngIf="dataService.maincontroller.loading ">{{dataService.getLang('loading')}}</label>
-<label class="status" *ngIf="showNoOrbs() && !allOrbs">{{dataService.getLang('noorbs')}}</label>
-
-    <app-collection-card *ngFor="let item of dataService.maincontroller.currentOrbsKeys;let i = index" [i]="i" [orbImage]="dataService.maincontroller.currentOrbs[item].image" [orbKey]="item" [style.width]="cardWidth" [style.height]="cardHeight">
-    </app-collection-card>
-
-</div>  
--->
  
 	 
 

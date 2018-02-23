@@ -5,7 +5,7 @@
    <canvas id="qr1" ></canvas>
  <h3 class="title">{{linkText}}</h3>
  <br>
- <img *ngIf="showLinkageIcon()" style="height: 30px;" src="../assets/images/linkageIcon.png"/>
+ <!--<img *ngIf="showLinkageIcon()" style="height: 30px;" src="../assets/images/linkageIcon.png"/>-->
 </div>
  <div *ngIf="!isIndiesquare">
   <div  *ngIf="showIntroButtons">
@@ -74,10 +74,12 @@
   <label class="passwordTitle">{{dataService.getLang('enter_secure_password')}}</label><br>
    <label class="passwordDesc">{{dataService.getLang('if_you_forget')}}</label><br>
     <br>
+    <div>
  <input   class="textInput"   type="password" name="password" [placeholder]="dataService.getLang('enter_secure_password')" [(ngModel)]="password"  > 
- <br>
+  </div>
+   <div>
  <input   class="textInput" style="margin-top: 5px;"  type="password" name="password" [placeholder]="dataService.getLang('confirm_password')" [(ngModel)]="confPassword"    > 
-
+ </div>
 
  <div class="navButtons">
      <input  class="backNext" type="button" [value]="dataService.getLang('next')" (click)="encryptPassphrase()" [style.background-image]="'url(' +dataService.getImage('greenButton')+ ')'"> 

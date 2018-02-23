@@ -1,4 +1,4 @@
-<div class="marketAll" *ngIf="dataService.currentTab == 2" [@fadeInOut] [style.background-image]="'url(' +dataService.getImage('stoneBack')+ ')'">
+<div class="marketAll" *ngIf="dataService.currentTab == 2"  [style.background-image]="'url(' +dataService.getImage('stoneBack')+ ')'">
  
  <p class="title" *ngIf="loading">{{dataService.getLang('loading')}}</p>
 
@@ -13,6 +13,9 @@
 
 
 </virtual-scroll>  
+
+
+
  
  
 

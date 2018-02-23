@@ -5,6 +5,7 @@ var ja = function() {
 	lang["myorbs"]="自分のORB";
 	lang["allorbs"]="全てのORB";
 	lang["loading"]="ロード中...";
+	lang["polishing"]="ORBsを磨き中...";
 	lang["noorbs"]="ORBが持っていません";
 	lang["collection"]="コレクション";
 	lang["market"]="マーケット";

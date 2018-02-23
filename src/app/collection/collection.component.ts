@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { HTTPService } from "../services/http.service";
 import { DataService } from '../services/data.service';
 
@@ -33,13 +33,17 @@ export class CollectionComponent implements OnInit {
   defaultImage = this.dataService.getImage('cardback');
 
 
-  constructor(public dataService: DataService, private httpService: HTTPService) {
+  constructor(public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef) {
 
   }
   ngAfterViewInit() {
     this.setScrollObs();
 
 
+  }
+
+  refreshView() {
+    this.ref.detectChanges();
   }
   setScrollObs() {
 
@@ -229,8 +233,8 @@ export class CollectionComponent implements OnInit {
         this.dataService.maincontroller.loading = false;
         this.loading = false;
         alert("error loading");
-           
-        },
+
+      },
       () => { });
 
 
@@ -304,7 +308,7 @@ export class CollectionComponent implements OnInit {
     }
     var tmpthis = this;
     setTimeout(function() {
-      tmpthis.addPull();
+      // tmpthis.addPull();
     }, 1000);
 
   }

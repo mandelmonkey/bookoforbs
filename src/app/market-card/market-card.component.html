@@ -1,7 +1,11 @@
- <div>
-<img [id]="getId()"   class="card"  (click)="showORB()" [src]="dataService.collection.defaultImage" [style.height]="getHeight()" [errorImage]="dataService.collection.errorImage" [lazyLoad]="getImage()"  [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]="dataService.collection.scrollView" onerror="imgLoadError()" (load)="imageLoaded()" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" />
+  
+<img target="_blank" [id]="getId()"   class="card"  (click)="showORB()" [src]="getImage()" [style.height]="getHeight()"  (load)="imageLoaded()" />
+
+ 
+
+
 <app-order-info  [token]="orbKey"></app-order-info>
- </div>
+ 
 
        
   

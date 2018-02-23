@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { VirtualScrollComponent } from 'angular2-virtual-scroll';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { DataService } from '../services/data.service';
 import { HTTPService } from "../services/http.service";
 declare var IndieSquare: any;

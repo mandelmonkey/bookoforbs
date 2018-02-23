@@ -144,6 +144,8 @@ app-market-card {
   left: 0px;
   width:100px;
   height:42px;
+  outline: none;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
  .backButton label {
      position: absolute;

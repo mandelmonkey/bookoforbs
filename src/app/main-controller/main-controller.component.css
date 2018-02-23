@@ -3,6 +3,7 @@
   position: relative;
   top: 0;
   left: 0;
+  height:40px;
 }
 .backbar {
   position: relative;
@@ -10,7 +11,7 @@
   left: 0;
   width:100%;
    
-  max-height:55px;
+  height:40px;
 }
 .leftbracket {
   position: absolute;
@@ -18,7 +19,7 @@
   left: 0;
   width:10px;
    
-  max-height:55px;
+  height:40px;
 }
 .rightbracket {
   position: absolute;
@@ -26,7 +27,7 @@
   right: 0;
    width:10px;
    
-  max-height:55px;
+  height:40px;
 }
   
  .qrtitle{
@@ -56,11 +57,12 @@
  width:90px; 
     
   max-height:42px;
-  top:10%;
+  top:3px;
   left:5px;
+height: 35px;
 
-
-
+outline: none;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
 
 
 
@@ -168,7 +170,7 @@
      background-size: 100% 100%;
      width: 80vw;
      text-align: center;
-     height: 30vh;
+    
      max-width:315px;
      max-height:500px;
       top: 45%; left: 50%;
@@ -258,6 +260,8 @@ max-width: 95%;
     text-align: center; 
 
     display: inline-block;
+    outline: none;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
    
 }
  
@@ -278,11 +282,14 @@ background-size:100% 100%;
     height: 100%;
      pointer-events: auto;
    
+   outline: none;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
    
 }
 
 .titleLabel {      
    left: 0;  
+   margin-top: 10px;
    width: 100%; 
    display: inline-block; 
     height: 30px;

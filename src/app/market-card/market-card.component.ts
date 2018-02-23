@@ -42,6 +42,7 @@ export class MarketCardComponent implements OnInit {
 	@Input()
 	scrollEvent: any;
 
+	loaded = false;
 
 	loadNum = 0;
 	loadNum2 = 0;
@@ -58,29 +59,7 @@ export class MarketCardComponent implements OnInit {
 	}
 	imageLoaded() {
 
-		var img = document.getElementById("img" + this.i);
-		img.style.background = "none";
-
-
-		if (this.i == 2) {
-
-
-			if (this.loadNum == 1) {
-
-
-
-				var height = img.offsetHeight;
-				var width = img.offsetWidth;
-				var aspect = height / width;
-				if (this.dataService.landscape == true) {
-					aspect = width / height;
-
-				}
-
-
-				this.loadNum++;
-			}
-		}
+		this.loaded = true;
 
 	}
 
@@ -97,7 +76,9 @@ export class MarketCardComponent implements OnInit {
 
 	}
 	getImage() {
-
+		if (this.loaded == false) {
+			return this.dataService.collection.defaultImage;
+		}
 		var img = this.orbImage;
 
 		return this.dataService.getRemoteImage(img);

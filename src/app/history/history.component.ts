@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { HTTPService } from "../services/http.service";
 import { DataService } from '../services/data.service';
 declare var RBFTools: any;

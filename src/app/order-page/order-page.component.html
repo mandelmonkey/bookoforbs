@@ -129,6 +129,24 @@
 
 </div>
 
+<div class="parent">
+  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
+  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
+  <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
+   <div class="backButton" (click)="closeSelf()">
+    <img class="backButtonImg"  [src]="dataService.getImage('filterButtonBackground')"/>
+    <label>back</label>
+    
+  </div>
+ 
+
+<label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> 
+
+
+      <app-fee-selector></app-fee-selector>
+
+</div>
+
  <div *ngIf="showConfOverlay" class="orderConfOverlay">
    <div class="messageBack" [style.background-image]="'url(' +dataService.getImage('thinFrame')+ ')'">	 	 
    	 	<div  class="loading" *ngIf="loading">
@@ -177,23 +195,7 @@
        </div>
 
        
-<div class="parent">
-  <img class="backbar"  [src]="dataService.getImage('tool_bar_background')"/>
-  <img class="leftbracket"  [src]="dataService.getImage('leftBracket')"/>
-  <img class="rightbracket" [src]="dataService.getImage('rightBracket')"/>
-   <div class="backButton" (click)="closeSelf()">
-    <img class="backButtonImg"  [src]="dataService.getImage('filterButtonBackground')"/>
-    <label>back</label>
-    
-  </div>
- 
 
-<label id="balance" class="title">{{dataService.maincontroller.currentBalance}}&nbsp;{{dataService.maincontroller.selectedKey}}</label> 
-
-
-      <app-fee-selector></app-fee-selector>
-
-</div>
  </div>
 
 

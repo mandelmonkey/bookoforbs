@@ -101,6 +101,7 @@ width:70px;
   color: #ffffd5;
   font-family:   sling; 
     margin-left: 10px;
+    outline: none;
 }
 
 .imageBack{/*textBack*/
@@ -189,6 +190,9 @@ text-align: center;
   top:4px;
   right:5px;
 
+  outline: none;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
+
 
 }
 .addressButton {
@@ -212,6 +216,9 @@ text-align: center;
    height: 6vh;
   max-height:35px;
   top:6px;
+
+  outline: none;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
   
 
 }

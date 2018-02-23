@@ -1,9 +1,9 @@
-<div class="parent" [style.height.px]="getAHeight('8')" >
-  <img class="backbar" id="topBarTop"   [src]="dataService.getImage('tool_bar_background')" [style.height.px]="getAHeight('8')"/>
-  <img class="leftbracket"   [src]="dataService.getImage('leftBracket')" [style.height.px]="getAHeight('8')"/>
-  <img class="rightbracket"    [src]="dataService.getImage('rightBracket')" [style.height.px]="getAHeight('8')"/>
-  <div class="environmentButton" [style.height.px]="getAHeight('6')">
-    <img class="envbutton" [src]="dataService.getImage('selectGameButtonBackground')" (click)="openEnvironmentList()" [style.height.px]="getAHeight('6')"/>
+<div class="parent" [style.height.px]="45" >
+  <img class="backbar" id="topBarTop"   [src]="dataService.getImage('tool_bar_background')" [style.height.px]="45"/>
+  <img class="leftbracket"   [src]="dataService.getImage('leftBracket')" [style.height.px]="45"/>
+  <img class="rightbracket"    [src]="dataService.getImage('rightBracket')" [style.height.px]="45"/>
+  <div class="environmentButton"  *ngIf="canShowEnv()">
+    <img class="envbutton" [src]="dataService.getImage('selectGameButtonBackground')" (click)="openEnvironmentList()" [style.height.px]="40"/>
     <span>{{currentEnvTitle}}</span>
     <img id="smallarrow" class="smallarrow" [src]="dataService.getImage('littleArrow')"  (click)="openEnvironmentList()" />
   </div>

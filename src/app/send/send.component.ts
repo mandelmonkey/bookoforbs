@@ -309,7 +309,7 @@ export class SendComponent implements OnInit {
 
       document.getElementById("backGround").style.overflowY = "hidden";
 
-      document.getElementById("backGround").scrollTop = 0;
+      //document.getElementById("backGround").scrollTop = 0;
 
     }
 
@@ -322,7 +322,7 @@ export class SendComponent implements OnInit {
 
       document.getElementById("backGround").style.overflowY = "hidden";
 
-      document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
+      //document.getElementById("backGround").scrollTop = document.getElementById("backGround").scrollHeight;
 
     }
 

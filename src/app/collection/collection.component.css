@@ -59,6 +59,8 @@ app-collection-card {
    display:flex;
   justify-content:center;
   align-items:center;
+   -webkit-tap-highlight-color: rgba(0,0,0,0);
+ 
 }
 .ownAllButtonImg {
    position: absolute; 
@@ -70,6 +72,8 @@ app-collection-card {
    width:250px;
     outline: 0 !important;
     border:0 none !important;
+     -webkit-tap-highlight-color: rgba(0,0,0,0);
+ 
 }
 .ownAllButtonText{ 
   width:100px; 
@@ -79,6 +83,7 @@ app-collection-card {
     color: #ffffd5;
     font-family:   merriweather;  
 
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
  
     -webkit-user-select: none; /* Safari */        
 -moz-user-select: none; /* Firefox */
@@ -91,6 +96,15 @@ user-select: none; /* Standard */
 .title{
   color: #ffffd5;
     font-family:   sling; 
+}
+.loadingCustomSpinnerOuter{
+ height: 150px; 
+ position: relative;
+ top:150px;
+}
+
+.loadingCustomSpinner{
+opacity: 0.5;
 }
 
 .status{

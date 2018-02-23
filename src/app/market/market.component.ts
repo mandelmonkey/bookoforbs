@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HTTPService } from "../services/http.service";
 import { DataService } from '../services/data.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-market',
@@ -17,12 +17,16 @@ export class MarketComponent implements OnInit {
   currentOrbs: Array<any>;
   randomOrbs: Array<any>;
   scrollHeight: string;
+  imagesLoaded: any;
 
-  constructor(public dataService: DataService, private httpService: HTTPService) {
+  constructor(public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef) {
     dataService.market = this;
+
   }
 
+
   ngOnInit() {
+
     this.dataService.maincontroller.trendingOrbs = [];
     this.dataService.maincontroller.newOrbs = [];
     this.dataService.maincontroller.randomOrbs = [];
@@ -38,6 +42,8 @@ export class MarketComponent implements OnInit {
     }
 
   }
+
+
 
   getCollectionHeight() {
     return (document.documentElement.clientHeight - document.getElementById("marketScroll").offsetTop - 55) + "px";

@@ -1,5 +1,5 @@
 import { HostListener, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+
 import { DataService } from '../services/data.service';
 declare var iNoBounce: any;
 
@@ -11,7 +11,7 @@ declare var iNoBounce: any;
 
 export class IntroscreensComponent implements OnInit {
   scrollView;
-  scrollObservable;
+  //scrollObservable;
   pixelWidth;
   page1Left = "0";
   page2Left = "100vw";
@@ -25,11 +25,7 @@ export class IntroscreensComponent implements OnInit {
     this.scrollImage = this.dataService.getImage('scrollIndicator1');
   }
 
-  @HostListener('scroll', ['$event'])
-  onScroll(event) {
-    console.log(event.srcElement.scrollLeft, this.pixelWidth);
-    //console.log(document.getElementById('scrollView').scrollLeft);
-  }
+
   slide2() {
     this.page1Left = "-100vw";
     this.page2Left = "0";
@@ -53,9 +49,9 @@ export class IntroscreensComponent implements OnInit {
   }
   ngAfterViewInit() {
     var tmpthis = this;
-    this.scrollView = document.getElementById("scrollView");
-    this.scrollObservable = Observable.fromEvent(this.scrollView, 'scroll');
-    tmpthis.scrollView.scrollLeft = 300;
+    // this.scrollView = document.getElementById("scrollView");
+    //this.scrollObservable = Observable.fromEvent(this.scrollView, 'scroll');
+    // tmpthis.scrollView.scrollLeft = 300;
 
 
   }

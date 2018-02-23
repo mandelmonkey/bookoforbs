@@ -35,11 +35,34 @@
 
 <div *ngIf="loading">
 	 
-			 
-			<div class="title">{{dataService.getLang('loading')}}</div>
+		<div class="buySection">
+		<div *ngIf="!noSellOrders">
+			<div class="title"> {{dataService.getLang('loading')}}</div>
 			<div  class="priceVal"> </div>
 			<div  class="fiatVal"> </div>
+		</div>
+		<div *ngIf="noSellOrders">
 	 
+			<div class="title"> </div>
+			<div  class="priceVal"> </div>
+			<div  class="fiatVal"> </div>
+		 
+		</div>
+	</div> 
+	<div class="sellSection">
+		<div *ngIf="!noBuyOrders">
+			<div  class="title"> {{dataService.getLang('loading')}}</div>
+			<div  class="priceVal">  </div>
+			<div  class="fiatVal"> </div>
+		</div>
+		<div *ngIf="noBuyOrders">
+	 
+		<div class="title"> </div>
+			<div  class="priceVal"> </div>
+			<div  class="fiatVal"> </div>
+		 
+		</div>
+	</div> 
 	 
 		 
 </div>
@@ -48,9 +71,34 @@
 
 <div *ngIf="isError">
 	 
-			 
-			<div class="title">{{dataService.getLang('error')}}</div>
+			<div class="buySection">
+		<div *ngIf="!noSellOrders">
+			<div class="title"> {{dataService.getLang('error')}}</div>
 			<div  class="priceVal"> </div>
+			<div  class="fiatVal"> </div>
+		</div>
+		<div *ngIf="noSellOrders">
+	 
+			<div class="title"> </div>
+			<div  class="priceVal"> </div>
+			<div  class="fiatVal"> </div>
+		 
+		</div>
+	</div> 
+	<div class="sellSection">
+		<div *ngIf="!noBuyOrders">
+			<div  class="title"> {{dataService.getLang('error')}}</div>
+			<div  class="priceVal">  </div>
+			<div  class="fiatVal"> </div>
+		</div>
+		<div *ngIf="noBuyOrders">
+	 
+		<div class="title"> </div>
+			<div  class="priceVal"> </div>
+			<div  class="fiatVal"> </div>
+		 
+		</div>
+	</div> 
  
 </div>
 
