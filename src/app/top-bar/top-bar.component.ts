@@ -184,7 +184,7 @@ export class TopBarComponent implements OnInit {
 
   reloadViews() {
     if (this.dataService.currentTab == 1) {
-      this.dataService.collection.setCurrentOrbs();
+      this.dataService.collection.setCurrentOrbs(this.currentEnv.envCode);
     } else if (this.dataService.currentTab == 3) {
       this.dataService.history.reloadViews();
     }
