@@ -48,7 +48,9 @@ background-size: 100% 100%;
 .marketSubScroll{
   -webkit-overflow-scrolling: touch;
    position: relative;
-  overflow-x: hidden;
+  overflow-x: scroll;
+
+   -webkit-transform: translateZ(0);
     white-space: nowrap;
   /*overflow-x: scroll;
     overflow-y: hidden;
