@@ -31,6 +31,7 @@ export class MarketComponent implements OnInit {
     this.dataService.maincontroller.newOrbs = [];
     this.dataService.maincontroller.randomOrbs = [];
     this.setMarketData();
+    alert(this.dataService.versionNumber);
 
   }
   getCardWidth() {
