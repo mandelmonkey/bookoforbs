@@ -3,8 +3,8 @@
  
    width:100vw;
    text-align: center; 
-   overflow:hidden; overflow-y:scroll;
-    overflow: auto;
+   overflow-x:hidden; 
+   overflow-y:scroll; 
         -webkit-overflow-scrolling: touch;
 
  
@@ -45,9 +45,10 @@ background-size: 100% 100%;
   /* text-align: center;  */
 }
  
-.marketSubScroll{ 
+.marketSubScroll{
+  -webkit-overflow-scrolling: touch;
    position: relative;
-  overflow-x: auto;
+  overflow-x: scroll;
     white-space: nowrap;
   /*overflow-x: scroll;
     overflow-y: hidden;
@@ -61,6 +62,7 @@ background-size: 100% 100%;
  */ 
 }
 .cardBox { 
+ // pointer-events: none;
    display: inline-block;
 
  	margin-left:2%;
