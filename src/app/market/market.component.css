@@ -83,6 +83,11 @@ background-size: 100% 100%;
  
 }
 
+app-market-card {
+  
+  -webkit-overflow-scrolling: touch;
+ 
+}
 .card {  
  
 -webkit-overflow-scrolling: touch;

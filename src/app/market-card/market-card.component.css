@@ -3,15 +3,16 @@
   margin-right:2%;
   margin-top: 10px;
   margin-bottom: 10px;
-  cursor: pointer;  
+  pointer-events: none; 
   text-align: center; 
   font-size: 0; 
   display: inline-block;
-
+  -webkit-overflow-scrolling: touch;
  
 }
  
 .card {  
+    -webkit-overflow-scrolling: touch;
    height: 100px;
      background-repeat: no-repeat; 
      background-size: cover;
@@ -24,6 +25,7 @@
 }
 
 app-order-info {
+    -webkit-overflow-scrolling: touch;
     margin-left:2%;
   margin-right:2%;
   margin-top: 10px;
