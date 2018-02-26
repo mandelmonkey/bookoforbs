@@ -8,7 +8,12 @@
 		<div id="new" class="marketSubScroll">
  
 			<div *ngFor="let orbKey of dataService.maincontroller.newOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
-			 
+			  
+
+    <app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
+    </app-market-card>
+
+		 
 			</div>
 
 		</div>
@@ -43,6 +48,11 @@
 		
 			<div *ngFor="let orbKey of dataService.maincontroller.trendingOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
 			 
+			 <app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
+    </app-market-card>
+
+				 
+		 
 			</div>
 
 		</div>
@@ -76,7 +86,9 @@
 
 		
 			<div *ngFor="let orbKey of dataService.maincontroller.randomOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
-			 
+			<app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
+    </app-market-card>
+
 			</div>
 
 		</div>
