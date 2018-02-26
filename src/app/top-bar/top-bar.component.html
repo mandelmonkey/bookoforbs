@@ -19,7 +19,13 @@
          
          <input *ngIf="shouldShowSettings()"  class="loginLogoutButton" type="button" [value]="getSettings()" (click)="showSettings()" [style.background-image]="'url(' +dataService.getImage('filterButtonBackground')+ ')'">
 
-        <div *ngIf="shouldShowSearch()" id="demo-2">
+           
+          <button *ngIf="shouldShowReload()" class="reloadButton" style="border: 0; background: transparent"  (click)="reloadViews()"  >
+    <img src="../assets/images/reloadButton.png" width="40" height="35" />
+</button>
+         
+
+        <div *ngIf="shouldShowSearch()" id="searchBar">
   <input type="search"  style="text-transform:uppercase" (input)="updateSearch($event.target.value)">
   
 </div>

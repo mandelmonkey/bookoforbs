@@ -251,7 +251,7 @@ export class HTTPService {
   getHistory(address) {
 
 
-    return this._http.get(this.indieURL + "/v2/addresses/" + address + "/history?type=send,order&length=20")
+    return this._http.get(this.indieURL + "/v2/addresses/" + address + "/history?type=send,order,cancel&length=20")
       .map(res => res.json());
   };
   getBalance(address) {

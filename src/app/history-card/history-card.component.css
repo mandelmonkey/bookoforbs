@@ -23,6 +23,9 @@
     left: 0;
     right: 0;
     bottom: 0;
+
+    background-size:100% 100%;
+  background-repeat: contain;
   
 
 }
@@ -41,6 +44,12 @@
   padding: 0;
   border: none; 
 }
+.cancelText{
+position: absolute;
+top: 30px;
+
+ 
+}
 .infoText{
 	margin-left: 5px;
 	 display: inline-block;
@@ -58,7 +67,15 @@
 
  
 }
- 
+ .cancelStatusLine{
+   color: #fadf99;
+    font-size: 0.7em;
+    font-family:   Sling;
+   word-break: break-all;
+    white-space: pre-wrap;
+    margin-left: 7px;
+    margin-right: 7px;
+ }
 .titleline{
 	 color: #fadf99;
     font-size: 0.7em;

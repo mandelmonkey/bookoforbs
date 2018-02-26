@@ -70,6 +70,20 @@ export class TopBarComponent implements OnInit {
     }
 
   }
+
+  shouldShowReload() {
+    if (this.dataService.currentTab == 1) {
+      if (this.dataService.maincontroller.loading == false) {
+        return true;
+      }
+    } else if (this.dataService.currentTab == 3) {
+      if (this.dataService.history != undefined && this.dataService.history.loading == false) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   shouldShowSearch() {
     if (this.dataService.currentTab == 1) {
       if (this.dataService.maincontroller.loading == false) {
@@ -168,6 +182,14 @@ export class TopBarComponent implements OnInit {
   }
 
 
+  reloadViews() {
+    if (this.dataService.currentTab == 1) {
+      this.dataService.collection.setCurrentOrbs();
+    } else if (this.dataService.currentTab == 3) {
+      this.dataService.history.reloadViews();
+    }
+  }
+
   updateSearch(val: string) {
     this.dataService.maincontroller.currentSearch = val.toUpperCase();
 
@@ -231,6 +253,7 @@ export class TopBarComponent implements OnInit {
 
 
   }
+
   shouldShowSettings() {
     if (this.dataService.maincontroller.showAccount == true && this.dataService.maincontroller.currentAddress != "empty") {
       return true;

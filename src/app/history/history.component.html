@@ -24,7 +24,7 @@
  <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >{{dataService.getLang('please_signin')}}</label> 
  
  
-    <app-history-card *ngFor="let item of viewPortItems2" [data]="item">
+    <app-history-card *ngFor="let item of viewPortItems2" [data]="item" [historyType]="'transaction'">
     </app-history-card>
  
 
@@ -49,7 +49,7 @@
  <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >{{dataService.getLang('please_signin')}}</label> 
  
  
-    <app-history-card *ngFor="let item of viewPortItems2" [data]="item" [order]=true>
+    <app-history-card *ngFor="let item of viewPortItems2" [data]="item" [historyType]="'order'">
     </app-history-card>
  
 

@@ -196,7 +196,7 @@ export class HistoryComponent implements OnInit {
           tmpthis.dataService.maincontroller.orders = data;
           console.log("orders:" + JSON.stringify(tmpthis.dataService.maincontroller.orders));
           tmpthis.loading = false;
-          tmpthis.addPullHistory();
+          // tmpthis.addPullHistory();
         },
         error => {
 
@@ -211,6 +211,18 @@ export class HistoryComponent implements OnInit {
   }
   reloadOrders() {
     this.getOrders(this.lastType);
+  }
+  reloadViews() {
+
+    if (this.mode == "history") {
+      this.dataService.maincontroller.history = [];
+      this.getHistory();
+    }
+    else {
+      this.dataService.maincontroller.orders = [];
+      this.getOrders(this.lastType);
+
+    }
   }
   ngOnInit() {
 
@@ -500,7 +512,7 @@ export class HistoryComponent implements OnInit {
             }
           }
           tmpthis.loading = false;
-          tmpthis.addPullHistory()
+          //  tmpthis.addPullHistory()
         },
         error => {
           console.log("error orders");

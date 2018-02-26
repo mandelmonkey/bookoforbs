@@ -3,7 +3,21 @@
 ()" [style.height]="getHeight()" [style.background-image]="'url(' +dataService.getImage('historyBoxBack')+ ')'">
 
 <div  class="contents">
-	<div  class="contentsLeft">
+
+	<div *ngIf="isCancel()" class="cancelText">
+<p class="cancelStatusLine">{{getCancelTitle()}}<p>
+
+<p class="infoline" style="font-size: 0.6em;">{{getCancelStatus()}}<p>
+ 
+		 <div *ngIf="!canRBF()">
+<p class="infoline">{{getDate()}}<p>
+ </div>
+   <div class="rbfButton" *ngIf="canRBF()" style="display: inline-block;">	<label class="titleline" style="display: inline-block;">{{getDate()+" "}}</label>
+ 	<input class="customButton" type="button" [value]="dataService.getLang('bump_fee')"   (click)="dataService.history.bumpFee(data.tx_hash)" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	
+ </div>
+</div>
+
+	<div *ngIf="isTransaction() || isOrder()"  class="contentsLeft">
 
 
 <img *ngIf="!isCard" target="_blank"  class="tokenImage"  [src]="getImage()"  />
@@ -14,8 +28,8 @@
 
 
 </div>
-<div  class="contentsRight">
-<div *ngIf="!order" class="infoText">
+<div *ngIf="isTransaction() || isOrder()" class="contentsRight">
+<div *ngIf="isTransaction()" class="infoText">
 <p class="titleline">{{getInfo()}}<p>
 
 <p class="infoline" style="font-size: 0.6em;">{{getAddress()}}<p>
@@ -33,7 +47,7 @@
 </div>
 
 
-<div *ngIf="order" class="infoText">
+<div *ngIf="isOrder()" class="infoText">
 <p class="titleline">{{getOrderTitle1()}}<p>
 
 <p class="infoline" style="font-size: 0.6em;">{{getOrderInfo()}}<p>
@@ -53,6 +67,9 @@
  	<input class="customButton" type="button" [value]="dataService.getLang('bump_fee')"   (click)="dataService.history.bumpFee(data.tx_hash)" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">	
  </div>
 </div>
+
+
+
 
 </div>
 </div>

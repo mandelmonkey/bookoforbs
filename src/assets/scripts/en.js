@@ -154,7 +154,7 @@ var en = function() {
 	lang["password_incorrect"]="Password incorrect";
 	lang["rankings_not_set"]="Rankings not set for your account";
 	lang["enter_a_secure_password"]="Enter a secure password, this is used to secure your key";
-
+	lang["canceling_order_status"]="Canceling order for tx\n\n$1$";
 	
 
 	 

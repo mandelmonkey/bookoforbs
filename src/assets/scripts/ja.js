@@ -154,6 +154,7 @@ var ja = function() {
 	lang["password_incorrect"]="パスワードが異なります";
 	lang["rankings_not_set"]="アカウントでランキング設定がされていません";
 	lang["enter_a_secure_password"]="安全なパスワードを入力してください。これはあなたの鍵を守るために使用されます。";
+	lang["canceling_order_status"]="Canceling order for tx\n\n$1$";
 
 function ja() {
 

@@ -21,19 +21,42 @@ export class HistoryCardComponent implements OnInit {
   data: any;
 
   @Input()
-  order: boolean;
+  historyType: string;
+
   indiesquare: any;
 
   rawtx: string;
 
   isCard: boolean;
-  constructor(public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef) { }
+  constructor(public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef) {
+
+
+
+  }
   ngOnInit() {
     console.log(JSON.stringify(this.data));
     this.isCard = false;
 
+    if (this.data != undefined && this.data.type == "cancel") {
+      this.historyType = "cancel";
+    }
 
 
+
+  }
+  isCancel() {
+    if (this.historyType == "cancel") {
+      console.log("is cancel");
+      return true;
+    }
+    return false;
+  }
+
+  isOrder() {
+    if (this.historyType == "order") {
+      return true;
+    }
+    return false;
   }
   canRBF() {
 
@@ -53,7 +76,7 @@ export class HistoryCardComponent implements OnInit {
   getImage() {
 
     if (this.data != null) {
-      if (this.order == true) {
+      if (this.historyType == "order") {
 
         if (this.data.type == "sell") {
 
@@ -325,6 +348,12 @@ export class HistoryCardComponent implements OnInit {
     });
 
   }
+  getCancelTitle() {
+    return this.dataService.getLang("canceling_order_status", this.data.offer_hash);
+  }
+  getCancelStatus() {
+    return this.data.status;
+  }
   getOrderTitle1() {
     if (this.data != null) {
       if (this.data.type == "sell") {
@@ -506,7 +535,14 @@ export class HistoryCardComponent implements OnInit {
 
   }
 
+  isTransaction() {
+    if (this.historyType == "transaction") {
+      return true;
+    }
 
+    return false;
+
+  }
 
   cancelCancelOrder(owner: any) {
     owner.loading = false;
