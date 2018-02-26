@@ -7,12 +7,14 @@
 	<br>
 		<div id="new" class="marketSubScroll">
  
-			<div *ngFor="let orbKey of dataService.maincontroller.newOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
+			<div *ngFor="let orbKey of dataService.maincontroller.newOrbs; let idx = index" class="cardBox"  [style.width]="getCardWidth()">
 			<div>
 				 
 
-    <app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
-    </app-market-card>
+   <!-- <app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
+    </app-market-card>-->
+
+    <div style="width: 130px;height:90px; background-color: red;"><div>
 
 				 
 			</div>
@@ -51,8 +53,9 @@
 			<div *ngFor="let orbKey of dataService.maincontroller.trendingOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
 			<div>
 				<!--<img class="card" [src]="getSource(getImage(dataService.maincontroller.currentOrbs[orbKey]))" >-->
-				<app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
-    </app-market-card>
+				<div style="width: 130px;height:90px; background-color: red;"><div>
+
+		
 				
 				 
 			</div>
@@ -91,8 +94,9 @@
 			<div *ngFor="let orbKey of dataService.maincontroller.randomOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
 			<div>
 					<!--	<img class="card" [src]="getSource(getImage(dataService.maincontroller.currentOrbs[orbKey]))"     >-->
-				<app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
-    </app-market-card>
+				<div style="width: 130px;height:90px; background-color: red;"><div>
+
+		
 				
 				 
 			</div>
