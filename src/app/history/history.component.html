@@ -17,9 +17,10 @@
 
 <virtual-scroll *ngIf="mode=='history'" id="scrollView" class="scrollable" [items]="dataService.maincontroller.history" (update)="viewPortItems2 = $event"
 [style.height]="getHistoryHeight()" >
-
-<label class="status" *ngIf="loading">{{dataService.getLang('loading')}}</label> 
- 
+ <div *ngIf="loading" class="loadingCustomSpinnerOuter">
+ <img   class="loadingCustomSpinner"  src="../assets/images/loadingCustom.svg"  />
+ <p class="title"  >{{dataService.getLang('loading')}}</p>
+</div>
  <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >{{dataService.getLang('please_signin')}}</label> 
  
  
@@ -39,10 +40,12 @@
 [style.height]="getHistoryHeight()" >
 
 
+ <div *ngIf="loading" class="loadingCustomSpinnerOuter">
+ <img   class="loadingCustomSpinner"  src="../assets/images/loadingCustom.svg"  />
+ <p class="title"  >{{dataService.getLang('loading')}}</p>
+</div>
 
-
-<label class="status" *ngIf="loading">{{dataService.getLang('loading')}}</label> 
- 
+  
  <label *ngIf="dataService.maincontroller.currentAddress == 'empty'" class="status"  >{{dataService.getLang('please_signin')}}</label> 
  
  

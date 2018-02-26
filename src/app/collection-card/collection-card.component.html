@@ -1,5 +1,5 @@
  
-<img target="_blank" [id]="getId()"   class="card"  (click)="showORB()" [src]="getImage()" [style.height]="getHeight()" [errorImage]="dataService.collection.errorImage" [lazyLoad]="getImage()"  [scrollObservable]="dataService.collection.scrollObservable" [scrollTarget]="dataService.collection.scrollView" onerror="imgLoadError()" (load)="imageLoaded()" [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" />
+<img target="_blank" [id]="getId()"   class="card"  (click)="showORB()" [src]="getImage()" [style.height]="getHeight()"    [style.background-image]="'url(' +dataService.getImage('cardback')+ ')'" />
  
 
     <div class="shadowBox">

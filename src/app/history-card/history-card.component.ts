@@ -26,11 +26,11 @@ export class HistoryCardComponent implements OnInit {
 
   rawtx: string;
 
-
+  isCard: boolean;
   constructor(public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef) { }
   ngOnInit() {
     console.log(JSON.stringify(this.data));
-
+    this.isCard = false;
 
 
 
@@ -76,8 +76,9 @@ export class HistoryCardComponent implements OnInit {
 
             var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
             if (aKey == theToken) {
+              this.isCard = true;
 
-              return this.dataService.maincontroller.currentOrbs[aKey].image;
+              return this.dataService.getRemoteImage(this.dataService.maincontroller.currentOrbs[aKey].image);
             }
           }
 
@@ -132,7 +133,7 @@ export class HistoryCardComponent implements OnInit {
 
                 var aKey = this.dataService.maincontroller.currentOrbsKeys[i];
                 if (aKey == this.data.token) {
-
+                  this.isCard = true;
                   return this.dataService.maincontroller.currentOrbs[aKey].image;
                 }
               }
@@ -473,11 +474,6 @@ export class HistoryCardComponent implements OnInit {
 
 
 
-  imgLoadError() {
-
-  }
-  imageLoaded() {
-  }
   getWidth() {
     if (this.dataService.isMobile) {
       var pxWidth = (document.documentElement.clientWidth * 0.9);

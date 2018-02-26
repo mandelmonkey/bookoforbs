@@ -45,8 +45,7 @@ background-size: 100% 100%;
   /* text-align: center;  */
 }
  
-.marketSubScroll{
-  -webkit-overflow-scrolling: touch;
+.marketSubScroll{ 
    position: relative;
   overflow-x: auto;
     white-space: nowrap;

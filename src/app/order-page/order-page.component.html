@@ -34,7 +34,7 @@
 <br>
 <span class="ordersTitle">Buyers</span>
 <div lass="buyOrdersList" *ngFor="let order of buy_orders" >
-<div class="aSellBuyOrder" (click)="buyOrder(order,'sell')" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">
+<div class="aSellBuyOrder" (click)="buyOrder(order,'sell')" [style.height.px]="getAHeight(6)" [style.background-image]="'url(' +dataService.getImage('sellPriceButton')+ ')'">
 		 <div class="orderBox">
 		<div class="orderPrice">{{formatNum(order.price)}}<b>&nbsp;{{dataService.maincontroller.currentAbrev}}</b></div>
 		<div class="orderPriceDetails">{{getOrderAmount(order)}}</div>

@@ -193,6 +193,10 @@ height: 40px;
 height: 40px;
   max-height:55px;
 }
+.title{
+  color: #ffffd5;
+    font-family:   sling; 
+}
 .rightbracket {
   position: absolute;
   top: 0;
@@ -200,6 +204,15 @@ height: 40px;
    width:10px;
 height: 40px;
   max-height:55px;
+}
+.loadingCustomSpinnerOuter{
+ height: 150px; 
+ position: relative;
+ top:150px;
+}
+
+.loadingCustomSpinner{
+opacity: 0.5;
 }
 
  .toptitle { 
