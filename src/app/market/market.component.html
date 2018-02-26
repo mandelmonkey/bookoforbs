@@ -8,16 +8,16 @@
 		<div id="new" class="marketSubScroll">
  
 			<div *ngFor="let orbKey of dataService.maincontroller.newOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
-			  
-
-    <app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
-    </app-market-card>
-
-		 
+			<div>
+				 
+				<img class="card" [src]=" getImage(dataService.maincontroller.currentOrbs[orbKey])"  >
+				
+				<app-order-info  [token]="orbKey"></app-order-info>
+			</div>
 			</div>
 
 		</div>
-	 
+		<br>
  		<img  class="divider"   [src]="dataService.getImage('feltDivider')" /> 
 </div>
 <!--
@@ -47,17 +47,16 @@
 
 		
 			<div *ngFor="let orbKey of dataService.maincontroller.trendingOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
-			 
-			 
-				<app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
-    </app-market-card>
+			<div>
+				<img class="card" [src]=" getImage(dataService.maincontroller.currentOrbs[orbKey])" >
 				
-				 
-			 
+				
+				<app-order-info  [token]="orbKey"></app-order-info>
+			</div>
 			</div>
 
 		</div>
-	 
+		<br>
  		<img  class="divider"   [src]="dataService.getImage('feltDivider')"  /> 
 </div>
 <!--<div class="marketSection">
@@ -88,16 +87,15 @@
 		
 			<div *ngFor="let orbKey of dataService.maincontroller.randomOrbs; let idx = index" class="cardBox" (click)="showORB(dataService.maincontroller.currentOrbs[orbKey],orbKey)" [style.width]="getCardWidth()">
 			<div>
-					<!--	<img class="card" [src]="getSource(getImage(dataService.maincontroller.currentOrbs[orbKey]))"     >-->
-				<app-market-card  [orbImage]="getImage(dataService.maincontroller.currentOrbs[orbKey])" [orbKey]="orbKey" [style.width]="getCardWidth()" [style.height]="300"  >
-    </app-market-card>
+				<img class="card" [src]="getImage(dataService.maincontroller.currentOrbs[orbKey])"     >
 				
-				 
+				
+				<app-order-info  [token]="orbKey"></app-order-info>
 			</div>
 			</div>
 
 		</div>
-	 
+		<br>
  		<img  class="divider"   [src]="dataService.getImage('feltDivider')" /> 
 </div>
 

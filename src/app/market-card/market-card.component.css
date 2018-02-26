@@ -2,12 +2,15 @@
   margin-left:2%;
   margin-right:2%;
   margin-top: 10px;
-  margin-bottom: 10px;
-  pointer-events: none; 
+  margin-bottom: 10px; 
   text-align: center; 
   font-size: 0; 
   display: inline-block;
   -webkit-overflow-scrolling: touch;
+
+
+  overflow-x:hidden;
+  overflow-y: hidden;
  
 }
  
@@ -21,6 +24,8 @@
  margin: 0 auto;
  text-indent: -999px;
   border: none !important; 
+  overflow-x:hidden;
+  overflow-y: hidden;
          
 }
 
