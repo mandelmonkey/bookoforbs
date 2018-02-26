@@ -3,16 +3,13 @@
  
    width:100vw;
    text-align: center; 
-    
+   overflow:hidden; overflow-y:scroll;
+    overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
  
     margin-left: auto;
     margin-right: auto;
- 
-  position:fixed;
-  
-  overflow-y:scroll;
-  z-index:9999;
-  -webkit-overflow-scrolling: touch;
  
 }
 .divider{
@@ -49,12 +46,10 @@ background-size: 100% 100%;
 }
  
 .marketSubScroll{
-    
-
+  -webkit-overflow-scrolling: touch;
+   position: relative;
+  overflow-x: hidden;
     white-space: nowrap;
-  overflow-x:scroll;
-  overflow-y:hidden; 
-  -webkit-transform: translateZ(0);
   /*overflow-x: scroll;
     overflow-y: hidden;
    height:200px;
@@ -67,7 +62,6 @@ background-size: 100% 100%;
  */ 
 }
 .cardBox { 
- pointer-events: none;
    display: inline-block;
 
  	margin-left:2%;
