@@ -18,7 +18,7 @@ export class MarketComponent implements OnInit {
   randomOrbs: Array<any>;
   scrollHeight: string;
   imagesLoaded: any;
-
+  didLoad = [];
   constructor(public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef) {
     dataService.market = this;
 
@@ -31,7 +31,7 @@ export class MarketComponent implements OnInit {
     this.dataService.maincontroller.newOrbs = [];
     this.dataService.maincontroller.randomOrbs = [];
     this.setMarketData();
-   // alert(this.dataService.versionNumber);
+    // alert(this.dataService.versionNumber);
 
   }
   getCardWidth() {
@@ -241,10 +241,26 @@ export class MarketComponent implements OnInit {
 
 
   }
+
   getImage(obj: any) {
 
-    var img = obj.image;
-    return this.dataService.getRemoteImage(img);
+
+    if (this.didLoad[obj.image] != undefined) {
+      var img = obj.image;
+
+
+      return this.dataService.getRemoteImage(img);
+
+    }
+    else {
+      var tmpthis = this;
+      setTimeout(function() {
+        tmpthis.didLoad[obj.image] = "set";
+      }, 100);
+
+      return this.dataService.getImage('cardback')
+
+    }
 
   }
 

@@ -32,6 +32,7 @@ export class HistoryComponent implements OnInit {
   orderSelectImage;
   currentRequest;
   rbf: any;
+
   currentBumpUnsignedHex = "";
   indiesquare: any;
   constructor(public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef) {
@@ -185,6 +186,8 @@ export class HistoryComponent implements OnInit {
     this.lastType = type;
     this.dataService.maincontroller.orders = [];
     var tmpthis = this;
+
+
 
     if (this.dataService.maincontroller.currentAddress != "empty" && tmpthis.dataService.maincontroller.orders.length == 0) {
       this.loading = true;
@@ -396,21 +399,18 @@ export class HistoryComponent implements OnInit {
   signBroadcast(passphrase: string, owner: any) {
     owner.showBump = true;
     console.log("here went");
-    try {
+    var seed = owner.dataService.getSeedFromPassphrase(passphrase);
 
-      var seed = new Mnemonic(passphrase.split(' ')).toHex();
+
+    var root = owner.dataService.bitcoin.HDNode.fromSeedHex(seed);
+
+    var currentIndex = 0;
+    if (owner.dataService.maincontroller != undefined) {
+      currentIndex = owner.dataService.maincontroller.currentAddressIndex;
     }
-    catch (err) {
+    var d = owner.dataService.basePath + currentIndex;
+    var key1 = root.derivePath(d).keyPair;
 
-
-      throw err;
-    }
-
-    var masterKey = booTools.bitcoin.HDNode.fromSeedBuffer(booTools.buffer(seed, 'hex'), booTools.bitcoin.networks.bitcoin);
-
-    var route = owner.dataService.maincontroller.basePath + owner.dataService.maincontroller.currentIndex;
-
-    var key1 = masterKey.derivePath(route).keyPair;
 
     var unsignedTx = booTools.bitcoin.Transaction.fromHex(owner.currentBumpUnsignedHex);
 

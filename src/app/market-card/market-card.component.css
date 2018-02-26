@@ -2,35 +2,34 @@
   margin-left:2%;
   margin-right:2%;
   margin-top: 10px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
+  cursor: pointer;  
   text-align: center; 
   font-size: 0; 
   display: inline-block;
-  -webkit-overflow-scrolling: touch;
 
-
-  overflow-x:hidden;
-  overflow-y: hidden;
  
 }
  
 .card {  
-    -webkit-overflow-scrolling: touch;
    height: 100px;
      background-repeat: no-repeat; 
      background-size: cover;
- border:0; 
+ border:0;
+width: 100%;
   border:none;
  margin: 0 auto;
  text-indent: -999px;
-  border: none !important; 
-  overflow-x:hidden;
-  overflow-y: hidden;
+  border: none !important;
+ /*
+  -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;*/
          
 }
 
 app-order-info {
-    -webkit-overflow-scrolling: touch;
     margin-left:2%;
   margin-right:2%;
   margin-top: 10px;

@@ -93,7 +93,7 @@ export class CollectionComponent implements OnInit {
         // loader.style.display = "block";
         tmpthis.setCurrentOrbs(tmpthis.env, true);
       }
-      // alert(cssY);
+
       list.style.top = '0px';
       isMoved = false;
 
@@ -308,7 +308,7 @@ export class CollectionComponent implements OnInit {
     }
     var tmpthis = this;
     setTimeout(function() {
-      // tmpthis.addPull();
+      //  tmpthis.addPull();
     }, 1000);
 
   }

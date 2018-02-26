@@ -631,6 +631,9 @@ export class OrderPageComponent implements OnInit {
       currentOwner.dataService.maincontroller.showMessage(currentOwner.dataService.getLang("order_placed"));
 
       currentOwner.ref.detectChanges();
+
+      currentOwner.dataService.maincontroller.history.length = [];
+      currentOwner.dataService.maincontroller.orders.length = [];
     });
 
   }
