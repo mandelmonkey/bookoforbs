@@ -6,6 +6,7 @@ import { DataService } from '../services/data.service';
 import { HTTPService } from "../services/http.service";
 declare var IndieSquare: any;
 declare var Mnemonic: any;
+declare var webXCP: any;
 @Component({
   selector: 'app-rankings',
   templateUrl: './rankings.component.html',
@@ -183,6 +184,23 @@ export class RankingsComponent implements OnInit {
 
           tmpthis.dataService.setCurrentSignData(JSON.stringify({ signType: "message", "toSign": tmpthis.hashToSign }), tmpthis.finishSign, tmpthis.signError, tmpthis);
 
+        }
+        else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
+
+          webXCP.signMessage(tmpthis.hashToSign, function(err, result) {
+
+            if (err != null) {
+
+              alert(err);
+            }
+            else {
+
+              tmpthis.finishSetUsername(result, tmpthis);
+
+            }
+
+
+          });
         }
         else {
 

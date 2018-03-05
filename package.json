@@ -1,6 +1,6 @@
 {
   "name": "bookoforbs",
-  "version": "0.0.20",
+  "version": "0.0.24",
   "license": "MIT",
   "main": "app.js",
   "scripts": {

@@ -6,6 +6,7 @@ import { PersistenceService, StorageType } from 'angular-persistence';
 import * as CryptoJS from 'crypto-js';
 declare var QRious: any;
 declare var Mnemonic: any;
+declare var webXCP: any;
 
 
 @Component({
@@ -371,6 +372,58 @@ export class MainControllerComponent implements OnInit {
 
     }
 
+    try {
+
+
+      webXCP.getAccounts((err, acc) => {
+        if (err != null) {
+
+
+          alert(err);
+
+
+
+
+        } else {
+
+
+
+          this.dataService.isMobile = true;
+          this.persistenceService.set('userAddress', JSON.stringify({ "address": acc, "index": 0 }), { type: StorageType.LOCAL });
+          this.persistenceService.set('linkType', "webXCP", { type: StorageType.LOCAL });
+
+
+          this.dataService.maincontroller.currentAddress = acc;
+          this.dataService.maincontroller.linkType = "webXCP";
+
+
+        }
+      });
+
+
+
+    }
+    catch (e) {
+
+      //web3xcp not found
+    }
+
+
+
+    var didShow = this.persistenceService.get('didShowDisclaimerV2', StorageType.LOCAL);
+
+    if (didShow != "YES") {
+      var tmpthis = this;
+
+
+      setTimeout(function() {
+        tmpthis.persistenceService.set('didShowDisclaimerV2', "YES", { type: StorageType.LOCAL });
+        alert("This version is for beta testing only, please be aware that bugs are likely and you can send any issues to support@bookoforbs.com")
+      }, 3000);
+
+
+    }
+
 
     this.dataService.maincontroller = this;
     this.selectedOrb = null;
@@ -420,7 +473,6 @@ export class MainControllerComponent implements OnInit {
 
 
     this.loadEnvironments();
-
 
 
   }

@@ -3,7 +3,7 @@ import { DataService } from '../services/data.service';
 
 import { HttpModule } from '@angular/http';
 import { HTTPService } from "../services/http.service";
-
+declare var booTools: any;
 declare var Mnemonic: any;
 
 describe('DataService', () => {
@@ -450,6 +450,7 @@ describe('DataService', () => {
   it(`test decrypt passphrase bip39 ja`, async(() => {
     var service = new DataService();
 
+
     var encrypted = "U2FsdGVkX1+T7xValOHsMtqP10KLzlZYlJGP5o3TvIgNpLrWA03GYH/Hu02NMsGc/MLMy+o4RlAlhkmE2Ha/8vmi2J6FDSh8sV6xdMN6JZG4s4yqSY+o3AEkmcvTBQgUQNIxV/fiU1hyMtn9xcETxlsC+t1rvSG9laaOL4iQngwa+lTpvHCgUBscuyT5NzirtbwhDMOn6UwWe6HNKGcZ8Kem/bjqvnKnkC51KdBYd+MFbejJUl5Qy8+xn4fzsVdW";
 
     var result = service.decryptPassphrase(encrypted, "password");
@@ -464,6 +465,7 @@ describe('DataService', () => {
   it(`test get address from passphrase bip39 fr`, async(() => {
     var service = new DataService();
 
+
     var passphrase = "prologue omettre vignette rituel minorer socle miracle effigie climat tiroir échelle pipette";
 
     var result = service.createAddressFromPassphrase(passphrase);
@@ -477,6 +479,7 @@ describe('DataService', () => {
 
   it(`test get address from passphrase bip39 ja`, async(() => {
     var service = new DataService();
+
 
     var passphrase = "はけん　にあう　あずき　なまえ　いらい　みなと　ぎしき　りんご　にんち　むちゅう　そいとげる　かようび";
 
@@ -523,7 +526,6 @@ describe('DataService', () => {
     var passphrase = "pioneer acid organ walk panda female purity ecology gadget blind opinion range";
 
     var result = service.createAddressFromPassphrase(passphrase);
-
     var passphrase2 = "はけん　にあう　あずき　なまえ　いらい　みなと　ぎしき　りんご　にんち　むちゅう　そいとげる　かようび";
 
     var result2 = service.createAddressFromPassphrase(passphrase2);
@@ -536,9 +538,47 @@ describe('DataService', () => {
 
 
 
+  it(`test get correct seed from bip39 passphrase`, async(() => {
+
+    var service = new DataService();
+
+    var passphrase = "pioneer acid organ walk panda female purity ecology gadget blind opinion range";
+
+    var result = service.getSeedFromPassphrase(passphrase);
+
+
+    expect(result).toEqual("974878c942b48bc9f27b5036f1ba097f797853ccffb839a88a5ee90d1b52fc8701791ef5fcb402b1d11df209d36fcf0ec32f3cbaa94cc2476c677cd8ae908ae5");
+
+
+  }));
 
 
 
+  it(`test get correct seed from legacy passphrase`, async(() => {
+
+    var service = new DataService();
+
+    var passphrase = "guitar pay throughout blank enjoy relationship flame work smoke tease football inside";
+
+    var result = service.getSeedFromPassphrase(passphrase);
+
+
+    expect(result).toEqual("7dfb8b230fb350e525257d2e4fe6027f");
+
+
+  }));
+
+
+  it(`test get correct seed from invalid phrase`, async(() => {
+
+    var service = new DataService();
+
+    var passphrase = "guitar";
+
+    expect(function() { service.getSeedFromPassphrase(passphrase) }).toThrow();
+
+
+  }));
 
 
 

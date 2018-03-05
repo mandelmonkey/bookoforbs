@@ -42,11 +42,12 @@ export class DataService {
   dev: boolean;
   rbf_tools: any;
   cp_tools: any;
+  wordList: any;
 
   signCaller: any;
 
   constructor() {
-    this.versionNumber = "0.13";
+    this.versionNumber = "0.15";
     this.currentTab = 1;
 
     this.uiclass = new UI();
@@ -70,6 +71,15 @@ export class DataService {
 
 
     this.cp_tools = new counterpartyParser();
+
+
+
+
+
+
+
+
+
 
   }
 
@@ -147,31 +157,31 @@ export class DataService {
 
     }
 
-    var wordList = booTools.bip39.wordlists.EN;
+    this.wordList = booTools.bip39.wordlists.EN;
 
     if (languageISO == "ja") {
-      wordList = booTools.bip39.wordlists.JA;
+      this.wordList = booTools.bip39.wordlists.JA;
     }
     else if (languageISO == "fr") {
-      wordList = booTools.bip39.wordlists.french;
+      this.wordList = booTools.bip39.wordlists.french;
     }
     else if (languageISO == "it") {
-      wordList = booTools.bip39.wordlists.italian;
+      this.wordList = booTools.bip39.wordlists.italian;
     }
     else if (languageISO == "es") {
-      wordList = booTools.bip39.wordlists.spanish;
+      this.wordList = booTools.bip39.wordlists.spanish;
     }
-    else if (languageISO == "ko") {
-      wordList = booTools.bip39.wordlists.korean;
+    /*else if (languageISO == "ko") {
+      this.wordList = booTools.bip39.wordlists.korean;
     }
     else if (languageISO == "zh-Hans") {
-      wordList = booTools.bip39.wordlists.chinese_simplified;
+      this.wordList = booTools.bip39.wordlists.chinese_simplified;
     }
     else if (languageISO == "zh-Hant") {
-      wordList = booTools.bip39.wordlists.chinese_traditional;
-    }
+      this.wordList = booTools.bip39.wordlists.chinese_traditional;
+    }*/
 
-    var mnemonic = booTools.bip39.generateMnemonic(undefined, undefined, wordList)
+    var mnemonic = booTools.bip39.generateMnemonic(undefined, undefined, this.wordList)
 
 
     return mnemonic;
@@ -208,8 +218,17 @@ export class DataService {
   }
   getSeedFromPassphrase(passphrase) {
 
+
+
+
     try {
       var words = passphrase.split(' ');
+
+      if (passphrase.split(' ').length != 12) {
+        console.log("invalid length ");
+        throw "passphrase invalid length";
+
+      }
 
       var m = new Mnemonic(words);
 
@@ -222,6 +241,34 @@ export class DataService {
     } catch (e) {
 
       try {
+
+        var isValid = false;
+
+        if (booTools.bip39.validateMnemonic(passphrase, booTools.bip39.wordlists.EN) == true) {
+          isValid = true;
+          console.log("is english");
+        } else if (booTools.bip39.validateMnemonic(passphrase, booTools.bip39.wordlists.JA) == true) {
+          isValid = true;
+          console.log("is japanese");
+
+        } else if (booTools.bip39.validateMnemonic(passphrase, booTools.bip39.wordlists.french) == true) {
+          isValid = true;
+          console.log("is french");
+        } else if (booTools.bip39.validateMnemonic(passphrase, booTools.bip39.wordlists.italian) == true) {
+          isValid = true;
+          console.log("is italian");
+        } else if (booTools.bip39.validateMnemonic(passphrase, booTools.bip39.wordlists.spanish) == true) {
+          isValid = true;
+          console.log("is spanish");
+        }
+
+
+
+        if (isValid == false) {
+          throw "passphrase invalid not bip39";
+        }
+
+
 
         var seed = booTools.bip39.mnemonicToSeedHex(passphrase);
 

@@ -384,8 +384,11 @@ export class OrderPageComponent implements OnInit {
       tmpthis.getQuant = this.orderPrice;
       tmpthis.getToken = this.dataService.maincontroller.currentCurrency;
     }
+    var dayOfBlocks = 144;
 
-    var params = { "source": this.dataService.maincontroller.currentAddress, "give_quantity": tmpthis.giveQuant, "give_token": tmpthis.giveToken, "get_quantity": tmpthis.getQuant, "get_token": tmpthis.getToken, "expiration": 100 };
+    var expiryTime = dayOfBlocks * 14;
+
+    var params = { "source": this.dataService.maincontroller.currentAddress, "give_quantity": tmpthis.giveQuant, "give_token": tmpthis.giveToken, "get_quantity": tmpthis.getQuant, "get_token": tmpthis.getToken, "expiration": expiryTime };
     var currentFee = this.dataService.maincontroller.getCurrentFee();
     if (currentFee == "custom") {
       params["fee_per_kb"] = parseFloat(this.dataService.maincontroller.customFee) * 1000;
@@ -652,6 +655,10 @@ export class OrderPageComponent implements OnInit {
   }
   goToCustom2(orderType: string) {
 
+    if (this.dataService.maincontroller.currentAddress == "empty") {
+      alert(this.dataService.getLang('please_signin'));
+      return;
+    }
 
     this.orderAmount = null;
     this.orderPrice = null;
@@ -695,6 +702,11 @@ export class OrderPageComponent implements OnInit {
   }
 
   buyOrder(order: any, type: string) {
+
+    if (this.dataService.maincontroller.currentAddress == "empty") {
+      alert(this.dataService.getLang('please_signin'));
+      return;
+    }
     this.goToCustom1();
     this.orderAmount = null;
     this.orderPrice = null;

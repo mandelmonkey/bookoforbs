@@ -336,8 +336,7 @@ top:10px;
 }
 .keypad {
 text-align: center;
-  width:100%;
-  max-width: 900px;
+  width:100%; 
   bottom: 0;
   position: absolute; 
   z-index: 1;

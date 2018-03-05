@@ -5,6 +5,7 @@ import { ChangeDetectorRef } from '@angular/core';
 
 declare var Mnemonic: any;
 declare var IndieSquare: any;
+declare var webXCP: any;
 
 @Component({
   selector: 'app-send',
@@ -453,6 +454,25 @@ export class SendComponent implements OnInit {
             tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_sending', tmpthis.amount, tmpthis.dataService.maincontroller.selectedKey, tmpthis.dataService.maincontroller.currentSendAddress, feeBTC + "") + " " + tmpthis.dataService.maincontroller.getFiatForToken('BTC', feeBTC), tmpthis.signBoO, tmpthis.cancelSend, tmpthis);
 
 
+
+
+          } else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
+
+            tmpthis.sending = false;
+
+            webXCP.signTransaction(tmpthis.currentSendResponse.unsigned_tx, function(err, result) {
+
+              if (err != undefined) {
+
+                alert(err);
+
+              } else {
+
+                tmpthis.broadcastTx(result, tmpthis);
+
+              }
+
+            })
 
 
           } else {

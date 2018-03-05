@@ -72,6 +72,9 @@ export class IntroComponent implements OnInit {
 
 
     if (this.passphraseFull.length > 0) {
+
+
+
       this.passphrase = this.passphraseFull;
 
 
@@ -455,9 +458,8 @@ export class IntroComponent implements OnInit {
 
 
 		try {
-			var words = this.dataService.getSeedFromPassphrase(this.passphrase);
 
-      this.dataService.maincontroller.currentAddress = this.dataService.createAddressFromPassphrase(words);
+      this.dataService.maincontroller.currentAddress = this.dataService.createAddressFromPassphrase(this.passphrase);
       this.showIntroButtons = false;
       this.showPassphraseField = false;
       this.showPasswordField = true;
@@ -484,7 +486,6 @@ export class IntroComponent implements OnInit {
   }
 
   encryptPassphrase() {
-
 
     if (this.password.length < 7) {
 
