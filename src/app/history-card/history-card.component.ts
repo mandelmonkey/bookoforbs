@@ -5,7 +5,7 @@ import { HTTPService } from "../services/http.service";
 declare var IndieSquare: any;
 declare var bitcore: any;
 declare var Mnemonic: any;
-
+declare var webXCP: any;
 
 
 @Component({
@@ -309,6 +309,29 @@ export class HistoryCardComponent implements OnInit {
       else if (tmpthis.dataService.maincontroller.linkType == "BoO") {
         tmpthis.dataService.maincontroller.hideLoading();
         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC + ""), tmpthis.signBoO, tmpthis.cancelCancelOrder, tmpthis);
+
+      }
+      else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
+
+
+
+        webXCP.signTransaction(tmpthis.unsigned_tx, function(err, result) {
+
+          if (err != undefined) {
+
+            tmpthis.dataService.maincontroller.hideLoading();
+
+            tmpthis.dataService.maincontroller.detectChanges();
+
+
+          } else {
+
+            tmpthis.broadcastTx(result, tmpthis);
+
+          }
+
+        })
+
 
       }
       else {

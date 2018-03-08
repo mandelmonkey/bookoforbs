@@ -322,6 +322,7 @@ export class MainControllerComponent implements OnInit {
   }
 
   closeMessage() {
+
     this.showingMessage = false;
 
   }
@@ -484,6 +485,12 @@ export class MainControllerComponent implements OnInit {
       this.orbHeight = "80%";
       this.orbWidth = "auto";
     }
+
+  }
+
+  detectChanges() {
+
+    this.ref.detectChanges();
 
   }
 

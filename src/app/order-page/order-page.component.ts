@@ -4,6 +4,7 @@ import { DataService } from '../services/data.service';
 declare var IndieSquare: any;
 declare var bitcore: any;
 declare var Mnemonic: any;
+declare var webXCP: any;
 @Component({
   selector: 'app-order-page',
   templateUrl: './order-page.component.html',
@@ -516,6 +517,30 @@ export class OrderPageComponent implements OnInit {
 
 
         tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_ordering', tmpthis.giveQuant + "", tmpthis.giveToken, tmpthis.getQuant + "", tmpthis.getToken, tmpthis.currentTransactionFee + " " + tmpthis.dataService.maincontroller.getFiatForToken('BTC', tmpthis.currentTransactionFee)), tmpthis.signBoO, tmpthis.cancelOrder, tmpthis);
+
+
+      } else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
+
+        tmpthis.loading = true;
+
+
+        webXCP.signTransaction(tmpthis.unsigned_tx, function(err, result) {
+
+          if (err != undefined) {
+            tmpthis.loading = false;
+
+            tmpthis.closeConf();
+            tmpthis.ref.detectChanges();
+
+            alert(err);
+
+          } else {
+
+            tmpthis.broadcastTx(result, tmpthis);
+
+          }
+
+        })
 
 
       } else {
