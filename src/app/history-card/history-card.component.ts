@@ -404,11 +404,11 @@ export class HistoryCardComponent implements OnInit {
   getOrderInfo() {
     if (this.data != null) {
       if (this.data.type == "sell") {
-        return this.dataService.getLang("order_sell_info", this.data.give_quantity, this.data.give_token, this.data.price, this.data.get_token, this.getOrderStatus());
+        return this.dataService.getLang("order_sell_info", this.data.give_quantity, this.data.give_token, this.data.get_quantity, this.data.get_token, this.getOrderStatus());
       }
       else if (this.data.type == "buy") {
 
-        return this.dataService.getLang("order_buy_info", this.data.get_quantity, this.data.get_token, this.data.price, this.data.give_token, this.getOrderStatus());
+        return this.dataService.getLang("order_buy_info", this.data.get_quantity, this.data.get_token, this.data.give_quantity, this.data.give_token, this.getOrderStatus());
 
       }
     }

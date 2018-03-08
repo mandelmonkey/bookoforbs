@@ -522,7 +522,7 @@ export class MainControllerComponent implements OnInit {
     var userPassphrase = tmpthis.persistenceService.get("userPassphrase", StorageType.LOCAL);
 
     if (typeof userPassphrase == "undefined") {
-      alert(tmpthis.dataService.getLang("password_incorrect"));
+      alert("passphrase not found");
       return;
     }
 
