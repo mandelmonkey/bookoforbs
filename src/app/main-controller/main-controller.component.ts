@@ -18,10 +18,8 @@ declare var webXCP: any;
 export class MainControllerComponent implements OnInit {
 
   constructor(@Inject(LOCALE_ID) locale: string, public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef, private persistenceService: PersistenceService) {
-    alert("here went1a");
     this.locale = locale;
     this.dataService.setLang(locale);
-    alert("here went2a");
   }
   public locale = "";
 
@@ -347,58 +345,55 @@ export class MainControllerComponent implements OnInit {
     return val;
   }
   ngOnInit() {
-    alert("here went2n1");
-    try {
-      this.currentFiatCurreny = this.persistenceService.get('userFiat', StorageType.LOCAL);
-    }
-    catch (e) {
-      alert(e);
-    }
-    alert("here went c1");
+
+    this.currentFiatCurreny = this.persistenceService.get('userFiat', StorageType.LOCAL);
     if (typeof this.currentFiatCurreny == "undefined") {
       this.currentFiatCurreny = "USD";
     }
-    alert("here went c2");
+
     if (window.location.href.indexOf("localhost") != -1) {
       this.dataService.dev = true;
     }
-    alert("here went c3");
+
     this.dataService.isMobile = /Android|iPhone|IndieSquare|indieSquare|indiesquare/i.test(window.navigator.userAgent);
-    alert("here went3");
 
 
-    /*try {
+
+    try {
 
 
       webXCP.getAccounts((err, acc) => {
-
         if (err != null) {
+
 
           alert(err);
 
+
+
+
         } else {
 
+
+
           this.dataService.isMobile = true;
-
           this.persistenceService.set('userAddress', JSON.stringify({ "address": acc, "index": 0 }), { type: StorageType.LOCAL });
-
           this.persistenceService.set('linkType', "webXCP", { type: StorageType.LOCAL });
 
-          this.dataService.maincontroller.currentAddress = acc;
 
+          this.dataService.maincontroller.currentAddress = acc;
           this.dataService.maincontroller.linkType = "webXCP";
 
-        }
 
+        }
       });
-      alert("WEB3 FOUND");
+
 
 
     }
     catch (e) {
-      alert("WEB3 NOT FOUND");
+
       //web3xcp not found
-    }*/
+    }
 
 
 
