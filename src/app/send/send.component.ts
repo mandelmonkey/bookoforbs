@@ -448,14 +448,6 @@ export class SendComponent implements OnInit {
 
 
 
-          } else if (tmpthis.dataService.maincontroller.linkType == "BoO") {
-
-            tmpthis.sending = false;
-            tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_sending', tmpthis.amount, tmpthis.dataService.maincontroller.selectedKey, tmpthis.dataService.maincontroller.currentSendAddress, feeBTC + "") + " " + tmpthis.dataService.maincontroller.getFiatForToken('BTC', feeBTC), tmpthis.signBoO, tmpthis.cancelSend, tmpthis);
-
-
-
-
           } else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
 
             tmpthis.sending = false;

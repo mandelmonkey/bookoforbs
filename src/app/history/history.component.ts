@@ -387,14 +387,6 @@ export class HistoryComponent implements OnInit {
       });
 
 
-    } else if (tmpthis.dataService.maincontroller.linkType == "BoO") {
-
-
-      var json = JSON.stringify({ signType: "basic", "toSign": tmpthis.currentBumpUnsignedHex });
-
-      tmpthis.dataService.setCurrentSignData(json, tmpthis.finishSign, tmpthis.signError, tmpthis);
-      tmpthis.loadingBump = true;
-      tmpthis.showBump = true;
     } else {
 
       tmpthis.dataService.maincontroller.showPassword(tmpthis.closeBumpFee, tmpthis.signBroadcast, tmpthis);

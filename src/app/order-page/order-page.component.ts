@@ -513,12 +513,6 @@ export class OrderPageComponent implements OnInit {
 
 
         });
-      } else if (tmpthis.dataService.maincontroller.linkType == "BoO") {
-
-
-        tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_ordering', tmpthis.giveQuant + "", tmpthis.giveToken, tmpthis.getQuant + "", tmpthis.getToken, tmpthis.currentTransactionFee + " " + tmpthis.dataService.maincontroller.getFiatForToken('BTC', tmpthis.currentTransactionFee)), tmpthis.signBoO, tmpthis.cancelOrder, tmpthis);
-
-
       } else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
 
         tmpthis.loading = true;

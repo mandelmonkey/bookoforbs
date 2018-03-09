@@ -39,7 +39,7 @@ export class SettingsComponent implements OnInit {
   }
 
   shouldShowSignOut() {
-    if (this.dataService.maincontroller.linkType == "BoO") {
+    if (this.dataService.maincontroller.linkType == "webXCP") {
       return false;
     }
     else {

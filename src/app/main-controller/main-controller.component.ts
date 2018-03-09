@@ -358,20 +358,6 @@ export class MainControllerComponent implements OnInit {
     this.dataService.isMobile = /Android|iPhone|IndieSquare|indieSquare|indiesquare/i.test(window.navigator.userAgent);
 
 
-    if (window.navigator.userAgent.indexOf("BoO:") != -1) {
-
-      this.dataService.isMobile = true;
-      var data = window.navigator.userAgent.split(":");
-      var address = data[1];
-
-
-      this.persistenceService.set('userAddress', JSON.stringify({ "address": address, "index": 0 }), { type: StorageType.LOCAL });
-
-      this.persistenceService.set('linkType', "BoO", { type: StorageType.LOCAL });
-
-
-
-    }
 
     try {
 

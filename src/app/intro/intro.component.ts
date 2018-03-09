@@ -512,9 +512,13 @@ export class IntroComponent implements OnInit {
         this.dataService.maincontroller.currentAddressIndex = 0;
 
         this.persistenceService.set('userPassphrase', this.cipherText, { type: StorageType.LOCAL });
+
         var addressObject = { "address": this.dataService.maincontroller.currentAddress, "index": 0 };
+
         this.persistenceService.set('userAddress', JSON.stringify(addressObject), { type: StorageType.LOCAL });
+
         this.persistenceService.set('linkType', "passphrase", { type: StorageType.LOCAL });
+
         this.dataService.maincontroller.linkType = "passphrase";
 
         this.continueLogin();

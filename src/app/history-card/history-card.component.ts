@@ -305,13 +305,7 @@ export class HistoryCardComponent implements OnInit {
 
 
 
-      }
-      else if (tmpthis.dataService.maincontroller.linkType == "BoO") {
-        tmpthis.dataService.maincontroller.hideLoading();
-        tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_canceling', feeBTC + ""), tmpthis.signBoO, tmpthis.cancelCancelOrder, tmpthis);
-
-      }
-      else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
+      } else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
 
 
 

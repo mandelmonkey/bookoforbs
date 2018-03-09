@@ -180,10 +180,6 @@ export class RankingsComponent implements OnInit {
 
           });
 
-        } else if (tmpthis.dataService.maincontroller.linkType == "BoO") {
-
-          tmpthis.dataService.setCurrentSignData(JSON.stringify({ signType: "message", "toSign": tmpthis.hashToSign }), tmpthis.finishSign, tmpthis.signError, tmpthis);
-
         }
         else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
 
