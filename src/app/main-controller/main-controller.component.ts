@@ -349,14 +349,15 @@ export class MainControllerComponent implements OnInit {
   ngOnInit() {
     alert("here went2");
     this.currentFiatCurreny = this.persistenceService.get('userFiat', StorageType.LOCAL);
+    alert("here went c1");
     if (typeof this.currentFiatCurreny == "undefined") {
       this.currentFiatCurreny = "USD";
     }
-
+    alert("here went c2");
     if (window.location.href.indexOf("localhost") != -1) {
       this.dataService.dev = true;
     }
-
+    alert("here went c3");
     this.dataService.isMobile = /Android|iPhone|IndieSquare|indieSquare|indiesquare/i.test(window.navigator.userAgent);
     alert("here went3");
 
