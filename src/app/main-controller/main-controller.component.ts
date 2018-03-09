@@ -386,12 +386,12 @@ export class MainControllerComponent implements OnInit {
 
         }
       });
-
+      alert("WEB3 FOUND");
 
 
     }
     catch (e) {
-
+      alert("WEB3 NOT FOUND");
       //web3xcp not found
     }
 
