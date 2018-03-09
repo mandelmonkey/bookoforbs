@@ -347,8 +347,13 @@ export class MainControllerComponent implements OnInit {
     return val;
   }
   ngOnInit() {
-    alert("here went2n");
-    this.currentFiatCurreny = this.persistenceService.get('userFiat', StorageType.LOCAL);
+    alert("here went2n1");
+    try {
+      this.currentFiatCurreny = this.persistenceService.get('userFiat', StorageType.LOCAL);
+    }
+    catch (e) {
+      alert(e);
+    }
     alert("here went c1");
     if (typeof this.currentFiatCurreny == "undefined") {
       this.currentFiatCurreny = "USD";
