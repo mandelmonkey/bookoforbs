@@ -18,8 +18,10 @@ declare var webXCP: any;
 export class MainControllerComponent implements OnInit {
 
   constructor(@Inject(LOCALE_ID) locale: string, public dataService: DataService, private httpService: HTTPService, private ref: ChangeDetectorRef, private persistenceService: PersistenceService) {
+    alert("here went1a");
     this.locale = locale;
     this.dataService.setLang(locale);
+    alert("here went2a");
   }
   public locale = "";
 
@@ -345,7 +347,7 @@ export class MainControllerComponent implements OnInit {
     return val;
   }
   ngOnInit() {
-
+    alert("here went2");
     this.currentFiatCurreny = this.persistenceService.get('userFiat', StorageType.LOCAL);
     if (typeof this.currentFiatCurreny == "undefined") {
       this.currentFiatCurreny = "USD";
@@ -356,7 +358,7 @@ export class MainControllerComponent implements OnInit {
     }
 
     this.dataService.isMobile = /Android|iPhone|IndieSquare|indieSquare|indiesquare/i.test(window.navigator.userAgent);
-
+    alert("here went3");
 
 
     /*try {
