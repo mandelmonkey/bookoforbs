@@ -359,32 +359,29 @@ export class MainControllerComponent implements OnInit {
 
 
 
-    try {
+    /*try {
 
 
       webXCP.getAccounts((err, acc) => {
-        if (err != null) {
 
+        if (err != null) {
 
           alert(err);
 
-
-
-
         } else {
 
-
-
           this.dataService.isMobile = true;
+
           this.persistenceService.set('userAddress', JSON.stringify({ "address": acc, "index": 0 }), { type: StorageType.LOCAL });
+
           this.persistenceService.set('linkType', "webXCP", { type: StorageType.LOCAL });
 
-
           this.dataService.maincontroller.currentAddress = acc;
+
           this.dataService.maincontroller.linkType = "webXCP";
 
-
         }
+
       });
       alert("WEB3 FOUND");
 
@@ -393,7 +390,7 @@ export class MainControllerComponent implements OnInit {
     catch (e) {
       alert("WEB3 NOT FOUND");
       //web3xcp not found
-    }
+    }*/
 
 
 
