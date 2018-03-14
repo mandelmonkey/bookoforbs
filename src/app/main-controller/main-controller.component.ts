@@ -360,7 +360,7 @@ export class MainControllerComponent implements OnInit {
 
 
     try {
-
+      alert("went here 1");
 
       webXCP.getAccounts((err, acc) => {
         if (err != null) {
@@ -373,7 +373,7 @@ export class MainControllerComponent implements OnInit {
 
         } else {
 
-
+          alert("found " + acc);
 
           this.dataService.isMobile = true;
           this.persistenceService.set('userAddress', JSON.stringify({ "address": acc, "index": 0 }), { type: StorageType.LOCAL });
@@ -391,7 +391,7 @@ export class MainControllerComponent implements OnInit {
 
     }
     catch (e) {
-
+      alert("xcp not found");
       //web3xcp not found
     }
 
