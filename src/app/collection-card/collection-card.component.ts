@@ -61,8 +61,10 @@ export class CollectionCardComponent implements OnInit {
 
 		var img = document.getElementById("img" + this.i);
 		img.style.background = "none";
+		img.style.height = 'auto';
+		this.dataService.collection.cardHeightInner = img.offsetHeight + "px";
 
-
+		/*
 		if (this.i == 2) {
 
 
@@ -81,7 +83,7 @@ export class CollectionCardComponent implements OnInit {
 
 				this.loadNum++;
 			}
-		}
+		}*/
 
 	}
 
