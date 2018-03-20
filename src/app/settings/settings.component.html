@@ -8,14 +8,24 @@
 </div>
 
 
+<div class="settingsOptions" style="top:200px;" *ngIf="dataService.maincontroller.linkType == 'webXCP'">
+<input  class="someSettings"  type="button" [value]="dataService.getLang('reset_app')" (click)="resetApp()" [style.background-image]="'url(' +dataService.getImage('settingsBoxBorder')+ ')'">
+<p class="subtext">{{dataService.getLang('reset_app_desc')}}</p>
+<p class="versionNumber">v{{dataService.versionNumber}}</p>
+ 
+
+</div>
+
 
 <div class="settingsOptions" style="top:200px;" *ngIf="dataService.maincontroller.linkType == 'passphrase'">
 <input  class="someSettings"  type="button" [value]="dataService.getLang('show_passphrase')" (click)="showPassphrase()" [style.background-image]="'url(' +dataService.getImage('settingsBoxBorder')+ ')'">
 <p class="subtext">{{dataService.getLang('show_passphrase_desc')}}</p>
+ <p class="versionNumber">v{{dataService.versionNumber}}</p>
  
-<p class="versionNumber">v{{dataService.versionNumber}}</p>
+
 </div>
- 
+
+
  <div class="fiatPicker" id="fiatPicker" [style.top]="getFiatPickerTop()">
  	<div class="pickerTopBar">
  	

@@ -220,7 +220,7 @@ export class CollectionComponent implements OnInit {
         this.continueLoad(data);
 
 
-
+        this.ref.detectChanges();
 
       },
       error => {
@@ -233,6 +233,7 @@ export class CollectionComponent implements OnInit {
         this.dataService.maincontroller.loading = false;
         this.loading = false;
         alert("error loading");
+        this.ref.detectChanges();
 
       },
       () => { });
@@ -305,6 +306,7 @@ export class CollectionComponent implements OnInit {
       }
 
       this.setScrollObs();
+      this.ref.detectChanges();
     }
     var tmpthis = this;
     setTimeout(function() {

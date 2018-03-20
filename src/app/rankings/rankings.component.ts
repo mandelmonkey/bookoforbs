@@ -72,17 +72,14 @@ export class RankingsComponent implements OnInit {
 
   finishSetUsername(sig, tmpthis) {
 
-
     tmpthis.httpService.setUsername(sig, tmpthis.username).subscribe(
       data => {
-        console.log("set" + JSON.stringify(data));
         tmpthis.loadingUsername = false;
         if (typeof data.error != undefined) {
 
           if (data.error != null) {
             tmpthis.loadingUsername = false;
             alert(tmpthis.dataService.getLang("error"));
-            this.ref.detectChanges();
             return;
           } else {
             console.log("error null" + data.username);
@@ -92,12 +89,12 @@ export class RankingsComponent implements OnInit {
         alert(tmpthis.dataService.getLang("username_set"));
         tmpthis.getRankings();
         tmpthis.dataService.maincontroller.setPersistance("username:" + tmpthis.dataService.maincontroller.currentAddress, data.username + ":" + tmpthis.dataService.maincontroller.currentEnv);
-        this.ref.detectChanges();
+
       },
       error => {
         tmpthis.loadingUsername = false;
         alert(tmpthis.dataService.getLang("error"));
-        this.ref.detectChanges();
+
       },
       () => { });
   }
@@ -146,32 +143,8 @@ export class RankingsComponent implements OnInit {
 
             } else {
 
-              tmpthis.httpService.setUsername(result.signature, tmpthis.username).subscribe(
-                data => {
-                  console.log("set" + JSON.stringify(data));
-                  tmpthis.loadingUsername = false;
-                  if (typeof data.error != undefined) {
 
-                    if (data.error != null) {
-                      tmpthis.loadingUsername = false;
-                      alert(tmpthis.dataService.getLang("error"));
-                      return;
-                    } else {
-                      console.log("error null" + data.username);
-                    }
-                  }
-                  console.log("data username " + data.username);
-                  alert(tmpthis.dataService.getLang("username_set"));
-                  tmpthis.getRankings();
-                  tmpthis.dataService.maincontroller.setPersistance("username:" + tmpthis.dataService.maincontroller.currentAddress, data.username + ":" + tmpthis.dataService.maincontroller.currentEnv);
-
-                },
-                error => {
-                  tmpthis.loadingUsername = false;
-                  alert(tmpthis.dataService.getLang("error"));
-
-                },
-                () => { });
+              tmpthis.finishSetUsername(result.signature, tmpthis);
 
 
 
@@ -183,7 +156,8 @@ export class RankingsComponent implements OnInit {
         }
         else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
 
-          webXCP.signMessage(tmpthis.hashToSign, function(err, result) {
+          var basePath = tmpthis.dataService.basePath + tmpthis.dataService.maincontroller.currentIndex;
+          webXCP.signMessage(basePath, tmpthis.hashToSign, function(err, result) {
 
             if (err != null) {
 

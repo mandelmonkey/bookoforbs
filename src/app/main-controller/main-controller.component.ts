@@ -151,12 +151,12 @@ export class MainControllerComponent implements OnInit {
     this.httpService.getEnvironments().subscribe(
       data => {
         this.orbData = data;
-        //   console.log("orbdata "+ JSON.stringify(this.orbData));
+        console.log("orbdata " + JSON.stringify(this.orbData));
 
-
+        this.detectChanges();
 
         if (this.currentAddress == "empty") {
-
+          this.detectChanges();
           this.userBalance = [];
 
           this.dataService.topbar.setEnvironments(this.orbData.Environements);
@@ -169,6 +169,7 @@ export class MainControllerComponent implements OnInit {
 
 
               tmpData.topbar.setEnvironments(this.orbData.Environements);
+              this.detectChanges();
 
             },
             error => {
@@ -176,6 +177,7 @@ export class MainControllerComponent implements OnInit {
               console.log("error balance");
               this.showMessage(this.dataService.getLang("errorloading"));
               this.loading = false;
+              this.detectChanges();
             },
             () => { });
 
@@ -186,6 +188,7 @@ export class MainControllerComponent implements OnInit {
         this.loading = false;
         this.showMessage(this.dataService.getLang("errorloading"));
         console.log("error gamecenter");
+        this.detectChanges();
         alert(this.dataService.getLang("errorloading"));
 
       },
@@ -346,6 +349,45 @@ export class MainControllerComponent implements OnInit {
   }
   ngOnInit() {
 
+
+    this.dataService.maincontroller = this;
+    this.selectedOrb = null;
+    var lastFee = this.persistenceService.get('userFee', StorageType.LOCAL);
+    if (typeof lastFee != "undefined") {
+
+
+      this.currentFee = lastFee;
+
+      if (this.feeIsCustom(this.currentFee)) {
+        this.dataService.maincontroller.customFee = this.currentFee;
+      }
+
+
+
+
+
+
+    } else {
+      this.currentFee = "hourFee";
+    }
+
+
+
+
+    var didShow = this.persistenceService.get('didShowDisclaimerV2', StorageType.LOCAL);
+
+    if (didShow != "YES") {
+      var tmpthis = this;
+
+
+      setTimeout(function() {
+        tmpthis.persistenceService.set('didShowDisclaimerV2', "YES", { type: StorageType.LOCAL });
+        alert("This version is for beta testing only, please be aware that bugs are likely and you can send any issues to support@bookoforbs.com")
+      }, 3000);
+
+
+    }
+
     this.currentFiatCurreny = this.persistenceService.get('userFiat', StorageType.LOCAL);
     if (typeof this.currentFiatCurreny == "undefined") {
       this.currentFiatCurreny = "USD";
@@ -356,13 +398,14 @@ export class MainControllerComponent implements OnInit {
     }
 
     this.dataService.isMobile = /Android|iPhone|IndieSquare|indieSquare|indiesquare/i.test(window.navigator.userAgent);
-
+    var tmpthis = this;
 
 
     try {
 
 
-      webXCP.getAccounts((err, acc) => {
+      webXCP.getAccounts(this.dataService.basePath + "0", (err, acc) => {
+
         if (err != null) {
 
 
@@ -383,6 +426,35 @@ export class MainControllerComponent implements OnInit {
           this.dataService.maincontroller.currentAddress = acc;
           this.dataService.maincontroller.linkType = "webXCP";
 
+          this.dataService.addAddressToHDListNoPassphrase(acc);
+
+
+          var userAddress = this.persistenceService.get('userAddress', StorageType.LOCAL);
+          if (typeof userAddress != "undefined") {
+
+            var addressObject = JSON.parse(userAddress);
+            this.currentAddress = addressObject.address;
+            this.currentIndex = addressObject.index;
+
+          } else {
+            this.currentAddress = "empty";
+          }
+
+          var linkType = this.persistenceService.get('linkType', StorageType.LOCAL);
+          if (typeof linkType != "undefined") {
+            this.linkType = linkType;
+          } else {
+            this.linkType = "";
+          }
+
+
+
+
+          this.getMarkets();
+          this.getFees();
+          this.loadEnvironments();
+
+
 
         }
       });
@@ -391,75 +463,40 @@ export class MainControllerComponent implements OnInit {
 
     }
     catch (e) {
+      var userAddress = this.persistenceService.get('userAddress', StorageType.LOCAL);
+      if (typeof userAddress != "undefined") {
+
+        var addressObject = JSON.parse(userAddress);
+        this.currentAddress = addressObject.address;
+        this.currentIndex = addressObject.index;
+
+      } else {
+        this.currentAddress = "empty";
+      }
+
+      var linkType = this.persistenceService.get('linkType', StorageType.LOCAL);
+      if (typeof linkType != "undefined") {
+        this.linkType = linkType;
+      } else {
+        this.linkType = "";
+      }
+
+
+
+
+      this.getMarkets();
+      this.getFees();
+      this.loadEnvironments();
+
 
       //web3xcp not found
     }
 
 
 
-    var didShow = this.persistenceService.get('didShowDisclaimerV2', StorageType.LOCAL);
-
-    if (didShow != "YES") {
-      var tmpthis = this;
-
-
-      setTimeout(function() {
-        tmpthis.persistenceService.set('didShowDisclaimerV2', "YES", { type: StorageType.LOCAL });
-        alert("This version is for beta testing only, please be aware that bugs are likely and you can send any issues to support@bookoforbs.com")
-      }, 3000);
-
-
-    }
-
-
-    this.dataService.maincontroller = this;
-    this.selectedOrb = null;
-    this.linkType = "";
-    var lastFee = this.persistenceService.get('userFee', StorageType.LOCAL);
-    if (typeof lastFee != "undefined") {
-
-
-      this.currentFee = lastFee;
-
-      if (this.feeIsCustom(this.currentFee)) {
-        this.dataService.maincontroller.customFee = this.currentFee;
-      }
 
 
 
-
-
-
-    } else {
-      this.currentFee = "hourFee";
-    }
-
-    var userAddress = this.persistenceService.get('userAddress', StorageType.LOCAL);
-    if (typeof userAddress != "undefined") {
-
-      var addressObject = JSON.parse(userAddress);
-      this.currentAddress = addressObject.address;
-      this.currentIndex = addressObject.index;
-
-    } else {
-      this.currentAddress = "empty";
-    }
-
-    var linkType = this.persistenceService.get('linkType', StorageType.LOCAL);
-    if (typeof linkType != "undefined") {
-      this.linkType = linkType;
-    } else {
-      this.linkType = "";
-    }
-
-
-
-
-    this.getMarkets();
-    this.getFees();
-
-
-    this.loadEnvironments();
 
 
   }

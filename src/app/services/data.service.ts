@@ -47,7 +47,7 @@ export class DataService {
   signCaller: any;
 
   constructor() {
-    this.versionNumber = "0.17";
+    this.versionNumber = "0.19";
     this.currentTab = 1;
 
     this.uiclass = new UI();
@@ -514,35 +514,80 @@ export class DataService {
     }
 
 
+
+
     var newIndex = currentAddsArray.length;
-
-
 
 
     var words = null;
     if (passphrase != null) words = passphrase.split(' ');
 
-
-    var m;
     try {
 
-      m = new Mnemonic(words);
+      var seed = this.getSeedFromPassphrase(passphrase);
 
-      var seed = m.toHex();
       var root = this.bitcoin.HDNode.fromSeedHex(seed);
       var d = this.basePath + newIndex;
+      console.log(d);
       var masterderive = root.derivePath(d);
       var newAddress = masterderive.getAddress();
 
-      currentAddsArray.push({ "address": newAddress, "index": newIndex });
+      if (this.hdAddressExists(newAddress) == false) {
 
-      this.maincontroller.setPersistance("HDaddressesV1", JSON.stringify(currentAddsArray));
+        currentAddsArray.push({ "address": newAddress, "index": newIndex });
+
+        this.maincontroller.setPersistance("HDaddressesV1", JSON.stringify(currentAddsArray));
+
+
+      }
+      else {
+        alert("address already exists");
+      }
 
     }
     catch (e) {
       alert("error");
     }
 
+
+  }
+
+  hdAddressExists(address: string) {
+
+    var currentAdds = this.maincontroller.getPersistance("HDaddressesV1");
+    var currentAddsArray = [];
+    if (currentAdds != "") {
+      currentAddsArray = JSON.parse(currentAdds);
+    }
+    for (var i = 0; i < currentAddsArray.length; i++) {
+      var anAddress = currentAddsArray[i].address;
+      if (anAddress == address) {
+        return true;
+      }
+    }
+
+    return false;
+
+  }
+
+  addAddressToHDListNoPassphrase(newAddress: string) {
+
+    if (this.hdAddressExists(newAddress) == false) {
+
+      var currentAdds = this.maincontroller.getPersistance("HDaddressesV1");
+      var currentAddsArray = [];
+      if (currentAdds != "") {
+        currentAddsArray = JSON.parse(currentAdds);
+      }
+
+
+      var newIndex = currentAddsArray.length;
+
+
+      currentAddsArray.push({ "address": newAddress, "index": newIndex });
+
+      this.maincontroller.setPersistance("HDaddressesV1", JSON.stringify(currentAddsArray));
+    }
 
 
 

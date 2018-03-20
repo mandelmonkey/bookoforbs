@@ -374,7 +374,7 @@ export class OrderPageComponent implements OnInit {
       'apikey': this.httpService.apiKey
     });
 
-    tmpthis.giveQuant = this.orderPrice;
+    tmpthis.giveQuant = this.getTotalPrice()
     tmpthis.giveToken = this.dataService.maincontroller.currentCurrency;
     tmpthis.getQuant = this.orderAmount;
     tmpthis.getToken = this.dataService.maincontroller.selectedKey;
@@ -382,7 +382,7 @@ export class OrderPageComponent implements OnInit {
     if (this.orderType == "sell") {
       tmpthis.giveQuant = this.orderAmount;
       tmpthis.giveToken = this.dataService.maincontroller.selectedKey;
-      tmpthis.getQuant = this.orderPrice;
+      tmpthis.getQuant = this.getTotalPrice()
       tmpthis.getToken = this.dataService.maincontroller.currentCurrency;
     }
     var dayOfBlocks = 144;
@@ -517,8 +517,9 @@ export class OrderPageComponent implements OnInit {
 
         tmpthis.loading = true;
 
+        var basePath = tmpthis.dataService.basePath + tmpthis.dataService.maincontroller.currentIndex;
 
-        webXCP.signTransaction(tmpthis.unsigned_tx, function(err, result) {
+        webXCP.signTransaction(basePath, tmpthis.unsigned_tx, function(err, result) {
 
           if (err != undefined) {
             tmpthis.loading = false;
@@ -748,7 +749,7 @@ export class OrderPageComponent implements OnInit {
       this.showOrderText = true;
       this.selectAmount = false;
     } else {
-			this.orderType = type;
+      this.orderType = type;
       this.orderPrice = order.price;
 
 
@@ -783,10 +784,10 @@ export class OrderPageComponent implements OnInit {
         this.sell_orders = this.dataService.maincontroller.marge(data.ask, 'sell');
         this.sell_orders = this.sell_orders.slice(0, 3);
 
-				this.buy_orders = this.dataService.maincontroller.marge(data.bid, 'buy');
+        this.buy_orders = this.dataService.maincontroller.marge(data.bid, 'buy');
         this.buy_orders = this.buy_orders.slice(0, 3);
         if (this.dataService.maincontroller.currentOrbs != null) {
-					var theORB = this.dataService.maincontroller.currentOrbs[this.dataService.maincontroller.selectedKey];
+          var theORB = this.dataService.maincontroller.currentOrbs[this.dataService.maincontroller.selectedKey];
           if (this.buy_orders.length > 0) {
 
 

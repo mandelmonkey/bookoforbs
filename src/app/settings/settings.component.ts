@@ -38,6 +38,11 @@ export class SettingsComponent implements OnInit {
 
   }
 
+  resetApp() {
+    this.dataService.maincontroller.removePrefs();
+    window.location.href = window.location.pathname + window.location.search + window.location.hash;
+  }
+
   shouldShowSignOut() {
     if (this.dataService.maincontroller.linkType == "webXCP") {
       return false;

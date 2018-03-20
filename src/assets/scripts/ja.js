@@ -56,6 +56,7 @@ var ja = function() {
 	lang["status_bought"]="買いました";
 	lang["status_couldnt_buy"]="買えませんでした";
 	lang["status_buy"]="買い注文";
+	lang["order_buy_sell_info"]="give:$1$ $2$\nget: $3$ $4$ status:$5$";
 	lang["order_sell_info"]="$1$ $2$をそれぞれ\n$3$ $4$で注文\nステータス:$5$";
 	lang["order_buy_info"]="$1$ $2$をそれぞれ\n$3$ $4$で注文\nステータス:$5$";
 	lang["order_status"]="ステータス";
@@ -114,7 +115,7 @@ var ja = function() {
 	lang["show_passphrase_desc"]="復元フレーズを記録しないと、自分のコインを失う可能性があります";
 	lang["change_address"]="アドレスの切替";
 	lang["add_address"]="+ 新しいアドレス（HD）の追加";
-	lang["you_are_ordering"]="注文の詳細\n\n$1$ $2$ をそれぞれ $3$ $4$ \n\nfee: $5$ BTC ";
+	lang["you_are_ordering"]="注文の詳細:\n\ngive:$1$ $2$\n\nget:$3$ $4$ \n\nfee: $5$ BTC ";
 	lang["you_are_canceling"]="この注文を本当にキャンセルしてもいいですか？({fee} マイナーへの手数料がかかります)";
 	lang["login_signup"]="ログイン/サインアップ";
 	lang["enter_each_word"]="復元フレーズを1単語ずつ入力する";
@@ -155,6 +156,9 @@ var ja = function() {
 	lang["rankings_not_set"]="アカウントでランキング設定がされていません";
 	lang["enter_a_secure_password"]="安全なパスワードを入力してください。これはあなたの鍵を守るために使用されます。";
 	lang["canceling_order_status"]="Canceling order for tx\n\n$1$";
+	lang["reset_app"]="Reset Preferences";
+	lang["reset_app_desc"]="Remove all saved settings and reload";
+	
 
 function ja() {
 

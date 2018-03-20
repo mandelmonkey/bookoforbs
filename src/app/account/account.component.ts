@@ -3,6 +3,8 @@ import { Component, OnInit, EventEmitter, Directive, HostListener, ChangeDetecto
 import { DataService } from '../services/data.service';
 import { ClipboardService } from '../services/clipboard.service';
 declare var QRious: any;
+
+declare var webXCP: any;
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -296,7 +298,42 @@ export class AccountComponent implements OnInit {
   }
 
   addAddress() {
-    this.dataService.maincontroller.showPassword(null, this.contAddAddress, this);
+    if (this.dataService.maincontroller.linkType == "webXCP") {
+
+      var currentAdds = this.dataService.maincontroller.getPersistance("HDaddressesV1");
+      var currentAddsArray = [];
+      if (currentAdds != "") {
+        currentAddsArray = JSON.parse(currentAdds);
+      }
+
+
+      var currentAddress = this.dataService.maincontroller.getPersistance('userAddress');
+
+      var nextIndex = this.dataService.basePath + currentAddsArray.length;
+
+      webXCP.getAccounts(nextIndex, (err, acc) => {
+        if (err != null) {
+
+
+          alert(err);
+
+
+
+
+        } else {
+
+          this.dataService.addAddressToHDListNoPassphrase(acc);
+          this.ref.detectChanges();
+
+        }
+      });
+    }
+    else {
+      this.dataService.maincontroller.showPassword(null, this.contAddAddress, this);
+
+
+    }
+
   }
   contAddAddress(passphrase: string) {
     this.dataService.addAddressToHDList(passphrase);

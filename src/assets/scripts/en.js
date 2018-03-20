@@ -37,7 +37,7 @@ var en = function() {
 	lang["confirm"]="Confirm";
 	lang["please_wait"]="please wait...";
 	lang["order_conf"]="$1$ $2$ \n\n at \n\n $3$ $4$ each";
-	lang["order_total"]="Total:$1$ $2$";
+	lang["order_total"]="Total: $1$ $2$";
 	lang["order_details"]="Order Details";
 	lang["price"]="Price";
 	lang["availability"]="Availability";
@@ -57,6 +57,7 @@ var en = function() {
 	lang["status_bought"]="Bought";
 	lang["status_couldnt_buy"]="Couldn't Buy";
 	lang["status_buying"]="Buying";
+	lang["order_buy_sell_info"]="give: $1$ $2$\nget: $3$ $4$ status:$5$";
 	lang["order_sell_info"]="$1$ $2$ at\n$3$ $4$ each\nstatus:$5$";
 	lang["order_buy_info"]="$1$ $2$ at\n$3$ $4$ each\nstatus:$5$";
 	lang["order_status"]="Status";
@@ -64,7 +65,7 @@ var en = function() {
 	lang["order_pending"]="Pending order";
 	lang["order_info_sent"]="Sent $1$ $2$ to";
 	lang["order_info_receive"]="Received $1$ $2$ from"; 
-	lang["order_order_info"]="$1$ $2$ for $3$ $4$";
+	lang["order_order_info"]="get: $1$ $2$ give: $3$ $4$";
 	lang["order_unconfirmed"]="unconfirmed";
 	lang["receiving_send_info"]="Receiving address for ORBS, Bitcoin and $1$";
 	lang["tap_to_copy"]="(tap to copy)";
@@ -115,7 +116,7 @@ var en = function() {
 	lang["show_passphrase_desc"]="View your 12 word recovery phrase";
 	lang["change_address"]="change address";
 	lang["add_address"]="Generate new address +";
-	lang["you_are_ordering"]="You are placing and order for\n\n$1$ $2$ at $3$ $4$ \n\nfee: $5$ BTC ";
+	lang["you_are_ordering"]="You are placing and order: \n\ngive: $1$ $2$ \n\nget: $3$ $4$ \n\nfee: $5$ BTC ";
 	lang["you_are_canceling"]="Are you sure you want to cancel this order?";
 	lang["login_signup"]="Login/signup";
 	lang["enter_each_word"]="Enter each word from your 12 word recovery phrase";
@@ -155,7 +156,9 @@ var en = function() {
 	lang["rankings_not_set"]="Rankings not set for your account";
 	lang["enter_a_secure_password"]="Enter a secure password, this is used to secure your key";
 	lang["canceling_order_status"]="Canceling order for tx\n\n$1$";
-	
+	lang["reset_app"]="Reset Preferences";
+	lang["reset_app_desc"]="Remove all saved settings and reload";
+
 
 	 
 function en() {
