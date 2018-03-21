@@ -83,6 +83,12 @@ export class DataService {
 
   }
 
+  currentBasePath() {
+
+    return this.basePath + this.maincontroller.currentAddressIndex;
+
+  }
+
   checkMnemonicWord(word: string) {
 
 

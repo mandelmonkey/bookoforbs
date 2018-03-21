@@ -90,6 +90,8 @@ export class BottomBarComponent implements OnInit {
       },
       () => { });
 
+    this.dataService.collection.refreshView();
+
   }
   select2() {
     if (this.dataService.maincontroller.loading) {

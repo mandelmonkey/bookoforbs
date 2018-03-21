@@ -277,6 +277,7 @@ export class AccountComponent implements OnInit {
   setAddress(addresObj: any) {
     this.dataService.maincontroller.currentAddress = addresObj.address;
     this.dataService.maincontroller.currentAddressIndex = addresObj.index;
+
     this.dataService.maincontroller.setPersistance("userAddress", JSON.stringify(addresObj));
     this.dataService.maincontroller.reloadBalances();
     this.closePicker();

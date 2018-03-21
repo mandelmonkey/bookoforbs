@@ -309,7 +309,7 @@ export class HistoryCardComponent implements OnInit {
 
 
 
-        webXCP.signTransaction(tmpthis.unsigned_tx, function(err, result) {
+        webXCP.signTransaction(tmpthis.dataService.currentBasePath(), tmpthis.unsigned_tx, function(err, result) {
 
           if (err != undefined) {
 
@@ -403,9 +403,9 @@ export class HistoryCardComponent implements OnInit {
         return this.dataService.getLang("order_buy_sell_info", this.data.give_quantity, this.data.give_token, this.data.get_quantity, this.data.get_token, this.getOrderStatus());
         }
         else if (this.data.type == "buy") {
-    
+      
         return this.dataService.getLang("order_buy_info", this.data.get_quantity, this.data.get_token, this.data.give_quantity, this.data.give_token, this.getOrderStatus());
-    
+      
         }*/
     }
   }

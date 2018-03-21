@@ -452,7 +452,7 @@ export class SendComponent implements OnInit {
 
             tmpthis.sending = false;
 
-            webXCP.signTransaction(tmpthis.currentSendResponse.unsigned_tx, function(err, result) {
+            webXCP.signTransaction(tmpthis.dataService.currentBasePath(), tmpthis.currentSendResponse.unsigned_tx, function(err, result) {
 
               if (err != undefined) {
 

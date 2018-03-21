@@ -40,10 +40,28 @@ export class CollectionComponent implements OnInit {
     this.setScrollObs();
 
 
+
+
   }
 
   refreshView() {
     this.ref.detectChanges();
+
+
+
+
+    if (this.dataService.maincontroller.allOrbs == true) {
+      var l = document.getElementById('selectAll');
+
+    } else {
+      var l = document.getElementById('selectOwn');
+    }
+
+    l.click();
+
+
+
+
   }
   setScrollObs() {
 
@@ -307,11 +325,9 @@ export class CollectionComponent implements OnInit {
 
       this.setScrollObs();
       this.ref.detectChanges();
+
     }
-    var tmpthis = this;
-    setTimeout(function() {
-      //  tmpthis.addPull();
-    }, 1000);
+
 
   }
   getImgSource(img: string) {

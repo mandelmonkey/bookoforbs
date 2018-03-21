@@ -517,9 +517,8 @@ export class OrderPageComponent implements OnInit {
 
         tmpthis.loading = true;
 
-        var basePath = tmpthis.dataService.basePath + tmpthis.dataService.maincontroller.currentIndex;
 
-        webXCP.signTransaction(basePath, tmpthis.unsigned_tx, function(err, result) {
+        webXCP.signTransaction(tmpthis.dataService.currentBasePath(), tmpthis.unsigned_tx, function(err, result) {
 
           if (err != undefined) {
             tmpthis.loading = false;

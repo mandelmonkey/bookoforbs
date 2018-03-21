@@ -2,7 +2,7 @@
  
   <div *ngIf="!dataService.maincontroller.loading" class="ownAllButton">
     <img class="ownAllButtonImg" [src]=allOwnImage  />
-    <div class="ownAllButtonText" (click)="selectOwn()" >{{dataService.getLang('myorbs')}}</div>  <div class="ownAllButtonText" (click)="selectAll()">{{dataService.getLang('allorbs')}}</div>
+    <div class="ownAllButtonText" id="selectOwn" (click)="selectOwn()" >{{dataService.getLang('myorbs')}}</div>  <div class="ownAllButtonText"  id="selectAll" (click)="selectAll()">{{dataService.getLang('allorbs')}}</div>
   </div>
  
  <app-completionbar  *ngIf="!dataService.maincontroller.loading"></app-completionbar > 

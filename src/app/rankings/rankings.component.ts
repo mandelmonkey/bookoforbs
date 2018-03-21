@@ -156,8 +156,8 @@ export class RankingsComponent implements OnInit {
         }
         else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
 
-          var basePath = tmpthis.dataService.basePath + tmpthis.dataService.maincontroller.currentIndex;
-          webXCP.signMessage(basePath, tmpthis.hashToSign, function(err, result) {
+
+          webXCP.signMessage(tmpthis.dataService.currentBasePath(), tmpthis.hashToSign, function(err, result) {
 
             if (err != null) {
 
