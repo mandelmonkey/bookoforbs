@@ -16,8 +16,6 @@ export class HTTPService {
   devExt = "&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd";
 
 
-  //  addressExt =     "&mainAddress="+this.dataService+"&targetAddress="+_requires["cache"].data.address;
-
   constructor(public dataService: DataService, private _http: Http) { }
 
   getAddressUrl() {
@@ -80,12 +78,7 @@ export class HTTPService {
       headers: header
     })
       .map(res => res.json());
-    /*
-    return this._http.post("https://sarutobigob1309.herokuapp.com/returnUrl",params, {
-       headers:header
-     })
-     .map(res => res.json());
-     */
+
 
   };
   setUsername(sig: string, username: string) {
@@ -123,7 +116,6 @@ export class HTTPService {
 
     var header = new Headers();
     header.append('Content-type', 'Content-Type: application/json');
-    header.append('Content-type', 'Content-Type: application/json');
 
     return this._http.get(url, {
       headers: header
@@ -138,7 +130,6 @@ export class HTTPService {
 
     var header = new Headers();
     header.append('Content-type', 'Content-Type: application/json');
-    header.append('Content-type', 'Content-Type: application/json');
 
     return this._http.get(url, {
       headers: header
@@ -150,7 +141,6 @@ export class HTTPService {
 
     var header = new Headers();
     header.append('Content-type', 'Content-Type: application/json');
-    header.append('Content-type', 'Content-Type: application/json');
 
     return this._http.get(url, {
       headers: header
@@ -161,7 +151,6 @@ export class HTTPService {
     var url = this.baseOrbUrl + "&action=getRanks&env=" + env + "&responseType=JSON" + this.devExt + this.getAddressUrl();
     console.log(url);
     var header = new Headers();
-    header.append('Content-type', 'Content-Type: application/json');
     header.append('Content-type', 'Content-Type: application/json');
 
     return this._http.get(url, {
@@ -182,7 +171,6 @@ export class HTTPService {
 
     var params = json;
     var header = new Headers();
-    header.append('Content-type', 'Content-Type: application/json');
     header.append('Content-type', 'Content-Type: application/json');
 
 
@@ -274,7 +262,6 @@ export class HTTPService {
     var params = json;
     var header = new Headers();
     header.append('Content-type', 'Content-Type: application/json');
-    header.append('Content-type', 'Content-Type: application/json');
 
     return this._http.post(this.indieURL + "/v2/transactions/broadcast?X-Api-Key=" + this.apiKey, params, {
       headers: header
@@ -330,7 +317,6 @@ export class HTTPService {
     console.log(params);
     var header = new Headers();
     header.append('Content-type', 'Content-Type: application/json');
-    //  header.append('Access-Control-Allow-Origin', '*');
 
     return this._http.post(this.indieURL + "/v2/transactions/send", params, {
       headers: header
