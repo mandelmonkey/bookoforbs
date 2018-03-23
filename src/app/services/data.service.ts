@@ -47,7 +47,7 @@ export class DataService {
   signCaller: any;
 
   constructor() {
-    this.versionNumber = "0.20";
+    this.versionNumber = "0.21";
     this.currentTab = 1;
 
     this.uiclass = new UI();
@@ -325,11 +325,15 @@ export class DataService {
         check = this.cp_tools.checkOrderTransaction(unsignedTx, changeAddress, params.get_token, params.get_quantity, params.give_token, params.give_quantity, params.get_divisible, params.give_divisible);
       }
       if (check == false) {
-        callback("xcp details do not match parameters", null);
+
+        callback("xcp details do not match parameters:" + JSON.stringify(params), null);
         return;
       }
     }
 
+    delete params["passphrase"];
+    callback("" + JSON.stringify(params), null);
+    return;
     console.dir('unsigned_tx:' + unsignedTx);
 
 
@@ -362,7 +366,7 @@ export class DataService {
         console.log(add);
         if (add != params.destination && add != changeAddress) {
           error = "transaction address does not match parameters";
-
+          console.log(params.destination + " " + changeAddress + " " + add)
 
         }
         if (add != changeAddress) {
