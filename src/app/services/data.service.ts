@@ -47,7 +47,7 @@ export class DataService {
   signCaller: any;
 
   constructor() {
-    this.versionNumber = "0.21";
+    this.versionNumber = "0.20";
     this.currentTab = 1;
 
     this.uiclass = new UI();
@@ -325,112 +325,108 @@ export class DataService {
         check = this.cp_tools.checkOrderTransaction(unsignedTx, changeAddress, params.get_token, params.get_quantity, params.give_token, params.give_quantity, params.get_divisible, params.give_divisible);
       }
       if (check == false) {
-
-        callback("xcp details do not match parameters:" + JSON.stringify(params), null);
+        callback("xcp details do not match parameters", null);
         return;
       }
     }
 
-    delete params["passphrase"];
-    callback("" + JSON.stringify(params), null);
-    return;
-    /*console.dir('unsigned_tx:' + unsignedTx);
- 
- 
- 
-     var txObj = this.bitcoin.Transaction.fromHex(unsignedTx);
-     var tmpthis = this;
-     var totalBTCSent = 0;
-     var totalBTCCheck = 0;
- 
-     if (params.quantity != undefined) {
- 
-       if (params.token != "BTC") {
- 
-         totalBTCCheck = 0;
- 
-       } else {
- 
-         totalBTCCheck = parseFloat(params.quantity) * 100000000;
- 
-       }
- 
-     }
-     var error = null;
-     txObj.outs.forEach(function(output, idx) {
- 
-       var type = tmpthis.bitcoin.script.classifyOutput(output.script);
-       console.log(type);
-       if (type == 'pubkeyhash' || type == 'scripthash') {
-         var add = tmpthis.bitcoin.address.fromOutputScript(output.script);
-         console.log(add);
-         if (add != params.destination && add != changeAddress) {
-           error = "transaction address does not match parameters";
-           console.log(params.destination + " " + changeAddress + " " + add)
- 
-         }
-         if (add != changeAddress) {
-           console.log("ov " + output.value);
-           totalBTCSent += output.value;
-         }
- 
-       }
- 
-     });
- 
-     if (error != null) {
-       callback(error, null);
-       return;
-     }
-     console.log(totalBTCSent);
-     console.log(totalBTCCheck);
-     if (totalBTCSent != totalBTCCheck) {
-       callback("transaction amounts do not match parameters", null);
-       return;
-     }
- 
- 
- 
-     console.log(totalBTCSent);
- 
- 
-     txObj.ins.forEach(function(input, idx) {
-       input["sequence"] = 4294967293;
-     });
- 
- 
- 
- 
-     var keyPair = masterderive.keyPair;
- 
-     var txb = this.bitcoin.TransactionBuilder.fromTransaction(txObj)
- 
- 
- 
-     txb.inputs.forEach(function(input, idx) {
- 
-       txb.inputs[idx] = {}; // small hack to undo the fact that CP sets the output script in the input script
- 
-       try {
-         txb.sign(idx, keyPair);
-       } catch (e) {
-         callback(e, null);
-         return;
-       }
- 
- 
- 
-     });
- 
- 
-     var signedHex = txb.build().toHex();
- 
-     console.log(signedHex);
- 
-     callback(null, signedHex);
- 
- 
- */
+    console.dir('unsigned_tx:' + unsignedTx);
+
+
+
+    var txObj = this.bitcoin.Transaction.fromHex(unsignedTx);
+    var tmpthis = this;
+    var totalBTCSent = 0;
+    var totalBTCCheck = 0;
+
+    if (params.quantity != undefined) {
+
+      if (params.token != "BTC") {
+
+        totalBTCCheck = 0;
+
+      } else {
+
+        totalBTCCheck = parseFloat(params.quantity) * 100000000;
+
+      }
+
+    }
+    var error = null;
+    txObj.outs.forEach(function(output, idx) {
+
+      var type = tmpthis.bitcoin.script.classifyOutput(output.script);
+      console.log(type);
+      if (type == 'pubkeyhash' || type == 'scripthash') {
+        var add = tmpthis.bitcoin.address.fromOutputScript(output.script);
+        console.log(add);
+        if (add != params.destination && add != changeAddress) {
+          error = "transaction address does not match parameters";
+
+
+        }
+        if (add != changeAddress) {
+          console.log("ov " + output.value);
+          totalBTCSent += output.value;
+        }
+
+      }
+
+    });
+
+    if (error != null) {
+      callback(error, null);
+      return;
+    }
+    console.log(totalBTCSent);
+    console.log(totalBTCCheck);
+    if (totalBTCSent != totalBTCCheck) {
+      callback("transaction amounts do not match parameters", null);
+      return;
+    }
+
+
+
+    console.log(totalBTCSent);
+
+
+    txObj.ins.forEach(function(input, idx) {
+      input["sequence"] = 4294967293;
+    });
+
+
+
+
+    var keyPair = masterderive.keyPair;
+
+    var txb = this.bitcoin.TransactionBuilder.fromTransaction(txObj)
+
+
+
+    txb.inputs.forEach(function(input, idx) {
+
+      txb.inputs[idx] = {}; // small hack to undo the fact that CP sets the output script in the input script
+
+      try {
+        txb.sign(idx, keyPair);
+      } catch (e) {
+        callback(e, null);
+        return;
+      }
+
+
+
+    });
+
+
+    var signedHex = txb.build().toHex();
+
+    console.log(signedHex);
+
+    callback(null, signedHex);
+
+
+
 
   }
 
