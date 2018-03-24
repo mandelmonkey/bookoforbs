@@ -49,7 +49,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("asset mismatch:SATOSHICARD SARUTOBICARD");
 
     });
 
@@ -71,7 +71,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("amount mismatch:1000000000 100000000");
 
     });
 
@@ -93,7 +93,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("address mismatch:14JRsWbBapWRC6HMDU2mx5XW9VL1rGtB6p 12sWrxRY7E7Nhmuyjbz4TtGE9jRewGqEZD");
 
     });
 
@@ -115,7 +115,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("amount mismatch:1 100000000");
 
 
     });
@@ -173,7 +173,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("get amount mismatch: 200000000 100000000");
 
 
     });
@@ -200,7 +200,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("give amount mismatch: 200000000 100000000");
 
 
     });
@@ -227,7 +227,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("get asset mismatch: XCP BITCRYSTALS");
 
 
     });
@@ -254,7 +254,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("give asset mismatch: XCP SARUTOBICARD");
 
 
     });
@@ -281,7 +281,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("get amount mismatch: 1 100000000");
 
 
     });
@@ -308,7 +308,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("give amount mismatch: 1 100000000");
 
 
     });
@@ -423,7 +423,7 @@ describe('DataService', () => {
 
     var result = service.signRawTransaction(params, function(error, signed_tx) {
 
-      expect(error).toEqual("xcp details do not match parameters");
+      expect(error).toEqual("type mismatch: Cancel Order");
 
     });
 
@@ -580,7 +580,7 @@ describe('DataService', () => {
 
   }));
 
-  fit(`test btc transaction with incorrect amount`, async(() => {
+  /*fit(`test btc transaction with incorrect amount`, async(() => {
     var service = new DataService();
 
     unsignedTx = "01000000017353b5158f27b070088842d47d0f84b6ea11f2541473642fb7aca97ffaf92a90010000001976a9149566d756e4b1a0885a6960aa7aede79abc432c2a88acffffffff020000000000000000306a2e9bb6954ebde8f8056a141b39afb87f4089f0b6b463772800165caf08d23d281e9a18098ea83842a37a4effbb94b4d1910e00000000001976a9149566d756e4b1a0885a6960aa7aede79abc432c2a88ac00000000";
@@ -602,7 +602,7 @@ describe('DataService', () => {
     });
 
 
-  }));
+  }));*/
 
 
 

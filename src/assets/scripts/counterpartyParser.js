@@ -25,8 +25,8 @@ var txObject;
 
 	counterpartyParser.prototype.checkSendTransaction = function(unsignedtx,source,destination,token,amount,divisible) {
 
-
- if(divisible){
+		 
+ 	if(divisible){
 		amount*=100000000;
 		 
 		 }
@@ -36,7 +36,7 @@ var txObject;
 
 		if("Enhanced Send" != jsonData.type){
 			 
-			return false;
+			return [false,"type mismatch"+"Enhanced Send "+jsonData.type];
 		}
 		
 
@@ -48,22 +48,22 @@ var txObject;
 
 		if(destination != address){
 		 
-			return false;
+			return [false,"address mismatch:"+destination+" "+address];
 		}
 
 		if(token != jsonData.data.asset_id){
 		 
-			 return false;
+			 return [false,"asset mismatch:"+token+" "+jsonData.data.asset_id];
 		}
 
 		if(amount != jsonData.data.quantity){
 			
-			 return false;
+			 return [false,"amount mismatch:"+amount+" "+jsonData.data.quantity];
 		}
 
  
 	
-		return true;
+		return [true,null];
 
 	}
 
@@ -85,31 +85,31 @@ var txObject;
 		var jsonData = this.parse(unsignedtx);
 		console.log(jsonData);
 		if("Order" != jsonData.type){ 
-			return false;
+			return [false,"type mismatch: Order "+jsonData.type];
 		}
 
 		if(address != jsonData.destination.address){ 
-			return false;
+			return [false,"address mismatch: "+address+" "+jsonData.destination.address];
 		}
 		 
 		if(get_token != jsonData.data.get_id){ 
 			console.error("get "+get_token+" "+jsonData.data.get_id);
-			 return false;
+			 return [false,"get asset mismatch: "+get_token+" "+jsonData.data.get_id];
 		}
 
 		if(give_token != jsonData.data.give_id){
 			console.error("give "+give_token+" "+jsonData.data.give_id);
-			 return false;
+			 return [false,"give asset mismatch: "+give_token+" "+jsonData.data.give_id];
 		}
 
 		if(get_quantity != jsonData.data.get_quantity){
 			console.error("get "+get_quantity+" "+jsonData.data.get_quantity);
-			 return false;
+			 return [false,"get amount mismatch: "+get_quantity+" "+jsonData.data.get_quantity];
 		}
 
 		if(give_quantity != jsonData.data.give_quantity){
 			console.error("give "+give_quantity+" "+jsonData.data.give_quantity);
-			 return false;
+			 return [false,"give amount mismatch: "+give_quantity+" "+jsonData.data.give_quantity];
 		}
  
 		return true;
@@ -121,10 +121,10 @@ var txObject;
 		var jsonData = this.parse(unsignedtx);
 
 		if("Cancel" != jsonData.type){ 
-			return false;
+			return [false,"type mismatch: Cancel "+jsonData.type];
 		}
 		 
-		return true;
+		return [true,null];
 
 	}
 

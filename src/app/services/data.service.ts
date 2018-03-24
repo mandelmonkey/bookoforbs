@@ -310,7 +310,7 @@ export class DataService {
 
 
     unsignedTx = this.rbf_tools.setRBF(unsignedTx);
-
+    var xcpError = "";
     if (params.token != "BTC") {
 
       var check = false;
@@ -324,8 +324,8 @@ export class DataService {
       else if (params.type == "order") {
         check = this.cp_tools.checkOrderTransaction(unsignedTx, changeAddress, params.get_token, params.get_quantity, params.give_token, params.give_quantity, params.get_divisible, params.give_divisible);
       }
-      if (check == false) {
-        callback("xcp details do not match parameters", null);
+      if (check[0] == false) {
+        callback(check[1], null);
         return;
       }
     }
