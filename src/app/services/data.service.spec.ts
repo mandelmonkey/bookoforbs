@@ -582,26 +582,26 @@ describe('DataService', () => {
 
   /*fit(`test btc transaction with incorrect amount`, async(() => {
     var service = new DataService();
-
+  
     unsignedTx = "01000000017353b5158f27b070088842d47d0f84b6ea11f2541473642fb7aca97ffaf92a90010000001976a9149566d756e4b1a0885a6960aa7aede79abc432c2a88acffffffff020000000000000000306a2e9bb6954ebde8f8056a141b39afb87f4089f0b6b463772800165caf08d23d281e9a18098ea83842a37a4effbb94b4d1910e00000000001976a9149566d756e4b1a0885a6960aa7aede79abc432c2a88ac00000000";
-
+  
     var params = {
-      "unsigned_tx": unsignedTx,
-      "type": "send",
-      "destination": "15ZyZrLduFjvRLYuvSKUQawunPewZyowiz",
-      "token": "INDRIK",
-      "quantity": "375",
-      "divisible": 0,
-      "passphrase": passphrase
+    "unsigned_tx": unsignedTx,
+    "type": "send",
+    "destination": "15ZyZrLduFjvRLYuvSKUQawunPewZyowiz",
+    "token": "INDRIK",
+    "quantity": "375",
+    "divisible": 0,
+    "passphrase": passphrase
     }
-
+  
     var result = service.signRawTransaction(params, function(error, signed_tx) {
-      console.log(error);
-      expect(error).toEqual("transaction amounts do not match parameters");
-
+    console.log(error);
+    expect(error).toEqual("transaction amounts do not match parameters");
+  
     });
-
-
+  
+  
   }));*/
 
 

@@ -304,8 +304,7 @@ export class IntroComponent implements OnInit {
 
     var word_tmp = this.passphrase.trim().split(/\s+/)[word - 1];
 
-
-    return word_tmp + ",";
+    return word_tmp;
 
   }
 

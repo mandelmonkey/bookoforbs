@@ -47,7 +47,7 @@ export class DataService {
   signCaller: any;
 
   constructor() {
-    this.versionNumber = "0.20";
+    this.versionNumber = "0.21";
     this.currentTab = 1;
 
     this.uiclass = new UI();
@@ -71,14 +71,6 @@ export class DataService {
 
 
     this.cp_tools = new counterpartyParser();
-
-
-
-
-
-
-
-
 
 
   }

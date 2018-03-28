@@ -109,9 +109,18 @@ export class FeeSelectorComponent implements OnInit {
     else if (index == 4) {
 
 
+      var feeText = this.dataService.maincontroller.customFee + "";
+      if (feeText.indexOf(".") != -1) {
+        alert(this.dataService.getLang("fee_enter_whole"));
+        return;
+      }
 
+      var customFee = parseInt(this.dataService.maincontroller.customFee);
 
-      var customFee = parseFloat(this.dataService.maincontroller.customFee);
+      if (customFee < 1) {
+        alert(this.dataService.getLang("fee_larger_than_zero"));
+        return;
+      }
       if (Number.isNaN(customFee)) {
         this.dataService.maincontroller.showMessage(this.dataService.getLang("valid_fee"));
         this.dataService.maincontroller.customFee = "";

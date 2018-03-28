@@ -268,8 +268,8 @@ display: inline-block;
    -o-animation-fill-mode:forwards; /*Not implemented yet*/
    -ms-animation-fill-mode:forwards; /*IE 10+*/
    animation-fill-mode:forwards; /*when the spec is finished*/
-   padding-left: 5px;
-   padding-right: 5px;
+   padding-left: 10px;
+   padding-right: 10px;
    padding-top: 5px;
 }
 #word1{

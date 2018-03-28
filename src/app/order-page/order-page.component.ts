@@ -399,97 +399,81 @@ export class OrderPageComponent implements OnInit {
 
     console.log(JSON.stringify(params));
 
-    tmpthis.indiesquare.createOrder(params, function(data, error) {
+    try {
+      tmpthis.indiesquare.createOrder(params, function(data, error) {
 
-      if (error) {
-        tmpthis.closeConf();
-        tmpthis.loading = false;
-        if (error.message != null) {
-          tmpthis.dataService.maincontroller.showMessage(error.message);
-        }
-        else {
-          tmpthis.dataService.maincontroller.showMessage("error");
-        }
-        console.error(error);
-        return;
-      }
-
-      tmpthis.selectAmount = false;
-      tmpthis.showOrderText = false;
-      tmpthis.showConfText = true;
-      tmpthis.currentTransactionFee = data.fee / 100000000;
-
-      tmpthis.getDivisible = false;
-      tmpthis.giveDivisible = false;
-
-
-      if (tmpthis.giveToken == tmpthis.dataService.maincontroller.selectedKey) {
-        if (tmpthis.baseDivisible == 1) {
-          tmpthis.getDivisible = true;
-
-        }
-        if (tmpthis.selectedDivisible == 1) {
-          tmpthis.giveDivisible = true;
-
-        }
-      } else {
-        if (tmpthis.baseDivisible == 1) {
-          tmpthis.giveDivisible = true;
-
-        }
-        if (tmpthis.selectedDivisible == 1) {
-          tmpthis.getDivisible = true;
-
+        if (error) {
+          tmpthis.closeConf();
+          tmpthis.loading = false;
+          if (error.message != null) {
+            tmpthis.dataService.maincontroller.showMessage(error.message);
+          }
+          else {
+            tmpthis.dataService.maincontroller.showMessage("error");
+          }
+          console.error(error);
+          return;
         }
 
-      }
+        tmpthis.selectAmount = false;
+        tmpthis.showOrderText = false;
+        tmpthis.showConfText = true;
+        tmpthis.currentTransactionFee = data.fee / 100000000;
+
+        tmpthis.getDivisible = false;
+        tmpthis.giveDivisible = false;
 
 
-      tmpthis.unsigned_tx = data.unsigned_tx;
+        if (tmpthis.giveToken == tmpthis.dataService.maincontroller.selectedKey) {
+          if (tmpthis.baseDivisible == 1) {
+            tmpthis.getDivisible = true;
 
-      if (tmpthis.dataService.maincontroller.linkType == "indiesquare") {
+          }
+          if (tmpthis.selectedDivisible == 1) {
+            tmpthis.giveDivisible = true;
 
+          }
+        } else {
+          if (tmpthis.baseDivisible == 1) {
+            tmpthis.giveDivisible = true;
 
-        tmpthis.indiesquare.signTransaction({ 'unsigned_tx': data.unsigned_tx }, function(url, urlScheme, error) {
-          if (error) {
-            tmpthis.closeConf();
-            tmpthis.loading = false;
-            if (error.message != null) {
-              tmpthis.dataService.maincontroller.showMessage(error.message);
-            }
-            else {
-              tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
-            }
-            console.error(error);
-            return;
+          }
+          if (tmpthis.selectedDivisible == 1) {
+            tmpthis.getDivisible = true;
+
           }
 
-          if (tmpthis.dataService.isMobile == false) {
-            tmpthis.dataService.maincontroller.showQR(url);
-          }
-
-        }, function(data, error) {
-          if (error) {
-            tmpthis.loading = false;
-            console.error(error);
-            tmpthis.dataService.maincontroller.closeQR();
-            tmpthis.showConfOverlay = false;
-            if (error.message != null) {
-              tmpthis.dataService.maincontroller.showMessage(error.message);
-            }
-            else {
-              tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
-            }
-            return;
-          }
+        }
 
 
+        tmpthis.unsigned_tx = data.unsigned_tx;
 
-          tmpthis.indiesquare.broadcast({ "tx": data.signed_tx }, function(data, error) {
-            tmpthis.loading = false;
+        if (tmpthis.dataService.maincontroller.linkType == "indiesquare") {
+
+
+          tmpthis.indiesquare.signTransaction({ 'unsigned_tx': data.unsigned_tx }, function(url, urlScheme, error) {
             if (error) {
-
+              tmpthis.closeConf();
+              tmpthis.loading = false;
+              if (error.message != null) {
+                tmpthis.dataService.maincontroller.showMessage(error.message);
+              }
+              else {
+                tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
+              }
               console.error(error);
+              return;
+            }
+
+            if (tmpthis.dataService.isMobile == false) {
+              tmpthis.dataService.maincontroller.showQR(url);
+            }
+
+          }, function(data, error) {
+            if (error) {
+              tmpthis.loading = false;
+              console.error(error);
+              tmpthis.dataService.maincontroller.closeQR();
               tmpthis.showConfOverlay = false;
               if (error.message != null) {
                 tmpthis.dataService.maincontroller.showMessage(error.message);
@@ -497,58 +481,79 @@ export class OrderPageComponent implements OnInit {
               else {
                 tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
               }
-              tmpthis.closeConf();
-              tmpthis.dataService.maincontroller.closeQR();
               return;
             }
 
-            tmpthis.closeConf();
-            tmpthis.dataService.maincontroller.closeQR();
-            tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_placed"));
+
+
+            tmpthis.indiesquare.broadcast({ "tx": data.signed_tx }, function(data, error) {
+              tmpthis.loading = false;
+              if (error) {
+
+                console.error(error);
+                tmpthis.showConfOverlay = false;
+                if (error.message != null) {
+                  tmpthis.dataService.maincontroller.showMessage(error.message);
+                }
+                else {
+                  tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("error"));
+                }
+                tmpthis.closeConf();
+                tmpthis.dataService.maincontroller.closeQR();
+                return;
+              }
+
+              tmpthis.closeConf();
+              tmpthis.dataService.maincontroller.closeQR();
+              tmpthis.dataService.maincontroller.showMessage(tmpthis.dataService.getLang("order_placed"));
+
+
+            });
+
+
 
 
           });
+        } else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
+
+          tmpthis.loading = true;
+
+
+          webXCP.signTransaction(tmpthis.dataService.currentBasePath(), tmpthis.unsigned_tx, function(err, result) {
+
+            if (err != undefined) {
+              tmpthis.loading = false;
+
+              tmpthis.closeConf();
+              tmpthis.ref.detectChanges();
+
+              alert(err);
+
+            } else {
+
+              tmpthis.broadcastTx(result, tmpthis);
+
+            }
+
+          })
+
+
+        } else {
+
+
+          tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_ordering', tmpthis.giveQuant + "", tmpthis.giveToken, tmpthis.getQuant + "", tmpthis.getToken, tmpthis.currentTransactionFee + " " + tmpthis.dataService.maincontroller.getFiatForToken('BTC', tmpthis.currentTransactionFee)), tmpthis.getPassphrase, tmpthis.cancelOrder, tmpthis);
+
+
+        }
 
 
 
 
-        });
-      } else if (tmpthis.dataService.maincontroller.linkType == "webXCP") {
+      });
 
-        tmpthis.loading = true;
-
-
-        webXCP.signTransaction(tmpthis.dataService.currentBasePath(), tmpthis.unsigned_tx, function(err, result) {
-
-          if (err != undefined) {
-            tmpthis.loading = false;
-
-            tmpthis.closeConf();
-            tmpthis.ref.detectChanges();
-
-            alert(err);
-
-          } else {
-
-            tmpthis.broadcastTx(result, tmpthis);
-
-          }
-
-        })
-
-
-      } else {
-
-
-        tmpthis.dataService.maincontroller.showConf(tmpthis.dataService.getLang('you_are_ordering', tmpthis.giveQuant + "", tmpthis.giveToken, tmpthis.getQuant + "", tmpthis.getToken, tmpthis.currentTransactionFee + " " + tmpthis.dataService.maincontroller.getFiatForToken('BTC', tmpthis.currentTransactionFee)), tmpthis.getPassphrase, tmpthis.cancelOrder, tmpthis);
-
-
-      }
-
-
-
-
-    });
+    } catch (e) {
+      alert("caught error");
+    }
 
 
   }
@@ -589,11 +594,14 @@ export class OrderPageComponent implements OnInit {
 
   cancelOrder(owner: any) {
     owner.loading = false;
+    owner.closeConf();
+    owner.ref.detectChanges();
+
   }
 
   getPassphrase(currentOwner: any) {
 
-    currentOwner.dataService.maincontroller.showPassword(currentOwner.cancelSend, currentOwner.broadcast, currentOwner);
+    currentOwner.dataService.maincontroller.showPassword(currentOwner.cancelOrder, currentOwner.broadcast, currentOwner);
   }
 
 

@@ -158,7 +158,9 @@ var ja = function() {
 	lang["canceling_order_status"]="Canceling order for tx\n\n$1$";
 	lang["reset_app"]="Reset Preferences";
 	lang["reset_app_desc"]="Remove all saved settings and reload";
-	
+	lang["fee_enter_whole"]="整数のみ入力してください";
+	lang["fee_larger_than_zero"]="０よりも大きい数字を入力してください";
+
 
 function ja() {
 

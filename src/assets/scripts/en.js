@@ -158,6 +158,8 @@ var en = function() {
 	lang["canceling_order_status"]="Canceling order for tx\n\n$1$";
 	lang["reset_app"]="Reset Preferences";
 	lang["reset_app_desc"]="Remove all saved settings and reload";
+	lang["fee_enter_whole"]="Please enter whole numbers only i.e. 1,2 etc";
+	lang["fee_larger_than_zero"]="Please enter a number larger than zero";
 
 
 	 
