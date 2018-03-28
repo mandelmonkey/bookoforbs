@@ -519,7 +519,7 @@ describe('DataService', () => {
   }));
 
 
-  it(`test get address from 2 passphrases doest get same address `, async(() => {
+  it(`test get address from 2 passphrases doesn't get same address `, async(() => {
 
     var service = new DataService();
 
